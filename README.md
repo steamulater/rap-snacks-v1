@@ -13,7 +13,7 @@ Convert culturally iconic rap lyrics into protein sequences, fold them, and find
 # 1. Audit the data — review 20 random rows before proceeding
 make audit
 
-# 2. Convert (all 5 modes, 80-90 AA filter)
+# 2. Convert (all 5 modes, 80-300 AA filter)
 make convert
 
 # 3. Fold on Colab (see Makefile for Boltz-2 instructions)
@@ -65,7 +65,7 @@ bars_v2_{mode}.fasta × 5 modes
 | Lyric attribution drift | CSV re-sorted after conversion, bar_N mapping broke | `bar_index_snapshot.json` written at conversion time — never depends on CSV ordering |
 | FASTA/CSV agreement | No check | `len(lyric_cleaned) == len(fasta_seq)` asserted for all bars, all modes |
 | Frozen CSV modified | No guard | SHA-256 hash written on first run; subsequent runs refuse if hash changed |
-| Length confound | 10-225 AA (uncontrolled) | 80-90 AA filter — tight cohort, minimal length variance |
+| Length confound | 10-225 AA (uncontrolled) | 80-300 AA filter — tight cohort, minimal length variance |
 | Metrics scattered | Separate output CSVs | All structural metrics joined back to one master enriched CSV |
 | CIF output | Needed conversion for downstream tools | `--output_format pdb` flag in Boltz predict |
 | Sequences not tracked | Only FASTA files | Per-condition sequence columns in master CSV |
@@ -95,7 +95,7 @@ bars_v2_{mode}.fasta × 5 modes
 | `native` | AA pass-through | Softmax peaked draw | Effect of freq remapping |
 | `native_alanine` | AA pass-through | → A | BOJUXZ strategy without remapping |
 
-All runs: seed=42, λ=2.0, 80-90 AA filter.
+All runs: seed=42, λ=2.0, 80-300 AA filter.
 
 ---
 
@@ -104,7 +104,7 @@ All runs: seed=42, λ=2.0, 80-90 AA filter.
 V1 pilot (225 bars, 28–136 AA) showed:
 - `r(length, pLDDT) = −0.746` — length is the dominant structural predictor
 - pTM > 0.4 (protein-like) peaks in the 40–90 AA range
-- 80–90 AA chosen for v1: tight cohort eliminates residual length confound entirely
+- 80–300 AA chosen for v1: tight cohort eliminates residual length confound entirely
 
 ---
 

@@ -25,7 +25,7 @@ audit:
 
 .PHONY: audit-tight
 audit-tight:
-	$(PYTHON) $(PIPELINE)/00_audit.py --min-length 80 --max-length 90 --sample 20
+	$(PYTHON) $(PIPELINE)/00_audit.py --min-length 80 --max-length 300 --sample 20
 
 # ---------------------------------------------------------------------------
 # Stage 1 — Convert (all 5 modes)
@@ -33,11 +33,11 @@ audit-tight:
 
 .PHONY: convert
 convert:
-	$(PYTHON) $(PIPELINE)/01_convert.py --min-length 80 --max-length 90 --seed 42
+	$(PYTHON) $(PIPELINE)/01_convert.py --min-length 80 --max-length 300 --seed 42
 
 .PHONY: convert-dry
 convert-dry:
-	$(PYTHON) $(PIPELINE)/01_convert.py --min-length 80 --max-length 90 --dry-run
+	$(PYTHON) $(PIPELINE)/01_convert.py --min-length 80 --max-length 300 --dry-run
 
 # ---------------------------------------------------------------------------
 # Stage 2 — ESMFold ensemble
