@@ -1,0 +1,27 @@
+# Environment
+.env
+*.env
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+
+# Large outputs — Boltz PDB/CIF files (commit CSVs and JSONs, not structures)
+outputs/boltz/predictions/
+outputs/esm/*/pdbs/
+outputs/foldseek/raw/
+
+# Colab notebooks (downloaded from Drive — not source of truth)
+*_colab.ipynb
+
+# API caches
+genius_cache.json
+raw_pages/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python virtual envs
+venv/
+env/
+.venv/

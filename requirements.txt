@@ -1,0 +1,21 @@
+# rap-snacks-v1 dependencies
+# Install: pip install -r requirements.txt
+
+# Core pipeline — no external dependencies for stages 0-1
+# (stdlib only: csv, json, hashlib, math, random, re, ssl, urllib)
+
+# Stage 2 (ESMFold) — stdlib urllib only, no additional packages
+
+# Stage 4 (FoldSeek) — stdlib urllib only
+
+# Analysis notebooks
+jupyter
+jupyterlab
+pandas
+matplotlib
+scipy
+seaborn
+
+# Optional — Boltz-2 is run on Colab, not locally
+# boltz
+# torch
