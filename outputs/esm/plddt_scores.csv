@@ -1,0 +1,1551 @@
+bar_id,condition,seed,sequence_len,plddt,status,song,iconicity
+bar_0,concordance,42,88,0.311246,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,43,88,0.314969,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,44,88,0.299470,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,45,88,0.306848,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,46,88,0.279905,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,47,88,0.328580,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,48,88,0.308266,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,49,88,0.327597,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,50,88,0.311191,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,51,88,0.333730,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,52,88,0.292394,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,53,88,0.322315,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,54,88,0.287245,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,55,88,0.327152,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,concordance,56,88,,failed,Super Freaky Girl (Queen Mix),0.9938
+bar_1,concordance,42,92,0.318261,ok,Changed It,0.9365
+bar_1,concordance,43,92,0.305813,ok,Changed It,0.9365
+bar_1,concordance,44,92,0.337168,ok,Changed It,0.9365
+bar_1,concordance,45,92,0.316281,ok,Changed It,0.9365
+bar_1,concordance,46,92,0.330385,ok,Changed It,0.9365
+bar_1,concordance,47,92,0.354623,ok,Changed It,0.9365
+bar_1,concordance,48,92,0.313556,ok,Changed It,0.9365
+bar_1,concordance,49,92,0.344783,ok,Changed It,0.9365
+bar_1,concordance,50,92,0.375881,ok,Changed It,0.9365
+bar_1,concordance,51,92,0.329481,ok,Changed It,0.9365
+bar_1,concordance,52,92,0.343982,ok,Changed It,0.9365
+bar_1,concordance,53,92,0.320120,ok,Changed It,0.9365
+bar_1,concordance,54,92,0.308254,ok,Changed It,0.9365
+bar_1,concordance,55,92,0.321738,ok,Changed It,0.9365
+bar_1,concordance,56,92,0.321145,ok,Changed It,0.9365
+bar_2,concordance,42,95,0.331937,ok,Fly,0.9158
+bar_2,concordance,43,95,0.385714,ok,Fly,0.9158
+bar_2,concordance,44,95,0.342103,ok,Fly,0.9158
+bar_2,concordance,45,95,0.334242,ok,Fly,0.9158
+bar_2,concordance,46,95,0.374634,ok,Fly,0.9158
+bar_2,concordance,47,95,0.333953,ok,Fly,0.9158
+bar_2,concordance,48,95,0.351809,ok,Fly,0.9158
+bar_2,concordance,49,95,0.359554,ok,Fly,0.9158
+bar_2,concordance,50,95,0.346040,ok,Fly,0.9158
+bar_2,concordance,51,95,0.412460,ok,Fly,0.9158
+bar_2,concordance,52,95,0.374964,ok,Fly,0.9158
+bar_2,concordance,53,95,0.379765,ok,Fly,0.9158
+bar_2,concordance,54,95,0.361315,ok,Fly,0.9158
+bar_2,concordance,55,95,0.377812,ok,Fly,0.9158
+bar_2,concordance,56,95,0.371994,ok,Fly,0.9158
+bar_3,concordance,42,84,0.301466,ok,I Lied,0.8298
+bar_3,concordance,43,84,0.369858,ok,I Lied,0.8298
+bar_3,concordance,44,84,0.339387,ok,I Lied,0.8298
+bar_3,concordance,45,84,0.345611,ok,I Lied,0.8298
+bar_3,concordance,46,84,0.320397,ok,I Lied,0.8298
+bar_3,concordance,47,84,0.349891,ok,I Lied,0.8298
+bar_3,concordance,48,84,0.356555,ok,I Lied,0.8298
+bar_3,concordance,49,84,0.381262,ok,I Lied,0.8298
+bar_3,concordance,50,84,0.321978,ok,I Lied,0.8298
+bar_3,concordance,51,84,0.408485,ok,I Lied,0.8298
+bar_3,concordance,52,84,0.329764,ok,I Lied,0.8298
+bar_3,concordance,53,84,0.338634,ok,I Lied,0.8298
+bar_3,concordance,54,84,0.345048,ok,I Lied,0.8298
+bar_3,concordance,55,84,0.352345,ok,I Lied,0.8298
+bar_3,concordance,56,84,0.345906,ok,I Lied,0.8298
+bar_4,concordance,42,81,0.379564,ok,Fallin 4 U,0.7564
+bar_4,concordance,43,81,0.306164,ok,Fallin 4 U,0.7564
+bar_4,concordance,44,81,0.300333,ok,Fallin 4 U,0.7564
+bar_4,concordance,45,81,0.356704,ok,Fallin 4 U,0.7564
+bar_4,concordance,46,81,0.301234,ok,Fallin 4 U,0.7564
+bar_4,concordance,47,81,0.327468,ok,Fallin 4 U,0.7564
+bar_4,concordance,48,81,0.317818,ok,Fallin 4 U,0.7564
+bar_4,concordance,49,81,0.271857,ok,Fallin 4 U,0.7564
+bar_4,concordance,50,81,0.337750,ok,Fallin 4 U,0.7564
+bar_4,concordance,51,81,0.340209,ok,Fallin 4 U,0.7564
+bar_4,concordance,52,81,0.295899,ok,Fallin 4 U,0.7564
+bar_4,concordance,53,81,0.324525,ok,Fallin 4 U,0.7564
+bar_4,concordance,54,81,,failed,Fallin 4 U,0.7564
+bar_4,concordance,55,81,0.292381,ok,Fallin 4 U,0.7564
+bar_4,concordance,56,81,0.335459,ok,Fallin 4 U,0.7564
+bar_5,concordance,42,94,0.429042,ok,Fly,0.7451
+bar_5,concordance,43,94,0.375644,ok,Fly,0.7451
+bar_5,concordance,44,94,0.334225,ok,Fly,0.7451
+bar_5,concordance,45,94,0.360251,ok,Fly,0.7451
+bar_5,concordance,46,94,0.344793,ok,Fly,0.7451
+bar_5,concordance,47,94,0.353206,ok,Fly,0.7451
+bar_5,concordance,48,94,0.345699,ok,Fly,0.7451
+bar_5,concordance,49,94,0.357198,ok,Fly,0.7451
+bar_5,concordance,50,94,0.331131,ok,Fly,0.7451
+bar_5,concordance,51,94,0.388377,ok,Fly,0.7451
+bar_5,concordance,52,94,0.331517,ok,Fly,0.7451
+bar_5,concordance,53,94,0.370112,ok,Fly,0.7451
+bar_5,concordance,54,94,0.414409,ok,Fly,0.7451
+bar_5,concordance,55,94,0.404378,ok,Fly,0.7451
+bar_5,concordance,56,94,0.299136,ok,Fly,0.7451
+bar_6,concordance,42,88,0.403838,ok,I’m The Best,0.7394
+bar_6,concordance,43,88,0.392214,ok,I’m The Best,0.7394
+bar_6,concordance,44,88,0.332070,ok,I’m The Best,0.7394
+bar_6,concordance,45,88,0.371355,ok,I’m The Best,0.7394
+bar_6,concordance,46,88,0.323054,ok,I’m The Best,0.7394
+bar_6,concordance,47,88,0.374992,ok,I’m The Best,0.7394
+bar_6,concordance,48,88,0.359602,ok,I’m The Best,0.7394
+bar_6,concordance,49,88,0.364568,ok,I’m The Best,0.7394
+bar_6,concordance,50,88,0.419055,ok,I’m The Best,0.7394
+bar_6,concordance,51,88,0.354153,ok,I’m The Best,0.7394
+bar_6,concordance,52,88,0.388943,ok,I’m The Best,0.7394
+bar_6,concordance,53,88,0.376188,ok,I’m The Best,0.7394
+bar_6,concordance,54,88,0.381079,ok,I’m The Best,0.7394
+bar_6,concordance,55,88,0.380895,ok,I’m The Best,0.7394
+bar_6,concordance,56,88,0.390968,ok,I’m The Best,0.7394
+bar_7,concordance,42,138,0.263330,ok,Sweetest Girl,0.7308
+bar_7,concordance,43,138,0.289772,ok,Sweetest Girl,0.7308
+bar_7,concordance,44,138,0.284905,ok,Sweetest Girl,0.7308
+bar_7,concordance,45,138,0.277617,ok,Sweetest Girl,0.7308
+bar_7,concordance,46,138,0.264597,ok,Sweetest Girl,0.7308
+bar_7,concordance,47,138,0.244008,ok,Sweetest Girl,0.7308
+bar_7,concordance,48,138,0.262526,ok,Sweetest Girl,0.7308
+bar_7,concordance,49,138,0.271557,ok,Sweetest Girl,0.7308
+bar_7,concordance,50,138,0.306769,ok,Sweetest Girl,0.7308
+bar_7,concordance,51,138,0.279146,ok,Sweetest Girl,0.7308
+bar_7,concordance,52,138,0.298557,ok,Sweetest Girl,0.7308
+bar_7,concordance,53,138,0.288803,ok,Sweetest Girl,0.7308
+bar_7,concordance,54,138,0.266393,ok,Sweetest Girl,0.7308
+bar_7,concordance,55,138,0.282720,ok,Sweetest Girl,0.7308
+bar_7,concordance,56,138,0.281807,ok,Sweetest Girl,0.7308
+bar_8,concordance,42,128,0.349642,ok,Moment 4 Life,0.7108
+bar_8,concordance,43,128,0.314297,ok,Moment 4 Life,0.7108
+bar_8,concordance,44,128,0.272641,ok,Moment 4 Life,0.7108
+bar_8,concordance,45,128,,failed,Moment 4 Life,0.7108
+bar_8,concordance,46,128,0.303124,ok,Moment 4 Life,0.7108
+bar_8,concordance,47,128,0.293709,ok,Moment 4 Life,0.7108
+bar_8,concordance,48,128,0.287073,ok,Moment 4 Life,0.7108
+bar_8,concordance,49,128,0.310729,ok,Moment 4 Life,0.7108
+bar_8,concordance,50,128,0.312061,ok,Moment 4 Life,0.7108
+bar_8,concordance,51,128,0.285799,ok,Moment 4 Life,0.7108
+bar_8,concordance,52,128,0.347649,ok,Moment 4 Life,0.7108
+bar_8,concordance,53,128,0.289365,ok,Moment 4 Life,0.7108
+bar_8,concordance,54,128,0.339324,ok,Moment 4 Life,0.7108
+bar_8,concordance,55,128,0.311595,ok,Moment 4 Life,0.7108
+bar_8,concordance,56,128,,failed,Moment 4 Life,0.7108
+bar_9,concordance,42,82,0.448728,ok,the light is coming,0.7073
+bar_9,concordance,43,82,0.450545,ok,the light is coming,0.7073
+bar_9,concordance,44,82,0.434715,ok,the light is coming,0.7073
+bar_9,concordance,45,82,0.448556,ok,the light is coming,0.7073
+bar_9,concordance,46,82,0.463932,ok,the light is coming,0.7073
+bar_9,concordance,47,82,0.469282,ok,the light is coming,0.7073
+bar_9,concordance,48,82,0.421048,ok,the light is coming,0.7073
+bar_9,concordance,49,82,0.511246,ok,the light is coming,0.7073
+bar_9,concordance,50,82,0.422810,ok,the light is coming,0.7073
+bar_9,concordance,51,82,0.471292,ok,the light is coming,0.7073
+bar_9,concordance,52,82,0.418274,ok,the light is coming,0.7073
+bar_9,concordance,53,82,0.462689,ok,the light is coming,0.7073
+bar_9,concordance,54,82,0.458567,ok,the light is coming,0.7073
+bar_9,concordance,55,82,0.423097,ok,the light is coming,0.7073
+bar_9,concordance,56,82,0.436985,ok,the light is coming,0.7073
+bar_10,concordance,42,133,0.268853,ok,I’m The Best,0.6889
+bar_10,concordance,43,133,0.284990,ok,I’m The Best,0.6889
+bar_10,concordance,44,133,0.276181,ok,I’m The Best,0.6889
+bar_10,concordance,45,133,0.264381,ok,I’m The Best,0.6889
+bar_10,concordance,46,133,0.284365,ok,I’m The Best,0.6889
+bar_10,concordance,47,133,0.256481,ok,I’m The Best,0.6889
+bar_10,concordance,48,133,0.273950,ok,I’m The Best,0.6889
+bar_10,concordance,49,133,0.291025,ok,I’m The Best,0.6889
+bar_10,concordance,50,133,0.279686,ok,I’m The Best,0.6889
+bar_10,concordance,51,133,0.268875,ok,I’m The Best,0.6889
+bar_10,concordance,52,133,0.263844,ok,I’m The Best,0.6889
+bar_10,concordance,53,133,0.305246,ok,I’m The Best,0.6889
+bar_10,concordance,54,133,0.293994,ok,I’m The Best,0.6889
+bar_10,concordance,55,133,0.296074,ok,I’m The Best,0.6889
+bar_10,concordance,56,133,0.305889,ok,I’m The Best,0.6889
+bar_11,concordance,42,118,0.349881,ok,Hell Yeah,0.5856
+bar_11,concordance,43,118,0.299977,ok,Hell Yeah,0.5856
+bar_11,concordance,44,118,0.268725,ok,Hell Yeah,0.5856
+bar_11,concordance,45,118,0.384417,ok,Hell Yeah,0.5856
+bar_11,concordance,46,118,0.331254,ok,Hell Yeah,0.5856
+bar_11,concordance,47,118,0.304447,ok,Hell Yeah,0.5856
+bar_11,concordance,48,118,0.339905,ok,Hell Yeah,0.5856
+bar_11,concordance,49,118,0.328590,ok,Hell Yeah,0.5856
+bar_11,concordance,50,118,0.380917,ok,Hell Yeah,0.5856
+bar_11,concordance,51,118,0.372423,ok,Hell Yeah,0.5856
+bar_11,concordance,52,118,0.368510,ok,Hell Yeah,0.5856
+bar_11,concordance,53,118,0.362780,ok,Hell Yeah,0.5856
+bar_11,concordance,54,118,0.341418,ok,Hell Yeah,0.5856
+bar_11,concordance,55,118,0.359439,ok,Hell Yeah,0.5856
+bar_11,concordance,56,118,0.364188,ok,Hell Yeah,0.5856
+bar_12,concordance,42,88,0.370116,ok,Realize,0.5855
+bar_12,concordance,43,88,0.334936,ok,Realize,0.5855
+bar_12,concordance,44,88,0.357968,ok,Realize,0.5855
+bar_12,concordance,45,88,0.294871,ok,Realize,0.5855
+bar_12,concordance,46,88,0.345374,ok,Realize,0.5855
+bar_12,concordance,47,88,0.318569,ok,Realize,0.5855
+bar_12,concordance,48,88,0.334437,ok,Realize,0.5855
+bar_12,concordance,49,88,0.306529,ok,Realize,0.5855
+bar_12,concordance,50,88,0.336710,ok,Realize,0.5855
+bar_12,concordance,51,88,0.315257,ok,Realize,0.5855
+bar_12,concordance,52,88,0.342164,ok,Realize,0.5855
+bar_12,concordance,53,88,0.303615,ok,Realize,0.5855
+bar_12,concordance,54,88,0.312782,ok,Realize,0.5855
+bar_12,concordance,55,88,0.327537,ok,Realize,0.5855
+bar_12,concordance,56,88,0.345691,ok,Realize,0.5855
+bar_13,concordance,42,90,0.342905,ok,Dear Old Nicki,0.5771
+bar_13,concordance,43,90,0.320651,ok,Dear Old Nicki,0.5771
+bar_13,concordance,44,90,0.427533,ok,Dear Old Nicki,0.5771
+bar_13,concordance,45,90,0.373704,ok,Dear Old Nicki,0.5771
+bar_13,concordance,46,90,0.344871,ok,Dear Old Nicki,0.5771
+bar_13,concordance,47,90,0.421186,ok,Dear Old Nicki,0.5771
+bar_13,concordance,48,90,0.425307,ok,Dear Old Nicki,0.5771
+bar_13,concordance,49,90,0.374858,ok,Dear Old Nicki,0.5771
+bar_13,concordance,50,90,0.359789,ok,Dear Old Nicki,0.5771
+bar_13,concordance,51,90,0.346329,ok,Dear Old Nicki,0.5771
+bar_13,concordance,52,90,0.323761,ok,Dear Old Nicki,0.5771
+bar_13,concordance,53,90,0.368202,ok,Dear Old Nicki,0.5771
+bar_13,concordance,54,90,0.356657,ok,Dear Old Nicki,0.5771
+bar_13,concordance,55,90,0.364797,ok,Dear Old Nicki,0.5771
+bar_13,concordance,56,90,0.374747,ok,Dear Old Nicki,0.5771
+bar_14,concordance,42,143,0.292986,ok,Just The Memories,0.5683
+bar_14,concordance,43,143,0.291131,ok,Just The Memories,0.5683
+bar_14,concordance,44,143,0.270469,ok,Just The Memories,0.5683
+bar_14,concordance,45,143,0.291528,ok,Just The Memories,0.5683
+bar_14,concordance,46,143,0.276987,ok,Just The Memories,0.5683
+bar_14,concordance,47,143,0.255210,ok,Just The Memories,0.5683
+bar_14,concordance,48,143,0.309425,ok,Just The Memories,0.5683
+bar_14,concordance,49,143,0.256071,ok,Just The Memories,0.5683
+bar_14,concordance,50,143,0.284861,ok,Just The Memories,0.5683
+bar_14,concordance,51,143,0.285677,ok,Just The Memories,0.5683
+bar_14,concordance,52,143,0.261357,ok,Just The Memories,0.5683
+bar_14,concordance,53,143,0.283662,ok,Just The Memories,0.5683
+bar_14,concordance,54,143,0.282170,ok,Just The Memories,0.5683
+bar_14,concordance,55,143,0.262419,ok,Just The Memories,0.5683
+bar_14,concordance,56,143,0.277566,ok,Just The Memories,0.5683
+bar_15,concordance,42,148,0.271412,ok,I Lied,0.551
+bar_15,concordance,43,148,0.259915,ok,I Lied,0.551
+bar_15,concordance,44,148,0.266736,ok,I Lied,0.551
+bar_15,concordance,45,148,0.278002,ok,I Lied,0.551
+bar_15,concordance,46,148,0.259836,ok,I Lied,0.551
+bar_15,concordance,47,148,0.285019,ok,I Lied,0.551
+bar_15,concordance,48,148,0.253602,ok,I Lied,0.551
+bar_15,concordance,49,148,0.259629,ok,I Lied,0.551
+bar_15,concordance,50,148,0.275716,ok,I Lied,0.551
+bar_15,concordance,51,148,0.269706,ok,I Lied,0.551
+bar_15,concordance,52,148,0.272389,ok,I Lied,0.551
+bar_15,concordance,53,148,0.275994,ok,I Lied,0.551
+bar_15,concordance,54,148,0.255101,ok,I Lied,0.551
+bar_15,concordance,55,148,0.262732,ok,I Lied,0.551
+bar_15,concordance,56,148,0.271752,ok,I Lied,0.551
+bar_16,concordance,42,101,0.364321,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,43,101,0.365696,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,44,101,0.349805,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,45,101,0.300904,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,46,101,0.318296,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,47,101,0.320219,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,48,101,0.270926,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,49,101,0.319233,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,50,101,0.314967,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,51,101,0.342357,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,52,101,0.293411,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,53,101,0.287826,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,54,101,0.292876,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,55,101,0.333782,ok,Roman’s Revenge (Remix),0.5477
+bar_16,concordance,56,101,0.328296,ok,Roman’s Revenge (Remix),0.5477
+bar_17,concordance,42,121,0.377630,ok,Love Me Enough,0.4828
+bar_17,concordance,43,121,0.289170,ok,Love Me Enough,0.4828
+bar_17,concordance,44,121,0.337503,ok,Love Me Enough,0.4828
+bar_17,concordance,45,121,0.380416,ok,Love Me Enough,0.4828
+bar_17,concordance,46,121,0.315702,ok,Love Me Enough,0.4828
+bar_17,concordance,47,121,0.373791,ok,Love Me Enough,0.4828
+bar_17,concordance,48,121,0.450409,ok,Love Me Enough,0.4828
+bar_17,concordance,49,121,0.344872,ok,Love Me Enough,0.4828
+bar_17,concordance,50,121,0.347258,ok,Love Me Enough,0.4828
+bar_17,concordance,51,121,0.367073,ok,Love Me Enough,0.4828
+bar_17,concordance,52,121,0.347324,ok,Love Me Enough,0.4828
+bar_17,concordance,53,121,0.385179,ok,Love Me Enough,0.4828
+bar_17,concordance,54,121,0.341153,ok,Love Me Enough,0.4828
+bar_17,concordance,55,121,0.286029,ok,Love Me Enough,0.4828
+bar_17,concordance,56,121,0.334940,ok,Love Me Enough,0.4828
+bar_18,concordance,42,94,0.345000,ok,Here I Am,0.4448
+bar_18,concordance,43,94,0.364656,ok,Here I Am,0.4448
+bar_18,concordance,44,94,0.427238,ok,Here I Am,0.4448
+bar_18,concordance,45,94,0.362100,ok,Here I Am,0.4448
+bar_18,concordance,46,94,0.364739,ok,Here I Am,0.4448
+bar_18,concordance,47,94,0.345451,ok,Here I Am,0.4448
+bar_18,concordance,48,94,0.363562,ok,Here I Am,0.4448
+bar_18,concordance,49,94,0.351158,ok,Here I Am,0.4448
+bar_18,concordance,50,94,0.395224,ok,Here I Am,0.4448
+bar_18,concordance,51,94,0.326946,ok,Here I Am,0.4448
+bar_18,concordance,52,94,0.306267,ok,Here I Am,0.4448
+bar_18,concordance,53,94,0.377399,ok,Here I Am,0.4448
+bar_18,concordance,54,94,0.350335,ok,Here I Am,0.4448
+bar_18,concordance,55,94,0.371152,ok,Here I Am,0.4448
+bar_18,concordance,56,94,0.361593,ok,Here I Am,0.4448
+bar_19,concordance,42,136,0.270343,ok,Ganja Burn,0.4329
+bar_19,concordance,43,136,0.280028,ok,Ganja Burn,0.4329
+bar_19,concordance,44,136,0.272778,ok,Ganja Burn,0.4329
+bar_19,concordance,45,136,0.276250,ok,Ganja Burn,0.4329
+bar_19,concordance,46,136,0.281533,ok,Ganja Burn,0.4329
+bar_19,concordance,47,136,0.269637,ok,Ganja Burn,0.4329
+bar_19,concordance,48,136,0.282651,ok,Ganja Burn,0.4329
+bar_19,concordance,49,136,0.249934,ok,Ganja Burn,0.4329
+bar_19,concordance,50,136,0.275254,ok,Ganja Burn,0.4329
+bar_19,concordance,51,136,0.287370,ok,Ganja Burn,0.4329
+bar_19,concordance,52,136,0.276371,ok,Ganja Burn,0.4329
+bar_19,concordance,53,136,0.269664,ok,Ganja Burn,0.4329
+bar_19,concordance,54,136,0.278060,ok,Ganja Burn,0.4329
+bar_19,concordance,55,136,0.288544,ok,Ganja Burn,0.4329
+bar_19,concordance,56,136,0.284788,ok,Ganja Burn,0.4329
+bar_20,concordance,42,142,0.330260,ok,Here I Am,0.4146
+bar_20,concordance,43,142,0.347712,ok,Here I Am,0.4146
+bar_20,concordance,44,142,0.289294,ok,Here I Am,0.4146
+bar_20,concordance,45,142,0.304380,ok,Here I Am,0.4146
+bar_20,concordance,46,142,0.324651,ok,Here I Am,0.4146
+bar_20,concordance,47,142,0.327416,ok,Here I Am,0.4146
+bar_20,concordance,48,142,0.295353,ok,Here I Am,0.4146
+bar_20,concordance,49,142,0.330471,ok,Here I Am,0.4146
+bar_20,concordance,50,142,0.325024,ok,Here I Am,0.4146
+bar_20,concordance,51,142,0.370416,ok,Here I Am,0.4146
+bar_20,concordance,52,142,0.316676,ok,Here I Am,0.4146
+bar_20,concordance,53,142,0.356664,ok,Here I Am,0.4146
+bar_20,concordance,54,142,0.292514,ok,Here I Am,0.4146
+bar_20,concordance,55,142,0.303065,ok,Here I Am,0.4146
+bar_20,concordance,56,142,0.327388,ok,Here I Am,0.4146
+bar_21,concordance,42,95,0.311137,ok,Wave Ya Hand,0.4055
+bar_21,concordance,43,95,0.317891,ok,Wave Ya Hand,0.4055
+bar_21,concordance,44,95,0.344707,ok,Wave Ya Hand,0.4055
+bar_21,concordance,45,95,0.348691,ok,Wave Ya Hand,0.4055
+bar_21,concordance,46,95,0.324493,ok,Wave Ya Hand,0.4055
+bar_21,concordance,47,95,0.306552,ok,Wave Ya Hand,0.4055
+bar_21,concordance,48,95,0.353291,ok,Wave Ya Hand,0.4055
+bar_21,concordance,49,95,0.291834,ok,Wave Ya Hand,0.4055
+bar_21,concordance,50,95,0.329594,ok,Wave Ya Hand,0.4055
+bar_21,concordance,51,95,0.350426,ok,Wave Ya Hand,0.4055
+bar_21,concordance,52,95,0.344134,ok,Wave Ya Hand,0.4055
+bar_21,concordance,53,95,0.334143,ok,Wave Ya Hand,0.4055
+bar_21,concordance,54,95,0.319587,ok,Wave Ya Hand,0.4055
+bar_21,concordance,55,95,0.354176,ok,Wave Ya Hand,0.4055
+bar_21,concordance,56,95,0.331928,ok,Wave Ya Hand,0.4055
+bar_22,concordance,42,134,0.315660,ok,Regular Degular,0.3992
+bar_22,concordance,43,134,0.285202,ok,Regular Degular,0.3992
+bar_22,concordance,44,134,0.279423,ok,Regular Degular,0.3992
+bar_22,concordance,45,134,0.283380,ok,Regular Degular,0.3992
+bar_22,concordance,46,134,0.305933,ok,Regular Degular,0.3992
+bar_22,concordance,47,134,0.307047,ok,Regular Degular,0.3992
+bar_22,concordance,48,134,0.325491,ok,Regular Degular,0.3992
+bar_22,concordance,49,134,0.271886,ok,Regular Degular,0.3992
+bar_22,concordance,50,134,0.303753,ok,Regular Degular,0.3992
+bar_22,concordance,51,134,0.308039,ok,Regular Degular,0.3992
+bar_22,concordance,52,134,0.283619,ok,Regular Degular,0.3992
+bar_22,concordance,53,134,0.310526,ok,Regular Degular,0.3992
+bar_22,concordance,54,134,0.326498,ok,Regular Degular,0.3992
+bar_22,concordance,55,134,0.292540,ok,Regular Degular,0.3992
+bar_22,concordance,56,134,0.294016,ok,Regular Degular,0.3992
+bar_23,concordance,42,117,0.248104,ok,Miami,0.3955
+bar_23,concordance,43,117,0.306450,ok,Miami,0.3955
+bar_23,concordance,44,117,0.301439,ok,Miami,0.3955
+bar_23,concordance,45,117,0.282736,ok,Miami,0.3955
+bar_23,concordance,46,117,0.275508,ok,Miami,0.3955
+bar_23,concordance,47,117,0.282291,ok,Miami,0.3955
+bar_23,concordance,48,117,0.291739,ok,Miami,0.3955
+bar_23,concordance,49,117,0.261102,ok,Miami,0.3955
+bar_23,concordance,50,117,0.289311,ok,Miami,0.3955
+bar_23,concordance,51,117,0.361785,ok,Miami,0.3955
+bar_23,concordance,52,117,0.265542,ok,Miami,0.3955
+bar_23,concordance,53,117,0.283416,ok,Miami,0.3955
+bar_23,concordance,54,117,0.296182,ok,Miami,0.3955
+bar_23,concordance,55,117,0.447304,ok,Miami,0.3955
+bar_23,concordance,56,117,0.277910,ok,Miami,0.3955
+bar_24,concordance,42,131,0.260276,ok,Lay It Down,0.3703
+bar_24,concordance,43,131,0.266521,ok,Lay It Down,0.3703
+bar_24,concordance,44,131,0.296406,ok,Lay It Down,0.3703
+bar_24,concordance,45,131,0.281964,ok,Lay It Down,0.3703
+bar_24,concordance,46,131,0.280526,ok,Lay It Down,0.3703
+bar_24,concordance,47,131,0.300178,ok,Lay It Down,0.3703
+bar_24,concordance,48,131,0.268945,ok,Lay It Down,0.3703
+bar_24,concordance,49,131,0.279393,ok,Lay It Down,0.3703
+bar_24,concordance,50,131,0.266057,ok,Lay It Down,0.3703
+bar_24,concordance,51,131,0.300834,ok,Lay It Down,0.3703
+bar_24,concordance,52,131,0.270833,ok,Lay It Down,0.3703
+bar_24,concordance,53,131,0.275979,ok,Lay It Down,0.3703
+bar_24,concordance,54,131,0.256049,ok,Lay It Down,0.3703
+bar_24,concordance,55,131,0.282084,ok,Lay It Down,0.3703
+bar_24,concordance,56,131,0.266292,ok,Lay It Down,0.3703
+bar_0,alanine,42,88,0.336967,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_1,alanine,42,92,0.381165,ok,Changed It,0.9365
+bar_2,alanine,42,95,0.348445,ok,Fly,0.9158
+bar_3,alanine,42,84,0.417675,ok,I Lied,0.8298
+bar_4,alanine,42,81,0.382052,ok,Fallin 4 U,0.7564
+bar_5,alanine,42,94,0.340275,ok,Fly,0.7451
+bar_6,alanine,42,88,0.367280,ok,I’m The Best,0.7394
+bar_7,alanine,42,138,0.272877,ok,Sweetest Girl,0.7308
+bar_8,alanine,42,128,0.329690,ok,Moment 4 Life,0.7108
+bar_9,alanine,42,82,0.452571,ok,the light is coming,0.7073
+bar_10,alanine,42,133,0.316779,ok,I’m The Best,0.6889
+bar_11,alanine,42,118,0.353584,ok,Hell Yeah,0.5856
+bar_12,alanine,42,88,0.337140,ok,Realize,0.5855
+bar_13,alanine,42,90,0.472399,ok,Dear Old Nicki,0.5771
+bar_14,alanine,42,143,0.278683,ok,Just The Memories,0.5683
+bar_15,alanine,42,148,0.263285,ok,I Lied,0.551
+bar_16,alanine,42,101,0.330109,ok,Roman’s Revenge (Remix),0.5477
+bar_17,alanine,42,121,0.414928,ok,Love Me Enough,0.4828
+bar_18,alanine,42,94,0.436825,ok,Here I Am,0.4448
+bar_19,alanine,42,136,0.290218,ok,Ganja Burn,0.4329
+bar_20,alanine,42,142,0.357744,ok,Here I Am,0.4146
+bar_21,alanine,42,95,0.501283,ok,Wave Ya Hand,0.4055
+bar_22,alanine,42,134,0.311446,ok,Regular Degular,0.3992
+bar_23,alanine,42,117,0.281515,ok,Miami,0.3955
+bar_24,alanine,42,131,0.290676,ok,Lay It Down,0.3703
+bar_0,random,42,88,0.280712,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,43,88,0.315824,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,44,88,0.321132,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,45,88,0.311213,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,46,88,0.300257,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,47,88,0.304497,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,48,88,0.307331,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,49,88,0.335390,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,50,88,0.296079,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,51,88,0.329798,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,52,88,0.324763,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,53,88,0.290200,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,54,88,0.311604,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,55,88,0.335829,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,56,88,0.307256,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,57,88,0.289594,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,58,88,0.303918,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,59,88,0.308692,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,60,88,0.296414,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,61,88,0.305246,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,62,88,0.289952,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,63,88,0.300127,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,64,88,0.318000,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,65,88,0.317558,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,66,88,0.363475,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,67,88,0.337462,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,68,88,0.285767,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,69,88,0.345364,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,70,88,0.332760,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,random,71,88,0.329076,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_1,random,42,92,0.355432,ok,Changed It,0.9365
+bar_1,random,43,92,0.346275,ok,Changed It,0.9365
+bar_1,random,44,92,0.317566,ok,Changed It,0.9365
+bar_1,random,45,92,0.342515,ok,Changed It,0.9365
+bar_1,random,46,92,0.364423,ok,Changed It,0.9365
+bar_1,random,47,92,0.323161,ok,Changed It,0.9365
+bar_1,random,48,92,0.377341,ok,Changed It,0.9365
+bar_1,random,49,92,0.361106,ok,Changed It,0.9365
+bar_1,random,50,92,0.312811,ok,Changed It,0.9365
+bar_1,random,51,92,0.364545,ok,Changed It,0.9365
+bar_1,random,52,92,0.333545,ok,Changed It,0.9365
+bar_1,random,53,92,0.356373,ok,Changed It,0.9365
+bar_1,random,54,92,0.310759,ok,Changed It,0.9365
+bar_1,random,55,92,0.304426,ok,Changed It,0.9365
+bar_1,random,56,92,0.306147,ok,Changed It,0.9365
+bar_1,random,57,92,0.337279,ok,Changed It,0.9365
+bar_1,random,58,92,0.342042,ok,Changed It,0.9365
+bar_1,random,59,92,0.370571,ok,Changed It,0.9365
+bar_1,random,60,92,0.321018,ok,Changed It,0.9365
+bar_1,random,61,92,0.347712,ok,Changed It,0.9365
+bar_1,random,62,92,0.330867,ok,Changed It,0.9365
+bar_1,random,63,92,0.292392,ok,Changed It,0.9365
+bar_1,random,64,92,0.476146,ok,Changed It,0.9365
+bar_1,random,65,92,0.359784,ok,Changed It,0.9365
+bar_1,random,66,92,0.296907,ok,Changed It,0.9365
+bar_1,random,67,92,0.370000,ok,Changed It,0.9365
+bar_1,random,68,92,0.328217,ok,Changed It,0.9365
+bar_1,random,69,92,0.311131,ok,Changed It,0.9365
+bar_1,random,70,92,0.343139,ok,Changed It,0.9365
+bar_1,random,71,92,0.363017,ok,Changed It,0.9365
+bar_2,random,42,95,0.344530,ok,Fly,0.9158
+bar_2,random,43,95,0.350908,ok,Fly,0.9158
+bar_2,random,44,95,0.391121,ok,Fly,0.9158
+bar_2,random,45,95,0.346667,ok,Fly,0.9158
+bar_2,random,46,95,0.362496,ok,Fly,0.9158
+bar_2,random,47,95,0.379301,ok,Fly,0.9158
+bar_2,random,48,95,0.373229,ok,Fly,0.9158
+bar_2,random,49,95,0.314776,ok,Fly,0.9158
+bar_2,random,50,95,0.335432,ok,Fly,0.9158
+bar_2,random,51,95,0.372690,ok,Fly,0.9158
+bar_2,random,52,95,0.374986,ok,Fly,0.9158
+bar_2,random,53,95,0.337286,ok,Fly,0.9158
+bar_2,random,54,95,0.382798,ok,Fly,0.9158
+bar_2,random,55,95,0.360981,ok,Fly,0.9158
+bar_2,random,56,95,0.353561,ok,Fly,0.9158
+bar_2,random,57,95,0.342578,ok,Fly,0.9158
+bar_2,random,58,95,0.318366,ok,Fly,0.9158
+bar_2,random,59,95,0.325595,ok,Fly,0.9158
+bar_2,random,60,95,0.361052,ok,Fly,0.9158
+bar_2,random,61,95,0.354644,ok,Fly,0.9158
+bar_2,random,62,95,0.373980,ok,Fly,0.9158
+bar_2,random,63,95,0.393551,ok,Fly,0.9158
+bar_2,random,64,95,0.467720,ok,Fly,0.9158
+bar_2,random,65,95,0.351273,ok,Fly,0.9158
+bar_2,random,66,95,0.368411,ok,Fly,0.9158
+bar_2,random,67,95,0.341557,ok,Fly,0.9158
+bar_2,random,68,95,0.394642,ok,Fly,0.9158
+bar_2,random,69,95,0.331583,ok,Fly,0.9158
+bar_2,random,70,95,0.332684,ok,Fly,0.9158
+bar_2,random,71,95,0.316345,ok,Fly,0.9158
+bar_3,random,42,84,0.346866,ok,I Lied,0.8298
+bar_3,random,43,84,0.321873,ok,I Lied,0.8298
+bar_3,random,44,84,0.342935,ok,I Lied,0.8298
+bar_3,random,45,84,0.350016,ok,I Lied,0.8298
+bar_3,random,46,84,0.360784,ok,I Lied,0.8298
+bar_3,random,47,84,0.360615,ok,I Lied,0.8298
+bar_3,random,48,84,0.348926,ok,I Lied,0.8298
+bar_3,random,49,84,0.382793,ok,I Lied,0.8298
+bar_3,random,50,84,0.337616,ok,I Lied,0.8298
+bar_3,random,51,84,0.348565,ok,I Lied,0.8298
+bar_3,random,52,84,0.344381,ok,I Lied,0.8298
+bar_3,random,53,84,0.352616,ok,I Lied,0.8298
+bar_3,random,54,84,0.335770,ok,I Lied,0.8298
+bar_3,random,55,84,0.369661,ok,I Lied,0.8298
+bar_3,random,56,84,0.352857,ok,I Lied,0.8298
+bar_3,random,57,84,0.396187,ok,I Lied,0.8298
+bar_3,random,58,84,0.405871,ok,I Lied,0.8298
+bar_3,random,59,84,0.373746,ok,I Lied,0.8298
+bar_3,random,60,84,0.390751,ok,I Lied,0.8298
+bar_3,random,61,84,0.379135,ok,I Lied,0.8298
+bar_3,random,62,84,0.401820,ok,I Lied,0.8298
+bar_3,random,63,84,0.349793,ok,I Lied,0.8298
+bar_3,random,64,84,0.325956,ok,I Lied,0.8298
+bar_3,random,65,84,0.382068,ok,I Lied,0.8298
+bar_3,random,66,84,0.324342,ok,I Lied,0.8298
+bar_3,random,67,84,0.391617,ok,I Lied,0.8298
+bar_3,random,68,84,0.443095,ok,I Lied,0.8298
+bar_3,random,69,84,0.377338,ok,I Lied,0.8298
+bar_3,random,70,84,0.393625,ok,I Lied,0.8298
+bar_3,random,71,84,0.364396,ok,I Lied,0.8298
+bar_4,random,42,81,0.333578,ok,Fallin 4 U,0.7564
+bar_4,random,43,81,0.353370,ok,Fallin 4 U,0.7564
+bar_4,random,44,81,0.299724,ok,Fallin 4 U,0.7564
+bar_4,random,45,81,0.340260,ok,Fallin 4 U,0.7564
+bar_4,random,46,81,0.357977,ok,Fallin 4 U,0.7564
+bar_4,random,47,81,0.313864,ok,Fallin 4 U,0.7564
+bar_4,random,48,81,0.342091,ok,Fallin 4 U,0.7564
+bar_4,random,49,81,0.333793,ok,Fallin 4 U,0.7564
+bar_4,random,50,81,0.308293,ok,Fallin 4 U,0.7564
+bar_4,random,51,81,0.344776,ok,Fallin 4 U,0.7564
+bar_4,random,52,81,0.362476,ok,Fallin 4 U,0.7564
+bar_4,random,53,81,0.315962,ok,Fallin 4 U,0.7564
+bar_4,random,54,81,0.326431,ok,Fallin 4 U,0.7564
+bar_4,random,55,81,0.304043,ok,Fallin 4 U,0.7564
+bar_4,random,56,81,0.346832,ok,Fallin 4 U,0.7564
+bar_4,random,57,81,0.356387,ok,Fallin 4 U,0.7564
+bar_4,random,58,81,0.340914,ok,Fallin 4 U,0.7564
+bar_4,random,59,81,0.349550,ok,Fallin 4 U,0.7564
+bar_4,random,60,81,0.385171,ok,Fallin 4 U,0.7564
+bar_4,random,61,81,0.336710,ok,Fallin 4 U,0.7564
+bar_4,random,62,81,0.314917,ok,Fallin 4 U,0.7564
+bar_4,random,63,81,0.315245,ok,Fallin 4 U,0.7564
+bar_4,random,64,81,0.359226,ok,Fallin 4 U,0.7564
+bar_4,random,65,81,0.365737,ok,Fallin 4 U,0.7564
+bar_4,random,66,81,0.335682,ok,Fallin 4 U,0.7564
+bar_4,random,67,81,0.336136,ok,Fallin 4 U,0.7564
+bar_4,random,68,81,0.337057,ok,Fallin 4 U,0.7564
+bar_4,random,69,81,0.335033,ok,Fallin 4 U,0.7564
+bar_4,random,70,81,0.362640,ok,Fallin 4 U,0.7564
+bar_4,random,71,81,0.374626,ok,Fallin 4 U,0.7564
+bar_5,random,42,94,0.367192,ok,Fly,0.7451
+bar_5,random,43,94,0.337108,ok,Fly,0.7451
+bar_5,random,44,94,0.378860,ok,Fly,0.7451
+bar_5,random,45,94,0.432157,ok,Fly,0.7451
+bar_5,random,46,94,0.361478,ok,Fly,0.7451
+bar_5,random,47,94,0.377024,ok,Fly,0.7451
+bar_5,random,48,94,0.434781,ok,Fly,0.7451
+bar_5,random,49,94,0.329669,ok,Fly,0.7451
+bar_5,random,50,94,0.363766,ok,Fly,0.7451
+bar_5,random,51,94,0.394255,ok,Fly,0.7451
+bar_5,random,52,94,0.375296,ok,Fly,0.7451
+bar_5,random,53,94,0.312507,ok,Fly,0.7451
+bar_5,random,54,94,0.326793,ok,Fly,0.7451
+bar_5,random,55,94,0.337175,ok,Fly,0.7451
+bar_5,random,56,94,0.343184,ok,Fly,0.7451
+bar_5,random,57,94,0.455014,ok,Fly,0.7451
+bar_5,random,58,94,0.363945,ok,Fly,0.7451
+bar_5,random,59,94,0.332182,ok,Fly,0.7451
+bar_5,random,60,94,0.372262,ok,Fly,0.7451
+bar_5,random,61,94,0.395562,ok,Fly,0.7451
+bar_5,random,62,94,0.375000,ok,Fly,0.7451
+bar_5,random,63,94,0.400651,ok,Fly,0.7451
+bar_5,random,64,94,0.334082,ok,Fly,0.7451
+bar_5,random,65,94,0.333954,ok,Fly,0.7451
+bar_5,random,66,94,0.365730,ok,Fly,0.7451
+bar_5,random,67,94,0.333583,ok,Fly,0.7451
+bar_5,random,68,94,0.336086,ok,Fly,0.7451
+bar_5,random,69,94,0.297956,ok,Fly,0.7451
+bar_5,random,70,94,0.314844,ok,Fly,0.7451
+bar_5,random,71,94,,failed,Fly,0.7451
+bar_6,random,42,88,0.518397,ok,I’m The Best,0.7394
+bar_6,random,43,88,0.348295,ok,I’m The Best,0.7394
+bar_6,random,44,88,0.342420,ok,I’m The Best,0.7394
+bar_6,random,45,88,0.416357,ok,I’m The Best,0.7394
+bar_6,random,46,88,0.346328,ok,I’m The Best,0.7394
+bar_6,random,47,88,0.358985,ok,I’m The Best,0.7394
+bar_6,random,48,88,0.337281,ok,I’m The Best,0.7394
+bar_6,random,49,88,0.338186,ok,I’m The Best,0.7394
+bar_6,random,50,88,0.430334,ok,I’m The Best,0.7394
+bar_6,random,51,88,0.372000,ok,I’m The Best,0.7394
+bar_6,random,52,88,0.456204,ok,I’m The Best,0.7394
+bar_6,random,53,88,0.409459,ok,I’m The Best,0.7394
+bar_6,random,54,88,0.356986,ok,I’m The Best,0.7394
+bar_6,random,55,88,0.324736,ok,I’m The Best,0.7394
+bar_6,random,56,88,0.462085,ok,I’m The Best,0.7394
+bar_6,random,57,88,0.357051,ok,I’m The Best,0.7394
+bar_6,random,58,88,0.376579,ok,I’m The Best,0.7394
+bar_6,random,59,88,0.374463,ok,I’m The Best,0.7394
+bar_6,random,60,88,0.366003,ok,I’m The Best,0.7394
+bar_6,random,61,88,0.341231,ok,I’m The Best,0.7394
+bar_6,random,62,88,0.368223,ok,I’m The Best,0.7394
+bar_6,random,63,88,0.339033,ok,I’m The Best,0.7394
+bar_6,random,64,88,0.459483,ok,I’m The Best,0.7394
+bar_6,random,65,88,0.340944,ok,I’m The Best,0.7394
+bar_6,random,66,88,,failed,I’m The Best,0.7394
+bar_6,random,67,88,0.351152,ok,I’m The Best,0.7394
+bar_6,random,68,88,0.340061,ok,I’m The Best,0.7394
+bar_6,random,69,88,0.385781,ok,I’m The Best,0.7394
+bar_6,random,70,88,0.367656,ok,I’m The Best,0.7394
+bar_6,random,71,88,0.416259,ok,I’m The Best,0.7394
+bar_7,random,42,138,0.266595,ok,Sweetest Girl,0.7308
+bar_7,random,43,138,0.264221,ok,Sweetest Girl,0.7308
+bar_7,random,44,138,,failed,Sweetest Girl,0.7308
+bar_7,random,45,138,0.265853,ok,Sweetest Girl,0.7308
+bar_7,random,46,138,0.284828,ok,Sweetest Girl,0.7308
+bar_7,random,47,138,0.245716,ok,Sweetest Girl,0.7308
+bar_7,random,48,138,0.275292,ok,Sweetest Girl,0.7308
+bar_7,random,49,138,0.279122,ok,Sweetest Girl,0.7308
+bar_7,random,50,138,0.265829,ok,Sweetest Girl,0.7308
+bar_7,random,51,138,0.278566,ok,Sweetest Girl,0.7308
+bar_7,random,52,138,0.270232,ok,Sweetest Girl,0.7308
+bar_7,random,53,138,0.309981,ok,Sweetest Girl,0.7308
+bar_7,random,54,138,0.264928,ok,Sweetest Girl,0.7308
+bar_7,random,55,138,0.260312,ok,Sweetest Girl,0.7308
+bar_7,random,56,138,0.260882,ok,Sweetest Girl,0.7308
+bar_7,random,57,138,0.285457,ok,Sweetest Girl,0.7308
+bar_7,random,58,138,0.292109,ok,Sweetest Girl,0.7308
+bar_7,random,59,138,0.290307,ok,Sweetest Girl,0.7308
+bar_7,random,60,138,0.278895,ok,Sweetest Girl,0.7308
+bar_7,random,61,138,0.285258,ok,Sweetest Girl,0.7308
+bar_7,random,62,138,0.299874,ok,Sweetest Girl,0.7308
+bar_7,random,63,138,0.319439,ok,Sweetest Girl,0.7308
+bar_7,random,64,138,0.278215,ok,Sweetest Girl,0.7308
+bar_7,random,65,138,0.266594,ok,Sweetest Girl,0.7308
+bar_7,random,66,138,0.257598,ok,Sweetest Girl,0.7308
+bar_7,random,67,138,0.260716,ok,Sweetest Girl,0.7308
+bar_7,random,68,138,0.269429,ok,Sweetest Girl,0.7308
+bar_7,random,69,138,0.299865,ok,Sweetest Girl,0.7308
+bar_7,random,70,138,0.266947,ok,Sweetest Girl,0.7308
+bar_7,random,71,138,0.298866,ok,Sweetest Girl,0.7308
+bar_8,random,42,128,0.306128,ok,Moment 4 Life,0.7108
+bar_8,random,43,128,0.332515,ok,Moment 4 Life,0.7108
+bar_8,random,44,128,0.309794,ok,Moment 4 Life,0.7108
+bar_8,random,45,128,0.307858,ok,Moment 4 Life,0.7108
+bar_8,random,46,128,0.312958,ok,Moment 4 Life,0.7108
+bar_8,random,47,128,0.297109,ok,Moment 4 Life,0.7108
+bar_8,random,48,128,0.324512,ok,Moment 4 Life,0.7108
+bar_8,random,49,128,0.329525,ok,Moment 4 Life,0.7108
+bar_8,random,50,128,0.321198,ok,Moment 4 Life,0.7108
+bar_8,random,51,128,0.333160,ok,Moment 4 Life,0.7108
+bar_8,random,52,128,0.319464,ok,Moment 4 Life,0.7108
+bar_8,random,53,128,0.306173,ok,Moment 4 Life,0.7108
+bar_8,random,54,128,0.300776,ok,Moment 4 Life,0.7108
+bar_8,random,55,128,0.312182,ok,Moment 4 Life,0.7108
+bar_8,random,56,128,0.329059,ok,Moment 4 Life,0.7108
+bar_8,random,57,128,0.322262,ok,Moment 4 Life,0.7108
+bar_8,random,58,128,0.323299,ok,Moment 4 Life,0.7108
+bar_8,random,59,128,0.307319,ok,Moment 4 Life,0.7108
+bar_8,random,60,128,0.319793,ok,Moment 4 Life,0.7108
+bar_8,random,61,128,0.306722,ok,Moment 4 Life,0.7108
+bar_8,random,62,128,0.312658,ok,Moment 4 Life,0.7108
+bar_8,random,63,128,0.318953,ok,Moment 4 Life,0.7108
+bar_8,random,64,128,0.329213,ok,Moment 4 Life,0.7108
+bar_8,random,65,128,0.298908,ok,Moment 4 Life,0.7108
+bar_8,random,66,128,0.305400,ok,Moment 4 Life,0.7108
+bar_8,random,67,128,0.323794,ok,Moment 4 Life,0.7108
+bar_8,random,68,128,0.304692,ok,Moment 4 Life,0.7108
+bar_8,random,69,128,0.320889,ok,Moment 4 Life,0.7108
+bar_8,random,70,128,0.347800,ok,Moment 4 Life,0.7108
+bar_8,random,71,128,0.319308,ok,Moment 4 Life,0.7108
+bar_9,random,42,82,0.447605,ok,the light is coming,0.7073
+bar_9,random,43,82,0.467370,ok,the light is coming,0.7073
+bar_9,random,44,82,0.447205,ok,the light is coming,0.7073
+bar_9,random,45,82,0.444068,ok,the light is coming,0.7073
+bar_9,random,46,82,0.396837,ok,the light is coming,0.7073
+bar_9,random,47,82,0.503127,ok,the light is coming,0.7073
+bar_9,random,48,82,0.457455,ok,the light is coming,0.7073
+bar_9,random,49,82,0.451031,ok,the light is coming,0.7073
+bar_9,random,50,82,0.442568,ok,the light is coming,0.7073
+bar_9,random,51,82,0.449566,ok,the light is coming,0.7073
+bar_9,random,52,82,0.437929,ok,the light is coming,0.7073
+bar_9,random,53,82,0.439544,ok,the light is coming,0.7073
+bar_9,random,54,82,0.452032,ok,the light is coming,0.7073
+bar_9,random,55,82,0.447385,ok,the light is coming,0.7073
+bar_9,random,56,82,0.412761,ok,the light is coming,0.7073
+bar_9,random,57,82,0.449207,ok,the light is coming,0.7073
+bar_9,random,58,82,0.515278,ok,the light is coming,0.7073
+bar_9,random,59,82,0.460049,ok,the light is coming,0.7073
+bar_9,random,60,82,0.414677,ok,the light is coming,0.7073
+bar_9,random,61,82,0.485584,ok,the light is coming,0.7073
+bar_9,random,62,82,0.415710,ok,the light is coming,0.7073
+bar_9,random,63,82,0.436138,ok,the light is coming,0.7073
+bar_9,random,64,82,0.450016,ok,the light is coming,0.7073
+bar_9,random,65,82,0.480671,ok,the light is coming,0.7073
+bar_9,random,66,82,0.417767,ok,the light is coming,0.7073
+bar_9,random,67,82,0.478548,ok,the light is coming,0.7073
+bar_9,random,68,82,0.466943,ok,the light is coming,0.7073
+bar_9,random,69,82,0.426748,ok,the light is coming,0.7073
+bar_9,random,70,82,0.484839,ok,the light is coming,0.7073
+bar_9,random,71,82,0.454524,ok,the light is coming,0.7073
+bar_10,random,42,133,0.279990,ok,I’m The Best,0.6889
+bar_10,random,43,133,0.281587,ok,I’m The Best,0.6889
+bar_10,random,44,133,0.296112,ok,I’m The Best,0.6889
+bar_10,random,45,133,0.294888,ok,I’m The Best,0.6889
+bar_10,random,46,133,0.272092,ok,I’m The Best,0.6889
+bar_10,random,47,133,0.279534,ok,I’m The Best,0.6889
+bar_10,random,48,133,0.267884,ok,I’m The Best,0.6889
+bar_10,random,49,133,0.293067,ok,I’m The Best,0.6889
+bar_10,random,50,133,0.273395,ok,I’m The Best,0.6889
+bar_10,random,51,133,0.287981,ok,I’m The Best,0.6889
+bar_10,random,52,133,0.307947,ok,I’m The Best,0.6889
+bar_10,random,53,133,0.307543,ok,I’m The Best,0.6889
+bar_10,random,54,133,0.286763,ok,I’m The Best,0.6889
+bar_10,random,55,133,0.299774,ok,I’m The Best,0.6889
+bar_10,random,56,133,0.255957,ok,I’m The Best,0.6889
+bar_10,random,57,133,0.280329,ok,I’m The Best,0.6889
+bar_10,random,58,133,0.271337,ok,I’m The Best,0.6889
+bar_10,random,59,133,0.281172,ok,I’m The Best,0.6889
+bar_10,random,60,133,0.285468,ok,I’m The Best,0.6889
+bar_10,random,61,133,0.274101,ok,I’m The Best,0.6889
+bar_10,random,62,133,0.258752,ok,I’m The Best,0.6889
+bar_10,random,63,133,0.281323,ok,I’m The Best,0.6889
+bar_10,random,64,133,0.269558,ok,I’m The Best,0.6889
+bar_10,random,65,133,0.292122,ok,I’m The Best,0.6889
+bar_10,random,66,133,0.263173,ok,I’m The Best,0.6889
+bar_10,random,67,133,0.278520,ok,I’m The Best,0.6889
+bar_10,random,68,133,0.284450,ok,I’m The Best,0.6889
+bar_10,random,69,133,0.278569,ok,I’m The Best,0.6889
+bar_10,random,70,133,0.267897,ok,I’m The Best,0.6889
+bar_10,random,71,133,0.288117,ok,I’m The Best,0.6889
+bar_11,random,42,118,0.313893,ok,Hell Yeah,0.5856
+bar_11,random,43,118,0.315758,ok,Hell Yeah,0.5856
+bar_11,random,44,118,0.335745,ok,Hell Yeah,0.5856
+bar_11,random,45,118,0.335284,ok,Hell Yeah,0.5856
+bar_11,random,46,118,0.307916,ok,Hell Yeah,0.5856
+bar_11,random,47,118,0.293467,ok,Hell Yeah,0.5856
+bar_11,random,48,118,0.353527,ok,Hell Yeah,0.5856
+bar_11,random,49,118,0.309630,ok,Hell Yeah,0.5856
+bar_11,random,50,118,0.351055,ok,Hell Yeah,0.5856
+bar_11,random,51,118,0.351271,ok,Hell Yeah,0.5856
+bar_11,random,52,118,0.315243,ok,Hell Yeah,0.5856
+bar_11,random,53,118,0.309640,ok,Hell Yeah,0.5856
+bar_11,random,54,118,0.313845,ok,Hell Yeah,0.5856
+bar_11,random,55,118,0.330458,ok,Hell Yeah,0.5856
+bar_11,random,56,118,0.355035,ok,Hell Yeah,0.5856
+bar_11,random,57,118,0.341533,ok,Hell Yeah,0.5856
+bar_11,random,58,118,0.313242,ok,Hell Yeah,0.5856
+bar_11,random,59,118,0.291986,ok,Hell Yeah,0.5856
+bar_11,random,60,118,0.401927,ok,Hell Yeah,0.5856
+bar_11,random,61,118,0.312081,ok,Hell Yeah,0.5856
+bar_11,random,62,118,0.331744,ok,Hell Yeah,0.5856
+bar_11,random,63,118,0.375422,ok,Hell Yeah,0.5856
+bar_11,random,64,118,0.441876,ok,Hell Yeah,0.5856
+bar_11,random,65,118,0.347747,ok,Hell Yeah,0.5856
+bar_11,random,66,118,0.334604,ok,Hell Yeah,0.5856
+bar_11,random,67,118,0.288244,ok,Hell Yeah,0.5856
+bar_11,random,68,118,0.312098,ok,Hell Yeah,0.5856
+bar_11,random,69,118,0.333810,ok,Hell Yeah,0.5856
+bar_11,random,70,118,0.303927,ok,Hell Yeah,0.5856
+bar_11,random,71,118,0.285585,ok,Hell Yeah,0.5856
+bar_12,random,42,88,0.353748,ok,Realize,0.5855
+bar_12,random,43,88,0.324944,ok,Realize,0.5855
+bar_12,random,44,88,0.324349,ok,Realize,0.5855
+bar_12,random,45,88,0.333355,ok,Realize,0.5855
+bar_12,random,46,88,0.345877,ok,Realize,0.5855
+bar_12,random,47,88,0.375879,ok,Realize,0.5855
+bar_12,random,48,88,0.366510,ok,Realize,0.5855
+bar_12,random,49,88,0.319851,ok,Realize,0.5855
+bar_12,random,50,88,0.324690,ok,Realize,0.5855
+bar_12,random,51,88,0.354814,ok,Realize,0.5855
+bar_12,random,52,88,0.337080,ok,Realize,0.5855
+bar_12,random,53,88,0.309288,ok,Realize,0.5855
+bar_12,random,54,88,0.399278,ok,Realize,0.5855
+bar_12,random,55,88,0.367119,ok,Realize,0.5855
+bar_12,random,56,88,0.328916,ok,Realize,0.5855
+bar_12,random,57,88,0.367796,ok,Realize,0.5855
+bar_12,random,58,88,0.341497,ok,Realize,0.5855
+bar_12,random,59,88,0.419498,ok,Realize,0.5855
+bar_12,random,60,88,0.330032,ok,Realize,0.5855
+bar_12,random,61,88,0.331931,ok,Realize,0.5855
+bar_12,random,62,88,0.296151,ok,Realize,0.5855
+bar_12,random,63,88,0.313590,ok,Realize,0.5855
+bar_12,random,64,88,0.327311,ok,Realize,0.5855
+bar_12,random,65,88,0.347857,ok,Realize,0.5855
+bar_12,random,66,88,0.328469,ok,Realize,0.5855
+bar_12,random,67,88,,failed,Realize,0.5855
+bar_12,random,68,88,0.440016,ok,Realize,0.5855
+bar_12,random,69,88,0.339043,ok,Realize,0.5855
+bar_12,random,70,88,0.322733,ok,Realize,0.5855
+bar_12,random,71,88,0.335024,ok,Realize,0.5855
+bar_13,random,42,90,0.321875,ok,Dear Old Nicki,0.5771
+bar_13,random,43,90,0.404053,ok,Dear Old Nicki,0.5771
+bar_13,random,44,90,0.341074,ok,Dear Old Nicki,0.5771
+bar_13,random,45,90,0.322179,ok,Dear Old Nicki,0.5771
+bar_13,random,46,90,0.397121,ok,Dear Old Nicki,0.5771
+bar_13,random,47,90,0.355135,ok,Dear Old Nicki,0.5771
+bar_13,random,48,90,0.420662,ok,Dear Old Nicki,0.5771
+bar_13,random,49,90,0.404527,ok,Dear Old Nicki,0.5771
+bar_13,random,50,90,0.400046,ok,Dear Old Nicki,0.5771
+bar_13,random,51,90,0.380489,ok,Dear Old Nicki,0.5771
+bar_13,random,52,90,0.332579,ok,Dear Old Nicki,0.5771
+bar_13,random,53,90,0.410769,ok,Dear Old Nicki,0.5771
+bar_13,random,54,90,0.377220,ok,Dear Old Nicki,0.5771
+bar_13,random,55,90,0.337207,ok,Dear Old Nicki,0.5771
+bar_13,random,56,90,0.358546,ok,Dear Old Nicki,0.5771
+bar_13,random,57,90,0.355907,ok,Dear Old Nicki,0.5771
+bar_13,random,58,90,0.333782,ok,Dear Old Nicki,0.5771
+bar_13,random,59,90,0.476870,ok,Dear Old Nicki,0.5771
+bar_13,random,60,90,0.380895,ok,Dear Old Nicki,0.5771
+bar_13,random,61,90,0.348486,ok,Dear Old Nicki,0.5771
+bar_13,random,62,90,0.340686,ok,Dear Old Nicki,0.5771
+bar_13,random,63,90,0.343878,ok,Dear Old Nicki,0.5771
+bar_13,random,64,90,0.352519,ok,Dear Old Nicki,0.5771
+bar_13,random,65,90,0.420368,ok,Dear Old Nicki,0.5771
+bar_13,random,66,90,0.320701,ok,Dear Old Nicki,0.5771
+bar_13,random,67,90,0.471401,ok,Dear Old Nicki,0.5771
+bar_13,random,68,90,0.364248,ok,Dear Old Nicki,0.5771
+bar_13,random,69,90,0.331045,ok,Dear Old Nicki,0.5771
+bar_13,random,70,90,0.414101,ok,Dear Old Nicki,0.5771
+bar_13,random,71,90,0.427614,ok,Dear Old Nicki,0.5771
+bar_14,random,42,143,0.285852,ok,Just The Memories,0.5683
+bar_14,random,43,143,0.319187,ok,Just The Memories,0.5683
+bar_14,random,44,143,0.276569,ok,Just The Memories,0.5683
+bar_14,random,45,143,0.249429,ok,Just The Memories,0.5683
+bar_14,random,46,143,0.300870,ok,Just The Memories,0.5683
+bar_14,random,47,143,0.293013,ok,Just The Memories,0.5683
+bar_14,random,48,143,0.322015,ok,Just The Memories,0.5683
+bar_14,random,49,143,0.281141,ok,Just The Memories,0.5683
+bar_14,random,50,143,0.267704,ok,Just The Memories,0.5683
+bar_14,random,51,143,0.318812,ok,Just The Memories,0.5683
+bar_14,random,52,143,0.290896,ok,Just The Memories,0.5683
+bar_14,random,53,143,0.304157,ok,Just The Memories,0.5683
+bar_14,random,54,143,0.274944,ok,Just The Memories,0.5683
+bar_14,random,55,143,0.311352,ok,Just The Memories,0.5683
+bar_14,random,56,143,0.276839,ok,Just The Memories,0.5683
+bar_14,random,57,143,0.272878,ok,Just The Memories,0.5683
+bar_14,random,58,143,0.303119,ok,Just The Memories,0.5683
+bar_14,random,59,143,0.270300,ok,Just The Memories,0.5683
+bar_14,random,60,143,0.263839,ok,Just The Memories,0.5683
+bar_14,random,61,143,0.266129,ok,Just The Memories,0.5683
+bar_14,random,62,143,0.286943,ok,Just The Memories,0.5683
+bar_14,random,63,143,0.274215,ok,Just The Memories,0.5683
+bar_14,random,64,143,0.246619,ok,Just The Memories,0.5683
+bar_14,random,65,143,0.307411,ok,Just The Memories,0.5683
+bar_14,random,66,143,0.264059,ok,Just The Memories,0.5683
+bar_14,random,67,143,0.290362,ok,Just The Memories,0.5683
+bar_14,random,68,143,0.382030,ok,Just The Memories,0.5683
+bar_14,random,69,143,0.279392,ok,Just The Memories,0.5683
+bar_14,random,70,143,0.258408,ok,Just The Memories,0.5683
+bar_14,random,71,143,,failed,Just The Memories,0.5683
+bar_15,random,42,148,0.289218,ok,I Lied,0.551
+bar_15,random,43,148,0.269020,ok,I Lied,0.551
+bar_15,random,44,148,0.293552,ok,I Lied,0.551
+bar_15,random,45,148,0.273017,ok,I Lied,0.551
+bar_15,random,46,148,0.278919,ok,I Lied,0.551
+bar_15,random,47,148,0.277395,ok,I Lied,0.551
+bar_15,random,48,148,0.264267,ok,I Lied,0.551
+bar_15,random,49,148,0.264452,ok,I Lied,0.551
+bar_15,random,50,148,0.250134,ok,I Lied,0.551
+bar_15,random,51,148,0.296856,ok,I Lied,0.551
+bar_15,random,52,148,,failed,I Lied,0.551
+bar_15,random,53,148,0.287123,ok,I Lied,0.551
+bar_15,random,54,148,0.254986,ok,I Lied,0.551
+bar_15,random,55,148,0.249412,ok,I Lied,0.551
+bar_15,random,56,148,0.256813,ok,I Lied,0.551
+bar_15,random,57,148,0.246752,ok,I Lied,0.551
+bar_15,random,58,148,,failed,I Lied,0.551
+bar_15,random,59,148,0.271839,ok,I Lied,0.551
+bar_15,random,60,148,,failed,I Lied,0.551
+bar_15,random,61,148,0.268733,ok,I Lied,0.551
+bar_15,random,62,148,0.256497,ok,I Lied,0.551
+bar_15,random,63,148,0.264398,ok,I Lied,0.551
+bar_15,random,64,148,0.302172,ok,I Lied,0.551
+bar_15,random,65,148,0.257290,ok,I Lied,0.551
+bar_15,random,66,148,0.252316,ok,I Lied,0.551
+bar_15,random,67,148,0.277178,ok,I Lied,0.551
+bar_15,random,68,148,0.266509,ok,I Lied,0.551
+bar_15,random,69,148,0.268836,ok,I Lied,0.551
+bar_15,random,70,148,0.257611,ok,I Lied,0.551
+bar_15,random,71,148,0.295028,ok,I Lied,0.551
+bar_16,random,42,101,0.305895,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,43,101,0.341928,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,44,101,0.354752,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,45,101,0.283482,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,46,101,0.343682,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,47,101,0.399124,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,48,101,0.340183,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,49,101,0.368745,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,50,101,0.304529,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,51,101,0.327260,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,52,101,0.335229,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,53,101,0.370538,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,54,101,0.327335,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,55,101,0.281853,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,56,101,0.362500,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,57,101,0.330326,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,58,101,0.338630,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,59,101,0.367562,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,60,101,0.302389,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,61,101,0.352943,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,62,101,0.297503,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,63,101,0.300381,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,64,101,0.331281,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,65,101,0.334853,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,66,101,0.312555,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,67,101,0.335564,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,68,101,0.365656,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,69,101,0.288039,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,70,101,0.370880,ok,Roman’s Revenge (Remix),0.5477
+bar_16,random,71,101,0.370982,ok,Roman’s Revenge (Remix),0.5477
+bar_17,random,42,121,0.325450,ok,Love Me Enough,0.4828
+bar_17,random,43,121,0.311878,ok,Love Me Enough,0.4828
+bar_17,random,44,121,0.376292,ok,Love Me Enough,0.4828
+bar_17,random,45,121,0.409933,ok,Love Me Enough,0.4828
+bar_17,random,46,121,0.294011,ok,Love Me Enough,0.4828
+bar_17,random,47,121,0.344180,ok,Love Me Enough,0.4828
+bar_17,random,48,121,0.297891,ok,Love Me Enough,0.4828
+bar_17,random,49,121,0.334933,ok,Love Me Enough,0.4828
+bar_17,random,50,121,0.299966,ok,Love Me Enough,0.4828
+bar_17,random,51,121,0.350976,ok,Love Me Enough,0.4828
+bar_17,random,52,121,0.348149,ok,Love Me Enough,0.4828
+bar_17,random,53,121,0.367752,ok,Love Me Enough,0.4828
+bar_17,random,54,121,0.317936,ok,Love Me Enough,0.4828
+bar_17,random,55,121,0.301191,ok,Love Me Enough,0.4828
+bar_17,random,56,121,0.313973,ok,Love Me Enough,0.4828
+bar_17,random,57,121,0.304149,ok,Love Me Enough,0.4828
+bar_17,random,58,121,0.311312,ok,Love Me Enough,0.4828
+bar_17,random,59,121,0.358773,ok,Love Me Enough,0.4828
+bar_17,random,60,121,0.382201,ok,Love Me Enough,0.4828
+bar_17,random,61,121,0.269046,ok,Love Me Enough,0.4828
+bar_17,random,62,121,0.327642,ok,Love Me Enough,0.4828
+bar_17,random,63,121,0.310233,ok,Love Me Enough,0.4828
+bar_17,random,64,121,0.340779,ok,Love Me Enough,0.4828
+bar_17,random,65,121,0.335851,ok,Love Me Enough,0.4828
+bar_17,random,66,121,0.367890,ok,Love Me Enough,0.4828
+bar_17,random,67,121,0.301430,ok,Love Me Enough,0.4828
+bar_17,random,68,121,0.297245,ok,Love Me Enough,0.4828
+bar_17,random,69,121,0.304095,ok,Love Me Enough,0.4828
+bar_17,random,70,121,0.339629,ok,Love Me Enough,0.4828
+bar_17,random,71,121,0.313233,ok,Love Me Enough,0.4828
+bar_18,random,42,94,0.404126,ok,Here I Am,0.4448
+bar_18,random,43,94,0.321019,ok,Here I Am,0.4448
+bar_18,random,44,94,0.361768,ok,Here I Am,0.4448
+bar_18,random,45,94,0.350042,ok,Here I Am,0.4448
+bar_18,random,46,94,0.342756,ok,Here I Am,0.4448
+bar_18,random,47,94,0.453146,ok,Here I Am,0.4448
+bar_18,random,48,94,0.381134,ok,Here I Am,0.4448
+bar_18,random,49,94,0.344592,ok,Here I Am,0.4448
+bar_18,random,50,94,0.369067,ok,Here I Am,0.4448
+bar_18,random,51,94,0.380123,ok,Here I Am,0.4448
+bar_18,random,52,94,0.360734,ok,Here I Am,0.4448
+bar_18,random,53,94,0.322758,ok,Here I Am,0.4448
+bar_18,random,54,94,0.333000,ok,Here I Am,0.4448
+bar_18,random,55,94,0.344474,ok,Here I Am,0.4448
+bar_18,random,56,94,0.333068,ok,Here I Am,0.4448
+bar_18,random,57,94,0.471845,ok,Here I Am,0.4448
+bar_18,random,58,94,0.372644,ok,Here I Am,0.4448
+bar_18,random,59,94,0.318409,ok,Here I Am,0.4448
+bar_18,random,60,94,0.352100,ok,Here I Am,0.4448
+bar_18,random,61,94,0.313254,ok,Here I Am,0.4448
+bar_18,random,62,94,0.365231,ok,Here I Am,0.4448
+bar_18,random,63,94,0.362150,ok,Here I Am,0.4448
+bar_18,random,64,94,0.415953,ok,Here I Am,0.4448
+bar_18,random,65,94,0.414750,ok,Here I Am,0.4448
+bar_18,random,66,94,0.348159,ok,Here I Am,0.4448
+bar_18,random,67,94,0.435578,ok,Here I Am,0.4448
+bar_18,random,68,94,0.363528,ok,Here I Am,0.4448
+bar_18,random,69,94,0.366083,ok,Here I Am,0.4448
+bar_18,random,70,94,0.367456,ok,Here I Am,0.4448
+bar_18,random,71,94,0.353678,ok,Here I Am,0.4448
+bar_19,random,42,136,0.272069,ok,Ganja Burn,0.4329
+bar_19,random,43,136,0.267269,ok,Ganja Burn,0.4329
+bar_19,random,44,136,0.299395,ok,Ganja Burn,0.4329
+bar_19,random,45,136,0.274976,ok,Ganja Burn,0.4329
+bar_19,random,46,136,0.295848,ok,Ganja Burn,0.4329
+bar_19,random,47,136,0.275094,ok,Ganja Burn,0.4329
+bar_19,random,48,136,0.294278,ok,Ganja Burn,0.4329
+bar_19,random,49,136,0.279376,ok,Ganja Burn,0.4329
+bar_19,random,50,136,0.261787,ok,Ganja Burn,0.4329
+bar_19,random,51,136,0.322296,ok,Ganja Burn,0.4329
+bar_19,random,52,136,0.266600,ok,Ganja Burn,0.4329
+bar_19,random,53,136,0.275336,ok,Ganja Burn,0.4329
+bar_19,random,54,136,0.279229,ok,Ganja Burn,0.4329
+bar_19,random,55,136,0.272942,ok,Ganja Burn,0.4329
+bar_19,random,56,136,0.266870,ok,Ganja Burn,0.4329
+bar_19,random,57,136,0.313623,ok,Ganja Burn,0.4329
+bar_19,random,58,136,0.259906,ok,Ganja Burn,0.4329
+bar_19,random,59,136,0.293010,ok,Ganja Burn,0.4329
+bar_19,random,60,136,0.317198,ok,Ganja Burn,0.4329
+bar_19,random,61,136,0.278648,ok,Ganja Burn,0.4329
+bar_19,random,62,136,0.262250,ok,Ganja Burn,0.4329
+bar_19,random,63,136,0.289943,ok,Ganja Burn,0.4329
+bar_19,random,64,136,0.253594,ok,Ganja Burn,0.4329
+bar_19,random,65,136,0.274921,ok,Ganja Burn,0.4329
+bar_19,random,66,136,0.276064,ok,Ganja Burn,0.4329
+bar_19,random,67,136,0.329355,ok,Ganja Burn,0.4329
+bar_19,random,68,136,0.293557,ok,Ganja Burn,0.4329
+bar_19,random,69,136,0.291992,ok,Ganja Burn,0.4329
+bar_19,random,70,136,0.277128,ok,Ganja Burn,0.4329
+bar_19,random,71,136,0.332827,ok,Ganja Burn,0.4329
+bar_20,random,42,142,0.316591,ok,Here I Am,0.4146
+bar_20,random,43,142,0.354121,ok,Here I Am,0.4146
+bar_20,random,44,142,0.279314,ok,Here I Am,0.4146
+bar_20,random,45,142,0.307705,ok,Here I Am,0.4146
+bar_20,random,46,142,0.353427,ok,Here I Am,0.4146
+bar_20,random,47,142,0.303487,ok,Here I Am,0.4146
+bar_20,random,48,142,0.311324,ok,Here I Am,0.4146
+bar_20,random,49,142,0.312379,ok,Here I Am,0.4146
+bar_20,random,50,142,0.323451,ok,Here I Am,0.4146
+bar_20,random,51,142,0.320085,ok,Here I Am,0.4146
+bar_20,random,52,142,0.282317,ok,Here I Am,0.4146
+bar_20,random,53,142,0.287088,ok,Here I Am,0.4146
+bar_20,random,54,142,0.295305,ok,Here I Am,0.4146
+bar_20,random,55,142,0.322137,ok,Here I Am,0.4146
+bar_20,random,56,142,0.329593,ok,Here I Am,0.4146
+bar_20,random,57,142,0.311739,ok,Here I Am,0.4146
+bar_20,random,58,142,0.320803,ok,Here I Am,0.4146
+bar_20,random,59,142,0.283006,ok,Here I Am,0.4146
+bar_20,random,60,142,0.356205,ok,Here I Am,0.4146
+bar_20,random,61,142,0.304537,ok,Here I Am,0.4146
+bar_20,random,62,142,0.309191,ok,Here I Am,0.4146
+bar_20,random,63,142,0.286086,ok,Here I Am,0.4146
+bar_20,random,64,142,0.292156,ok,Here I Am,0.4146
+bar_20,random,65,142,0.324870,ok,Here I Am,0.4146
+bar_20,random,66,142,0.289301,ok,Here I Am,0.4146
+bar_20,random,67,142,0.330198,ok,Here I Am,0.4146
+bar_20,random,68,142,0.288872,ok,Here I Am,0.4146
+bar_20,random,69,142,0.306746,ok,Here I Am,0.4146
+bar_20,random,70,142,0.349305,ok,Here I Am,0.4146
+bar_20,random,71,142,0.297479,ok,Here I Am,0.4146
+bar_21,random,42,95,0.334405,ok,Wave Ya Hand,0.4055
+bar_21,random,43,95,0.342279,ok,Wave Ya Hand,0.4055
+bar_21,random,44,95,0.310449,ok,Wave Ya Hand,0.4055
+bar_21,random,45,95,0.340592,ok,Wave Ya Hand,0.4055
+bar_21,random,46,95,0.293010,ok,Wave Ya Hand,0.4055
+bar_21,random,47,95,0.379058,ok,Wave Ya Hand,0.4055
+bar_21,random,48,95,0.334655,ok,Wave Ya Hand,0.4055
+bar_21,random,49,95,0.389829,ok,Wave Ya Hand,0.4055
+bar_21,random,50,95,0.334197,ok,Wave Ya Hand,0.4055
+bar_21,random,51,95,0.325908,ok,Wave Ya Hand,0.4055
+bar_21,random,52,95,0.361477,ok,Wave Ya Hand,0.4055
+bar_21,random,53,95,0.338471,ok,Wave Ya Hand,0.4055
+bar_21,random,54,95,0.306022,ok,Wave Ya Hand,0.4055
+bar_21,random,55,95,0.288218,ok,Wave Ya Hand,0.4055
+bar_21,random,56,95,0.307661,ok,Wave Ya Hand,0.4055
+bar_21,random,57,95,0.339776,ok,Wave Ya Hand,0.4055
+bar_21,random,58,95,0.311830,ok,Wave Ya Hand,0.4055
+bar_21,random,59,95,0.312427,ok,Wave Ya Hand,0.4055
+bar_21,random,60,95,0.347907,ok,Wave Ya Hand,0.4055
+bar_21,random,61,95,0.342659,ok,Wave Ya Hand,0.4055
+bar_21,random,62,95,0.297255,ok,Wave Ya Hand,0.4055
+bar_21,random,63,95,0.322405,ok,Wave Ya Hand,0.4055
+bar_21,random,64,95,0.292462,ok,Wave Ya Hand,0.4055
+bar_21,random,65,95,0.355860,ok,Wave Ya Hand,0.4055
+bar_21,random,66,95,0.364979,ok,Wave Ya Hand,0.4055
+bar_21,random,67,95,0.345179,ok,Wave Ya Hand,0.4055
+bar_21,random,68,95,0.325193,ok,Wave Ya Hand,0.4055
+bar_21,random,69,95,0.354958,ok,Wave Ya Hand,0.4055
+bar_21,random,70,95,0.351558,ok,Wave Ya Hand,0.4055
+bar_21,random,71,95,0.331375,ok,Wave Ya Hand,0.4055
+bar_22,random,42,134,0.282358,ok,Regular Degular,0.3992
+bar_22,random,43,134,0.284771,ok,Regular Degular,0.3992
+bar_22,random,44,134,0.296979,ok,Regular Degular,0.3992
+bar_22,random,45,134,0.309194,ok,Regular Degular,0.3992
+bar_22,random,46,134,0.279243,ok,Regular Degular,0.3992
+bar_22,random,47,134,0.274131,ok,Regular Degular,0.3992
+bar_22,random,48,134,0.301698,ok,Regular Degular,0.3992
+bar_22,random,49,134,0.293664,ok,Regular Degular,0.3992
+bar_22,random,50,134,0.303603,ok,Regular Degular,0.3992
+bar_22,random,51,134,0.290553,ok,Regular Degular,0.3992
+bar_22,random,52,134,0.296961,ok,Regular Degular,0.3992
+bar_22,random,53,134,0.299142,ok,Regular Degular,0.3992
+bar_22,random,54,134,0.303831,ok,Regular Degular,0.3992
+bar_22,random,55,134,0.374060,ok,Regular Degular,0.3992
+bar_22,random,56,134,0.298511,ok,Regular Degular,0.3992
+bar_22,random,57,134,0.295578,ok,Regular Degular,0.3992
+bar_22,random,58,134,0.294190,ok,Regular Degular,0.3992
+bar_22,random,59,134,0.281888,ok,Regular Degular,0.3992
+bar_22,random,60,134,0.295884,ok,Regular Degular,0.3992
+bar_22,random,61,134,0.310637,ok,Regular Degular,0.3992
+bar_22,random,62,134,0.290900,ok,Regular Degular,0.3992
+bar_22,random,63,134,0.316204,ok,Regular Degular,0.3992
+bar_22,random,64,134,0.310526,ok,Regular Degular,0.3992
+bar_22,random,65,134,0.274766,ok,Regular Degular,0.3992
+bar_22,random,66,134,0.295325,ok,Regular Degular,0.3992
+bar_22,random,67,134,0.296643,ok,Regular Degular,0.3992
+bar_22,random,68,134,0.275317,ok,Regular Degular,0.3992
+bar_22,random,69,134,0.292462,ok,Regular Degular,0.3992
+bar_22,random,70,134,0.332922,ok,Regular Degular,0.3992
+bar_22,random,71,134,0.308719,ok,Regular Degular,0.3992
+bar_23,random,42,117,0.261542,ok,Miami,0.3955
+bar_23,random,43,117,0.276670,ok,Miami,0.3955
+bar_23,random,44,117,0.260994,ok,Miami,0.3955
+bar_23,random,45,117,0.275000,ok,Miami,0.3955
+bar_23,random,46,117,0.340280,ok,Miami,0.3955
+bar_23,random,47,117,0.268199,ok,Miami,0.3955
+bar_23,random,48,117,0.274219,ok,Miami,0.3955
+bar_23,random,49,117,0.327371,ok,Miami,0.3955
+bar_23,random,50,117,0.302843,ok,Miami,0.3955
+bar_23,random,51,117,0.284287,ok,Miami,0.3955
+bar_23,random,52,117,0.282266,ok,Miami,0.3955
+bar_23,random,53,117,0.351219,ok,Miami,0.3955
+bar_23,random,54,117,0.257756,ok,Miami,0.3955
+bar_23,random,55,117,0.338807,ok,Miami,0.3955
+bar_23,random,56,117,0.290264,ok,Miami,0.3955
+bar_23,random,57,117,0.252397,ok,Miami,0.3955
+bar_23,random,58,117,0.264103,ok,Miami,0.3955
+bar_23,random,59,117,0.290241,ok,Miami,0.3955
+bar_23,random,60,117,0.279634,ok,Miami,0.3955
+bar_23,random,61,117,0.306225,ok,Miami,0.3955
+bar_23,random,62,117,0.275728,ok,Miami,0.3955
+bar_23,random,63,117,0.258227,ok,Miami,0.3955
+bar_23,random,64,117,0.319691,ok,Miami,0.3955
+bar_23,random,65,117,0.298545,ok,Miami,0.3955
+bar_23,random,66,117,0.276096,ok,Miami,0.3955
+bar_23,random,67,117,0.302271,ok,Miami,0.3955
+bar_23,random,68,117,0.257625,ok,Miami,0.3955
+bar_23,random,69,117,0.268215,ok,Miami,0.3955
+bar_23,random,70,117,0.281419,ok,Miami,0.3955
+bar_23,random,71,117,0.322845,ok,Miami,0.3955
+bar_24,random,42,131,0.255085,ok,Lay It Down,0.3703
+bar_24,random,43,131,0.298261,ok,Lay It Down,0.3703
+bar_24,random,44,131,0.239936,ok,Lay It Down,0.3703
+bar_24,random,45,131,0.289436,ok,Lay It Down,0.3703
+bar_24,random,46,131,0.270844,ok,Lay It Down,0.3703
+bar_24,random,47,131,0.290516,ok,Lay It Down,0.3703
+bar_24,random,48,131,0.263571,ok,Lay It Down,0.3703
+bar_24,random,49,131,0.262046,ok,Lay It Down,0.3703
+bar_24,random,50,131,0.269744,ok,Lay It Down,0.3703
+bar_24,random,51,131,0.277665,ok,Lay It Down,0.3703
+bar_24,random,52,131,0.266282,ok,Lay It Down,0.3703
+bar_24,random,53,131,0.266698,ok,Lay It Down,0.3703
+bar_24,random,54,131,0.263372,ok,Lay It Down,0.3703
+bar_24,random,55,131,0.268842,ok,Lay It Down,0.3703
+bar_24,random,56,131,0.274351,ok,Lay It Down,0.3703
+bar_24,random,57,131,0.298010,ok,Lay It Down,0.3703
+bar_24,random,58,131,0.293006,ok,Lay It Down,0.3703
+bar_24,random,59,131,0.272021,ok,Lay It Down,0.3703
+bar_24,random,60,131,0.303291,ok,Lay It Down,0.3703
+bar_24,random,61,131,0.255493,ok,Lay It Down,0.3703
+bar_24,random,62,131,0.290490,ok,Lay It Down,0.3703
+bar_24,random,63,131,0.272351,ok,Lay It Down,0.3703
+bar_24,random,64,131,0.283281,ok,Lay It Down,0.3703
+bar_24,random,65,131,0.299429,ok,Lay It Down,0.3703
+bar_24,random,66,131,0.289884,ok,Lay It Down,0.3703
+bar_24,random,67,131,0.285717,ok,Lay It Down,0.3703
+bar_24,random,68,131,0.285121,ok,Lay It Down,0.3703
+bar_24,random,69,131,0.281637,ok,Lay It Down,0.3703
+bar_24,random,70,131,0.278985,ok,Lay It Down,0.3703
+bar_24,random,71,131,0.325160,ok,Lay It Down,0.3703
+bar_0,native,42,88,0.313586,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,43,88,0.368855,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,44,88,0.322584,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,45,88,0.345203,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,46,88,0.346521,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,47,88,0.296169,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,48,88,0.308587,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,49,88,0.347042,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,50,88,0.348920,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,51,88,0.297924,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,52,88,0.334915,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,53,88,0.323028,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,54,88,0.334609,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,55,88,0.343112,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_0,native,56,88,0.385292,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_1,native,42,92,0.337761,ok,Changed It,0.9365
+bar_1,native,43,92,0.377837,ok,Changed It,0.9365
+bar_1,native,44,92,0.377115,ok,Changed It,0.9365
+bar_1,native,45,92,0.377369,ok,Changed It,0.9365
+bar_1,native,46,92,0.433858,ok,Changed It,0.9365
+bar_1,native,47,92,0.372824,ok,Changed It,0.9365
+bar_1,native,48,92,0.390585,ok,Changed It,0.9365
+bar_1,native,49,92,0.348694,ok,Changed It,0.9365
+bar_1,native,50,92,0.343014,ok,Changed It,0.9365
+bar_1,native,51,92,0.317908,ok,Changed It,0.9365
+bar_1,native,52,92,0.405781,ok,Changed It,0.9365
+bar_1,native,53,92,0.388107,ok,Changed It,0.9365
+bar_1,native,54,92,0.385119,ok,Changed It,0.9365
+bar_1,native,55,92,0.397570,ok,Changed It,0.9365
+bar_1,native,56,92,0.342072,ok,Changed It,0.9365
+bar_2,native,42,95,0.344499,ok,Fly,0.9158
+bar_2,native,43,95,0.327083,ok,Fly,0.9158
+bar_2,native,44,95,0.378691,ok,Fly,0.9158
+bar_2,native,45,95,0.328254,ok,Fly,0.9158
+bar_2,native,46,95,0.373259,ok,Fly,0.9158
+bar_2,native,47,95,0.338430,ok,Fly,0.9158
+bar_2,native,48,95,0.342939,ok,Fly,0.9158
+bar_2,native,49,95,0.310172,ok,Fly,0.9158
+bar_2,native,50,95,0.329934,ok,Fly,0.9158
+bar_2,native,51,95,0.372698,ok,Fly,0.9158
+bar_2,native,52,95,0.350172,ok,Fly,0.9158
+bar_2,native,53,95,0.330728,ok,Fly,0.9158
+bar_2,native,54,95,0.355950,ok,Fly,0.9158
+bar_2,native,55,95,0.331145,ok,Fly,0.9158
+bar_2,native,56,95,0.363073,ok,Fly,0.9158
+bar_3,native,42,84,0.451199,ok,I Lied,0.8298
+bar_3,native,43,84,0.446264,ok,I Lied,0.8298
+bar_3,native,44,84,0.490890,ok,I Lied,0.8298
+bar_3,native,45,84,0.444945,ok,I Lied,0.8298
+bar_3,native,46,84,0.441925,ok,I Lied,0.8298
+bar_3,native,47,84,0.428397,ok,I Lied,0.8298
+bar_3,native,48,84,0.427878,ok,I Lied,0.8298
+bar_3,native,49,84,0.466798,ok,I Lied,0.8298
+bar_3,native,50,84,0.427041,ok,I Lied,0.8298
+bar_3,native,51,84,0.514302,ok,I Lied,0.8298
+bar_3,native,52,84,0.630460,ok,I Lied,0.8298
+bar_3,native,53,84,0.479390,ok,I Lied,0.8298
+bar_3,native,54,84,0.442204,ok,I Lied,0.8298
+bar_3,native,55,84,0.480477,ok,I Lied,0.8298
+bar_3,native,56,84,0.505621,ok,I Lied,0.8298
+bar_4,native,42,81,0.296830,ok,Fallin 4 U,0.7564
+bar_4,native,43,81,0.342811,ok,Fallin 4 U,0.7564
+bar_4,native,44,81,0.383173,ok,Fallin 4 U,0.7564
+bar_4,native,45,81,0.327437,ok,Fallin 4 U,0.7564
+bar_4,native,46,81,0.396532,ok,Fallin 4 U,0.7564
+bar_4,native,47,81,0.345536,ok,Fallin 4 U,0.7564
+bar_4,native,48,81,0.368678,ok,Fallin 4 U,0.7564
+bar_4,native,49,81,0.343028,ok,Fallin 4 U,0.7564
+bar_4,native,50,81,0.368874,ok,Fallin 4 U,0.7564
+bar_4,native,51,81,0.391187,ok,Fallin 4 U,0.7564
+bar_4,native,52,81,0.342165,ok,Fallin 4 U,0.7564
+bar_4,native,53,81,0.383394,ok,Fallin 4 U,0.7564
+bar_4,native,54,81,0.278438,ok,Fallin 4 U,0.7564
+bar_4,native,55,81,0.375997,ok,Fallin 4 U,0.7564
+bar_4,native,56,81,0.367671,ok,Fallin 4 U,0.7564
+bar_5,native,42,94,0.285183,ok,Fly,0.7451
+bar_5,native,43,94,0.307638,ok,Fly,0.7451
+bar_5,native,44,94,0.342030,ok,Fly,0.7451
+bar_5,native,45,94,0.280870,ok,Fly,0.7451
+bar_5,native,46,94,0.282717,ok,Fly,0.7451
+bar_5,native,47,94,0.293839,ok,Fly,0.7451
+bar_5,native,48,94,0.315722,ok,Fly,0.7451
+bar_5,native,49,94,0.349139,ok,Fly,0.7451
+bar_5,native,50,94,0.296420,ok,Fly,0.7451
+bar_5,native,51,94,0.365712,ok,Fly,0.7451
+bar_5,native,52,94,0.334522,ok,Fly,0.7451
+bar_5,native,53,94,0.284633,ok,Fly,0.7451
+bar_5,native,54,94,0.273096,ok,Fly,0.7451
+bar_5,native,55,94,0.291913,ok,Fly,0.7451
+bar_5,native,56,94,0.351901,ok,Fly,0.7451
+bar_6,native,42,88,0.339041,ok,I’m The Best,0.7394
+bar_6,native,43,88,0.322735,ok,I’m The Best,0.7394
+bar_6,native,44,88,0.486652,ok,I’m The Best,0.7394
+bar_6,native,45,88,0.327407,ok,I’m The Best,0.7394
+bar_6,native,46,88,0.327174,ok,I’m The Best,0.7394
+bar_6,native,47,88,0.343567,ok,I’m The Best,0.7394
+bar_6,native,48,88,0.375258,ok,I’m The Best,0.7394
+bar_6,native,49,88,0.346681,ok,I’m The Best,0.7394
+bar_6,native,50,88,0.338816,ok,I’m The Best,0.7394
+bar_6,native,51,88,0.358886,ok,I’m The Best,0.7394
+bar_6,native,52,88,0.373095,ok,I’m The Best,0.7394
+bar_6,native,53,88,0.335512,ok,I’m The Best,0.7394
+bar_6,native,54,88,0.362190,ok,I’m The Best,0.7394
+bar_6,native,55,88,0.348052,ok,I’m The Best,0.7394
+bar_6,native,56,88,0.427153,ok,I’m The Best,0.7394
+bar_7,native,42,138,0.256140,ok,Sweetest Girl,0.7308
+bar_7,native,43,138,0.284152,ok,Sweetest Girl,0.7308
+bar_7,native,44,138,0.293524,ok,Sweetest Girl,0.7308
+bar_7,native,45,138,0.284162,ok,Sweetest Girl,0.7308
+bar_7,native,46,138,0.267074,ok,Sweetest Girl,0.7308
+bar_7,native,47,138,0.274770,ok,Sweetest Girl,0.7308
+bar_7,native,48,138,0.281074,ok,Sweetest Girl,0.7308
+bar_7,native,49,138,0.292949,ok,Sweetest Girl,0.7308
+bar_7,native,50,138,0.272426,ok,Sweetest Girl,0.7308
+bar_7,native,51,138,0.287834,ok,Sweetest Girl,0.7308
+bar_7,native,52,138,0.260283,ok,Sweetest Girl,0.7308
+bar_7,native,53,138,0.261149,ok,Sweetest Girl,0.7308
+bar_7,native,54,138,0.273788,ok,Sweetest Girl,0.7308
+bar_7,native,55,138,0.300086,ok,Sweetest Girl,0.7308
+bar_7,native,56,138,0.323440,ok,Sweetest Girl,0.7308
+bar_8,native,42,128,0.324265,ok,Moment 4 Life,0.7108
+bar_8,native,43,128,0.348324,ok,Moment 4 Life,0.7108
+bar_8,native,44,128,0.360184,ok,Moment 4 Life,0.7108
+bar_8,native,45,128,0.347274,ok,Moment 4 Life,0.7108
+bar_8,native,46,128,0.336429,ok,Moment 4 Life,0.7108
+bar_8,native,47,128,0.352303,ok,Moment 4 Life,0.7108
+bar_8,native,48,128,0.335345,ok,Moment 4 Life,0.7108
+bar_8,native,49,128,0.333251,ok,Moment 4 Life,0.7108
+bar_8,native,50,128,0.366541,ok,Moment 4 Life,0.7108
+bar_8,native,51,128,0.357722,ok,Moment 4 Life,0.7108
+bar_8,native,52,128,0.337491,ok,Moment 4 Life,0.7108
+bar_8,native,53,128,0.341628,ok,Moment 4 Life,0.7108
+bar_8,native,54,128,0.333361,ok,Moment 4 Life,0.7108
+bar_8,native,55,128,0.323833,ok,Moment 4 Life,0.7108
+bar_8,native,56,128,0.357351,ok,Moment 4 Life,0.7108
+bar_9,native,42,82,0.399402,ok,the light is coming,0.7073
+bar_9,native,43,82,0.423895,ok,the light is coming,0.7073
+bar_9,native,44,82,0.425141,ok,the light is coming,0.7073
+bar_9,native,45,82,0.439709,ok,the light is coming,0.7073
+bar_9,native,46,82,0.441201,ok,the light is coming,0.7073
+bar_9,native,47,82,0.395615,ok,the light is coming,0.7073
+bar_9,native,48,82,0.420000,ok,the light is coming,0.7073
+bar_9,native,49,82,0.412496,ok,the light is coming,0.7073
+bar_9,native,50,82,0.420015,ok,the light is coming,0.7073
+bar_9,native,51,82,0.434315,ok,the light is coming,0.7073
+bar_9,native,52,82,0.418756,ok,the light is coming,0.7073
+bar_9,native,53,82,0.422733,ok,the light is coming,0.7073
+bar_9,native,54,82,0.422716,ok,the light is coming,0.7073
+bar_9,native,55,82,0.409736,ok,the light is coming,0.7073
+bar_9,native,56,82,0.418187,ok,the light is coming,0.7073
+bar_10,native,42,133,0.253023,ok,I’m The Best,0.6889
+bar_10,native,43,133,0.262460,ok,I’m The Best,0.6889
+bar_10,native,44,133,0.251780,ok,I’m The Best,0.6889
+bar_10,native,45,133,0.240889,ok,I’m The Best,0.6889
+bar_10,native,46,133,0.257775,ok,I’m The Best,0.6889
+bar_10,native,47,133,0.250994,ok,I’m The Best,0.6889
+bar_10,native,48,133,0.258324,ok,I’m The Best,0.6889
+bar_10,native,49,133,0.255355,ok,I’m The Best,0.6889
+bar_10,native,50,133,0.277632,ok,I’m The Best,0.6889
+bar_10,native,51,133,0.252837,ok,I’m The Best,0.6889
+bar_10,native,52,133,0.270344,ok,I’m The Best,0.6889
+bar_10,native,53,133,0.274139,ok,I’m The Best,0.6889
+bar_10,native,54,133,0.269442,ok,I’m The Best,0.6889
+bar_10,native,55,133,0.268357,ok,I’m The Best,0.6889
+bar_10,native,56,133,0.271236,ok,I’m The Best,0.6889
+bar_11,native,42,118,0.297111,ok,Hell Yeah,0.5856
+bar_11,native,43,118,0.283284,ok,Hell Yeah,0.5856
+bar_11,native,44,118,0.282809,ok,Hell Yeah,0.5856
+bar_11,native,45,118,0.282768,ok,Hell Yeah,0.5856
+bar_11,native,46,118,0.297375,ok,Hell Yeah,0.5856
+bar_11,native,47,118,0.267569,ok,Hell Yeah,0.5856
+bar_11,native,48,118,0.280913,ok,Hell Yeah,0.5856
+bar_11,native,49,118,0.305554,ok,Hell Yeah,0.5856
+bar_11,native,50,118,0.333860,ok,Hell Yeah,0.5856
+bar_11,native,51,118,0.319604,ok,Hell Yeah,0.5856
+bar_11,native,52,118,0.290924,ok,Hell Yeah,0.5856
+bar_11,native,53,118,0.292189,ok,Hell Yeah,0.5856
+bar_11,native,54,118,0.271590,ok,Hell Yeah,0.5856
+bar_11,native,55,118,0.271419,ok,Hell Yeah,0.5856
+bar_11,native,56,118,0.347856,ok,Hell Yeah,0.5856
+bar_12,native,42,88,0.421130,ok,Realize,0.5855
+bar_12,native,43,88,0.423116,ok,Realize,0.5855
+bar_12,native,44,88,0.362941,ok,Realize,0.5855
+bar_12,native,45,88,0.412904,ok,Realize,0.5855
+bar_12,native,46,88,0.386569,ok,Realize,0.5855
+bar_12,native,47,88,0.411417,ok,Realize,0.5855
+bar_12,native,48,88,0.447374,ok,Realize,0.5855
+bar_12,native,49,88,0.390503,ok,Realize,0.5855
+bar_12,native,50,88,0.389381,ok,Realize,0.5855
+bar_12,native,51,88,0.438258,ok,Realize,0.5855
+bar_12,native,52,88,0.442464,ok,Realize,0.5855
+bar_12,native,53,88,0.437846,ok,Realize,0.5855
+bar_12,native,54,88,0.401094,ok,Realize,0.5855
+bar_12,native,55,88,0.416126,ok,Realize,0.5855
+bar_12,native,56,88,0.444093,ok,Realize,0.5855
+bar_13,native,42,90,0.336189,ok,Dear Old Nicki,0.5771
+bar_13,native,43,90,0.392362,ok,Dear Old Nicki,0.5771
+bar_13,native,44,90,0.341981,ok,Dear Old Nicki,0.5771
+bar_13,native,45,90,0.335486,ok,Dear Old Nicki,0.5771
+bar_13,native,46,90,0.366616,ok,Dear Old Nicki,0.5771
+bar_13,native,47,90,0.366738,ok,Dear Old Nicki,0.5771
+bar_13,native,48,90,0.392322,ok,Dear Old Nicki,0.5771
+bar_13,native,49,90,0.429809,ok,Dear Old Nicki,0.5771
+bar_13,native,50,90,0.392724,ok,Dear Old Nicki,0.5771
+bar_13,native,51,90,0.358061,ok,Dear Old Nicki,0.5771
+bar_13,native,52,90,0.319051,ok,Dear Old Nicki,0.5771
+bar_13,native,53,90,0.375056,ok,Dear Old Nicki,0.5771
+bar_13,native,54,90,0.376901,ok,Dear Old Nicki,0.5771
+bar_13,native,55,90,0.354712,ok,Dear Old Nicki,0.5771
+bar_13,native,56,90,0.488209,ok,Dear Old Nicki,0.5771
+bar_14,native,42,143,0.286208,ok,Just The Memories,0.5683
+bar_14,native,43,143,0.290865,ok,Just The Memories,0.5683
+bar_14,native,44,143,0.271559,ok,Just The Memories,0.5683
+bar_14,native,45,143,0.264889,ok,Just The Memories,0.5683
+bar_14,native,46,143,0.276549,ok,Just The Memories,0.5683
+bar_14,native,47,143,0.264411,ok,Just The Memories,0.5683
+bar_14,native,48,143,0.292033,ok,Just The Memories,0.5683
+bar_14,native,49,143,0.254350,ok,Just The Memories,0.5683
+bar_14,native,50,143,0.279018,ok,Just The Memories,0.5683
+bar_14,native,51,143,0.282640,ok,Just The Memories,0.5683
+bar_14,native,52,143,0.275341,ok,Just The Memories,0.5683
+bar_14,native,53,143,0.270294,ok,Just The Memories,0.5683
+bar_14,native,54,143,0.305766,ok,Just The Memories,0.5683
+bar_14,native,55,143,0.258108,ok,Just The Memories,0.5683
+bar_14,native,56,143,0.300966,ok,Just The Memories,0.5683
+bar_15,native,42,148,0.284940,ok,I Lied,0.551
+bar_15,native,43,148,0.304576,ok,I Lied,0.551
+bar_15,native,44,148,0.287142,ok,I Lied,0.551
+bar_15,native,45,148,0.254024,ok,I Lied,0.551
+bar_15,native,46,148,0.286454,ok,I Lied,0.551
+bar_15,native,47,148,0.274374,ok,I Lied,0.551
+bar_15,native,48,148,0.252710,ok,I Lied,0.551
+bar_15,native,49,148,0.289991,ok,I Lied,0.551
+bar_15,native,50,148,0.307893,ok,I Lied,0.551
+bar_15,native,51,148,0.315527,ok,I Lied,0.551
+bar_15,native,52,148,0.302234,ok,I Lied,0.551
+bar_15,native,53,148,0.302064,ok,I Lied,0.551
+bar_15,native,54,148,0.282545,ok,I Lied,0.551
+bar_15,native,55,148,,failed,I Lied,0.551
+bar_15,native,56,148,0.263780,ok,I Lied,0.551
+bar_16,native,42,101,0.295766,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,43,101,0.270526,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,44,101,0.304676,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,45,101,0.294532,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,46,101,0.288866,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,47,101,0.316134,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,48,101,0.313083,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,49,101,0.287783,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,50,101,0.309704,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,51,101,0.279439,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,52,101,0.297500,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,53,101,0.280865,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,54,101,0.280832,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,55,101,0.264107,ok,Roman’s Revenge (Remix),0.5477
+bar_16,native,56,101,0.301529,ok,Roman’s Revenge (Remix),0.5477
+bar_17,native,42,121,0.276943,ok,Love Me Enough,0.4828
+bar_17,native,43,121,0.263851,ok,Love Me Enough,0.4828
+bar_17,native,44,121,0.291807,ok,Love Me Enough,0.4828
+bar_17,native,45,121,0.267657,ok,Love Me Enough,0.4828
+bar_17,native,46,121,0.303672,ok,Love Me Enough,0.4828
+bar_17,native,47,121,0.303454,ok,Love Me Enough,0.4828
+bar_17,native,48,121,0.278942,ok,Love Me Enough,0.4828
+bar_17,native,49,121,0.293446,ok,Love Me Enough,0.4828
+bar_17,native,50,121,0.279293,ok,Love Me Enough,0.4828
+bar_17,native,51,121,0.319742,ok,Love Me Enough,0.4828
+bar_17,native,52,121,0.245271,ok,Love Me Enough,0.4828
+bar_17,native,53,121,0.275574,ok,Love Me Enough,0.4828
+bar_17,native,54,121,0.305154,ok,Love Me Enough,0.4828
+bar_17,native,55,121,0.299264,ok,Love Me Enough,0.4828
+bar_17,native,56,121,0.317607,ok,Love Me Enough,0.4828
+bar_18,native,42,94,0.331192,ok,Here I Am,0.4448
+bar_18,native,43,94,0.369082,ok,Here I Am,0.4448
+bar_18,native,44,94,0.341890,ok,Here I Am,0.4448
+bar_18,native,45,94,0.363384,ok,Here I Am,0.4448
+bar_18,native,46,94,0.379158,ok,Here I Am,0.4448
+bar_18,native,47,94,0.326735,ok,Here I Am,0.4448
+bar_18,native,48,94,0.308163,ok,Here I Am,0.4448
+bar_18,native,49,94,0.392742,ok,Here I Am,0.4448
+bar_18,native,50,94,0.330728,ok,Here I Am,0.4448
+bar_18,native,51,94,0.385340,ok,Here I Am,0.4448
+bar_18,native,52,94,0.316123,ok,Here I Am,0.4448
+bar_18,native,53,94,0.357324,ok,Here I Am,0.4448
+bar_18,native,54,94,0.313930,ok,Here I Am,0.4448
+bar_18,native,55,94,0.357608,ok,Here I Am,0.4448
+bar_18,native,56,94,0.319987,ok,Here I Am,0.4448
+bar_19,native,42,136,0.317305,ok,Ganja Burn,0.4329
+bar_19,native,43,136,0.254424,ok,Ganja Burn,0.4329
+bar_19,native,44,136,0.390758,ok,Ganja Burn,0.4329
+bar_19,native,45,136,0.264545,ok,Ganja Burn,0.4329
+bar_19,native,46,136,0.293386,ok,Ganja Burn,0.4329
+bar_19,native,47,136,0.268643,ok,Ganja Burn,0.4329
+bar_19,native,48,136,0.292632,ok,Ganja Burn,0.4329
+bar_19,native,49,136,0.263313,ok,Ganja Burn,0.4329
+bar_19,native,50,136,0.284052,ok,Ganja Burn,0.4329
+bar_19,native,51,136,0.317353,ok,Ganja Burn,0.4329
+bar_19,native,52,136,0.342870,ok,Ganja Burn,0.4329
+bar_19,native,53,136,0.272087,ok,Ganja Burn,0.4329
+bar_19,native,54,136,0.276963,ok,Ganja Burn,0.4329
+bar_19,native,55,136,0.279110,ok,Ganja Burn,0.4329
+bar_19,native,56,136,0.353922,ok,Ganja Burn,0.4329
+bar_20,native,42,142,0.385552,ok,Here I Am,0.4146
+bar_20,native,43,142,0.366345,ok,Here I Am,0.4146
+bar_20,native,44,142,0.301328,ok,Here I Am,0.4146
+bar_20,native,45,142,0.425839,ok,Here I Am,0.4146
+bar_20,native,46,142,0.372723,ok,Here I Am,0.4146
+bar_20,native,47,142,0.306757,ok,Here I Am,0.4146
+bar_20,native,48,142,0.362845,ok,Here I Am,0.4146
+bar_20,native,49,142,0.391541,ok,Here I Am,0.4146
+bar_20,native,50,142,0.313890,ok,Here I Am,0.4146
+bar_20,native,51,142,0.335264,ok,Here I Am,0.4146
+bar_20,native,52,142,0.323041,ok,Here I Am,0.4146
+bar_20,native,53,142,0.353238,ok,Here I Am,0.4146
+bar_20,native,54,142,0.348862,ok,Here I Am,0.4146
+bar_20,native,55,142,,failed,Here I Am,0.4146
+bar_20,native,56,142,0.347280,ok,Here I Am,0.4146
+bar_21,native,42,95,0.327880,ok,Wave Ya Hand,0.4055
+bar_21,native,43,95,0.353396,ok,Wave Ya Hand,0.4055
+bar_21,native,44,95,0.404659,ok,Wave Ya Hand,0.4055
+bar_21,native,45,95,0.335504,ok,Wave Ya Hand,0.4055
+bar_21,native,46,95,0.352290,ok,Wave Ya Hand,0.4055
+bar_21,native,47,95,0.386057,ok,Wave Ya Hand,0.4055
+bar_21,native,48,95,0.390191,ok,Wave Ya Hand,0.4055
+bar_21,native,49,95,0.368561,ok,Wave Ya Hand,0.4055
+bar_21,native,50,95,0.347089,ok,Wave Ya Hand,0.4055
+bar_21,native,51,95,0.504571,ok,Wave Ya Hand,0.4055
+bar_21,native,52,95,0.382778,ok,Wave Ya Hand,0.4055
+bar_21,native,53,95,0.402899,ok,Wave Ya Hand,0.4055
+bar_21,native,54,95,0.364113,ok,Wave Ya Hand,0.4055
+bar_21,native,55,95,0.349333,ok,Wave Ya Hand,0.4055
+bar_21,native,56,95,0.366023,ok,Wave Ya Hand,0.4055
+bar_22,native,42,134,0.318255,ok,Regular Degular,0.3992
+bar_22,native,43,134,0.279687,ok,Regular Degular,0.3992
+bar_22,native,44,134,0.327130,ok,Regular Degular,0.3992
+bar_22,native,45,134,0.321286,ok,Regular Degular,0.3992
+bar_22,native,46,134,0.359146,ok,Regular Degular,0.3992
+bar_22,native,47,134,0.346831,ok,Regular Degular,0.3992
+bar_22,native,48,134,0.294358,ok,Regular Degular,0.3992
+bar_22,native,49,134,0.364675,ok,Regular Degular,0.3992
+bar_22,native,50,134,0.330092,ok,Regular Degular,0.3992
+bar_22,native,51,134,0.311674,ok,Regular Degular,0.3992
+bar_22,native,52,134,0.283389,ok,Regular Degular,0.3992
+bar_22,native,53,134,0.273058,ok,Regular Degular,0.3992
+bar_22,native,54,134,0.383948,ok,Regular Degular,0.3992
+bar_22,native,55,134,0.312389,ok,Regular Degular,0.3992
+bar_22,native,56,134,0.341389,ok,Regular Degular,0.3992
+bar_23,native,42,117,0.280579,ok,Miami,0.3955
+bar_23,native,43,117,0.305976,ok,Miami,0.3955
+bar_23,native,44,117,0.291526,ok,Miami,0.3955
+bar_23,native,45,117,0.323415,ok,Miami,0.3955
+bar_23,native,46,117,0.358272,ok,Miami,0.3955
+bar_23,native,47,117,0.310052,ok,Miami,0.3955
+bar_23,native,48,117,0.334876,ok,Miami,0.3955
+bar_23,native,49,117,0.299036,ok,Miami,0.3955
+bar_23,native,50,117,0.303476,ok,Miami,0.3955
+bar_23,native,51,117,0.331140,ok,Miami,0.3955
+bar_23,native,52,117,0.287510,ok,Miami,0.3955
+bar_23,native,53,117,0.333965,ok,Miami,0.3955
+bar_23,native,54,117,0.323854,ok,Miami,0.3955
+bar_23,native,55,117,0.284101,ok,Miami,0.3955
+bar_23,native,56,117,0.304085,ok,Miami,0.3955
+bar_24,native,42,131,0.253229,ok,Lay It Down,0.3703
+bar_24,native,43,131,0.271316,ok,Lay It Down,0.3703
+bar_24,native,44,131,0.238285,ok,Lay It Down,0.3703
+bar_24,native,45,131,0.241894,ok,Lay It Down,0.3703
+bar_24,native,46,131,0.245010,ok,Lay It Down,0.3703
+bar_24,native,47,131,0.272060,ok,Lay It Down,0.3703
+bar_24,native,48,131,0.242261,ok,Lay It Down,0.3703
+bar_24,native,49,131,0.257273,ok,Lay It Down,0.3703
+bar_24,native,50,131,0.294927,ok,Lay It Down,0.3703
+bar_24,native,51,131,0.256049,ok,Lay It Down,0.3703
+bar_24,native,52,131,0.267407,ok,Lay It Down,0.3703
+bar_24,native,53,131,0.294304,ok,Lay It Down,0.3703
+bar_24,native,54,131,0.284602,ok,Lay It Down,0.3703
+bar_24,native,55,131,0.302785,ok,Lay It Down,0.3703
+bar_24,native,56,131,0.247916,ok,Lay It Down,0.3703
+bar_0,native_alanine,42,88,0.383881,ok,Super Freaky Girl (Queen Mix),0.9938
+bar_1,native_alanine,42,92,0.369301,ok,Changed It,0.9365
+bar_2,native_alanine,42,95,0.353696,ok,Fly,0.9158
+bar_3,native_alanine,42,84,0.437755,ok,I Lied,0.8298
+bar_4,native_alanine,42,81,0.376730,ok,Fallin 4 U,0.7564
+bar_5,native_alanine,42,94,0.336298,ok,Fly,0.7451
+bar_6,native_alanine,42,88,0.349750,ok,I’m The Best,0.7394
+bar_7,native_alanine,42,138,0.321135,ok,Sweetest Girl,0.7308
+bar_8,native_alanine,42,128,0.357749,ok,Moment 4 Life,0.7108
+bar_9,native_alanine,42,82,0.427090,ok,the light is coming,0.7073
+bar_10,native_alanine,42,133,0.293955,ok,I’m The Best,0.6889
+bar_11,native_alanine,42,118,0.284336,ok,Hell Yeah,0.5856
+bar_12,native_alanine,42,88,0.441033,ok,Realize,0.5855
+bar_13,native_alanine,42,90,0.449563,ok,Dear Old Nicki,0.5771
+bar_14,native_alanine,42,143,0.301053,ok,Just The Memories,0.5683
+bar_15,native_alanine,42,148,0.302726,ok,I Lied,0.551
+bar_16,native_alanine,42,101,0.308356,ok,Roman’s Revenge (Remix),0.5477
+bar_17,native_alanine,42,121,0.296868,ok,Love Me Enough,0.4828
+bar_18,native_alanine,42,94,0.338994,ok,Here I Am,0.4448
+bar_19,native_alanine,42,136,0.389785,ok,Ganja Burn,0.4329
+bar_20,native_alanine,42,142,0.365225,ok,Here I Am,0.4146
+bar_21,native_alanine,42,95,0.379284,ok,Wave Ya Hand,0.4055
+bar_22,native_alanine,42,134,0.363920,ok,Regular Degular,0.3992
+bar_23,native_alanine,42,117,0.343356,ok,Miami,0.3955
+bar_24,native_alanine,42,131,0.242508,ok,Lay It Down,0.3703

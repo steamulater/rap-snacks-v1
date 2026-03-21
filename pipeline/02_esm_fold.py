@@ -61,7 +61,8 @@ DETERMINISTIC = {"alanine", "native_alanine"}
 
 
 def mean_plddt(pdb_text: str) -> float | None:
-    """Extract mean pLDDT from PDB B-factor column (ESMFold stores 0-100 there)."""
+    """Extract mean pLDDT from PDB B-factor column.
+    ESMFold's API stores pLDDT as 0-1 directly in the B-factor field."""
     values = []
     for line in pdb_text.splitlines():
         if line.startswith("ATOM"):
@@ -71,7 +72,7 @@ def mean_plddt(pdb_text: str) -> float | None:
                 pass
     if not values:
         return None
-    return sum(values) / len(values) / 100.0
+    return sum(values) / len(values)  # already 0-1
 
 
 def call_esm(sequence: str, retries: int = 3, base_delay: float = 30.0) -> str | None:
@@ -141,7 +142,7 @@ def main():
         snapshot = json.load(f)
 
     bars = sorted(
-        snapshot.values(),
+        [{"bar_id": k, **v} for k, v in snapshot.items()],
         key=lambda b: float(b.get("aggregate_iconicity") or 0),
         reverse=True,
     )
@@ -197,13 +198,13 @@ def main():
                 sequence, _ = CONVERTERS[condition](cleaned, args.lambda_val, rng)
 
                 call_n += 1
+                pdb_path = pdb_dir / f"{bar_id}_seed{seed}.pdb"
+
                 print(
                     f"  [{call_n}/{total_calls}] {bar_id} | {condition} | seed={seed} "
                     f"| len={len(sequence)}",
                     end="", flush=True,
                 )
-
-                pdb_text = call_esm(sequence)
 
                 result_row = {
                     "bar_id": bar_id,
@@ -216,14 +217,20 @@ def main():
                     "iconicity": bar.get("aggregate_iconicity", ""),
                 }
 
+                # Reuse saved PDB if it exists — skip API call
+                if pdb_path.exists():
+                    pdb_text = pdb_path.read_text()
+                    print(" [cached]", end="", flush=True)
+                else:
+                    pdb_text = call_esm(sequence)
+                    if pdb_text is not None:
+                        pdb_path.write_text(pdb_text)
+
                 if pdb_text is not None:
                     plddt = mean_plddt(pdb_text)
                     result_row["plddt"] = f"{plddt:.6f}" if plddt is not None else ""
                     result_row["status"] = "ok"
                     print(f"  -> pLDDT={plddt:.4f}" if plddt is not None else "  -> pLDDT=?")
-
-                    pdb_path = pdb_dir / f"{bar_id}_seed{seed}.pdb"
-                    pdb_path.write_text(pdb_text)
                 else:
                     print("  -> FAILED")
 

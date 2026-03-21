@@ -404,6 +404,7 @@ def main():
     snapshot = {}
     for entry in results:
         snapshot[entry["bar_id"]] = {
+            "bar_id": entry["bar_id"],
             "bar_n": entry["bar_n"],
             "canonical_bar": entry["canonical_bar"],
             "lyric_cleaned": entry["lyric_cleaned"],
