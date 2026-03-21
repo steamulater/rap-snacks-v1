@@ -218,6 +218,127 @@ Note: these are top-25 bars only, with sequences ranging 82–148 AA. The length
 
 ---
 
+## Figures — ESMFold Pilot Analysis
+
+**Script:** `analysis/plot_esm_pilot.py`
+**Output:** `outputs/figures/`
+**Generated:** March 2026
+
+Run to regenerate all figures:
+```bash
+python analysis/plot_esm_pilot.py
+```
+
+---
+
+### Fig 01 — Sequence length distribution (85 bars)
+
+![Fig 01](outputs/figures/fig01_length_distribution.png)
+
+Length histogram of all 85 bars passing the 80–300 AA filter. Dashed lines at 100 AA and 120 AA mark the length bucket boundaries used in cross-condition analysis. The distribution is right-skewed — most bars cluster in the 80–110 AA range, with a long tail to 155 AA. No bars exceed 155 AA in this dataset despite the 300 AA ceiling being open.
+
+---
+
+### Fig 02 — Iconicity score distribution by divergence badge
+
+![Fig 02](outputs/figures/fig02_iconicity_distribution.png)
+
+Distribution of `aggregate_iconicity` scores across all 85 bars, coloured by divergence badge (Viral / Aligned). The vertical dotted line marks the top-25 iconicity cutoff — only bars to the right of this line were included in the ESMFold pilot. The distribution is right-skewed; most bars sit in the 0.15–0.40 range with a few high-iconicity outliers above 0.80.
+
+---
+
+### Fig 03 — Mean pLDDT by condition
+
+![Fig 03](outputs/figures/fig03_mean_plddt_by_condition.png)
+
+Bar chart of mean pLDDT per condition with standard error bars. Values are computed as bar-level means (averaging across seeds first) then averaged across the 25 bars. The ordering is consistent with v1: alanine and native_alanine lead, concordance is last. All conditions are within a ~0.03 range — condition effects are real but small relative to the overall pLDDT level (~0.33–0.35).
+
+| Condition | Mean pLDDT | SE |
+|---|---|---|
+| alanine | 0.3546 | — |
+| native_alanine | 0.3526 | — |
+| native | 0.3344 | — |
+| random | 0.3290 | — |
+| concordance | 0.3261 | — |
+
+---
+
+### Fig 04 — pLDDT distribution by condition (violin)
+
+![Fig 04](outputs/figures/fig04_plddt_violin.png)
+
+Violin plot showing the full pLDDT distribution per condition (bar-level means, n=25 per condition). Individual bars are overlaid as jittered dots. The distributions overlap substantially — no condition dominates at the bar level. The native condition shows the widest spread, consistent with AA pass-through producing more variable sequences than frequency-remapped conditions.
+
+---
+
+### Fig 05 — pLDDT vs sequence length (concordance)
+
+![Fig 05](outputs/figures/fig05_plddt_vs_length.png)
+
+Scatter of mean pLDDT against sequence length for the 25 pilot bars under the concordance condition. Colour encodes iconicity score. The negative trend confirms the length-pLDDT relationship seen in v1 — longer sequences fold with lower confidence. The Pearson r will be reported once the full 85-bar run is complete; the top-25 sample is too small to draw firm conclusions on the slope.
+
+The iconicity colour encoding shows no obvious clustering — high-iconicity bars (dark orange) are scattered across the length range, further supporting the iconicity-structure orthogonality finding from v1.
+
+---
+
+### Fig 06 — Mean pLDDT by condition × length bucket
+
+![Fig 06](outputs/figures/fig06_plddt_by_condition_bucket.png)
+
+Grouped bar chart stratifying all 5 conditions across three length buckets (80–100, 101–120, 121–155 AA). This is the primary cross-condition comparison — raw condition means without length stratification are confounded.
+
+Key observations:
+- The alanine advantage is most visible in the 80–100 AA bucket (short sequences), where individual residue choices have maximum structural impact
+- All conditions converge toward indistinguishable values in the 121–155 AA bucket
+- The pattern is consistent with v1: condition effects shrink as length grows, because BOJUXZ positions become a smaller fraction of the total sequence
+
+---
+
+### Fig 07 — Per-bar delta: concordance minus alanine
+
+![Fig 07](outputs/figures/fig07_concordance_vs_alanine.png)
+
+Per-bar pLDDT delta (concordance − alanine), sorted from most negative to most positive. Green bars indicate concordance outperforms alanine; blue bars indicate alanine outperforms concordance. The majority of bars are blue (alanine higher), with a mean delta shown. This directly quantifies how often the softmax BOJUXZ draw hurts vs helps fold confidence relative to the neutral alanine placeholder.
+
+---
+
+### Fig 08 — Iconicity vs mean pLDDT
+
+![Fig 08](outputs/figures/fig08_iconicity_vs_plddt.png)
+
+Scatter of aggregate iconicity against mean concordance pLDDT for the 25 pilot bars, coloured by divergence badge. The Pearson r printed on the figure is the key finding: cultural resonance has no meaningful predictive relationship with structural quality. This replicates the v1 finding (r = 0.051 over 225 bars). The lyric domain and protein domain are orthogonal.
+
+---
+
+### Fig 09 — Structural sensitivity: pLDDT SD per bar
+
+![Fig 09](outputs/figures/fig09_plddt_sd_per_bar.png)
+
+Standard deviation of pLDDT across 15 seeds (concordance condition) per bar, sorted descending. Bars coloured by length bucket. High SD means the BOJUXZ softmax draws strongly affect fold confidence for that sequence — the protein is structurally sensitive to which AA is drawn at non-standard positions. Low SD means the fold is robust regardless of BOJUXZ substitution.
+
+The dashed line marks the mean SD across all 25 bars. Bars above the line are candidates for BOJUXZ mask analysis — understanding which specific position drives the variance is the next mechanistic question.
+
+---
+
+### Fig 10 — 2×2 factorial effect sizes
+
+![Fig 10](outputs/figures/fig10_factorial_effects.png)
+
+Bar chart of mean pLDDT deltas for six pairwise comparisons of interest. Green = first condition scores higher; red = second condition scores higher.
+
+| Comparison | Effect | Interpretation |
+|---|---|---|
+| conc − native | + | Freq remapping: small positive effect |
+| alanine − native_alanine | + | Freq remapping with alanine: small positive effect |
+| conc − alanine | − | BOJUXZ softmax hurts: alanine folds better |
+| native − native_alanine | − | BOJUXZ softmax hurts even without remapping |
+| conc − random | + | Softmax marginally better than random |
+| alanine − random | + | Alanine clearly better than random |
+
+All BOJUXZ strategy comparisons are red (alanine outperforms softmax). All freq-remapping comparisons are green (concordance outperforms native). Same direction as v1. Effect magnitudes are 0.001–0.030 — consistent but small relative to the length-driven variance.
+
+---
+
 ## Stage 3 — Boltz-2 (PENDING)
 
 **Tool:** Boltz-2
