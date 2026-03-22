@@ -34,6 +34,7 @@ import sys
 from pathlib import Path
 
 SNAPSHOT_JSON = Path("data/bar_index_snapshot.json")
+BOLTZ_ID_MAP  = Path("data/boltz_id_map.json")   # b0 -> bar_0
 BOLTZ_PREDICTIONS = Path("outputs/boltz/predictions")
 MODELS_CSV = Path("outputs/boltz/boltz_models.csv")
 SUMMARY_CSV = Path("outputs/boltz/boltz_summary.csv")
@@ -129,7 +130,16 @@ def main():
     with open(SNAPSHOT_JSON, encoding="utf-8") as f:
         snapshot = json.load(f)
 
-    bar_dirs = sorted(boltz_dir.glob("bar_*"))
+    # Load Boltz ID map if present (b0 -> bar_0)
+    id_map = {}
+    if BOLTZ_ID_MAP.exists():
+        with open(BOLTZ_ID_MAP, encoding="utf-8") as f:
+            id_map = json.load(f)
+        print(f"  Boltz ID map loaded: {len(id_map)} entries (e.g. b0 -> {id_map.get('b0','?')})")
+
+    bar_dirs = sorted(
+        list(boltz_dir.glob("bar_*")) + list(boltz_dir.glob("b[0-9]*"))
+    )
     if not bar_dirs:
         print(f"[ERROR] No bar_* directories found in {boltz_dir}")
         sys.exit(1)
@@ -142,7 +152,8 @@ def main():
     length_verified = 0
 
     for bar_dir in bar_dirs:
-        bar_id = bar_dir.name
+        boltz_dir_id = bar_dir.name          # e.g. "b0" or "bar_0"
+        bar_id = id_map.get(boltz_dir_id, boltz_dir_id)  # resolve to internal bar_N
         snap = snapshot.get(bar_id, {})
         snap_len = snap.get("lyric_cleaned_len")
         snap_bar = snap.get("canonical_bar", "")
@@ -200,7 +211,8 @@ def main():
                 conf = {"plddt": "", "ptm": "", "confidence": "", "pde": ""}
 
             row = {
-                "bar_id": bar_id,
+                "bar_id": bar_id,        # always internal bar_0 format
+                "boltz_id": boltz_dir_id, # b0 or bar_0 as Boltz named it
                 "model": model_n,
                 "canonical_bar": snap_bar,
                 "song": snap_song,
