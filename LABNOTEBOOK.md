@@ -344,14 +344,17 @@ All BOJUXZ strategy comparisons are red (alanine outperforms softmax). All freq-
 **Tool:** Boltz-2
 **Platform:** Google Colab Pro+ (NVIDIA A100-SXM4-80GB, High-RAM)
 **Input:** `outputs/fastas/bars_v2_concordance.fasta` (85 sequences)
-**Command:**
+**Diffusion samples:** 5 per bar (425 PDB files total)
 
-```bash
+### Colab command
+
+```python
 !pip install boltz cuequivariance-torch
+
 !boltz predict bars_v2_concordance.fasta \
     --use_msa_server \
     --output_format pdb \
-    --diffusion_samples 1 \
+    --diffusion_samples 5 \
     --out_dir boltz_outputs/
 ```
 
@@ -361,7 +364,35 @@ Download `boltz_outputs/` to `outputs/boltz/`, then:
 make parse-boltz
 ```
 
-**Expected timeline:** MSA phase ~3–4 hours (85 bars). Fold ~30–45 min from cached MSA.
+**Expected timeline:** MSA phase ~3–4 hours (85 bars, rate-limited). Fold ~1.5–2 hours for 5 samples × 85 bars from cached MSA.
+
+### Why 5 samples
+
+Boltz-2 is a diffusion model — each sample draws from a different point in the distribution of plausible structures. Running 5 samples per bar gives us:
+
+- **Best model by confidence** — the highest-confidence prediction for structural visualization and FoldSeek
+- **Mean pLDDT / pTM across models** — more stable estimate of structural quality than a single sample
+- **SD across models** — measures structural plasticity: how much the predicted fold varies across draws. High SD = the sequence is structurally ambiguous; low SD = the fold is well-determined.
+
+This makes the Boltz-2 ensemble directly comparable to the ESMFold multi-seed approach (15 seeds for concordance/native, 30 for random).
+
+### Output structure (per bar)
+
+```
+outputs/boltz/predictions/
+  bar_0/
+    bar_0_model_0.pdb  bar_0_model_1.pdb  ...  bar_0_model_4.pdb
+    bar_0_confidence_model_0.json  ...  bar_0_confidence_model_4.json
+```
+
+### Parser outputs (`03_parse_boltz.py`)
+
+| File | Contents |
+|---|---|
+| `outputs/boltz/boltz_models.csv` | One row per bar × model — pLDDT, pTM, confidence, pDE |
+| `outputs/boltz/boltz_summary.csv` | One row per bar — mean/SD/best across 5 models + structural class |
+
+**Integrity check:** model_0 sequence length verified against `bar_index_snapshot.json` for every bar. Mismatches flagged — this is the v1 attribution drift failure mode.
 
 **Note on `--output_format pdb`:** V1 used CIF by default, requiring conversion for downstream tools. V2 outputs PDB directly — universally supported by PyMOL, biopython, FoldSeek, and soft design tools.
 

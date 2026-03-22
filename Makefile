@@ -132,7 +132,7 @@ clean-outputs:
 #   !boltz predict bars_v2_concordance.fasta \
 #       --use_msa_server \
 #       --output_format pdb \
-#       --diffusion_samples 1 \
+#       --diffusion_samples 5 \
 #       --out_dir boltz_outputs/
 #
 # Download boltz_outputs/ and place at outputs/boltz/
