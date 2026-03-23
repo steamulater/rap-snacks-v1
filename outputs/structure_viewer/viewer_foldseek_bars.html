@@ -76,12 +76,8 @@
     margin-top: 2px;
   }
   .viewer-wrap {
-    position: relative; width: 100%; aspect-ratio: 1 / 1;
-    background: #0a0a18;
-  }
-  .viewer-wrap > div {
-    width: 100% !important;
-    height: 100% !important;
+    position: relative; width: 100%; height: 360px;
+    background: #0a0a18; overflow: hidden;
   }
   .card-footer {
     padding: 10px 14px;
@@ -27778,15 +27774,23 @@ function buildGrid() {
   });
 }
 
-// ---------- Init viewers (staggered to avoid janky load) ----------
+// ---------- Init viewers ----------
 function initViewer(barId) {
   return new Promise(resolve => {
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       const el = document.getElementById(`viewer-${barId}`);
+      const w = el.offsetWidth  || 380;
+      const h = el.offsetHeight || 360;
+      if (typeof $3Dmol === 'undefined') {
+        const loader = document.getElementById(`loading-${barId}`);
+        if (loader) loader.textContent = '3Dmol failed to load — check internet connection';
+        return resolve();
+      }
       const viewer = $3Dmol.createViewer(el, {
         backgroundColor: '#0a0a18',
         antialias: true,
-        id: `viewer-${barId}`
+        width: w,
+        height: h,
       });
       viewers[barId] = viewer;
       const modelN = activeModels[barId];
@@ -27795,10 +27799,9 @@ function initViewer(barId) {
       viewer.zoomTo();
       viewer.render();
       const loader = document.getElementById(`loading-${barId}`);
-      if (loader) loader.style.opacity = '0';
-      setTimeout(() => { if (loader) loader.remove(); }, 300);
+      if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.remove(), 300); }
       resolve();
-    }, 0);
+    });
   });
 }
 
@@ -27809,7 +27812,7 @@ async function initAll() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', initAll);
+window.addEventListener('load', initAll);
 </script>
 </body>
 </html>
