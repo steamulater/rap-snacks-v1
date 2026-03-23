@@ -2,7 +2,7 @@
 
 **Repo:** `steamulater/rap-snacks-v1`
 **Started:** March 2026
-**Status:** ESMFold pilot complete — Boltz-2 pending Colab run
+**Status:** Boltz-2 complete · FoldSeek complete · Pairwise analysis complete · ESMFold full run in progress
 
 ---
 
@@ -27,27 +27,34 @@ V2 fixes this architecturally — the lyric attribution is locked at conversion 
 ```
 data/aggregated_lines_v2_frozen.csv    <- immutable input, SHA-256 guarded
          |
-00_audit.py        validate + 20 random row spot-check (human review gate)
+00_audit.py              validate + 20 random row spot-check          [DONE]
          |
-01_convert.py      lyric -> FASTA (5 modes) + bar_index_snapshot.json
-                   + enriched CSV with all 5 sequences per bar
-                   + length agreement check (pre vs post conversion)
-     /outputs/fastas/
-bars_v2_{mode}.fasta × 5 modes
+01_convert.py            lyric → FASTA (5 modes) + bar_index_snapshot [DONE]
+                         bars_v2_{mode}.fasta × 5  |  mask_v2_{mode}.json × 5
          |
-[Boltz-2 on Colab]  concordance condition, PDB output, --output_format pdb
+prep_boltz_fasta.py      split concordance FASTA → b0.fasta … b84.fasta [DONE]
+prep_boltz_fasta_native_ala.py  BJOZUX→A FASTA → na0.fasta … na84.fasta [DONE, folding pending]
          |
-03_parse_boltz.py  extract pLDDT, pTM, confidence, pDE -> boltz_confidence_scores.csv
-                   + length mismatch check against snapshot
+[Boltz-2 on Colab]       concordance condition, --diffusion_samples 5  [DONE]
+                         outputs/boltz_outputs/ (425 PDB files)
          |
-02_esm_fold.py     ESMFold API ensemble, all 5 conditions, pilot = top 25 bars
+03_parse_boltz.py        extract pLDDT, pTM → boltz_summary.csv        [DONE]
          |
-04_foldseek.py     FoldSeek REST API, pTM>=0.4 bars only
+02_esm_fold.py           ESMFold API ensemble, 5 conditions            [PILOT DONE, full run in progress]
+                         top-25 pilot complete; full 85-bar run ~56% done
          |
-05_enrich_csv.py   join all metrics -> aggregated_lines_v2_enriched.csv
+04_foldseek.py           FoldSeek REST API, pTM≥0.4 bars only          [DONE — 6 bars, 0 hits]
+         |
+05_enrich_csv.py         join all metrics → aggregated_lines_v2_enriched.csv [DONE]
+         |
+06_pairwise_comparison.py  85×85 pairwise seq identity + structural RMSD [DONE]
+         |
+07_boltz_ensemble_foldseek_bars.py  ensemble deep dive, 6 FoldSeek bars [DONE]
+         |
+generate_structure_viewer.py  interactive 3Dmol.js HTML viewer          [DONE]
 ```
 
-**Orchestration:** `make audit` → `make convert` → `make esm-pilot` → [Colab] → `make parse-boltz` → `make foldseek` → `make enrich`
+**Orchestration:** `make audit` → `make convert` → [Colab] → `make parse-boltz` → `make esm-pilot` → `make foldseek` → `make enrich` → analysis scripts
 
 ---
 
@@ -231,7 +238,7 @@ python analysis/plot_esm_pilot.py
 
 ---
 
-### Fig 01 — Sequence length distribution (85 bars)
+### Fig 1 — Sequence length distribution (85 bars)
 
 ![Fig 01](outputs/figures/fig01_length_distribution.png)
 
@@ -239,7 +246,7 @@ Length histogram of all 85 bars passing the 80–300 AA filter. Dashed lines at 
 
 ---
 
-### Fig 02 — Iconicity score distribution by divergence badge
+### Fig 2 — Iconicity score distribution by divergence badge
 
 ![Fig 02](outputs/figures/fig02_iconicity_distribution.png)
 
@@ -247,7 +254,7 @@ Distribution of `aggregate_iconicity` scores across all 85 bars, coloured by div
 
 ---
 
-### Fig 03 — Mean pLDDT by condition
+### Fig 3 — Mean pLDDT by condition
 
 ![Fig 03](outputs/figures/fig03_mean_plddt_by_condition.png)
 
@@ -263,7 +270,7 @@ Bar chart of mean pLDDT per condition with standard error bars. Values are compu
 
 ---
 
-### Fig 04 — pLDDT distribution by condition (violin)
+### Fig 4 — pLDDT distribution by condition (violin)
 
 ![Fig 04](outputs/figures/fig04_plddt_violin.png)
 
@@ -271,7 +278,7 @@ Violin plot showing the full pLDDT distribution per condition (bar-level means, 
 
 ---
 
-### Fig 05 — pLDDT vs sequence length (concordance)
+### Fig 5 — pLDDT vs sequence length (concordance)
 
 ![Fig 05](outputs/figures/fig05_plddt_vs_length.png)
 
@@ -281,7 +288,7 @@ The iconicity colour encoding shows no obvious clustering — high-iconicity bar
 
 ---
 
-### Fig 06 — Mean pLDDT by condition × length bucket
+### Fig 6 — Mean pLDDT by condition × length bucket
 
 ![Fig 06](outputs/figures/fig06_plddt_by_condition_bucket.png)
 
@@ -294,7 +301,7 @@ Key observations:
 
 ---
 
-### Fig 07 — Per-bar delta: concordance minus alanine
+### Fig 7 — Per-bar delta: concordance minus alanine
 
 ![Fig 07](outputs/figures/fig07_concordance_vs_alanine.png)
 
@@ -302,7 +309,7 @@ Per-bar pLDDT delta (concordance − alanine), sorted from most negative to most
 
 ---
 
-### Fig 08 — Iconicity vs mean pLDDT
+### Fig 8 — Iconicity vs mean pLDDT
 
 ![Fig 08](outputs/figures/fig08_iconicity_vs_plddt.png)
 
@@ -310,7 +317,7 @@ Scatter of aggregate iconicity against mean concordance pLDDT for the 25 pilot b
 
 ---
 
-### Fig 09 — Structural sensitivity: pLDDT SD per bar
+### Fig 9 — Structural sensitivity: pLDDT SD per bar
 
 ![Fig 09](outputs/figures/fig09_plddt_sd_per_bar.png)
 
@@ -462,69 +469,28 @@ Interpretation: the rap-derived protein structures do not resemble any known pro
 
 ---
 
-## Stage 7 — FoldSeek Bar Ensemble Deep Dive (COMPLETE)
+## Stage 5 — Enrich Master CSV (COMPLETE)
 
-**Script:** `analysis/07_boltz_ensemble_foldseek_bars.py`
-**Bars:** The 6 FoldSeek-searched bars (pTM ≥ 0.4): bar_11, bar_17, bar_27, bar_38, bar_49, bar_53
-**Data:** All 5 Boltz-2 diffusion models per bar = 30 structures total
+**Script:** `pipeline/05_enrich_csv.py`
+**Output:** `data/aggregated_lines_v2_enriched.csv` (updated in-place, backup saved)
 
-### Key question: do the 5 diffusion samples converge to the same fold?
+### Columns added
 
-| bar_id | song | mean RMSD between models | max | interpretation |
-|---|---|---|---|---|
-| bar_17 | Love Me Enough | 3.41 Å | 4.78 Å | highly consistent — fold well-determined |
-| bar_27 | Ganja Burn | 5.50 Å | 8.67 Å | moderate — core stable, termini vary |
-| bar_38 | Haterade | 5.91 Å | 7.57 Å | moderate |
-| bar_11 | Hell Yeah | 7.53 Å | 10.95 Å | variable — structurally plastic |
-| bar_49 | Fly | 9.12 Å | 11.76 Å | high plasticity |
-| bar_53 | Want Some More | 9.73 Å | 13.40 Å | most variable — diffusion cannot commit to a fold |
+| Source | Columns (8) |
+|---|---|
+| Boltz-2 | `boltz_plddt`, `boltz_plddt_best`, `boltz_plddt_sd`, `boltz_ptm`, `boltz_ptm_best`, `boltz_confidence`, `boltz_structural_class`, `boltz_n_models` |
+| ESMFold | `esm_plddt_{condition}_mean/sd/n` × 5 conditions = 15 columns |
+| FoldSeek | `foldseek_result`, `foldseek_best_hit`, `foldseek_best_prob`, `foldseek_best_db` |
 
-**bar_17** (Love Me Enough) is the most structurally consistent despite being the 5th-ranked by pTM. **bar_53** (Want Some More) shows the most plasticity — the model's 5 samples span 13.4 Å, suggesting the sequence doesn't strongly constrain a single fold.
+**Total enriched CSV columns:** 58 (was 31 before enrichment)
+**Bars with Boltz-2 data:** 85 / 85
 
-### Figure 4 — Per-residue pLDDT Profiles
+### Pipeline bugs fixed
 
-![Per-residue pLDDT Profiles](outputs/pairwise/fig4_plddt_profiles.png)
+- **Wrong CSV path**: `BOLTZ_CSV` was hardcoded to `boltz_confidence_scores.csv`; corrected to `boltz_summary.csv`.
+- **Wrong field names in `load_boltz`**: mapped `ptm`/`plddt` but summary CSV uses `ptm_mean`/`plddt_mean`. Fixed field mapping — was enriching 0 bars before fix.
 
-Per-residue pLDDT along the sequence for all 5 diffusion models (thin lines) and mean ± SD (ribbon). Background shading: red < 0.5, yellow 0.5–0.7, green > 0.7. Dashed lines at 0.5 and 0.7.
-
-Observations:
-- **bar_27** (Ganja Burn) has multiple residue windows breaking the 0.7 threshold — the only bar with any consistently high-pLDDT regions. Tight ribbon = models agree on those regions.
-- **bar_17** (Love Me Enough) has a pronounced peak in the middle of the sequence (~residue 40–70) where all 5 models are consistently above 0.5 with a narrow SD.
-- **bar_49** (Fly) and **bar_53** (Want Some More) show wide SD ribbons throughout — the diffusion samples disagree at nearly every position.
-
-### Figure 5 — Within-bar Pairwise Model RMSD (5×5 heatmaps)
-
-![Within-bar Model RMSD](outputs/pairwise/fig5_intrabar_rmsd.png)
-
-5×5 Cα RMSD matrix for each bar. Cell = RMSD between model i and model j after Kabsch superposition. Color scale is shared across all 6 bars.
-
-bar_17 is uniformly light (models converge). bar_53 has dark cells throughout (maximum spread). bar_27 shows a mix — some model pairs are tight (2.5 Å), others are wider (8.7 Å), suggesting one or two outlier conformations.
-
-### Figure 6 — UMAP of 30 Structures
-
-![UMAP 30 Structures](outputs/pairwise/fig6_umap_30structs.png)
-
-30-point UMAP embedding from the 30×30 pairwise Cα RMSD matrix. Color = bar, shape = model index (0–4). Shaded hull = within-bar spread of the 5 diffusion samples.
-
-Observations:
-- **bar_27** (Ganja Burn) and **bar_17** (Love Me Enough) cluster tightly — models within each bar are close together structurally.
-- **bar_49** (Fly) and **bar_53** (Want Some More) have the widest hulls — diffusion samples are structurally spread.
-- All 6 bars are well-separated in UMAP space, confirming inter-bar structural novelty consistent with the FoldSeek no-hit result.
-- bar_11 and bar_38 sit in the same region of UMAP space — the closest structural neighbors among the 6 FoldSeek bars.
-
-### Figure 7 — Backbone Traces (Cα, pLDDT coloring)
-
-![Backbone Traces](figures/fig7_backbone_traces.png)
-
-Cα backbone traces for the 6 FoldSeek bars (best model, model_0), colored by per-residue pLDDT (red=low → blue=high). Generated from Boltz-2 PDB files using the Boltz chain-ID fix.
-
-### Interactive Structure Viewer
-
-`outputs/structure_viewer/viewer_foldseek_bars.html` — self-contained 3Dmol.js viewer with all 30 structures (6 bars × 5 diffusion models). Open in Safari (Chrome requires hardware acceleration enabled for WebGL).
-
-Features: pLDDT/rainbow/surface/stick toggles, per-panel M0–M4 model selector, spin, reset.
-
-> **Boltz chain-ID fix:** Boltz PDB files use 3-char chain IDs (e.g. `b11`) which shift coordinate columns by +2 relative to the PDB fixed-width spec, breaking strict parsers like 3Dmol. Fixed in `analysis/generate_structure_viewer.py` via `fix_boltz_chain()` (replaces `b11` → `A`, restoring standard column alignment). PyMOL is tolerant of this and parses correctly without the fix. The regex Cα parsers in `06_pairwise_comparison.py` and `07_boltz_ensemble_foldseek_bars.py` were also unaffected.
+---
 
 ---
 
@@ -543,19 +509,19 @@ Features: pLDDT/rainbow/surface/stick toggles, per-panel M0–M4 model selector,
 
 All bars are highly sequence-diverse (max identity 30%) — the concordance mapping produces sequences with no strong homology to each other. Structural RMSD has considerably more spread, indicating the bars sample distinct fold geometries despite uniform sequence novelty.
 
-### Figure 1 — Sequence Identity Heatmap
+### Fig 11 — Sequence Identity Heatmap
 
 ![Sequence Identity Heatmap](outputs/pairwise/fig1_seq_heatmap.png)
 
 Clustered 85×85 pairwise sequence identity matrix. Off-diagonal values are uniformly low (pale yellow). No strong sequence clusters — the 85 bars form a flat diversity landscape. Side color bars = structural class.
 
-### Figure 2 — Structural RMSD Heatmap
+### Fig 12 — Structural RMSD Heatmap
 
 ![Structural RMSD Heatmap](outputs/pairwise/fig2_struct_heatmap.png)
 
 Clustered 85×85 Cα RMSD matrix (Å). More texture than the sequence plot — the dendrogram resolves genuine structural subclusters even among bars with low sequence identity. `confident_protein_like` and `uncertain_protein_like` bars (orange/red) tend to cluster structurally.
 
-### Figure 3 — Sequence × Structural Novelty Scatter
+### Fig 13 — Sequence × Structural Novelty Scatter
 
 ![Novelty Scatter](outputs/pairwise/fig3_novelty_scatter.png)
 
@@ -587,45 +553,97 @@ Bio.PDB's standard PDB parser rejects Boltz-2 output files (2-char chain IDs lik
 
 ---
 
-## Stage 5 — Enrich Master CSV (COMPLETE)
+---
 
-**Script:** `pipeline/05_enrich_csv.py`
-**Output:** `data/aggregated_lines_v2_enriched.csv` (updated in-place, backup saved)
+## Stage 7 — FoldSeek Bar Ensemble Deep Dive (COMPLETE)
 
-### Columns added
+**Script:** `analysis/07_boltz_ensemble_foldseek_bars.py`
+**Bars:** The 6 FoldSeek-searched bars (pTM ≥ 0.4): bar_11, bar_17, bar_27, bar_38, bar_49, bar_53
+**Data:** All 5 Boltz-2 diffusion models per bar = 30 structures total
 
-| Source | Columns (8) |
-|---|---|
-| Boltz-2 | `boltz_plddt`, `boltz_plddt_best`, `boltz_plddt_sd`, `boltz_ptm`, `boltz_ptm_best`, `boltz_confidence`, `boltz_structural_class`, `boltz_n_models` |
-| ESMFold | `esm_plddt_{condition}_mean/sd/n` × 5 conditions = 15 columns |
-| FoldSeek | `foldseek_result`, `foldseek_best_hit`, `foldseek_best_prob`, `foldseek_best_db` |
+### Key question: do the 5 diffusion samples converge to the same fold?
 
-**Total enriched CSV columns:** 58 (was 31 before enrichment)
-**Bars with Boltz-2 data:** 85 / 85
+| bar_id | song | mean RMSD between models | max | interpretation |
+|---|---|---|---|---|
+| bar_17 | Love Me Enough | 3.41 Å | 4.78 Å | highly consistent — fold well-determined |
+| bar_27 | Ganja Burn | 5.50 Å | 8.67 Å | moderate — core stable, termini vary |
+| bar_38 | Haterade | 5.91 Å | 7.57 Å | moderate |
+| bar_11 | Hell Yeah | 7.53 Å | 10.95 Å | variable — structurally plastic |
+| bar_49 | Fly | 9.12 Å | 11.76 Å | high plasticity |
+| bar_53 | Want Some More | 9.73 Å | 13.40 Å | most variable — diffusion cannot commit to a fold |
 
-### Pipeline bugs fixed
+**bar_17** (Love Me Enough) is the most structurally consistent despite being the 5th-ranked by pTM. **bar_53** (Want Some More) shows the most plasticity — the model's 5 samples span 13.4 Å, suggesting the sequence doesn't strongly constrain a single fold.
 
-- **Wrong CSV path**: `BOLTZ_CSV` was hardcoded to `boltz_confidence_scores.csv`; corrected to `boltz_summary.csv`.
-- **Wrong field names in `load_boltz`**: mapped `ptm`/`plddt` but summary CSV uses `ptm_mean`/`plddt_mean`. Fixed field mapping — was enriching 0 bars before fix.
+### Fig 14 — Per-residue pLDDT Profiles
+
+![Per-residue pLDDT Profiles](outputs/pairwise/fig4_plddt_profiles.png)
+
+Per-residue pLDDT along the sequence for all 5 diffusion models (thin lines) and mean ± SD (ribbon). Background shading: red < 0.5, yellow 0.5–0.7, green > 0.7. Dashed lines at 0.5 and 0.7.
+
+Observations:
+- **bar_27** (Ganja Burn) has multiple residue windows breaking the 0.7 threshold — the only bar with any consistently high-pLDDT regions. Tight ribbon = models agree on those regions.
+- **bar_17** (Love Me Enough) has a pronounced peak in the middle of the sequence (~residue 40–70) where all 5 models are consistently above 0.5 with a narrow SD.
+- **bar_49** (Fly) and **bar_53** (Want Some More) show wide SD ribbons throughout — the diffusion samples disagree at nearly every position.
+
+### Fig 15 — Within-bar Pairwise Model RMSD (5×5 heatmaps)
+
+![Within-bar Model RMSD](outputs/pairwise/fig5_intrabar_rmsd.png)
+
+5×5 Cα RMSD matrix for each bar. Cell = RMSD between model i and model j after Kabsch superposition. Color scale is shared across all 6 bars.
+
+bar_17 is uniformly light (models converge). bar_53 has dark cells throughout (maximum spread). bar_27 shows a mix — some model pairs are tight (2.5 Å), others are wider (8.7 Å), suggesting one or two outlier conformations.
+
+### Fig 16 — UMAP of 30 Structures
+
+![UMAP 30 Structures](outputs/pairwise/fig6_umap_30structs.png)
+
+30-point UMAP embedding from the 30×30 pairwise Cα RMSD matrix. Color = bar, shape = model index (0–4). Shaded hull = within-bar spread of the 5 diffusion samples.
+
+Observations:
+- **bar_27** (Ganja Burn) and **bar_17** (Love Me Enough) cluster tightly — models within each bar are close together structurally.
+- **bar_49** (Fly) and **bar_53** (Want Some More) have the widest hulls — diffusion samples are structurally spread.
+- All 6 bars are well-separated in UMAP space, confirming inter-bar structural novelty consistent with the FoldSeek no-hit result.
+- bar_11 and bar_38 sit in the same region of UMAP space — the closest structural neighbors among the 6 FoldSeek bars.
+
+### Fig 17 — Backbone Traces (Cα, pLDDT coloring)
+
+![Backbone Traces](figures/fig7_backbone_traces.png)
+
+Cα backbone traces for the 6 FoldSeek bars (best model, model_0), colored by per-residue pLDDT (red=low → blue=high). Generated from Boltz-2 PDB files using the Boltz chain-ID fix.
+
+### Interactive Structure Viewer
+
+`outputs/structure_viewer/viewer_foldseek_bars.html` — self-contained 3Dmol.js viewer with all 30 structures (6 bars × 5 diffusion models). Open in Safari (Chrome requires hardware acceleration enabled for WebGL).
+
+Features: pLDDT/rainbow/surface/stick toggles, per-panel M0–M4 model selector, spin, reset.
+
+> **Boltz chain-ID fix:** Boltz PDB files use 3-char chain IDs (e.g. `b11`) which shift coordinate columns by +2 relative to the PDB fixed-width spec, breaking strict parsers like 3Dmol. Fixed in `analysis/generate_structure_viewer.py` via `fix_boltz_chain()` (replaces `b11` → `A`, restoring standard column alignment). PyMOL is tolerant of this and parses correctly without the fix. The regex Cα parsers in `06_pairwise_comparison.py` and `07_boltz_ensemble_foldseek_bars.py` were also unaffected.
 
 ---
 
-## Open Questions
+---
 
-**Blocking (pre-publication):**
-- None currently — attribution is locked by snapshot, agreement check passed.
+## TODO
 
-**Non-blocking:**
+### In progress
+1. **ESMFold full run** — all 85 bars × 5 conditions (~5270 calls). Run `python pipeline/02_esm_fold.py --resume` after the background process completes (~56% done as of March 2026). Extends all pilot figures (Fig 1–10) to full 85-bar dataset.
+2. **Boltz-2 native_alanine condition** — FASTA inputs ready (`outputs/boltz_inputs_native_ala/`, 85 files). Upload to Colab and run:
+   ```bash
+   !boltz predict boltz_inputs_native_ala/ --use_msa_server --output_format pdb --diffusion_samples 5 --out_dir boltz_outputs_native_ala/
+   ```
+   Then: `python pipeline/03_parse_boltz.py --id-map data/boltz_id_map_native_ala.json` → `python pipeline/05_enrich_csv.py`
 
-1. **Length stratification for cross-condition analysis** — the 80–300 AA window still has length variance (82–155 AA observed). Any condition comparison must use length buckets: 80–100, 101–120, 121–155. Planned for analysis notebooks.
+### Next steps (unblocked)
+3. **Concordance vs native_alanine structural comparison** — once native_ala Boltz folds return, do pairwise Cα RMSD between concordance and native_ala predictions for each bar. Quantifies how much BJOZUX→A changes the fold vs the softmax draw.
+4. **bar_27 secondary structure annotation** — only `confident_protein_like` bar (pLDDT=0.665, pTM=0.487, *Ganja Burn*). Run DSSP or extract secondary structure from PDB; annotate helix/sheet/coil regions over per-residue pLDDT profile.
+5. **FoldSeek on remaining `uncertain_protein_like` bars** — 12 bars have pTM ≥ 0.4 but were already searched. Consider lowering threshold to pTM ≥ 0.3 once ESMFold full run is available to cross-validate.
+6. **Update structure viewer with native_ala comparison mode** — add M0–M4 toggle for native_alanine condition once those PDB files exist; show concordance vs native_ala side-by-side.
+7. **Enable Chrome WebGL** — Chrome hardware acceleration disabled on this machine. Fix: Chrome Settings → System → "Use hardware acceleration when available" → Relaunch. Required for 3Dmol viewer in Chrome.
 
-2. **ESMFold full run** — full run across all 85 bars in progress (~5270 total API calls). Use `--resume` to retry any failed seeds after completion. Key open question: do structural outliers appear outside the top-25-iconicity bars, as seen in v1 (bar_135, iconicity=0.219)?
-
-3. **bar_27 follow-up** — only `confident_protein_like` bar (pLDDT=0.665, pTM=0.487, *Ganja Burn*). No FoldSeek hit — structurally novel but has a well-determined fold. Warrants visualization and secondary structure annotation.
-
-4. **FoldSeek on remaining bars** — only 6 bars searched (pTM ≥ 0.4). Once ESMFold full run completes, ESM-based pLDDT can be used as a secondary filter. The 12 `uncertain_protein_like` bars (pLDDT < 0.6, pTM ≥ 0.4) may have FoldSeek-searchable structures despite lower pLDDT.
-
-5. **Iconicity–structure orthogonality** — Boltz-2 confirms r(iconicity, pLDDT) ≈ 0 (as in v1 with ESMFold). The single `confident_protein_like` bar (bar_27) should be checked for iconicity rank to confirm the pattern holds.
+### Analysis backlog
+8. **Full 85-bar cross-condition analysis** — extend Figs 1–10 to all 85 bars once ESMFold full run completes. Key question: does the condition ranking hold at full scale?
+9. **Iconicity–structure orthogonality at full scale** — recompute r(iconicity, Boltz pLDDT) over all 85 bars with Boltz results (pilot r ≈ 0.051, Boltz full-run expected to confirm).
+10. **BOJUXZ position analysis** — for high-SD bars (structurally sensitive to BOJUXZ draws), identify which specific positions drive variance. Cross-reference mutation mask with per-residue pLDDT.
 
 ---
 
@@ -634,37 +652,45 @@ Bio.PDB's standard PDB parser rejects Boltz-2 output files (2-char chain IDs lik
 ```
 rap-snacks-v1/
 ├── pipeline/
-│   ├── pipeline_utils.py           <- single source of truth for LETTER_TO_AA mapping
-│   ├── 00_audit.py                 <- validate frozen CSV + spot-check
-│   ├── 01_convert.py               <- FASTA conversion, 5 modes, snapshot + hash guard
-│   ├── 02_esm_fold.py              <- ESMFold API ensemble runner
-│   ├── 03_parse_boltz.py           <- Boltz-2 output parser + integrity check
-│   ├── 04_foldseek.py              <- FoldSeek REST API search
-│   └── 05_enrich_csv.py            <- join all metrics to master CSV
+│   ├── pipeline_utils.py                   <- LETTER_TO_AA map, conversion modes
+│   ├── 00_audit.py                         <- validate frozen CSV + spot-check
+│   ├── 01_convert.py                       <- FASTA conversion, 5 modes, snapshot + hash guard
+│   ├── 02_esm_fold.py                      <- ESMFold API ensemble runner (--resume safe)
+│   ├── 03_parse_boltz.py                   <- Boltz-2 output parser + integrity check
+│   ├── 04_foldseek.py                      <- FoldSeek REST API search
+│   ├── 05_enrich_csv.py                    <- join all metrics to master CSV
+│   ├── prep_boltz_fasta.py                 <- split concordance FASTA → b0…b84.fasta
+│   └── prep_boltz_fasta_native_ala.py      <- BJOZUX→A FASTA → na0…na84.fasta
 ├── analysis/
-│   ├── 01_plddt.ipynb
-│   ├── 02_cross_condition.ipynb
-│   ├── 03_foldseek.ipynb
-│   ├── 04_figures.ipynb
-│   ├── plot_esm_pilot.py
-│   ├── plot_esm_full.py
-│   ├── 06_pairwise_comparison.py   <- pairwise seq identity + structural RMSD
-│   └── 07_boltz_ensemble_foldseek_bars.py  <- ensemble deep dive (6 FoldSeek bars)
+│   ├── plot_esm_pilot.py                   <- Figs 1–10 (ESMFold pilot, top-25 bars)
+│   ├── plot_esm_full.py                    <- Figs 1–10 extended (85 bars, pending)
+│   ├── 06_pairwise_comparison.py           <- Figs 11–13: pairwise seq identity + RMSD
+│   ├── 07_boltz_ensemble_foldseek_bars.py  <- Figs 14–16: ensemble deep dive (6 bars)
+│   └── generate_structure_viewer.py        <- Fig 17 + interactive 3Dmol.js HTML viewer
 ├── data/
 │   ├── aggregated_lines_v2_frozen.csv      <- immutable input
-│   ├── aggregated_lines_v2_enriched.csv    <- working master CSV
-│   ├── bar_index_snapshot.json             <- authoritative bar_N -> lyric mapping
+│   ├── aggregated_lines_v2_enriched.csv    <- working master CSV (58 columns)
+│   ├── bar_index_snapshot.json             <- authoritative bar_N → lyric mapping
+│   ├── boltz_id_map.json                   <- b0…b84 → bar_0…bar_84 (concordance)
+│   ├── boltz_id_map_native_ala.json        <- na0…na84 → bar_0…bar_84 (native_ala)
 │   └── frozen_csv.sha256                   <- hash guard
 ├── outputs/
-│   ├── fastas/                     <- bars_v2_{mode}.fasta × 5
-│   ├── masks/                      <- mask_v2_{mode}.json × 5
-│   ├── boltz/                      <- Boltz-2 PDB files + confidence CSVs (post-Colab)
-│   ├── esm/                        <- ESMFold PDB files + plddt_scores.csv
-│   └── foldseek/                   <- foldseek_hits.csv + raw JSON cache
+│   ├── fastas/                             <- bars_v2_{mode}.fasta × 5
+│   ├── masks/                              <- mask_v2_{mode}.json × 5
+│   ├── boltz/                              <- boltz_summary.csv, boltz_models.csv
+│   ├── boltz_inputs/                       <- b0.fasta … b84.fasta (concordance, uploaded to Colab)
+│   ├── boltz_inputs_native_ala/            <- na0.fasta … na84.fasta (native_ala, pending Colab)
+│   ├── boltz_outputs/                      <- 425 PDB files from Colab (concordance)
+│   ├── esm/                                <- ESMFold PDB files + plddt_scores.csv
+│   ├── foldseek/                           <- foldseek_hits.csv + raw JSON cache
+│   ├── pairwise/                           <- seq_identity.csv, struct_rmsd.csv, Figs 11–16
+│   └── structure_viewer/                   <- viewer_foldseek_bars.html (30 structures)
+├── figures/
+│   └── fig7_backbone_traces.png            <- Fig 17: Cα backbone traces, 6 FoldSeek bars
 ├── Makefile
 ├── requirements.txt
 ├── README.md
-└── LABNOTEBOOK.md                  <- this file
+└── LABNOTEBOOK.md                          <- this file
 ```
 
 ---
@@ -678,4 +704,4 @@ rap-snacks-v1/
 
 ---
 
-*Living document. Update after each completed stage.*
+*Living document — updated after each stage. See TODO section for current work.*
