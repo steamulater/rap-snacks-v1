@@ -51,13 +51,18 @@ def extract_seq_from_pdb(pdb_path: Path) -> str | None:
         "LEU": "L", "LYS": "K", "MET": "M", "PHE": "F", "PRO": "P",
         "SER": "S", "THR": "T", "TRP": "W", "TYR": "Y", "VAL": "V",
     }
+    # Regex handles both standard 1-char chain IDs and Boltz 2-char chain IDs (e.g. "b0")
+    _ca = re.compile(r'^ATOM\s+\d+\s+CA\s+(\w{3})\s+\S+\s+(-?\d+)')
     seq = []
     last_resnum = None
     for line in pdb_path.read_text(errors="replace").splitlines():
-        if line.startswith("ATOM") and line[12:16].strip() == "CA":
-            resnum = line[22:26].strip()
+        if not line.startswith("ATOM"):
+            continue
+        m = _ca.match(line)
+        if m:
+            resnum = m.group(2)
             if resnum != last_resnum:
-                seq.append(three_to_one.get(line[17:20].strip(), "?"))
+                seq.append(three_to_one.get(m.group(1), "?"))
                 last_resnum = resnum
     return "".join(seq) if seq else None
 
@@ -90,10 +95,10 @@ def parse_confidence_json(json_path: Path) -> dict:
     with open(json_path, encoding="utf-8") as f:
         data = json.load(f)
     return {
-        "plddt":      data.get("plddt") or data.get("mean_plddt") or "",
+        "plddt":      data.get("plddt") or data.get("mean_plddt") or data.get("complex_plddt") or "",
         "ptm":        data.get("ptm") or "",
         "confidence": data.get("confidence_score") or data.get("confidence") or "",
-        "pde":        data.get("pde") or data.get("mean_pde") or "",
+        "pde":        data.get("pde") or data.get("mean_pde") or data.get("complex_pde") or "",
     }
 
 
@@ -165,10 +170,17 @@ def main():
             list(bar_dir.glob("*_model_*.pdb")) +
             list(bar_dir.glob("*_model_*.cif"))
         )
-        json_files_map = {
-            f.stem.split("_confidence_")[-1]: f
-            for f in bar_dir.glob("*_confidence_model_*.json")
-        }
+        # Support both naming conventions:
+        #   old: bar_0_confidence_model_0.json  -> key: model_0
+        #   new: confidence_b0_model_0.json     -> key: model_0
+        json_files_map = {}
+        for f in bar_dir.glob("*.json"):
+            if "confidence" not in f.stem:
+                continue
+            import re as _re
+            m = _re.search(r"(model_\d+)", f.stem)
+            if m:
+                json_files_map[m.group(1)] = f
 
         if not struct_files:
             print(f"  [WARN] No structure files for {bar_id}")

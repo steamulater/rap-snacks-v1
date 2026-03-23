@@ -1549,3 +1549,996 @@ bar_21,native_alanine,42,95,0.379284,ok,Wave Ya Hand,0.4055
 bar_22,native_alanine,42,134,0.363920,ok,Regular Degular,0.3992
 bar_23,native_alanine,42,117,0.343356,ok,Miami,0.3955
 bar_24,native_alanine,42,131,0.242508,ok,Lay It Down,0.3703
+bar_25,concordance,42,124,0.343842,ok,No Flag,0.3698
+bar_25,concordance,43,124,0.347471,ok,No Flag,0.3698
+bar_25,concordance,44,124,,failed,No Flag,0.3698
+bar_25,concordance,45,124,0.355808,ok,No Flag,0.3698
+bar_25,concordance,46,124,,failed,No Flag,0.3698
+bar_25,concordance,47,124,0.353297,ok,No Flag,0.3698
+bar_25,concordance,48,124,0.370109,ok,No Flag,0.3698
+bar_25,concordance,49,124,,failed,No Flag,0.3698
+bar_25,concordance,50,124,0.393341,ok,No Flag,0.3698
+bar_25,concordance,51,124,,failed,No Flag,0.3698
+bar_25,concordance,52,124,0.350554,ok,No Flag,0.3698
+bar_25,concordance,53,124,0.360934,ok,No Flag,0.3698
+bar_25,concordance,54,124,0.335717,ok,No Flag,0.3698
+bar_25,concordance,55,124,0.329018,ok,No Flag,0.3698
+bar_25,concordance,56,124,0.364843,ok,No Flag,0.3698
+bar_26,concordance,42,80,0.362536,ok,Seeing Green,0.3582
+bar_26,concordance,43,80,0.450578,ok,Seeing Green,0.3582
+bar_26,concordance,44,80,,failed,Seeing Green,0.3582
+bar_26,concordance,45,80,0.323333,ok,Seeing Green,0.3582
+bar_26,concordance,46,80,0.337120,ok,Seeing Green,0.3582
+bar_26,concordance,47,80,0.366171,ok,Seeing Green,0.3582
+bar_26,concordance,48,80,0.371880,ok,Seeing Green,0.3582
+bar_26,concordance,49,80,0.299141,ok,Seeing Green,0.3582
+bar_26,concordance,50,80,,failed,Seeing Green,0.3582
+bar_26,concordance,51,80,0.326940,ok,Seeing Green,0.3582
+bar_26,concordance,52,80,0.460472,ok,Seeing Green,0.3582
+bar_26,concordance,53,80,0.341329,ok,Seeing Green,0.3582
+bar_26,concordance,54,80,0.376486,ok,Seeing Green,0.3582
+bar_26,concordance,55,80,0.326397,ok,Seeing Green,0.3582
+bar_26,concordance,56,80,0.365943,ok,Seeing Green,0.3582
+bar_27,concordance,42,86,0.352127,ok,Ganja Burn,0.3307
+bar_27,concordance,43,86,,failed,Ganja Burn,0.3307
+bar_27,concordance,44,86,,failed,Ganja Burn,0.3307
+bar_27,concordance,45,86,,failed,Ganja Burn,0.3307
+bar_27,concordance,46,86,,failed,Ganja Burn,0.3307
+bar_27,concordance,47,86,0.288372,ok,Ganja Burn,0.3307
+bar_27,concordance,48,86,0.310665,ok,Ganja Burn,0.3307
+bar_27,concordance,49,86,0.310656,ok,Ganja Burn,0.3307
+bar_27,concordance,50,86,0.285324,ok,Ganja Burn,0.3307
+bar_27,concordance,51,86,0.340832,ok,Ganja Burn,0.3307
+bar_27,concordance,52,86,0.327357,ok,Ganja Burn,0.3307
+bar_27,concordance,53,86,0.316359,ok,Ganja Burn,0.3307
+bar_27,concordance,54,86,,failed,Ganja Burn,0.3307
+bar_27,concordance,55,86,,failed,Ganja Burn,0.3307
+bar_27,concordance,56,86,0.325125,ok,Ganja Burn,0.3307
+bar_28,concordance,42,118,0.277914,ok,Want Some More,0.3251
+bar_28,concordance,43,118,0.298618,ok,Want Some More,0.3251
+bar_28,concordance,44,118,0.314086,ok,Want Some More,0.3251
+bar_28,concordance,45,118,,failed,Want Some More,0.3251
+bar_28,concordance,46,118,0.315714,ok,Want Some More,0.3251
+bar_28,concordance,47,118,,failed,Want Some More,0.3251
+bar_28,concordance,48,118,0.315831,ok,Want Some More,0.3251
+bar_28,concordance,49,118,,failed,Want Some More,0.3251
+bar_28,concordance,50,118,0.313034,ok,Want Some More,0.3251
+bar_28,concordance,51,118,,failed,Want Some More,0.3251
+bar_28,concordance,52,118,,failed,Want Some More,0.3251
+bar_28,concordance,53,118,0.279775,ok,Want Some More,0.3251
+bar_28,concordance,54,118,,failed,Want Some More,0.3251
+bar_28,concordance,55,118,0.321347,ok,Want Some More,0.3251
+bar_28,concordance,56,118,,failed,Want Some More,0.3251
+bar_29,concordance,42,109,,failed,Come on a Cone,0.3104
+bar_29,concordance,43,109,,failed,Come on a Cone,0.3104
+bar_29,concordance,44,109,0.283718,ok,Come on a Cone,0.3104
+bar_29,concordance,45,109,,failed,Come on a Cone,0.3104
+bar_29,concordance,46,109,0.310385,ok,Come on a Cone,0.3104
+bar_29,concordance,47,109,0.245293,ok,Come on a Cone,0.3104
+bar_29,concordance,48,109,0.257812,ok,Come on a Cone,0.3104
+bar_29,concordance,49,109,,failed,Come on a Cone,0.3104
+bar_29,concordance,50,109,0.278719,ok,Come on a Cone,0.3104
+bar_29,concordance,51,109,0.287977,ok,Come on a Cone,0.3104
+bar_29,concordance,52,109,0.330972,ok,Come on a Cone,0.3104
+bar_29,concordance,53,109,0.260071,ok,Come on a Cone,0.3104
+bar_29,concordance,54,109,,failed,Come on a Cone,0.3104
+bar_29,concordance,55,109,,failed,Come on a Cone,0.3104
+bar_29,concordance,56,109,0.266053,ok,Come on a Cone,0.3104
+bar_30,concordance,42,100,0.284192,ok,Barbie Dangerous,0.2987
+bar_30,concordance,43,100,0.290528,ok,Barbie Dangerous,0.2987
+bar_30,concordance,44,100,0.309691,ok,Barbie Dangerous,0.2987
+bar_30,concordance,45,100,,failed,Barbie Dangerous,0.2987
+bar_30,concordance,46,100,,failed,Barbie Dangerous,0.2987
+bar_30,concordance,47,100,0.284008,ok,Barbie Dangerous,0.2987
+bar_30,concordance,48,100,,failed,Barbie Dangerous,0.2987
+bar_30,concordance,49,100,0.328425,ok,Barbie Dangerous,0.2987
+bar_30,concordance,50,100,0.283688,ok,Barbie Dangerous,0.2987
+bar_30,concordance,51,100,0.301195,ok,Barbie Dangerous,0.2987
+bar_30,concordance,52,100,0.313564,ok,Barbie Dangerous,0.2987
+bar_30,concordance,53,100,,failed,Barbie Dangerous,0.2987
+bar_30,concordance,54,100,,failed,Barbie Dangerous,0.2987
+bar_30,concordance,55,100,,failed,Barbie Dangerous,0.2987
+bar_30,concordance,56,100,0.330109,ok,Barbie Dangerous,0.2987
+bar_31,concordance,42,142,,failed,Majesty,0.2726
+bar_31,concordance,43,142,0.313554,ok,Majesty,0.2726
+bar_31,concordance,44,142,0.319490,ok,Majesty,0.2726
+bar_31,concordance,45,142,,failed,Majesty,0.2726
+bar_31,concordance,46,142,0.272275,ok,Majesty,0.2726
+bar_31,concordance,47,142,0.293083,ok,Majesty,0.2726
+bar_31,concordance,48,142,0.281228,ok,Majesty,0.2726
+bar_31,concordance,49,142,0.294834,ok,Majesty,0.2726
+bar_31,concordance,50,142,0.282658,ok,Majesty,0.2726
+bar_31,concordance,51,142,0.289416,ok,Majesty,0.2726
+bar_31,concordance,52,142,,failed,Majesty,0.2726
+bar_31,concordance,53,142,0.294276,ok,Majesty,0.2726
+bar_31,concordance,54,142,0.284331,ok,Majesty,0.2726
+bar_31,concordance,55,142,,failed,Majesty,0.2726
+bar_31,concordance,56,142,0.267208,ok,Majesty,0.2726
+bar_32,concordance,42,94,,failed,Barbie Dangerous,0.2685
+bar_32,concordance,43,94,0.369760,ok,Barbie Dangerous,0.2685
+bar_32,concordance,44,94,0.368098,ok,Barbie Dangerous,0.2685
+bar_32,concordance,45,94,0.318817,ok,Barbie Dangerous,0.2685
+bar_32,concordance,46,94,,failed,Barbie Dangerous,0.2685
+bar_32,concordance,47,94,0.344377,ok,Barbie Dangerous,0.2685
+bar_32,concordance,48,94,0.382093,ok,Barbie Dangerous,0.2685
+bar_32,concordance,49,94,0.443392,ok,Barbie Dangerous,0.2685
+bar_32,concordance,50,94,,failed,Barbie Dangerous,0.2685
+bar_32,concordance,51,94,,failed,Barbie Dangerous,0.2685
+bar_32,concordance,52,94,0.376985,ok,Barbie Dangerous,0.2685
+bar_32,concordance,53,94,0.357473,ok,Barbie Dangerous,0.2685
+bar_32,concordance,54,94,,failed,Barbie Dangerous,0.2685
+bar_32,concordance,55,94,0.296708,ok,Barbie Dangerous,0.2685
+bar_32,concordance,56,94,,failed,Barbie Dangerous,0.2685
+bar_33,concordance,42,124,0.259244,ok,Blessings,0.2621
+bar_33,concordance,43,124,0.289168,ok,Blessings,0.2621
+bar_33,concordance,44,124,,failed,Blessings,0.2621
+bar_33,concordance,45,124,0.256919,ok,Blessings,0.2621
+bar_33,concordance,46,124,0.275886,ok,Blessings,0.2621
+bar_33,concordance,47,124,,failed,Blessings,0.2621
+bar_33,concordance,48,124,,failed,Blessings,0.2621
+bar_33,concordance,49,124,0.270902,ok,Blessings,0.2621
+bar_33,concordance,50,124,0.268969,ok,Blessings,0.2621
+bar_33,concordance,51,124,,failed,Blessings,0.2621
+bar_33,concordance,52,124,0.283696,ok,Blessings,0.2621
+bar_33,concordance,53,124,0.311369,ok,Blessings,0.2621
+bar_33,concordance,54,124,,failed,Blessings,0.2621
+bar_33,concordance,55,124,0.271870,ok,Blessings,0.2621
+bar_33,concordance,56,124,0.270682,ok,Blessings,0.2621
+bar_34,concordance,42,144,,failed,Roger That,0.2615
+bar_34,concordance,43,144,0.304224,ok,Roger That,0.2615
+bar_34,concordance,44,144,0.388686,ok,Roger That,0.2615
+bar_34,concordance,45,144,0.341656,ok,Roger That,0.2615
+bar_34,concordance,46,144,0.307778,ok,Roger That,0.2615
+bar_34,concordance,47,144,0.380170,ok,Roger That,0.2615
+bar_34,concordance,48,144,,failed,Roger That,0.2615
+bar_34,concordance,49,144,,failed,Roger That,0.2615
+bar_34,concordance,50,144,0.322333,ok,Roger That,0.2615
+bar_34,concordance,51,144,0.319027,ok,Roger That,0.2615
+bar_34,concordance,52,144,0.328386,ok,Roger That,0.2615
+bar_34,concordance,53,144,0.317100,ok,Roger That,0.2615
+bar_34,concordance,54,144,0.315055,ok,Roger That,0.2615
+bar_34,concordance,55,144,,failed,Roger That,0.2615
+bar_34,concordance,56,144,0.306856,ok,Roger That,0.2615
+bar_35,concordance,42,125,,failed,Bust Down Barbiana,0.2547
+bar_35,concordance,43,125,0.268805,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,44,125,,failed,Bust Down Barbiana,0.2547
+bar_35,concordance,45,125,0.296978,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,46,125,0.272269,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,47,125,0.259634,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,48,125,0.265241,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,49,125,0.262518,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,50,125,0.249346,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,51,125,0.293099,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,52,125,0.256802,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,53,125,0.262107,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,54,125,0.287712,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,55,125,0.279622,ok,Bust Down Barbiana,0.2547
+bar_35,concordance,56,125,0.269768,ok,Bust Down Barbiana,0.2547
+bar_36,concordance,42,117,0.291826,ok,Runaway (Film),0.2503
+bar_36,concordance,43,117,,failed,Runaway (Film),0.2503
+bar_36,concordance,44,117,0.295121,ok,Runaway (Film),0.2503
+bar_36,concordance,45,117,0.296453,ok,Runaway (Film),0.2503
+bar_36,concordance,46,117,0.268888,ok,Runaway (Film),0.2503
+bar_36,concordance,47,117,0.314196,ok,Runaway (Film),0.2503
+bar_36,concordance,48,117,,failed,Runaway (Film),0.2503
+bar_36,concordance,49,117,0.313633,ok,Runaway (Film),0.2503
+bar_36,concordance,50,117,,failed,Runaway (Film),0.2503
+bar_36,concordance,51,117,0.343326,ok,Runaway (Film),0.2503
+bar_36,concordance,52,117,0.291723,ok,Runaway (Film),0.2503
+bar_36,concordance,53,117,0.291984,ok,Runaway (Film),0.2503
+bar_36,concordance,54,117,0.334264,ok,Runaway (Film),0.2503
+bar_36,concordance,55,117,0.287276,ok,Runaway (Film),0.2503
+bar_36,concordance,56,117,0.327219,ok,Runaway (Film),0.2503
+bar_37,concordance,42,151,,failed,Arctic Tundra,0.2469
+bar_37,concordance,43,151,0.290326,ok,Arctic Tundra,0.2469
+bar_37,concordance,44,151,,failed,Arctic Tundra,0.2469
+bar_37,concordance,45,151,0.305170,ok,Arctic Tundra,0.2469
+bar_37,concordance,46,151,0.290886,ok,Arctic Tundra,0.2469
+bar_37,concordance,47,151,0.283931,ok,Arctic Tundra,0.2469
+bar_37,concordance,48,151,,failed,Arctic Tundra,0.2469
+bar_37,concordance,49,151,,failed,Arctic Tundra,0.2469
+bar_37,concordance,50,151,0.286282,ok,Arctic Tundra,0.2469
+bar_37,concordance,51,151,0.306864,ok,Arctic Tundra,0.2469
+bar_37,concordance,52,151,0.292462,ok,Arctic Tundra,0.2469
+bar_37,concordance,53,151,0.297507,ok,Arctic Tundra,0.2469
+bar_37,concordance,54,151,,failed,Arctic Tundra,0.2469
+bar_37,concordance,55,151,0.302038,ok,Arctic Tundra,0.2469
+bar_37,concordance,56,151,0.292601,ok,Arctic Tundra,0.2469
+bar_38,concordance,42,141,0.291894,ok,Haterade,0.2407
+bar_38,concordance,43,141,0.267374,ok,Haterade,0.2407
+bar_38,concordance,44,141,0.278449,ok,Haterade,0.2407
+bar_38,concordance,45,141,0.298159,ok,Haterade,0.2407
+bar_38,concordance,46,141,,failed,Haterade,0.2407
+bar_38,concordance,47,141,0.286744,ok,Haterade,0.2407
+bar_38,concordance,48,141,,failed,Haterade,0.2407
+bar_38,concordance,49,141,,failed,Haterade,0.2407
+bar_38,concordance,50,141,0.293244,ok,Haterade,0.2407
+bar_38,concordance,51,141,,failed,Haterade,0.2407
+bar_38,concordance,52,141,0.271356,ok,Haterade,0.2407
+bar_38,concordance,53,141,0.297472,ok,Haterade,0.2407
+bar_38,concordance,54,141,0.287978,ok,Haterade,0.2407
+bar_38,concordance,55,141,0.275468,ok,Haterade,0.2407
+bar_38,concordance,56,141,0.264556,ok,Haterade,0.2407
+bar_39,concordance,42,102,0.365572,ok,The Crying Game,0.2307
+bar_39,concordance,43,102,0.273792,ok,The Crying Game,0.2307
+bar_39,concordance,44,102,0.277755,ok,The Crying Game,0.2307
+bar_39,concordance,45,102,0.265311,ok,The Crying Game,0.2307
+bar_39,concordance,46,102,0.286232,ok,The Crying Game,0.2307
+bar_39,concordance,47,102,0.266413,ok,The Crying Game,0.2307
+bar_39,concordance,48,102,0.307769,ok,The Crying Game,0.2307
+bar_39,concordance,49,102,0.281108,ok,The Crying Game,0.2307
+bar_39,concordance,50,102,0.269839,ok,The Crying Game,0.2307
+bar_39,concordance,51,102,0.297828,ok,The Crying Game,0.2307
+bar_39,concordance,52,102,0.266662,ok,The Crying Game,0.2307
+bar_39,concordance,53,102,0.256899,ok,The Crying Game,0.2307
+bar_39,concordance,54,102,0.297986,ok,The Crying Game,0.2307
+bar_39,concordance,55,102,0.283471,ok,The Crying Game,0.2307
+bar_39,concordance,56,102,0.282685,ok,The Crying Game,0.2307
+bar_40,concordance,42,130,,failed,Warning,0.2273
+bar_40,concordance,43,130,,failed,Warning,0.2273
+bar_40,concordance,44,130,0.280169,ok,Warning,0.2273
+bar_40,concordance,45,130,,failed,Warning,0.2273
+bar_40,concordance,46,130,0.268253,ok,Warning,0.2273
+bar_40,concordance,47,130,0.288768,ok,Warning,0.2273
+bar_40,concordance,48,130,,failed,Warning,0.2273
+bar_40,concordance,49,130,0.251189,ok,Warning,0.2273
+bar_40,concordance,50,130,0.265634,ok,Warning,0.2273
+bar_40,concordance,51,130,,failed,Warning,0.2273
+bar_40,concordance,52,130,0.254961,ok,Warning,0.2273
+bar_40,concordance,53,130,0.281382,ok,Warning,0.2273
+bar_40,concordance,54,130,0.263377,ok,Warning,0.2273
+bar_40,concordance,55,130,0.279672,ok,Warning,0.2273
+bar_40,concordance,56,130,,failed,Warning,0.2273
+bar_41,concordance,42,142,,failed,Roman’s Revenge,0.2262
+bar_41,concordance,43,142,0.239304,ok,Roman’s Revenge,0.2262
+bar_41,concordance,44,142,0.277114,ok,Roman’s Revenge,0.2262
+bar_41,concordance,45,142,0.260393,ok,Roman’s Revenge,0.2262
+bar_41,concordance,46,142,,failed,Roman’s Revenge,0.2262
+bar_41,concordance,47,142,,failed,Roman’s Revenge,0.2262
+bar_41,concordance,48,142,0.248297,ok,Roman’s Revenge,0.2262
+bar_41,concordance,49,142,,failed,Roman’s Revenge,0.2262
+bar_41,concordance,50,142,0.299299,ok,Roman’s Revenge,0.2262
+bar_41,concordance,51,142,0.303362,ok,Roman’s Revenge,0.2262
+bar_41,concordance,52,142,0.268737,ok,Roman’s Revenge,0.2262
+bar_41,concordance,53,142,,failed,Roman’s Revenge,0.2262
+bar_41,concordance,54,142,0.243250,ok,Roman’s Revenge,0.2262
+bar_41,concordance,55,142,0.253700,ok,Roman’s Revenge,0.2262
+bar_41,concordance,56,142,0.276876,ok,Roman’s Revenge,0.2262
+bar_42,concordance,42,121,,failed,Endless Fashion,0.2259
+bar_42,concordance,43,121,0.289029,ok,Endless Fashion,0.2259
+bar_42,concordance,44,121,,failed,Endless Fashion,0.2259
+bar_42,concordance,45,121,0.306720,ok,Endless Fashion,0.2259
+bar_42,concordance,46,121,0.297291,ok,Endless Fashion,0.2259
+bar_42,concordance,47,121,,failed,Endless Fashion,0.2259
+bar_42,concordance,48,121,0.303618,ok,Endless Fashion,0.2259
+bar_42,concordance,49,121,0.298728,ok,Endless Fashion,0.2259
+bar_42,concordance,50,121,,failed,Endless Fashion,0.2259
+bar_42,concordance,51,121,0.299205,ok,Endless Fashion,0.2259
+bar_42,concordance,52,121,0.348605,ok,Endless Fashion,0.2259
+bar_42,concordance,53,121,0.319486,ok,Endless Fashion,0.2259
+bar_42,concordance,54,121,0.331156,ok,Endless Fashion,0.2259
+bar_42,concordance,55,121,0.308581,ok,Endless Fashion,0.2259
+bar_42,concordance,56,121,0.307416,ok,Endless Fashion,0.2259
+bar_43,concordance,42,139,,failed,Fallin 4 U,0.2216
+bar_43,concordance,43,139,0.269477,ok,Fallin 4 U,0.2216
+bar_43,concordance,44,139,0.275730,ok,Fallin 4 U,0.2216
+bar_43,concordance,45,139,0.304491,ok,Fallin 4 U,0.2216
+bar_43,concordance,46,139,0.295725,ok,Fallin 4 U,0.2216
+bar_43,concordance,47,139,,failed,Fallin 4 U,0.2216
+bar_43,concordance,48,139,0.262777,ok,Fallin 4 U,0.2216
+bar_43,concordance,49,139,,failed,Fallin 4 U,0.2216
+bar_43,concordance,50,139,0.253530,ok,Fallin 4 U,0.2216
+bar_43,concordance,51,139,,failed,Fallin 4 U,0.2216
+bar_43,concordance,52,139,,failed,Fallin 4 U,0.2216
+bar_43,concordance,53,139,0.264719,ok,Fallin 4 U,0.2216
+bar_43,concordance,54,139,0.336082,ok,Fallin 4 U,0.2216
+bar_43,concordance,55,139,0.241998,ok,Fallin 4 U,0.2216
+bar_43,concordance,56,139,0.261105,ok,Fallin 4 U,0.2216
+bar_44,concordance,42,144,0.303910,ok,My Life,0.2196
+bar_44,concordance,43,144,0.259458,ok,My Life,0.2196
+bar_44,concordance,44,144,0.293555,ok,My Life,0.2196
+bar_44,concordance,45,144,0.275301,ok,My Life,0.2196
+bar_44,concordance,46,144,0.276324,ok,My Life,0.2196
+bar_44,concordance,47,144,0.282746,ok,My Life,0.2196
+bar_44,concordance,48,144,,failed,My Life,0.2196
+bar_44,concordance,49,144,,failed,My Life,0.2196
+bar_44,concordance,50,144,0.297597,ok,My Life,0.2196
+bar_44,concordance,51,144,0.277943,ok,My Life,0.2196
+bar_44,concordance,52,144,0.292502,ok,My Life,0.2196
+bar_44,concordance,53,144,0.273919,ok,My Life,0.2196
+bar_44,concordance,54,144,0.293373,ok,My Life,0.2196
+bar_44,concordance,55,144,0.287064,ok,My Life,0.2196
+bar_44,concordance,56,144,0.290139,ok,My Life,0.2196
+bar_45,concordance,42,139,0.300702,ok,Champion,0.2193
+bar_45,concordance,43,139,0.266858,ok,Champion,0.2193
+bar_45,concordance,44,139,,failed,Champion,0.2193
+bar_45,concordance,45,139,0.276499,ok,Champion,0.2193
+bar_45,concordance,46,139,0.298880,ok,Champion,0.2193
+bar_45,concordance,47,139,0.317555,ok,Champion,0.2193
+bar_45,concordance,48,139,0.290613,ok,Champion,0.2193
+bar_45,concordance,49,139,0.310512,ok,Champion,0.2193
+bar_45,concordance,50,139,0.269943,ok,Champion,0.2193
+bar_45,concordance,51,139,0.275241,ok,Champion,0.2193
+bar_45,concordance,52,139,,failed,Champion,0.2193
+bar_45,concordance,53,139,,failed,Champion,0.2193
+bar_45,concordance,54,139,,failed,Champion,0.2193
+bar_45,concordance,55,139,,failed,Champion,0.2193
+bar_45,concordance,56,139,,failed,Champion,0.2193
+bar_46,concordance,42,102,,failed,Barbie Goin Bad,0.2078
+bar_46,concordance,43,102,0.303476,ok,Barbie Goin Bad,0.2078
+bar_46,concordance,44,102,,failed,Barbie Goin Bad,0.2078
+bar_46,concordance,45,102,0.335208,ok,Barbie Goin Bad,0.2078
+bar_46,concordance,46,102,,failed,Barbie Goin Bad,0.2078
+bar_46,concordance,47,102,0.311232,ok,Barbie Goin Bad,0.2078
+bar_46,concordance,48,102,,failed,Barbie Goin Bad,0.2078
+bar_46,concordance,49,102,0.305681,ok,Barbie Goin Bad,0.2078
+bar_46,concordance,50,102,,failed,Barbie Goin Bad,0.2078
+bar_46,concordance,51,102,0.313382,ok,Barbie Goin Bad,0.2078
+bar_46,concordance,52,102,,failed,Barbie Goin Bad,0.2078
+bar_46,concordance,53,102,,failed,Barbie Goin Bad,0.2078
+bar_46,concordance,54,102,,failed,Barbie Goin Bad,0.2078
+bar_46,concordance,55,102,,failed,Barbie Goin Bad,0.2078
+bar_46,concordance,56,102,,failed,Barbie Goin Bad,0.2078
+bar_47,concordance,42,93,0.406515,ok,Just The Memories,0.2052
+bar_47,concordance,43,93,,failed,Just The Memories,0.2052
+bar_47,concordance,44,93,0.403688,ok,Just The Memories,0.2052
+bar_47,concordance,45,93,,failed,Just The Memories,0.2052
+bar_47,concordance,46,93,0.391967,ok,Just The Memories,0.2052
+bar_47,concordance,47,93,0.411105,ok,Just The Memories,0.2052
+bar_47,concordance,48,93,0.406750,ok,Just The Memories,0.2052
+bar_47,concordance,49,93,0.382138,ok,Just The Memories,0.2052
+bar_47,concordance,50,93,,failed,Just The Memories,0.2052
+bar_47,concordance,51,93,,failed,Just The Memories,0.2052
+bar_47,concordance,52,93,0.431994,ok,Just The Memories,0.2052
+bar_47,concordance,53,93,,failed,Just The Memories,0.2052
+bar_47,concordance,54,93,,failed,Just The Memories,0.2052
+bar_47,concordance,55,93,0.366979,ok,Just The Memories,0.2052
+bar_47,concordance,56,93,0.402730,ok,Just The Memories,0.2052
+bar_48,concordance,42,130,0.290975,ok,Top Of The World,0.2019
+bar_48,concordance,43,130,0.302544,ok,Top Of The World,0.2019
+bar_48,concordance,44,130,0.298926,ok,Top Of The World,0.2019
+bar_48,concordance,45,130,0.290963,ok,Top Of The World,0.2019
+bar_48,concordance,46,130,0.279896,ok,Top Of The World,0.2019
+bar_48,concordance,47,130,0.290696,ok,Top Of The World,0.2019
+bar_48,concordance,48,130,0.302216,ok,Top Of The World,0.2019
+bar_48,concordance,49,130,0.299679,ok,Top Of The World,0.2019
+bar_48,concordance,50,130,,failed,Top Of The World,0.2019
+bar_48,concordance,51,130,0.288379,ok,Top Of The World,0.2019
+bar_48,concordance,52,130,0.289037,ok,Top Of The World,0.2019
+bar_48,concordance,53,130,0.314925,ok,Top Of The World,0.2019
+bar_48,concordance,54,130,0.304787,ok,Top Of The World,0.2019
+bar_48,concordance,55,130,0.286103,ok,Top Of The World,0.2019
+bar_48,concordance,56,130,0.336019,ok,Top Of The World,0.2019
+bar_49,concordance,42,133,0.323957,ok,Fly,0.1953
+bar_49,concordance,43,133,0.289131,ok,Fly,0.1953
+bar_49,concordance,44,133,0.316524,ok,Fly,0.1953
+bar_49,concordance,45,133,0.310536,ok,Fly,0.1953
+bar_49,concordance,46,133,,failed,Fly,0.1953
+bar_49,concordance,47,133,0.311484,ok,Fly,0.1953
+bar_49,concordance,48,133,0.316845,ok,Fly,0.1953
+bar_49,concordance,49,133,0.276756,ok,Fly,0.1953
+bar_49,concordance,50,133,0.283009,ok,Fly,0.1953
+bar_49,concordance,51,133,,failed,Fly,0.1953
+bar_49,concordance,52,133,0.315822,ok,Fly,0.1953
+bar_49,concordance,53,133,,failed,Fly,0.1953
+bar_49,concordance,54,133,0.301651,ok,Fly,0.1953
+bar_49,concordance,55,133,,failed,Fly,0.1953
+bar_49,concordance,56,133,,failed,Fly,0.1953
+bar_50,concordance,42,144,0.259613,ok,Sweetest Girl,0.1942
+bar_50,concordance,43,144,,failed,Sweetest Girl,0.1942
+bar_50,concordance,44,144,0.277708,ok,Sweetest Girl,0.1942
+bar_50,concordance,45,144,,failed,Sweetest Girl,0.1942
+bar_50,concordance,46,144,0.272801,ok,Sweetest Girl,0.1942
+bar_50,concordance,47,144,0.308071,ok,Sweetest Girl,0.1942
+bar_50,concordance,48,144,,failed,Sweetest Girl,0.1942
+bar_50,concordance,49,144,0.292432,ok,Sweetest Girl,0.1942
+bar_50,concordance,50,144,0.291883,ok,Sweetest Girl,0.1942
+bar_50,concordance,51,144,0.267840,ok,Sweetest Girl,0.1942
+bar_50,concordance,52,144,0.268722,ok,Sweetest Girl,0.1942
+bar_50,concordance,53,144,0.292116,ok,Sweetest Girl,0.1942
+bar_50,concordance,54,144,,failed,Sweetest Girl,0.1942
+bar_50,concordance,55,144,,failed,Sweetest Girl,0.1942
+bar_50,concordance,56,144,,failed,Sweetest Girl,0.1942
+bar_51,concordance,42,155,,failed,Ganja Burn,0.193
+bar_51,concordance,43,155,0.317362,ok,Ganja Burn,0.193
+bar_51,concordance,44,155,0.331238,ok,Ganja Burn,0.193
+bar_51,concordance,45,155,0.286539,ok,Ganja Burn,0.193
+bar_51,concordance,46,155,,failed,Ganja Burn,0.193
+bar_51,concordance,47,155,0.294942,ok,Ganja Burn,0.193
+bar_51,concordance,48,155,,failed,Ganja Burn,0.193
+bar_51,concordance,49,155,,failed,Ganja Burn,0.193
+bar_51,concordance,50,155,0.261797,ok,Ganja Burn,0.193
+bar_51,concordance,51,155,0.288968,ok,Ganja Burn,0.193
+bar_51,concordance,52,155,0.341264,ok,Ganja Burn,0.193
+bar_51,concordance,53,155,,failed,Ganja Burn,0.193
+bar_51,concordance,54,155,,failed,Ganja Burn,0.193
+bar_51,concordance,55,155,0.283966,ok,Ganja Burn,0.193
+bar_51,concordance,56,155,,failed,Ganja Burn,0.193
+bar_52,concordance,42,104,,failed,New York Minute (Remix),0.1845
+bar_52,concordance,43,104,,failed,New York Minute (Remix),0.1845
+bar_52,concordance,44,104,0.272573,ok,New York Minute (Remix),0.1845
+bar_52,concordance,45,104,0.272479,ok,New York Minute (Remix),0.1845
+bar_52,concordance,46,104,0.323800,ok,New York Minute (Remix),0.1845
+bar_52,concordance,47,104,0.373631,ok,New York Minute (Remix),0.1845
+bar_52,concordance,48,104,,failed,New York Minute (Remix),0.1845
+bar_52,concordance,49,104,0.303521,ok,New York Minute (Remix),0.1845
+bar_52,concordance,50,104,,failed,New York Minute (Remix),0.1845
+bar_52,concordance,51,104,0.369579,ok,New York Minute (Remix),0.1845
+bar_52,concordance,52,104,0.341566,ok,New York Minute (Remix),0.1845
+bar_52,concordance,53,104,0.363021,ok,New York Minute (Remix),0.1845
+bar_52,concordance,54,104,0.313750,ok,New York Minute (Remix),0.1845
+bar_52,concordance,55,104,0.301236,ok,New York Minute (Remix),0.1845
+bar_52,concordance,56,104,0.332243,ok,New York Minute (Remix),0.1845
+bar_53,concordance,42,132,0.349248,ok,Want Some More,0.1836
+bar_53,concordance,43,132,0.282665,ok,Want Some More,0.1836
+bar_53,concordance,44,132,0.299335,ok,Want Some More,0.1836
+bar_53,concordance,45,132,,failed,Want Some More,0.1836
+bar_53,concordance,46,132,0.346305,ok,Want Some More,0.1836
+bar_53,concordance,47,132,0.260621,ok,Want Some More,0.1836
+bar_53,concordance,48,132,,failed,Want Some More,0.1836
+bar_53,concordance,49,132,0.273354,ok,Want Some More,0.1836
+bar_53,concordance,50,132,,failed,Want Some More,0.1836
+bar_53,concordance,51,132,,failed,Want Some More,0.1836
+bar_53,concordance,52,132,,failed,Want Some More,0.1836
+bar_53,concordance,53,132,0.277675,ok,Want Some More,0.1836
+bar_53,concordance,54,132,0.265932,ok,Want Some More,0.1836
+bar_53,concordance,55,132,,failed,Want Some More,0.1836
+bar_53,concordance,56,132,,failed,Want Some More,0.1836
+bar_54,concordance,42,120,,failed,Encore ’07,0.1797
+bar_54,concordance,43,120,0.282386,ok,Encore ’07,0.1797
+bar_54,concordance,44,120,0.330145,ok,Encore ’07,0.1797
+bar_54,concordance,45,120,0.283621,ok,Encore ’07,0.1797
+bar_54,concordance,46,120,,failed,Encore ’07,0.1797
+bar_54,concordance,47,120,0.286656,ok,Encore ’07,0.1797
+bar_54,concordance,48,120,0.297181,ok,Encore ’07,0.1797
+bar_54,concordance,49,120,0.291729,ok,Encore ’07,0.1797
+bar_54,concordance,50,120,,failed,Encore ’07,0.1797
+bar_54,concordance,51,120,0.263673,ok,Encore ’07,0.1797
+bar_54,concordance,52,120,,failed,Encore ’07,0.1797
+bar_54,concordance,53,120,,failed,Encore ’07,0.1797
+bar_54,concordance,54,120,,failed,Encore ’07,0.1797
+bar_54,concordance,55,120,0.275786,ok,Encore ’07,0.1797
+bar_54,concordance,56,120,0.288691,ok,Encore ’07,0.1797
+bar_55,concordance,42,127,,failed,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,43,127,,failed,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,44,127,0.354831,ok,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,45,127,0.346258,ok,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,46,127,,failed,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,47,127,0.349277,ok,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,48,127,,failed,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,49,127,0.332672,ok,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,50,127,0.328536,ok,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,51,127,0.334907,ok,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,52,127,0.342863,ok,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,53,127,0.323211,ok,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,54,127,0.365677,ok,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,55,127,0.311490,ok,Girl on Fire (Inferno Version),0.1782
+bar_55,concordance,56,127,,failed,Girl on Fire (Inferno Version),0.1782
+bar_56,concordance,42,88,0.298247,ok,IDOL (Remix),0.1735
+bar_56,concordance,43,88,0.386413,ok,IDOL (Remix),0.1735
+bar_56,concordance,44,88,,failed,IDOL (Remix),0.1735
+bar_56,concordance,45,88,0.370466,ok,IDOL (Remix),0.1735
+bar_56,concordance,46,88,0.300473,ok,IDOL (Remix),0.1735
+bar_56,concordance,47,88,,failed,IDOL (Remix),0.1735
+bar_56,concordance,48,88,,failed,IDOL (Remix),0.1735
+bar_56,concordance,49,88,0.341441,ok,IDOL (Remix),0.1735
+bar_56,concordance,50,88,0.298164,ok,IDOL (Remix),0.1735
+bar_56,concordance,51,88,0.368423,ok,IDOL (Remix),0.1735
+bar_56,concordance,52,88,0.297808,ok,IDOL (Remix),0.1735
+bar_56,concordance,53,88,0.300809,ok,IDOL (Remix),0.1735
+bar_56,concordance,54,88,,failed,IDOL (Remix),0.1735
+bar_56,concordance,55,88,0.395487,ok,IDOL (Remix),0.1735
+bar_56,concordance,56,88,0.326395,ok,IDOL (Remix),0.1735
+bar_57,concordance,42,116,,failed,Gotta Go Hard,0.1713
+bar_57,concordance,43,116,,failed,Gotta Go Hard,0.1713
+bar_57,concordance,44,116,,failed,Gotta Go Hard,0.1713
+bar_57,concordance,45,116,0.279226,ok,Gotta Go Hard,0.1713
+bar_57,concordance,46,116,,failed,Gotta Go Hard,0.1713
+bar_57,concordance,47,116,0.310497,ok,Gotta Go Hard,0.1713
+bar_57,concordance,48,116,0.296511,ok,Gotta Go Hard,0.1713
+bar_57,concordance,49,116,,failed,Gotta Go Hard,0.1713
+bar_57,concordance,50,116,,failed,Gotta Go Hard,0.1713
+bar_57,concordance,51,116,,failed,Gotta Go Hard,0.1713
+bar_57,concordance,52,116,,failed,Gotta Go Hard,0.1713
+bar_57,concordance,53,116,0.270745,ok,Gotta Go Hard,0.1713
+bar_57,concordance,54,116,,failed,Gotta Go Hard,0.1713
+bar_57,concordance,55,116,,failed,Gotta Go Hard,0.1713
+bar_57,concordance,56,116,0.299826,ok,Gotta Go Hard,0.1713
+bar_58,concordance,42,101,,failed,Can Anybody Hear Me?,0.1682
+bar_58,concordance,43,101,,failed,Can Anybody Hear Me?,0.1682
+bar_58,concordance,44,101,0.328488,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,45,101,0.361365,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,46,101,0.313329,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,47,101,0.314151,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,48,101,0.302831,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,49,101,0.331454,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,50,101,,failed,Can Anybody Hear Me?,0.1682
+bar_58,concordance,51,101,0.365299,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,52,101,0.298090,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,53,101,0.318101,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,54,101,0.331801,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,55,101,0.327620,ok,Can Anybody Hear Me?,0.1682
+bar_58,concordance,56,101,,failed,Can Anybody Hear Me?,0.1682
+bar_59,concordance,42,121,0.286581,ok,Encore ’07,0.1636
+bar_59,concordance,43,121,,failed,Encore ’07,0.1636
+bar_59,concordance,44,121,0.267594,ok,Encore ’07,0.1636
+bar_59,concordance,45,121,0.266725,ok,Encore ’07,0.1636
+bar_59,concordance,46,121,0.288059,ok,Encore ’07,0.1636
+bar_59,concordance,47,121,,failed,Encore ’07,0.1636
+bar_59,concordance,48,121,0.277589,ok,Encore ’07,0.1636
+bar_59,concordance,49,121,0.281862,ok,Encore ’07,0.1636
+bar_59,concordance,50,121,0.325556,ok,Encore ’07,0.1636
+bar_59,concordance,51,121,0.264741,ok,Encore ’07,0.1636
+bar_59,concordance,52,121,0.280857,ok,Encore ’07,0.1636
+bar_59,concordance,53,121,0.306586,ok,Encore ’07,0.1636
+bar_59,concordance,54,121,0.277015,ok,Encore ’07,0.1636
+bar_59,concordance,55,121,,failed,Encore ’07,0.1636
+bar_59,concordance,56,121,0.305578,ok,Encore ’07,0.1636
+bar_60,concordance,42,129,0.304248,ok,Mercy,0.1622
+bar_60,concordance,43,129,0.319866,ok,Mercy,0.1622
+bar_60,concordance,44,129,0.339980,ok,Mercy,0.1622
+bar_60,concordance,45,129,0.294039,ok,Mercy,0.1622
+bar_60,concordance,46,129,0.390627,ok,Mercy,0.1622
+bar_60,concordance,47,129,0.324016,ok,Mercy,0.1622
+bar_60,concordance,48,129,0.383750,ok,Mercy,0.1622
+bar_60,concordance,49,129,0.329589,ok,Mercy,0.1622
+bar_60,concordance,50,129,,failed,Mercy,0.1622
+bar_60,concordance,51,129,0.275837,ok,Mercy,0.1622
+bar_60,concordance,52,129,0.262337,ok,Mercy,0.1622
+bar_60,concordance,53,129,,failed,Mercy,0.1622
+bar_60,concordance,54,129,,failed,Mercy,0.1622
+bar_60,concordance,55,129,0.278442,ok,Mercy,0.1622
+bar_60,concordance,56,129,0.414413,ok,Mercy,0.1622
+bar_61,concordance,42,107,,failed,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,43,107,0.384828,ok,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,44,107,0.317381,ok,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,45,107,0.353668,ok,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,46,107,,failed,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,47,107,,failed,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,48,107,,failed,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,49,107,0.323497,ok,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,50,107,0.341439,ok,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,51,107,0.342038,ok,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,52,107,0.349875,ok,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,53,107,0.304415,ok,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,54,107,0.369399,ok,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,55,107,0.346373,ok,Red Ruby Da Sleeze,0.1621
+bar_61,concordance,56,107,0.336522,ok,Red Ruby Da Sleeze,0.1621
+bar_62,concordance,42,127,0.326791,ok,Blazin,0.1565
+bar_62,concordance,43,127,0.303697,ok,Blazin,0.1565
+bar_62,concordance,44,127,0.318836,ok,Blazin,0.1565
+bar_62,concordance,45,127,0.305982,ok,Blazin,0.1565
+bar_62,concordance,46,127,0.310817,ok,Blazin,0.1565
+bar_62,concordance,47,127,0.344381,ok,Blazin,0.1565
+bar_62,concordance,48,127,0.318932,ok,Blazin,0.1565
+bar_62,concordance,49,127,0.337668,ok,Blazin,0.1565
+bar_62,concordance,50,127,0.333171,ok,Blazin,0.1565
+bar_62,concordance,51,127,,failed,Blazin,0.1565
+bar_62,concordance,52,127,0.313653,ok,Blazin,0.1565
+bar_62,concordance,53,127,0.356975,ok,Blazin,0.1565
+bar_62,concordance,54,127,,failed,Blazin,0.1565
+bar_62,concordance,55,127,0.336383,ok,Blazin,0.1565
+bar_62,concordance,56,127,0.320927,ok,Blazin,0.1565
+bar_63,concordance,42,80,,failed,Baddest Bitch,0.1527
+bar_63,concordance,43,80,0.385392,ok,Baddest Bitch,0.1527
+bar_63,concordance,44,80,0.381298,ok,Baddest Bitch,0.1527
+bar_63,concordance,45,80,0.354441,ok,Baddest Bitch,0.1527
+bar_63,concordance,46,80,0.393046,ok,Baddest Bitch,0.1527
+bar_63,concordance,47,80,0.428779,ok,Baddest Bitch,0.1527
+bar_63,concordance,48,80,0.429688,ok,Baddest Bitch,0.1527
+bar_63,concordance,49,80,0.402736,ok,Baddest Bitch,0.1527
+bar_63,concordance,50,80,0.382723,ok,Baddest Bitch,0.1527
+bar_63,concordance,51,80,,failed,Baddest Bitch,0.1527
+bar_63,concordance,52,80,0.386700,ok,Baddest Bitch,0.1527
+bar_63,concordance,53,80,0.500221,ok,Baddest Bitch,0.1527
+bar_63,concordance,54,80,0.399815,ok,Baddest Bitch,0.1527
+bar_63,concordance,55,80,0.357883,ok,Baddest Bitch,0.1527
+bar_63,concordance,56,80,,failed,Baddest Bitch,0.1527
+bar_64,concordance,42,112,0.279011,ok,Barbie Tingz,0.1526
+bar_64,concordance,43,112,0.340721,ok,Barbie Tingz,0.1526
+bar_64,concordance,44,112,0.328849,ok,Barbie Tingz,0.1526
+bar_64,concordance,45,112,0.257461,ok,Barbie Tingz,0.1526
+bar_64,concordance,46,112,,failed,Barbie Tingz,0.1526
+bar_64,concordance,47,112,0.313242,ok,Barbie Tingz,0.1526
+bar_64,concordance,48,112,0.266663,ok,Barbie Tingz,0.1526
+bar_64,concordance,49,112,0.272053,ok,Barbie Tingz,0.1526
+bar_64,concordance,50,112,0.278945,ok,Barbie Tingz,0.1526
+bar_64,concordance,51,112,0.295940,ok,Barbie Tingz,0.1526
+bar_64,concordance,52,112,0.284745,ok,Barbie Tingz,0.1526
+bar_64,concordance,53,112,0.320551,ok,Barbie Tingz,0.1526
+bar_64,concordance,54,112,0.269213,ok,Barbie Tingz,0.1526
+bar_64,concordance,55,112,0.265333,ok,Barbie Tingz,0.1526
+bar_64,concordance,56,112,0.301130,ok,Barbie Tingz,0.1526
+bar_65,concordance,42,125,,failed,Autobiography,0.152
+bar_65,concordance,43,125,,failed,Autobiography,0.152
+bar_65,concordance,44,125,0.264257,ok,Autobiography,0.152
+bar_65,concordance,45,125,0.304581,ok,Autobiography,0.152
+bar_65,concordance,46,125,,failed,Autobiography,0.152
+bar_65,concordance,47,125,0.348741,ok,Autobiography,0.152
+bar_65,concordance,48,125,,failed,Autobiography,0.152
+bar_65,concordance,49,125,0.314525,ok,Autobiography,0.152
+bar_65,concordance,50,125,,failed,Autobiography,0.152
+bar_65,concordance,51,125,0.296691,ok,Autobiography,0.152
+bar_65,concordance,52,125,0.309217,ok,Autobiography,0.152
+bar_65,concordance,53,125,0.327129,ok,Autobiography,0.152
+bar_65,concordance,54,125,0.295323,ok,Autobiography,0.152
+bar_65,concordance,55,125,0.294333,ok,Autobiography,0.152
+bar_65,concordance,56,125,,failed,Autobiography,0.152
+bar_66,concordance,42,154,0.234824,ok,Roman In Moscow,0.1514
+bar_66,concordance,43,154,0.255983,ok,Roman In Moscow,0.1514
+bar_66,concordance,44,154,0.222785,ok,Roman In Moscow,0.1514
+bar_66,concordance,45,154,0.238639,ok,Roman In Moscow,0.1514
+bar_66,concordance,46,154,0.243339,ok,Roman In Moscow,0.1514
+bar_66,concordance,47,154,0.242021,ok,Roman In Moscow,0.1514
+bar_66,concordance,48,154,0.260392,ok,Roman In Moscow,0.1514
+bar_66,concordance,49,154,,failed,Roman In Moscow,0.1514
+bar_66,concordance,50,154,,failed,Roman In Moscow,0.1514
+bar_66,concordance,51,154,0.257313,ok,Roman In Moscow,0.1514
+bar_66,concordance,52,154,0.233357,ok,Roman In Moscow,0.1514
+bar_66,concordance,53,154,,failed,Roman In Moscow,0.1514
+bar_66,concordance,54,154,0.239507,ok,Roman In Moscow,0.1514
+bar_66,concordance,55,154,,failed,Roman In Moscow,0.1514
+bar_66,concordance,56,154,0.239485,ok,Roman In Moscow,0.1514
+bar_67,concordance,42,81,,failed,Grand Piano,0.1502
+bar_67,concordance,43,81,,failed,Grand Piano,0.1502
+bar_67,concordance,44,81,0.342983,ok,Grand Piano,0.1502
+bar_67,concordance,45,81,0.353152,ok,Grand Piano,0.1502
+bar_67,concordance,46,81,,failed,Grand Piano,0.1502
+bar_67,concordance,47,81,0.383894,ok,Grand Piano,0.1502
+bar_67,concordance,48,81,0.432712,ok,Grand Piano,0.1502
+bar_67,concordance,49,81,0.331800,ok,Grand Piano,0.1502
+bar_67,concordance,50,81,0.344983,ok,Grand Piano,0.1502
+bar_67,concordance,51,81,0.367229,ok,Grand Piano,0.1502
+bar_67,concordance,52,81,0.375486,ok,Grand Piano,0.1502
+bar_67,concordance,53,81,0.401182,ok,Grand Piano,0.1502
+bar_67,concordance,54,81,,failed,Grand Piano,0.1502
+bar_67,concordance,55,81,0.393171,ok,Grand Piano,0.1502
+bar_67,concordance,56,81,0.369851,ok,Grand Piano,0.1502
+bar_68,concordance,42,102,,failed,Right By My Side,0.1462
+bar_68,concordance,43,102,0.312865,ok,Right By My Side,0.1462
+bar_68,concordance,44,102,,failed,Right By My Side,0.1462
+bar_68,concordance,45,102,0.337567,ok,Right By My Side,0.1462
+bar_68,concordance,46,102,0.309614,ok,Right By My Side,0.1462
+bar_68,concordance,47,102,0.322933,ok,Right By My Side,0.1462
+bar_68,concordance,48,102,0.337341,ok,Right By My Side,0.1462
+bar_68,concordance,49,102,0.317876,ok,Right By My Side,0.1462
+bar_68,concordance,50,102,0.343628,ok,Right By My Side,0.1462
+bar_68,concordance,51,102,0.367880,ok,Right By My Side,0.1462
+bar_68,concordance,52,102,0.331777,ok,Right By My Side,0.1462
+bar_68,concordance,53,102,0.348962,ok,Right By My Side,0.1462
+bar_68,concordance,54,102,,failed,Right By My Side,0.1462
+bar_68,concordance,55,102,0.352780,ok,Right By My Side,0.1462
+bar_68,concordance,56,102,0.325843,ok,Right By My Side,0.1462
+bar_69,concordance,42,143,0.257971,ok,Roman In Moscow,0.1422
+bar_69,concordance,43,143,0.261355,ok,Roman In Moscow,0.1422
+bar_69,concordance,44,143,0.245706,ok,Roman In Moscow,0.1422
+bar_69,concordance,45,143,,failed,Roman In Moscow,0.1422
+bar_69,concordance,46,143,0.244385,ok,Roman In Moscow,0.1422
+bar_69,concordance,47,143,0.293830,ok,Roman In Moscow,0.1422
+bar_69,concordance,48,143,0.248754,ok,Roman In Moscow,0.1422
+bar_69,concordance,49,143,0.263780,ok,Roman In Moscow,0.1422
+bar_69,concordance,50,143,0.261371,ok,Roman In Moscow,0.1422
+bar_69,concordance,51,143,,failed,Roman In Moscow,0.1422
+bar_69,concordance,52,143,0.262727,ok,Roman In Moscow,0.1422
+bar_69,concordance,53,143,0.250801,ok,Roman In Moscow,0.1422
+bar_69,concordance,54,143,,failed,Roman In Moscow,0.1422
+bar_69,concordance,55,143,,failed,Roman In Moscow,0.1422
+bar_69,concordance,56,143,0.261069,ok,Roman In Moscow,0.1422
+bar_70,concordance,42,136,0.271139,ok,I Am Your Leader,0.1394
+bar_70,concordance,43,136,0.267721,ok,I Am Your Leader,0.1394
+bar_70,concordance,44,136,0.261812,ok,I Am Your Leader,0.1394
+bar_70,concordance,45,136,0.334618,ok,I Am Your Leader,0.1394
+bar_70,concordance,46,136,0.328705,ok,I Am Your Leader,0.1394
+bar_70,concordance,47,136,0.276959,ok,I Am Your Leader,0.1394
+bar_70,concordance,48,136,0.320750,ok,I Am Your Leader,0.1394
+bar_70,concordance,49,136,0.271507,ok,I Am Your Leader,0.1394
+bar_70,concordance,50,136,0.283990,ok,I Am Your Leader,0.1394
+bar_70,concordance,51,136,,failed,I Am Your Leader,0.1394
+bar_70,concordance,52,136,0.347826,ok,I Am Your Leader,0.1394
+bar_70,concordance,53,136,0.352266,ok,I Am Your Leader,0.1394
+bar_70,concordance,54,136,,failed,I Am Your Leader,0.1394
+bar_70,concordance,55,136,0.278581,ok,I Am Your Leader,0.1394
+bar_70,concordance,56,136,0.285233,ok,I Am Your Leader,0.1394
+bar_71,concordance,42,123,0.279076,ok,You Already Know,0.1394
+bar_71,concordance,43,123,0.269041,ok,You Already Know,0.1394
+bar_71,concordance,44,123,0.288995,ok,You Already Know,0.1394
+bar_71,concordance,45,123,0.277305,ok,You Already Know,0.1394
+bar_71,concordance,46,123,0.277841,ok,You Already Know,0.1394
+bar_71,concordance,47,123,,failed,You Already Know,0.1394
+bar_71,concordance,48,123,0.285947,ok,You Already Know,0.1394
+bar_71,concordance,49,123,,failed,You Already Know,0.1394
+bar_71,concordance,50,123,,failed,You Already Know,0.1394
+bar_71,concordance,51,123,0.286543,ok,You Already Know,0.1394
+bar_71,concordance,52,123,0.255675,ok,You Already Know,0.1394
+bar_71,concordance,53,123,0.279503,ok,You Already Know,0.1394
+bar_71,concordance,54,123,0.281944,ok,You Already Know,0.1394
+bar_71,concordance,55,123,,failed,You Already Know,0.1394
+bar_71,concordance,56,123,0.279293,ok,You Already Know,0.1394
+bar_72,concordance,42,94,0.299136,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,43,94,0.334771,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,44,94,0.320029,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,45,94,0.306385,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,46,94,0.316198,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,47,94,0.354920,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,48,94,0.346905,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,49,94,0.308390,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,50,94,,failed,Danny Glover (Second Remix),0.1382
+bar_72,concordance,51,94,0.337750,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,52,94,,failed,Danny Glover (Second Remix),0.1382
+bar_72,concordance,53,94,0.333055,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,54,94,0.332304,ok,Danny Glover (Second Remix),0.1382
+bar_72,concordance,55,94,,failed,Danny Glover (Second Remix),0.1382
+bar_72,concordance,56,94,0.334692,ok,Danny Glover (Second Remix),0.1382
+bar_73,concordance,42,124,,failed,I Admit,0.138
+bar_73,concordance,43,124,0.267668,ok,I Admit,0.138
+bar_73,concordance,44,124,0.312443,ok,I Admit,0.138
+bar_73,concordance,45,124,0.319528,ok,I Admit,0.138
+bar_73,concordance,46,124,0.305662,ok,I Admit,0.138
+bar_73,concordance,47,124,0.303115,ok,I Admit,0.138
+bar_73,concordance,48,124,0.292248,ok,I Admit,0.138
+bar_73,concordance,49,124,,failed,I Admit,0.138
+bar_73,concordance,50,124,,failed,I Admit,0.138
+bar_73,concordance,51,124,0.285879,ok,I Admit,0.138
+bar_73,concordance,52,124,0.268875,ok,I Admit,0.138
+bar_73,concordance,53,124,0.298444,ok,I Admit,0.138
+bar_73,concordance,54,124,,failed,I Admit,0.138
+bar_73,concordance,55,124,0.279391,ok,I Admit,0.138
+bar_73,concordance,56,124,0.315991,ok,I Admit,0.138
+bar_74,concordance,42,87,0.388543,ok,Bed of Lies,0.1375
+bar_74,concordance,43,87,,failed,Bed of Lies,0.1375
+bar_74,concordance,44,87,0.408432,ok,Bed of Lies,0.1375
+bar_74,concordance,45,87,,failed,Bed of Lies,0.1375
+bar_74,concordance,46,87,0.377994,ok,Bed of Lies,0.1375
+bar_74,concordance,47,87,0.425304,ok,Bed of Lies,0.1375
+bar_74,concordance,48,87,,failed,Bed of Lies,0.1375
+bar_74,concordance,49,87,0.354698,ok,Bed of Lies,0.1375
+bar_74,concordance,50,87,,failed,Bed of Lies,0.1375
+bar_74,concordance,51,87,0.398916,ok,Bed of Lies,0.1375
+bar_74,concordance,52,87,,failed,Bed of Lies,0.1375
+bar_74,concordance,53,87,0.422000,ok,Bed of Lies,0.1375
+bar_74,concordance,54,87,,failed,Bed of Lies,0.1375
+bar_74,concordance,55,87,0.474257,ok,Bed of Lies,0.1375
+bar_74,concordance,56,87,0.411036,ok,Bed of Lies,0.1375
+bar_75,concordance,42,126,0.274112,ok,FEFE,0.1364
+bar_75,concordance,43,126,0.313083,ok,FEFE,0.1364
+bar_75,concordance,44,126,0.302770,ok,FEFE,0.1364
+bar_75,concordance,45,126,0.306463,ok,FEFE,0.1364
+bar_75,concordance,46,126,0.305432,ok,FEFE,0.1364
+bar_75,concordance,47,126,0.307288,ok,FEFE,0.1364
+bar_75,concordance,48,126,0.265639,ok,FEFE,0.1364
+bar_75,concordance,49,126,0.287537,ok,FEFE,0.1364
+bar_75,concordance,50,126,0.271388,ok,FEFE,0.1364
+bar_75,concordance,51,126,,failed,FEFE,0.1364
+bar_75,concordance,52,126,,failed,FEFE,0.1364
+bar_75,concordance,53,126,0.282364,ok,FEFE,0.1364
+bar_75,concordance,54,126,0.308594,ok,FEFE,0.1364
+bar_75,concordance,55,126,0.284255,ok,FEFE,0.1364
+bar_75,concordance,56,126,0.305388,ok,FEFE,0.1364
+bar_76,concordance,42,99,,failed,Barbie Tingz,0.1188
+bar_76,concordance,43,99,0.333189,ok,Barbie Tingz,0.1188
+bar_76,concordance,44,99,0.319730,ok,Barbie Tingz,0.1188
+bar_76,concordance,45,99,,failed,Barbie Tingz,0.1188
+bar_76,concordance,46,99,0.319025,ok,Barbie Tingz,0.1188
+bar_76,concordance,47,99,,failed,Barbie Tingz,0.1188
+bar_76,concordance,48,99,,failed,Barbie Tingz,0.1188
+bar_76,concordance,49,99,,failed,Barbie Tingz,0.1188
+bar_76,concordance,50,99,,failed,Barbie Tingz,0.1188
+bar_76,concordance,51,99,,failed,Barbie Tingz,0.1188
+bar_76,concordance,52,99,0.321094,ok,Barbie Tingz,0.1188
+bar_76,concordance,53,99,0.316772,ok,Barbie Tingz,0.1188
+bar_76,concordance,54,99,0.290842,ok,Barbie Tingz,0.1188
+bar_76,concordance,55,99,0.292276,ok,Barbie Tingz,0.1188
+bar_76,concordance,56,99,0.321830,ok,Barbie Tingz,0.1188
+bar_77,concordance,42,86,0.373212,ok,Moment 4 Life,0.1187
+bar_77,concordance,43,86,0.318092,ok,Moment 4 Life,0.1187
+bar_77,concordance,44,86,0.394375,ok,Moment 4 Life,0.1187
+bar_77,concordance,45,86,0.381836,ok,Moment 4 Life,0.1187
+bar_77,concordance,46,86,0.352063,ok,Moment 4 Life,0.1187
+bar_77,concordance,47,86,,failed,Moment 4 Life,0.1187
+bar_77,concordance,48,86,0.353135,ok,Moment 4 Life,0.1187
+bar_77,concordance,49,86,0.382330,ok,Moment 4 Life,0.1187
+bar_77,concordance,50,86,,failed,Moment 4 Life,0.1187
+bar_77,concordance,51,86,0.377898,ok,Moment 4 Life,0.1187
+bar_77,concordance,52,86,0.394231,ok,Moment 4 Life,0.1187
+bar_77,concordance,53,86,0.330585,ok,Moment 4 Life,0.1187
+bar_77,concordance,54,86,0.348253,ok,Moment 4 Life,0.1187
+bar_77,concordance,55,86,0.338196,ok,Moment 4 Life,0.1187
+bar_77,concordance,56,86,0.402551,ok,Moment 4 Life,0.1187
+bar_78,concordance,42,122,0.330328,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,43,122,0.325579,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,44,122,0.312479,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,45,122,0.360567,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,46,122,0.266966,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,47,122,,failed,Shooters (Demo Remix),0.1186
+bar_78,concordance,48,122,0.395300,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,49,122,0.311304,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,50,122,0.312231,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,51,122,0.343850,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,52,122,,failed,Shooters (Demo Remix),0.1186
+bar_78,concordance,53,122,0.322114,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,54,122,0.355560,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,55,122,0.301723,ok,Shooters (Demo Remix),0.1186
+bar_78,concordance,56,122,0.411178,ok,Shooters (Demo Remix),0.1186
+bar_79,concordance,42,133,0.296650,ok,Freedom,0.1082
+bar_79,concordance,43,133,,failed,Freedom,0.1082
+bar_79,concordance,44,133,,failed,Freedom,0.1082
+bar_79,concordance,45,133,0.302116,ok,Freedom,0.1082
+bar_79,concordance,46,133,0.331625,ok,Freedom,0.1082
+bar_79,concordance,47,133,0.313839,ok,Freedom,0.1082
+bar_79,concordance,48,133,0.319291,ok,Freedom,0.1082
+bar_79,concordance,49,133,0.311614,ok,Freedom,0.1082
+bar_79,concordance,50,133,,failed,Freedom,0.1082
+bar_79,concordance,51,133,0.333608,ok,Freedom,0.1082
+bar_79,concordance,52,133,0.319950,ok,Freedom,0.1082
+bar_79,concordance,53,133,0.349271,ok,Freedom,0.1082
+bar_79,concordance,54,133,0.332689,ok,Freedom,0.1082
+bar_79,concordance,55,133,0.309787,ok,Freedom,0.1082
+bar_79,concordance,56,133,,failed,Freedom,0.1082
+bar_80,concordance,42,134,,failed,Save Me,0.1068
+bar_80,concordance,43,134,0.276596,ok,Save Me,0.1068
+bar_80,concordance,44,134,,failed,Save Me,0.1068
+bar_80,concordance,45,134,0.256619,ok,Save Me,0.1068
+bar_80,concordance,46,134,0.264413,ok,Save Me,0.1068
+bar_80,concordance,47,134,,failed,Save Me,0.1068
+bar_80,concordance,48,134,0.277531,ok,Save Me,0.1068
+bar_80,concordance,49,134,0.258110,ok,Save Me,0.1068
+bar_80,concordance,50,134,0.272721,ok,Save Me,0.1068
+bar_80,concordance,51,134,0.274078,ok,Save Me,0.1068
+bar_80,concordance,52,134,,failed,Save Me,0.1068
+bar_80,concordance,53,134,0.263971,ok,Save Me,0.1068
+bar_80,concordance,54,134,,failed,Save Me,0.1068
+bar_80,concordance,55,134,,failed,Save Me,0.1068
+bar_80,concordance,56,134,0.283889,ok,Save Me,0.1068
+bar_81,concordance,42,89,0.340408,ok,Nip Tuck,0.1052
+bar_81,concordance,43,89,,failed,Nip Tuck,0.1052
+bar_81,concordance,44,89,0.317924,ok,Nip Tuck,0.1052
+bar_81,concordance,45,89,0.352586,ok,Nip Tuck,0.1052
+bar_81,concordance,46,89,0.353951,ok,Nip Tuck,0.1052
+bar_81,concordance,47,89,,failed,Nip Tuck,0.1052
+bar_81,concordance,48,89,0.367691,ok,Nip Tuck,0.1052
+bar_81,concordance,49,89,0.336499,ok,Nip Tuck,0.1052
+bar_81,concordance,50,89,0.355207,ok,Nip Tuck,0.1052
+bar_81,concordance,51,89,0.321814,ok,Nip Tuck,0.1052
+bar_81,concordance,52,89,,failed,Nip Tuck,0.1052
+bar_81,concordance,53,89,0.341044,ok,Nip Tuck,0.1052
+bar_81,concordance,54,89,0.372033,ok,Nip Tuck,0.1052
+bar_81,concordance,55,89,,failed,Nip Tuck,0.1052
+bar_81,concordance,56,89,0.310607,ok,Nip Tuck,0.1052
+bar_82,concordance,42,152,0.258621,ok,Bahm Bahm,0.105
+bar_82,concordance,43,152,,failed,Bahm Bahm,0.105
+bar_82,concordance,44,152,0.314064,ok,Bahm Bahm,0.105
+bar_82,concordance,45,152,,failed,Bahm Bahm,0.105
+bar_82,concordance,46,152,0.267218,ok,Bahm Bahm,0.105
+bar_82,concordance,47,152,0.277914,ok,Bahm Bahm,0.105
+bar_82,concordance,48,152,0.284577,ok,Bahm Bahm,0.105
+bar_82,concordance,49,152,,failed,Bahm Bahm,0.105
+bar_82,concordance,50,152,0.293232,ok,Bahm Bahm,0.105
+bar_82,concordance,51,152,0.240957,ok,Bahm Bahm,0.105
+bar_82,concordance,52,152,,failed,Bahm Bahm,0.105
+bar_82,concordance,53,152,0.267410,ok,Bahm Bahm,0.105
+bar_82,concordance,54,152,0.346623,ok,Bahm Bahm,0.105
+bar_82,concordance,55,152,,failed,Bahm Bahm,0.105
+bar_82,concordance,56,152,0.299048,ok,Bahm Bahm,0.105
+bar_83,concordance,42,106,0.292002,ok,Born Stunna (Remix),0.1046
+bar_83,concordance,43,106,0.292847,ok,Born Stunna (Remix),0.1046
+bar_83,concordance,44,106,0.285128,ok,Born Stunna (Remix),0.1046
+bar_83,concordance,45,106,0.291167,ok,Born Stunna (Remix),0.1046
+bar_83,concordance,46,106,0.301383,ok,Born Stunna (Remix),0.1046
+bar_83,concordance,47,106,,failed,Born Stunna (Remix),0.1046
+bar_83,concordance,48,106,,failed,Born Stunna (Remix),0.1046
+bar_83,concordance,49,106,0.307811,ok,Born Stunna (Remix),0.1046
+bar_83,concordance,50,106,,failed,Born Stunna (Remix),0.1046
+bar_83,concordance,51,106,,failed,Born Stunna (Remix),0.1046
+bar_83,concordance,52,106,0.289941,ok,Born Stunna (Remix),0.1046
+bar_83,concordance,53,106,,failed,Born Stunna (Remix),0.1046
+bar_83,concordance,54,106,0.290438,ok,Born Stunna (Remix),0.1046
+bar_83,concordance,55,106,0.281366,ok,Born Stunna (Remix),0.1046
+bar_83,concordance,56,106,0.273698,ok,Born Stunna (Remix),0.1046
+bar_84,concordance,42,130,0.259395,ok,I’m Getting Ready,0.1046
+bar_84,concordance,43,130,0.264671,ok,I’m Getting Ready,0.1046
+bar_84,concordance,44,130,0.295271,ok,I’m Getting Ready,0.1046
+bar_84,concordance,45,130,0.268689,ok,I’m Getting Ready,0.1046
+bar_84,concordance,46,130,0.263717,ok,I’m Getting Ready,0.1046
+bar_84,concordance,47,130,0.277318,ok,I’m Getting Ready,0.1046
+bar_84,concordance,48,130,0.275562,ok,I’m Getting Ready,0.1046
+bar_84,concordance,49,130,0.270433,ok,I’m Getting Ready,0.1046
+bar_84,concordance,50,130,0.257230,ok,I’m Getting Ready,0.1046
+bar_84,concordance,51,130,0.287267,ok,I’m Getting Ready,0.1046
+bar_84,concordance,52,130,0.258492,ok,I’m Getting Ready,0.1046
+bar_84,concordance,53,130,,failed,I’m Getting Ready,0.1046
+bar_84,concordance,54,130,0.284708,ok,I’m Getting Ready,0.1046
+bar_84,concordance,55,130,0.263617,ok,I’m Getting Ready,0.1046
+bar_84,concordance,56,130,,failed,I’m Getting Ready,0.1046
+bar_25,alanine,42,124,,failed,No Flag,0.3698
+bar_26,alanine,42,80,0.424716,ok,Seeing Green,0.3582
+bar_27,alanine,42,86,0.294796,ok,Ganja Burn,0.3307
+bar_28,alanine,42,118,0.296748,ok,Want Some More,0.3251
+bar_29,alanine,42,109,,failed,Come on a Cone,0.3104
+bar_30,alanine,42,100,0.334288,ok,Barbie Dangerous,0.2987
+bar_31,alanine,42,142,0.271817,ok,Majesty,0.2726
+bar_32,alanine,42,94,0.359324,ok,Barbie Dangerous,0.2685
+bar_33,alanine,42,124,0.365150,ok,Blessings,0.2621
+bar_34,alanine,42,144,0.371882,ok,Roger That,0.2615
+bar_35,alanine,42,125,0.327096,ok,Bust Down Barbiana,0.2547
+bar_36,alanine,42,117,0.310868,ok,Runaway (Film),0.2503
+bar_37,alanine,42,151,,failed,Arctic Tundra,0.2469
+bar_38,alanine,42,141,0.279970,ok,Haterade,0.2407
+bar_39,alanine,42,102,0.274941,ok,The Crying Game,0.2307
+bar_40,alanine,42,130,,failed,Warning,0.2273
+bar_41,alanine,42,142,0.316809,ok,Roman’s Revenge,0.2262
+bar_42,alanine,42,121,0.441383,ok,Endless Fashion,0.2259
+bar_43,alanine,42,139,,failed,Fallin 4 U,0.2216
+bar_44,alanine,42,144,,failed,My Life,0.2196
+bar_45,alanine,42,139,0.317149,ok,Champion,0.2193
+bar_46,alanine,42,102,0.320545,ok,Barbie Goin Bad,0.2078
+bar_47,alanine,42,93,0.414335,ok,Just The Memories,0.2052
+bar_48,alanine,42,130,0.297552,ok,Top Of The World,0.2019
+bar_49,alanine,42,133,0.309785,ok,Fly,0.1953
+bar_50,alanine,42,144,0.355373,ok,Sweetest Girl,0.1942
+bar_51,alanine,42,155,0.364925,ok,Ganja Burn,0.193
+bar_52,alanine,42,104,0.365397,ok,New York Minute (Remix),0.1845
+bar_53,alanine,42,132,0.433522,ok,Want Some More,0.1836
+bar_54,alanine,42,120,0.326643,ok,Encore ’07,0.1797
+bar_55,alanine,42,127,0.379013,ok,Girl on Fire (Inferno Version),0.1782
+bar_56,alanine,42,88,0.465874,ok,IDOL (Remix),0.1735
+bar_57,alanine,42,116,,failed,Gotta Go Hard,0.1713
+bar_58,alanine,42,101,0.325323,ok,Can Anybody Hear Me?,0.1682
+bar_59,alanine,42,121,0.311398,ok,Encore ’07,0.1636
+bar_60,alanine,42,129,0.320630,ok,Mercy,0.1622
+bar_61,alanine,42,107,0.362444,ok,Red Ruby Da Sleeze,0.1621
+bar_62,alanine,42,127,0.362270,ok,Blazin,0.1565
+bar_63,alanine,42,80,,failed,Baddest Bitch,0.1527
+bar_64,alanine,42,112,0.370827,ok,Barbie Tingz,0.1526
+bar_65,alanine,42,125,0.280966,ok,Autobiography,0.152
+bar_66,alanine,42,154,,failed,Roman In Moscow,0.1514
+bar_67,alanine,42,81,0.408673,ok,Grand Piano,0.1502
+bar_68,alanine,42,102,,failed,Right By My Side,0.1462
+bar_69,alanine,42,143,,failed,Roman In Moscow,0.1422
+bar_70,alanine,42,136,0.304554,ok,I Am Your Leader,0.1394
+bar_71,alanine,42,123,0.294895,ok,You Already Know,0.1394
+bar_72,alanine,42,94,,failed,Danny Glover (Second Remix),0.1382
+bar_73,alanine,42,124,,failed,I Admit,0.138
+bar_74,alanine,42,87,0.411372,ok,Bed of Lies,0.1375
+bar_75,alanine,42,126,0.321737,ok,FEFE,0.1364
+bar_76,alanine,42,99,,failed,Barbie Tingz,0.1188
+bar_77,alanine,42,86,0.353817,ok,Moment 4 Life,0.1187
+bar_78,alanine,42,122,,failed,Shooters (Demo Remix),0.1186
+bar_79,alanine,42,133,0.356113,ok,Freedom,0.1082
+bar_80,alanine,42,134,,failed,Save Me,0.1068
+bar_81,alanine,42,89,,failed,Nip Tuck,0.1052
+bar_82,alanine,42,152,0.362217,ok,Bahm Bahm,0.105
+bar_83,alanine,42,106,,failed,Born Stunna (Remix),0.1046
+bar_84,alanine,42,130,0.283865,ok,I’m Getting Ready,0.1046
+bar_25,random,42,124,0.473513,ok,No Flag,0.3698
+bar_25,random,43,124,0.322877,ok,No Flag,0.3698
+bar_25,random,44,124,0.340570,ok,No Flag,0.3698
+bar_25,random,45,124,0.353687,ok,No Flag,0.3698
+bar_25,random,46,124,0.342740,ok,No Flag,0.3698
+bar_25,random,47,124,,failed,No Flag,0.3698
+bar_25,random,48,124,0.416493,ok,No Flag,0.3698
+bar_25,random,49,124,0.368595,ok,No Flag,0.3698
+bar_25,random,50,124,0.357417,ok,No Flag,0.3698
+bar_25,random,51,124,,failed,No Flag,0.3698
+bar_25,random,52,124,0.353085,ok,No Flag,0.3698
+bar_25,random,53,124,0.370456,ok,No Flag,0.3698
+bar_25,random,54,124,0.342775,ok,No Flag,0.3698
+bar_25,random,55,124,0.327409,ok,No Flag,0.3698
+bar_25,random,56,124,0.302699,ok,No Flag,0.3698
+bar_25,random,57,124,,failed,No Flag,0.3698
+bar_25,random,58,124,0.396656,ok,No Flag,0.3698
+bar_25,random,59,124,0.377863,ok,No Flag,0.3698
+bar_25,random,60,124,0.343965,ok,No Flag,0.3698
+bar_25,random,61,124,0.312644,ok,No Flag,0.3698
+bar_25,random,62,124,,failed,No Flag,0.3698
+bar_25,random,63,124,0.296663,ok,No Flag,0.3698
+bar_25,random,64,124,0.328813,ok,No Flag,0.3698
+bar_25,random,65,124,,failed,No Flag,0.3698
+bar_25,random,66,124,0.336098,ok,No Flag,0.3698
+bar_25,random,67,124,,failed,No Flag,0.3698
+bar_25,random,68,124,,failed,No Flag,0.3698
+bar_25,random,69,124,,failed,No Flag,0.3698
+bar_25,random,70,124,0.387367,ok,No Flag,0.3698
+bar_25,random,71,124,0.366834,ok,No Flag,0.3698
+bar_26,random,42,80,0.314592,ok,Seeing Green,0.3582
+bar_26,random,43,80,,failed,Seeing Green,0.3582
+bar_26,random,44,80,,failed,Seeing Green,0.3582

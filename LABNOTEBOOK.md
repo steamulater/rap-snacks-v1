@@ -339,11 +339,11 @@ All BOJUXZ strategy comparisons are red (alanine outperforms softmax). All freq-
 
 ---
 
-## Stage 3 — Boltz-2 (PENDING)
+## Stage 3 — Boltz-2 (COMPLETE)
 
 **Tool:** Boltz-2
 **Platform:** Google Colab Pro+ (NVIDIA A100-SXM4-80GB, High-RAM)
-**Input:** `outputs/fastas/bars_v2_concordance.fasta` (85 sequences)
+**Input:** `outputs/boltz_inputs/b0.fasta … b84.fasta` (85 individual FASTA files)
 **Diffusion samples:** 5 per bar (425 PDB files total)
 
 ### Colab command
@@ -351,20 +351,16 @@ All BOJUXZ strategy comparisons are red (alanine outperforms softmax). All freq-
 ```python
 !pip install boltz cuequivariance-torch
 
-!boltz predict bars_v2_concordance.fasta \
+!boltz predict boltz_inputs/ \
     --use_msa_server \
     --output_format pdb \
     --diffusion_samples 5 \
     --out_dir boltz_outputs/
 ```
 
-Download `boltz_outputs/` to `outputs/boltz/`, then:
+MSA phase ~4 hours (ColabFold server rate-limited; RATELIMIT + Sleep messages are normal). Fold ~2 hours for 5 samples × 85 bars from cached MSA. Total runtime ~6 hours.
 
-```bash
-make parse-boltz
-```
-
-**Expected timeline:** MSA phase ~3–4 hours (85 bars, rate-limited). Fold ~1.5–2 hours for 5 samples × 85 bars from cached MSA.
+Output downloaded to `outputs/boltz_outputs/boltz_results_boltz_inputs/predictions/`.
 
 ### Why 5 samples
 
@@ -376,15 +372,6 @@ Boltz-2 is a diffusion model — each sample draws from a different point in the
 
 This makes the Boltz-2 ensemble directly comparable to the ESMFold multi-seed approach (15 seeds for concordance/native, 30 for random).
 
-### Output structure (per bar)
-
-```
-outputs/boltz/predictions/
-  bar_0/
-    bar_0_model_0.pdb  bar_0_model_1.pdb  ...  bar_0_model_4.pdb
-    bar_0_confidence_model_0.json  ...  bar_0_confidence_model_4.json
-```
-
 ### Parser outputs (`03_parse_boltz.py`)
 
 | File | Contents |
@@ -392,37 +379,109 @@ outputs/boltz/predictions/
 | `outputs/boltz/boltz_models.csv` | One row per bar × model — pLDDT, pTM, confidence, pDE |
 | `outputs/boltz/boltz_summary.csv` | One row per bar — mean/SD/best across 5 models + structural class |
 
-**Integrity check:** model_0 sequence length verified against `bar_index_snapshot.json` for every bar. Mismatches flagged — this is the v1 attribution drift failure mode.
+**Integrity check:** All 85 bars sequence lengths verified against `bar_index_snapshot.json`. Zero mismatches.
 
-**Note on `--output_format pdb`:** V1 used CIF by default, requiring conversion for downstream tools. V2 outputs PDB directly — universally supported by PyMOL, biopython, FoldSeek, and soft design tools.
+### Results
+
+| Metric | Value |
+|---|---|
+| Bars processed | 85 / 85 |
+| Diffusion samples | 5 per bar (425 total) |
+| Mean pLDDT (mean across models) | 0.390 |
+| Max pLDDT (best model, any bar) | 0.665 |
+| Mean pTM (mean across models) | 0.269 |
+| Max pTM (best model, any bar) | 0.487 |
+
+### Structural class breakdown
+
+| Class | N | Criteria |
+|---|---|---|
+| disordered | 72 | pLDDT < 0.6 AND pTM < 0.4 |
+| uncertain_protein_like | 12 | pLDDT < 0.6 AND pTM ≥ 0.4 |
+| confident_protein_like | 1 | pLDDT ≥ 0.6 AND pTM ≥ 0.4 |
+| confident_alien | 0 | pLDDT ≥ 0.6 AND pTM < 0.4 |
+
+**Most confident bar:** `bar_27` — "You gotta have real skill, gotta work for that..." (*Ganja Burn*). pLDDT=0.665, pTM=0.487. Only bar in `confident_protein_like` class.
+
+### Pipeline bugs fixed
+
+- **`complex_plddt` key**: Boltz-2 confidence JSON uses `complex_plddt`/`complex_pde`, not `plddt`/`mean_plddt`. Fixed `parse_confidence_json` fallback chain.
+- **2-char chain IDs**: Boltz uses `b0`/`b1` etc. as chain IDs in PDB files, which shifts residue numbers out of the fixed-width [22:26] column range. Fixed `extract_seq_from_pdb` with regex: `r'^ATOM\s+\d+\s+CA\s+(\w{3})\s+\S+\s+(-?\d+)'`.
+- **Confidence JSON naming**: `confidence_b0_model_0.json` naming (not `b0_confidence_model_0.json`). Fixed glob + regex approach in `json_files_map` construction.
+- **Boltz ID map**: `prep_boltz_fasta.py` generates `data/boltz_id_map.json` (b0 → bar_0). All downstream scripts load this to translate Boltz directory names back to internal bar IDs.
 
 ---
 
-## Stage 4 — FoldSeek (PENDING)
+## Stage 4 — FoldSeek (COMPLETE)
 
-Awaiting Boltz-2 outputs. Will run on bars with pTM ≥ 0.4.
+**Tool:** FoldSeek REST API (`search.foldseek.com`)
+**Databases searched:** pdb100, afdb-swissprot, mgnify_esm30
+**Search mode:** 3di+AA (`mode=3diaa`)
+**Filter:** pTM ≥ 0.4 (structural confidence threshold)
 
-```bash
-make foldseek
-```
+### Bars searched
 
-Key notes from v1:
-- Effective floor: ~35 AA — not a concern for this dataset (min 80 AA)
-- `target` field format: `"ACCESSION Description"` — split on first space
+6 bars qualified (pTM ≥ 0.4):
+
+| bar_id | pTM (mean) | pLDDT (mean) | song |
+|---|---|---|---|
+| bar_11 | 0.481 | 0.467 | — |
+| bar_27 | 0.442 | 0.624 | Ganja Burn |
+| bar_38 | 0.435 | 0.474 | — |
+| bar_53 | 0.420 | 0.472 | — |
+| bar_17 | 0.415 | 0.507 | — |
+| bar_49 | 0.407 | 0.418 | — |
+
+### Results
+
+**All 6 bars: zero structural homologs found across all three databases.**
+
+| Metric | Value |
+|---|---|
+| Bars searched | 6 |
+| Bars with hits | 0 |
+| Bars novel (no hits) | 6 |
+| PDB100 hits | 0 |
+| afdb-swissprot hits | 0 |
+| MGnify hits | 0 |
+
+Interpretation: the rap-derived protein structures do not resemble any known protein fold in the PDB, any SwissProt-annotated AlphaFold structure, or any metagenomic protein cluster. The concordance mapping produces structurally novel sequences.
+
+### Pipeline bugs fixed
+
+- **`mode=3diaa` field required**: FoldSeek API now requires a `mode` field in the multipart form POST. Previously failed with HTTP 400: `"Field validation for 'Mode' failed on the 'required' tag"`. Fixed by adding `mode=3diaa` to the multipart body.
+- **Boltz output path**: Corrected `BOLTZ_PREDICTIONS` path to `outputs/boltz_outputs/boltz_results_boltz_inputs/predictions`.
+- **Bar directory naming**: Glob updated from `bar_*` to `b[0-9]*` to match Boltz's short IDs. ID map loaded to resolve back to `bar_N` format.
+
+### API notes
+
 - Rate limit: HTTP 429 after ~27 submissions → exponential backoff (30s × attempt)
-- MGnify hits dominate by probability but have no functional annotation
+- `target` field format: `"ACCESSION Description"` — split on first space
+- No TM-score in web API — use `prob` (0–1) as hit quality metric
+- MGnify hits have empty `target_name` (metagenomic, no functional annotation)
 
 ---
 
-## Stage 5 — Enrich Master CSV (PENDING)
+## Stage 5 — Enrich Master CSV (COMPLETE)
 
-After Boltz-2 and FoldSeek:
+**Script:** `pipeline/05_enrich_csv.py`
+**Output:** `data/aggregated_lines_v2_enriched.csv` (updated in-place, backup saved)
 
-```bash
-make enrich
-```
+### Columns added
 
-Adds `boltz_plddt`, `boltz_ptm`, `boltz_confidence`, `boltz_structural_class`, `esm_plddt_*`, `foldseek_result`, `foldseek_best_hit` to `aggregated_lines_v2_enriched.csv`.
+| Source | Columns (8) |
+|---|---|
+| Boltz-2 | `boltz_plddt`, `boltz_plddt_best`, `boltz_plddt_sd`, `boltz_ptm`, `boltz_ptm_best`, `boltz_confidence`, `boltz_structural_class`, `boltz_n_models` |
+| ESMFold | `esm_plddt_{condition}_mean/sd/n` × 5 conditions = 15 columns |
+| FoldSeek | `foldseek_result`, `foldseek_best_hit`, `foldseek_best_prob`, `foldseek_best_db` |
+
+**Total enriched CSV columns:** 58 (was 31 before enrichment)
+**Bars with Boltz-2 data:** 85 / 85
+
+### Pipeline bugs fixed
+
+- **Wrong CSV path**: `BOLTZ_CSV` was hardcoded to `boltz_confidence_scores.csv`; corrected to `boltz_summary.csv`.
+- **Wrong field names in `load_boltz`**: mapped `ptm`/`plddt` but summary CSV uses `ptm_mean`/`plddt_mean`. Fixed field mapping — was enriching 0 bars before fix.
 
 ---
 
@@ -435,13 +494,13 @@ Adds `boltz_plddt`, `boltz_ptm`, `boltz_confidence`, `boltz_structural_class`, `
 
 1. **Length stratification for cross-condition analysis** — the 80–300 AA window still has length variance (82–155 AA observed). Any condition comparison must use length buckets: 80–100, 101–120, 121–155. Planned for analysis notebooks.
 
-2. **14 ESMFold failures** — all 504 timeouts, distributed across conditions. Will retry in full run if these bars have high iconicity. The `--resume` flag will skip all completed calls.
+2. **ESMFold full run** — full run across all 85 bars in progress (~5270 total API calls). Use `--resume` to retry any failed seeds after completion. Key open question: do structural outliers appear outside the top-25-iconicity bars, as seen in v1 (bar_135, iconicity=0.219)?
 
-3. **Full ESMFold run (85 bars)** — pilot covers top 25 by iconicity. Full run needed to replicate v1 finding that structural outliers can appear anywhere in the iconicity distribution (bar_135 in v1 was iconicity=0.219, not in the top 25).
+3. **bar_27 follow-up** — only `confident_protein_like` bar (pLDDT=0.665, pTM=0.487, *Ganja Burn*). No FoldSeek hit — structurally novel but has a well-determined fold. Warrants visualization and secondary structure annotation.
 
-4. **bar_24 in native_alanine** — pLDDT=0.2425, the lowest in the pilot across all conditions. len=131. Worth checking if this is a sequence-specific effect or a native pass-through artifact.
+4. **FoldSeek on remaining bars** — only 6 bars searched (pTM ≥ 0.4). Once ESMFold full run completes, ESM-based pLDDT can be used as a secondary filter. The 12 `uncertain_protein_like` bars (pLDDT < 0.6, pTM ≥ 0.4) may have FoldSeek-searchable structures despite lower pLDDT.
 
-5. **native max pLDDT=0.6305** — the highest single-bar pLDDT in the pilot, and it's in the native condition (AA pass-through, no freq remapping). This is a potential candidate for FoldSeek once Boltz data confirms the structure.
+5. **Iconicity–structure orthogonality** — Boltz-2 confirms r(iconicity, pLDDT) ≈ 0 (as in v1 with ESMFold). The single `confident_protein_like` bar (bar_27) should be checked for iconicity rank to confirm the pattern holds.
 
 ---
 

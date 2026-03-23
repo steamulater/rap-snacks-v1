@@ -33,8 +33,9 @@ import urllib.request
 import urllib.error
 from pathlib import Path
 
-BOLTZ_PREDICTIONS = Path("outputs/boltz/predictions")
-BOLTZ_CSV = Path("outputs/boltz/boltz_confidence_scores.csv")
+BOLTZ_PREDICTIONS = Path("outputs/boltz_outputs/boltz_results_boltz_inputs/predictions")
+BOLTZ_CSV = Path("outputs/boltz/boltz_summary.csv")
+BOLTZ_ID_MAP = Path("data/boltz_id_map.json")
 FOLDSEEK_DIR = Path("outputs/foldseek")
 RAW_DIR = FOLDSEEK_DIR / "raw"
 HITS_CSV = FOLDSEEK_DIR / "foldseek_hits.csv"
@@ -63,6 +64,10 @@ def submit_foldseek(struct_path: Path, databases: list[str]) -> str | None:
     for db in databases:
         body += f"--{boundary}\r\n".encode()
         body += f'Content-Disposition: form-data; name="database[]"\r\n\r\n{db}\r\n'.encode()
+
+    # Required by FoldSeek API
+    body += f"--{boundary}\r\n".encode()
+    body += f'Content-Disposition: form-data; name="mode"\r\n\r\n3diaa\r\n'.encode()
 
     body += f"--{boundary}--\r\n".encode()
 
@@ -184,25 +189,34 @@ def main():
     with open(SNAPSHOT_JSON, encoding="utf-8") as f:
         snapshot = json.load(f)
 
+    # Load Boltz ID map (b0 -> bar_0)
+    id_map = {}
+    if BOLTZ_ID_MAP.exists():
+        with open(BOLTZ_ID_MAP, encoding="utf-8") as f:
+            id_map = json.load(f)
+
     # Load Boltz confidence scores for filtering
     boltz_scores = {}
     if BOLTZ_CSV.exists():
         with open(BOLTZ_CSV, newline="", encoding="utf-8") as f:
             for row in csv.DictReader(f):
                 boltz_scores[row["bar_id"]] = {
-                    "ptm": float(row.get("ptm") or 0),
-                    "plddt": float(row.get("plddt") or 0),
-                    "seq_len": int(row.get("boltz_seq_len") or 0),
+                    "ptm":   float(row.get("ptm_mean") or row.get("ptm") or 0),
+                    "plddt": float(row.get("plddt_mean") or row.get("plddt") or 0),
+                    "seq_len": int(row.get("seq_len") or 0),
                 }
     else:
         print(f"[WARN] {BOLTZ_CSV} not found — running on all bars with structure files")
 
     # Select bars to search
-    bar_dirs = sorted(boltz_dir.glob("bar_*"))
+    bar_dirs = sorted(
+        list(boltz_dir.glob("bar_*")) + list(boltz_dir.glob("b[0-9]*"))
+    )
     to_search = []
 
     for bar_dir in bar_dirs:
-        bar_id = bar_dir.name
+        boltz_dir_id = bar_dir.name
+        bar_id = id_map.get(boltz_dir_id, boltz_dir_id)  # resolve b0 -> bar_0
         if bar_id in args.skip:
             continue
 

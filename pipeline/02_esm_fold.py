@@ -86,9 +86,12 @@ def call_esm(sequence: str, retries: int = 3, base_delay: float = 30.0) -> str |
             with urllib.request.urlopen(req, context=SSL_CONTEXT, timeout=60) as resp:
                 return resp.read().decode("utf-8")
         except urllib.error.HTTPError as e:
+            wait = base_delay * (attempt + 1)
             if e.code == 429:
-                wait = base_delay * (attempt + 1)
                 print(f"\n      [429] Rate limited — waiting {wait:.0f}s...")
+                time.sleep(wait)
+            elif e.code >= 500:
+                print(f"\n      [HTTP {e.code}] {e.reason} — retry {attempt+1}/{retries} in {wait:.0f}s...")
                 time.sleep(wait)
             else:
                 print(f"\n      [HTTP {e.code}] {e.reason}")
@@ -100,12 +103,15 @@ def call_esm(sequence: str, retries: int = 3, base_delay: float = 30.0) -> str |
 
 
 def load_completed(path: Path) -> set:
+    """Return set of (bar_id, condition, seed) that succeeded. Failed entries
+    are intentionally excluded so --resume will retry them."""
     if not path.exists():
         return set()
     completed = set()
     with open(path, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
-            completed.add((row["bar_id"], row["condition"], str(row["seed"])))
+            if row.get("status", "ok") == "ok":
+                completed.add((row["bar_id"], row["condition"], str(row["seed"])))
     return completed
 
 

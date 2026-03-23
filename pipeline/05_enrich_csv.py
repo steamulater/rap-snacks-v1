@@ -29,7 +29,7 @@ from pathlib import Path
 
 ENRICHED_CSV = Path("data/aggregated_lines_v2_enriched.csv")
 SNAPSHOT_JSON = Path("data/bar_index_snapshot.json")
-BOLTZ_CSV = Path("outputs/boltz/boltz_confidence_scores.csv")
+BOLTZ_CSV = Path("outputs/boltz/boltz_summary.csv")
 ESM_CSV = Path("outputs/esm/plddt_scores.csv")
 FOLDSEEK_CSV = Path("outputs/foldseek/foldseek_hits.csv")
 
@@ -41,12 +41,14 @@ def load_boltz(path: Path) -> dict:
         for row in csv.DictReader(f):
             bar_id = row["bar_id"]
             data[bar_id] = {
-                "boltz_plddt": row.get("plddt", ""),
-                "boltz_ptm": row.get("ptm", ""),
-                "boltz_confidence": row.get("confidence", ""),
-                "boltz_pde": row.get("pde", ""),
-                "boltz_seq_len": row.get("boltz_seq_len", ""),
-                "boltz_length_match": row.get("length_match", ""),
+                "boltz_plddt":      row.get("plddt_mean") or row.get("plddt", ""),
+                "boltz_plddt_best": row.get("plddt_best", ""),
+                "boltz_plddt_sd":   row.get("plddt_sd", ""),
+                "boltz_ptm":        row.get("ptm_mean") or row.get("ptm", ""),
+                "boltz_ptm_best":   row.get("ptm_best", ""),
+                "boltz_confidence": row.get("confidence_mean") or row.get("confidence", ""),
+                "boltz_structural_class": row.get("structural_class", ""),
+                "boltz_n_models":   row.get("n_models", ""),
             }
     return data
 
@@ -182,8 +184,9 @@ def main():
 
     if boltz_data:
         new_cols += [
-            "boltz_plddt", "boltz_ptm", "boltz_confidence", "boltz_pde",
-            "boltz_seq_len", "boltz_length_match", "boltz_structural_class",
+            "boltz_plddt", "boltz_plddt_best", "boltz_plddt_sd",
+            "boltz_ptm", "boltz_ptm_best",
+            "boltz_confidence", "boltz_structural_class", "boltz_n_models",
         ]
 
     if esm_data:
@@ -215,9 +218,6 @@ def main():
 
         if boltz_data and bar_id in boltz_data:
             row.update(boltz_data[bar_id])
-            row["boltz_structural_class"] = structural_class(
-                row.get("boltz_plddt", ""), row.get("boltz_ptm", "")
-            )
             updated += 1
 
         if esm_data and bar_id in esm_data:
