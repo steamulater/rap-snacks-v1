@@ -512,6 +512,20 @@ Observations:
 - All 6 bars are well-separated in UMAP space, confirming inter-bar structural novelty consistent with the FoldSeek no-hit result.
 - bar_11 and bar_38 sit in the same region of UMAP space — the closest structural neighbors among the 6 FoldSeek bars.
 
+### Figure 7 — Backbone Traces (Cα, pLDDT coloring)
+
+![Backbone Traces](figures/fig7_backbone_traces.png)
+
+Cα backbone traces for the 6 FoldSeek bars (best model, model_0), colored by per-residue pLDDT (red=low → blue=high). Generated from Boltz-2 PDB files using the Boltz chain-ID fix.
+
+### Interactive Structure Viewer
+
+`outputs/structure_viewer/viewer_foldseek_bars.html` — self-contained 3Dmol.js viewer with all 30 structures (6 bars × 5 diffusion models). Open in Safari (Chrome requires hardware acceleration enabled for WebGL).
+
+Features: pLDDT/rainbow/surface/stick toggles, per-panel M0–M4 model selector, spin, reset.
+
+> **Boltz chain-ID fix:** Boltz PDB files use 3-char chain IDs (e.g. `b11`) which shift coordinate columns by +2 relative to the PDB fixed-width spec, breaking strict parsers like 3Dmol. Fixed in `analysis/generate_structure_viewer.py` via `fix_boltz_chain()` (replaces `b11` → `A`, restoring standard column alignment). PyMOL is tolerant of this and parses correctly without the fix. The regex Cα parsers in `06_pairwise_comparison.py` and `07_boltz_ensemble_foldseek_bars.py` were also unaffected.
+
 ---
 
 ## Stage 6 — Pairwise Sequence & Structural Comparison (COMPLETE)
