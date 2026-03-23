@@ -462,6 +462,58 @@ Interpretation: the rap-derived protein structures do not resemble any known pro
 
 ---
 
+## Stage 7 — FoldSeek Bar Ensemble Deep Dive (COMPLETE)
+
+**Script:** `analysis/07_boltz_ensemble_foldseek_bars.py`
+**Bars:** The 6 FoldSeek-searched bars (pTM ≥ 0.4): bar_11, bar_17, bar_27, bar_38, bar_49, bar_53
+**Data:** All 5 Boltz-2 diffusion models per bar = 30 structures total
+
+### Key question: do the 5 diffusion samples converge to the same fold?
+
+| bar_id | song | mean RMSD between models | max | interpretation |
+|---|---|---|---|---|
+| bar_17 | Love Me Enough | 3.41 Å | 4.78 Å | highly consistent — fold well-determined |
+| bar_27 | Ganja Burn | 5.50 Å | 8.67 Å | moderate — core stable, termini vary |
+| bar_38 | Haterade | 5.91 Å | 7.57 Å | moderate |
+| bar_11 | Hell Yeah | 7.53 Å | 10.95 Å | variable — structurally plastic |
+| bar_49 | Fly | 9.12 Å | 11.76 Å | high plasticity |
+| bar_53 | Want Some More | 9.73 Å | 13.40 Å | most variable — diffusion cannot commit to a fold |
+
+**bar_17** (Love Me Enough) is the most structurally consistent despite being the 5th-ranked by pTM. **bar_53** (Want Some More) shows the most plasticity — the model's 5 samples span 13.4 Å, suggesting the sequence doesn't strongly constrain a single fold.
+
+### Figure 4 — Per-residue pLDDT Profiles
+
+![Per-residue pLDDT Profiles](outputs/pairwise/fig4_plddt_profiles.png)
+
+Per-residue pLDDT along the sequence for all 5 diffusion models (thin lines) and mean ± SD (ribbon). Background shading: red < 0.5, yellow 0.5–0.7, green > 0.7. Dashed lines at 0.5 and 0.7.
+
+Observations:
+- **bar_27** (Ganja Burn) has multiple residue windows breaking the 0.7 threshold — the only bar with any consistently high-pLDDT regions. Tight ribbon = models agree on those regions.
+- **bar_17** (Love Me Enough) has a pronounced peak in the middle of the sequence (~residue 40–70) where all 5 models are consistently above 0.5 with a narrow SD.
+- **bar_49** (Fly) and **bar_53** (Want Some More) show wide SD ribbons throughout — the diffusion samples disagree at nearly every position.
+
+### Figure 5 — Within-bar Pairwise Model RMSD (5×5 heatmaps)
+
+![Within-bar Model RMSD](outputs/pairwise/fig5_intrabar_rmsd.png)
+
+5×5 Cα RMSD matrix for each bar. Cell = RMSD between model i and model j after Kabsch superposition. Color scale is shared across all 6 bars.
+
+bar_17 is uniformly light (models converge). bar_53 has dark cells throughout (maximum spread). bar_27 shows a mix — some model pairs are tight (2.5 Å), others are wider (8.7 Å), suggesting one or two outlier conformations.
+
+### Figure 6 — UMAP of 30 Structures
+
+![UMAP 30 Structures](outputs/pairwise/fig6_umap_30structs.png)
+
+30-point UMAP embedding from the 30×30 pairwise Cα RMSD matrix. Color = bar, shape = model index (0–4). Shaded hull = within-bar spread of the 5 diffusion samples.
+
+Observations:
+- **bar_27** (Ganja Burn) and **bar_17** (Love Me Enough) cluster tightly — models within each bar are close together structurally.
+- **bar_49** (Fly) and **bar_53** (Want Some More) have the widest hulls — diffusion samples are structurally spread.
+- All 6 bars are well-separated in UMAP space, confirming inter-bar structural novelty consistent with the FoldSeek no-hit result.
+- bar_11 and bar_38 sit in the same region of UMAP space — the closest structural neighbors among the 6 FoldSeek bars.
+
+---
+
 ## Stage 6 — Pairwise Sequence & Structural Comparison (COMPLETE)
 
 **Script:** `analysis/06_pairwise_comparison.py`
@@ -582,7 +634,8 @@ rap-snacks-v1/
 │   ├── 04_figures.ipynb
 │   ├── plot_esm_pilot.py
 │   ├── plot_esm_full.py
-│   └── 06_pairwise_comparison.py   <- pairwise seq identity + structural RMSD
+│   ├── 06_pairwise_comparison.py   <- pairwise seq identity + structural RMSD
+│   └── 07_boltz_ensemble_foldseek_bars.py  <- ensemble deep dive (6 FoldSeek bars)
 ├── data/
 │   ├── aggregated_lines_v2_frozen.csv      <- immutable input
 │   ├── aggregated_lines_v2_enriched.csv    <- working master CSV
