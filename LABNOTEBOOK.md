@@ -462,6 +462,65 @@ Interpretation: the rap-derived protein structures do not resemble any known pro
 
 ---
 
+## Stage 6 — Pairwise Sequence & Structural Comparison (COMPLETE)
+
+**Script:** `analysis/06_pairwise_comparison.py`
+**Method:** Global alignment (Needleman-Wunsch) for sequence identity; sequence-guided Cα Kabsch superposition for structural RMSD. All 85 best-confidence Boltz-2 models used.
+**Pairs computed:** 3,570 (85×84/2)
+
+### Results
+
+| Metric | Mean | Min | Max |
+|---|---|---|---|
+| Pairwise sequence identity | 17.6% | 0% | 30% |
+| Pairwise structural RMSD (Å) | 13.4 | 7.0 | 21.6 |
+
+All bars are highly sequence-diverse (max identity 30%) — the concordance mapping produces sequences with no strong homology to each other. Structural RMSD has considerably more spread, indicating the bars sample distinct fold geometries despite uniform sequence novelty.
+
+### Figure 1 — Sequence Identity Heatmap
+
+![Sequence Identity Heatmap](outputs/pairwise/fig1_seq_heatmap.png)
+
+Clustered 85×85 pairwise sequence identity matrix. Off-diagonal values are uniformly low (pale yellow). No strong sequence clusters — the 85 bars form a flat diversity landscape. Side color bars = structural class.
+
+### Figure 2 — Structural RMSD Heatmap
+
+![Structural RMSD Heatmap](outputs/pairwise/fig2_struct_heatmap.png)
+
+Clustered 85×85 Cα RMSD matrix (Å). More texture than the sequence plot — the dendrogram resolves genuine structural subclusters even among bars with low sequence identity. `confident_protein_like` and `uncertain_protein_like` bars (orange/red) tend to cluster structurally.
+
+### Figure 3 — Sequence × Structural Novelty Scatter
+
+![Novelty Scatter](outputs/pairwise/fig3_novelty_scatter.png)
+
+X-axis: sequence novelty (1 − max pairwise identity to any other bar). Y-axis: structural novelty (10th-pct Cα RMSD to nearest structural neighbors). Size ∝ iconicity. Green zone = novel in both axes.
+
+**13 bars are novel in both axes** (top-right quadrant):
+
+| bar_id | song | seq novelty | struct novelty (Å) | pTM | pLDDT |
+|---|---|---|---|---|---|
+| bar_27 | Ganja Burn | 0.775 | 11.75 | 0.442 | 0.624 |
+| bar_38 | Haterade (feat.) | 0.762 | 11.61 | 0.435 | 0.474 |
+| bar_52 | New York Minute (Remix) | 0.762 | 12.06 | 0.278 | 0.403 |
+| bar_69 | Roman In Moscow | 0.762 | 12.16 | 0.243 | 0.352 |
+| bar_10 | I'm The Best | 0.787 | 11.73 | 0.225 | 0.349 |
+| bar_12 | Realize | 0.775 | 11.58 | 0.231 | 0.395 |
+| bar_44 | My Life | 0.775 | 11.41 | 0.224 | 0.350 |
+| bar_54 | Encore '07 | 0.762 | 11.48 | 0.308 | 0.377 |
+| bar_1 | Changed It | 0.762 | 11.32 | 0.272 | 0.402 |
+| bar_75 | FEFE | 0.775 | 11.14 | 0.282 | 0.417 |
+| bar_8 | Moment 4 Life | 0.762 | 11.36 | 0.217 | 0.377 |
+| bar_30 | Barbie Dangerous | 0.762 | 11.17 | 0.184 | 0.370 |
+| bar_39 | The Crying Game | 0.762 | 11.19 | 0.185 | 0.336 |
+
+Key observation: the x-axis range is compressed (0.70–0.78) because **all bars are sequence-novel** — no pair exceeds 30% identity. Structural novelty is therefore the more discriminating axis. bar_27 (Ganja Burn, `confident_protein_like`) and bar_38 (Haterade) are novel in both and were among the 6 bars searched by FoldSeek with zero hits.
+
+### Implementation note
+
+Bio.PDB's standard PDB parser rejects Boltz-2 output files (2-char chain IDs like `b0` shift the fixed-width residue number column). A regex-based Cα parser was used instead, consistent with the fix in `03_parse_boltz.py`.
+
+---
+
 ## Stage 5 — Enrich Master CSV (COMPLETE)
 
 **Script:** `pipeline/05_enrich_csv.py`
@@ -520,7 +579,10 @@ rap-snacks-v1/
 │   ├── 01_plddt.ipynb
 │   ├── 02_cross_condition.ipynb
 │   ├── 03_foldseek.ipynb
-│   └── 04_figures.ipynb
+│   ├── 04_figures.ipynb
+│   ├── plot_esm_pilot.py
+│   ├── plot_esm_full.py
+│   └── 06_pairwise_comparison.py   <- pairwise seq identity + structural RMSD
 ├── data/
 │   ├── aggregated_lines_v2_frozen.csv      <- immutable input
 │   ├── aggregated_lines_v2_enriched.csv    <- working master CSV
