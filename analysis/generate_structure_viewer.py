@@ -85,6 +85,19 @@ def load_meta():
     return meta
 
 
+def fix_boltz_chain(pdb_text: str) -> str:
+    """Boltz writes 3-char chain IDs (e.g. 'b11') which shift coordinate columns
+    by 2 relative to standard PDB fixed-width format, breaking 3Dmol's parser.
+    Replace the 3-char chain with 'A' so cols 22-26 (resSeq) and 31-54 (xyz)
+    are correctly positioned."""
+    out = []
+    for line in pdb_text.splitlines(keepends=True):
+        if (line.startswith("ATOM") or line.startswith("HETATM")) and len(line) >= 32:
+            line = line[:21] + "A" + line[24:]
+        out.append(line)
+    return "".join(out)
+
+
 def load_pdbs(meta):
     pdbs = {}
     for bar_id in BARS:
@@ -93,6 +106,7 @@ def load_pdbs(meta):
         for mi in range(N_MODELS):
             path = PRED_DIR / boltz_id / f"{boltz_id}_model_{mi}.pdb"
             content = path.read_text(errors="replace")
+            content = fix_boltz_chain(content)
             # Escape backticks and backslashes for JS template literal
             content = content.replace("\\", "\\\\").replace("`", "\\`").replace("${", "\\${")
             pdbs[bar_id][mi] = content
@@ -219,6 +233,9 @@ def render_html(meta, pdbs) -> str:
   .viewer-wrap {{
     position: relative; width: 100%; height: 360px;
     background: #0a0a18; overflow: hidden;
+  }}
+  .viewer-wrap .viewer-inner {{
+    width: 100%; height: 360px; position: relative; display: block;
   }}
   .card-footer {{
     padding: 10px 14px;
@@ -434,7 +451,7 @@ function buildGrid() {{
           </span>
         </div>
         <div class="viewer-wrap">
-          <div id="viewer-${{barId}}"></div>
+          <div id="viewer-${{barId}}" class="viewer-inner"></div>
           <div class="loading" id="loading-${{barId}}">Loading&hellip;</div>
         </div>
         <div class="card-footer">
@@ -470,36 +487,53 @@ function buildGrid() {{
 // ---------- Init viewers ----------
 function initViewer(barId) {{
   return new Promise(resolve => {{
-    requestAnimationFrame(() => {{
-      const el = document.getElementById(`viewer-${{barId}}`);
-      const w = el.offsetWidth  || 380;
-      const h = el.offsetHeight || 360;
-      if (typeof $3Dmol === 'undefined') {{
-        const loader = document.getElementById(`loading-${{barId}}`);
-        if (loader) loader.textContent = '3Dmol failed to load — check internet connection';
-        return resolve();
-      }}
-      const viewer = $3Dmol.createViewer(el, {{
-        backgroundColor: '#0a0a18',
-        antialias: true,
-        width: w,
-        height: h,
-      }});
-      viewers[barId] = viewer;
-      const modelN = activeModels[barId];
-      viewer.addModel(BAR_PDBS[barId][modelN], 'pdb');
-      viewer.setStyle({{}}, buildStyle());
-      viewer.zoomTo();
-      viewer.render();
+    setTimeout(() => {{
       const loader = document.getElementById(`loading-${{barId}}`);
-      if (loader) {{ loader.style.opacity = '0'; setTimeout(() => loader.remove(), 300); }}
+      try {{
+        if (typeof $3Dmol === 'undefined') throw new Error('3Dmol.js not loaded');
+        const el = document.getElementById(`viewer-${{barId}}`);
+        // 3Dmol needs explicit pixel dimensions on the container element itself
+        const wrap = el.parentElement;
+        const w = wrap.clientWidth  || wrap.offsetWidth  || 400;
+        const h = 360;
+        el.style.width  = w + 'px';
+        el.style.height = h + 'px';
+        // Pass ID string — classic 3Dmol usage
+        const viewer = $3Dmol.createViewer(`viewer-${{barId}}`, {{
+          backgroundColor: '#0a0a18',
+          antialias: true,
+          width: w,
+          height: h,
+        }});
+        if (!viewer) throw new Error(`createViewer returned null (w=${{w}} h=${{h}})`);
+        viewers[barId] = viewer;
+        const modelN = activeModels[barId];
+        viewer.addModel(BAR_PDBS[barId][modelN], 'pdb');
+        viewer.setStyle({{}}, buildStyle());
+        viewer.zoomTo();
+        viewer.render();
+        if (loader) {{ loader.style.opacity = '0'; setTimeout(() => loader.remove(), 300); }}
+      }} catch(e) {{
+        console.error(barId, e);
+        if (loader) {{
+          loader.style.opacity = '1';
+          loader.style.color = '#e74c3c';
+          loader.style.fontSize = '0.65rem';
+          loader.style.padding = '8px';
+          loader.style.textAlign = 'center';
+          const msg = (e && e.message) ? e.message : String(e);
+          loader.textContent = '3Dmol error: ' + msg;
+        }}
+      }}
       resolve();
-    }});
+    }}, 300);
   }});
 }}
 
 async function initAll() {{
   buildGrid();
+  // Give the grid one full render cycle before initialising viewers
+  await new Promise(r => setTimeout(r, 100));
   for (const barId of BARS) {{
     await initViewer(barId);
   }}
