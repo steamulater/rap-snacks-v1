@@ -423,14 +423,14 @@ This makes the Boltz-2 ensemble directly comparable to the ESMFold multi-seed ap
 
 6 bars qualified (pTM ≥ 0.4):
 
-| bar_id | pTM (mean) | pLDDT (mean) | song |
-|---|---|---|---|
-| bar_11 | 0.481 | 0.467 | — |
-| bar_27 | 0.442 | 0.624 | Ganja Burn |
-| bar_38 | 0.435 | 0.474 | — |
-| bar_53 | 0.420 | 0.472 | — |
-| bar_17 | 0.415 | 0.507 | — |
-| bar_49 | 0.407 | 0.418 | — |
+| bar_id | pTM (mean) | pLDDT (mean) | song | lyric |
+|---|---|---|---|---|
+| bar_11 | 0.481 | 0.467 | Hell Yeah | "When they go against the kid it's gon cost for real / Came straight from the hood with the cross appeal / That's why these big names wanna toss the deal" |
+| bar_27 | 0.442 | 0.624 | Ganja Burn | "You gotta have real skill, gotta work for that. If it's really your passion would you give the world for that?" |
+| bar_38 | 0.435 | 0.474 | Haterade (feat.) | "This one goes out to all of my critics / Don't you feel stupid / Look how I did it / Look how it came to pass when I said it" |
+| bar_53 | 0.420 | 0.472 | Want Some More | "Why the fuck I gotta say it tho? You niggas don't know it yet? Foot ball, touch down on a boeing jet." |
+| bar_17 | 0.415 | 0.507 | Love Me Enough | "First things first, all my girls, know your worth / Self-love is the greatest love on Earth / Cry your eyes out, get it out, it's the worst / But love don't hurt, no" |
+| bar_49 | 0.407 | 0.418 | Fly | "A sea full of sharks and they all smell blood / They start comin' and I start risin' / Must be surprisin', I'm just surmisin' / I win, thrive, soar, higher" |
 
 ### Results
 
