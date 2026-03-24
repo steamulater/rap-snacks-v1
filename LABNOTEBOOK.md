@@ -346,6 +346,87 @@ All BOJUXZ strategy comparisons are red (alanine outperforms softmax). All freq-
 
 ---
 
+## Stage 2b — ESMFold Full Run (COMPLETE)
+
+**Script:** `analysis/plot_esm_full.py`
+**Scope:** All 85 bars × 5 conditions (3,498 successful folds from 5,270 planned calls)
+**Status:** Complete — extends pilot Figs 1–10 to full dataset
+
+### Key stats (full run vs pilot)
+
+| Condition | Full run mean pLDDT (n=85) | Pilot mean pLDDT (n=25) |
+|---|---|---|
+| Native-Ala | **0.354** | 0.353 |
+| Alanine    | 0.348 | 0.355 |
+| Native     | 0.325 | 0.334 |
+| Random     | 0.321 | 0.329 |
+| Concordance| 0.316 | 0.326 |
+
+Ranking holds at full scale: BJOZXU→A outperforms softmax draws (native_ala ≈ alanine > native ≈ random > concordance). The pilot top-25 bars had slightly higher overall pLDDT — the remaining 60 bars pull the means down ~0.01, consistent with the length confound (longer, lower-iconicity bars in the full set).
+
+### Fig 11 — Mean pLDDT by condition (n=85)
+
+![Fig 11](outputs/figures/fig11_full_plddt_by_condition.png)
+
+All 5 conditions across 85 bars. Same ranking as pilot: alanine-group leads, concordance last. Error bars = standard error across bars.
+
+### Fig 12 — pLDDT distribution by condition (violin, n=85)
+
+![Fig 12](outputs/figures/fig12_full_violin.png)
+
+Full pLDDT distribution per condition. Native and native_alanine show the widest spread — AA pass-through produces more variable sequences. Deterministic conditions (alanine, native_alanine) have tighter distributions.
+
+### Fig 13 — Native vs Concordance per-bar scatter
+
+![Fig 13](outputs/figures/fig13_native_vs_concordance.png)
+
+Per-bar mean pLDDT: native (y) vs concordance (x). Points above the diagonal fold better without frequency remapping. The correlation and fraction above/below diagonal are annotated on the figure.
+
+### Fig 14 — pLDDT vs sequence length, all conditions
+
+![Fig 14](outputs/figures/fig14_plddt_vs_length_all_conds.png)
+
+Length–pLDDT relationship faceted by condition (n=85 bars each). All conditions show a negative trend — longer sequences fold with lower confidence. The slope is steepest for concordance and shallowest for native_alanine, suggesting AA pass-through is more length-robust.
+
+### Fig 15 — Iconicity vs pLDDT (concordance, n=85)
+
+![Fig 15](outputs/figures/fig15_iconicity_vs_plddt_full.png)
+
+Iconicity vs mean concordance pLDDT. Color encodes sequence length. Pearson r printed on figure. The near-zero correlation at full scale confirms the pilot finding: **cultural iconicity is orthogonal to structural foldability.** High-iconicity bars are spread across the full pLDDT range.
+
+### Fig 16 — Concordance vs Alanine delta (n=85)
+
+![Fig 16](outputs/figures/fig16_concordance_vs_alanine_full.png)
+
+Per-bar Δ pLDDT (concordance − alanine), sorted. Most bars are blue (alanine higher). The alanine advantage is present but small — BJOZXU→A is a better structural strategy than softmax draws, but the margin is modest.
+
+### Fig 17 — Structural sensitivity per bar (concordance SD, n=85)
+
+![Fig 17](outputs/figures/fig17_plddt_sd_full.png)
+
+SD of pLDDT across 15 concordance seeds per bar. High SD = structurally sensitive to which AA is drawn at BJOZXU positions. Dashed line = mean SD across 85 bars.
+
+### Fig 18 — Pairwise pLDDT correlation across conditions
+
+![Fig 18](outputs/figures/fig18_condition_correlation.png)
+
+Correlation matrix of per-bar mean pLDDT across all 5 conditions. High correlations = the same bars fold well (or poorly) regardless of condition — bar identity dominates over condition choice.
+
+### Fig 19 — Top / Bottom 10 bars by concordance pLDDT
+
+![Fig 19](outputs/figures/fig19_top_bottom_bars.png)
+
+The 10 best- and worst-folding bars under the concordance condition. Top bars are candidates for deeper structural characterisation; bottom bars are the most disordered.
+
+### Fig 20 — pLDDT heatmap: length bucket × condition
+
+![Fig 20](outputs/figures/fig20_length_bucket_heatmap.png)
+
+Mean pLDDT as a function of sequence length bucket and condition. The length confound is visible in every column — shorter sequences fold better across all conditions. The alanine-group advantage is most pronounced in the 80–100 AA bucket.
+
+
+---
+
 ## Stage 3 — Boltz-2 (COMPLETE)
 
 **Tool:** Boltz-2
@@ -509,19 +590,19 @@ Interpretation: the rap-derived protein structures do not resemble any known pro
 
 All bars are highly sequence-diverse (max identity 30%) — the concordance mapping produces sequences with no strong homology to each other. Structural RMSD has considerably more spread, indicating the bars sample distinct fold geometries despite uniform sequence novelty.
 
-### Fig 11 — Sequence Identity Heatmap
+### Fig 21 — Sequence Identity Heatmap
 
 ![Sequence Identity Heatmap](outputs/pairwise/fig1_seq_heatmap.png)
 
 Clustered 85×85 pairwise sequence identity matrix. Off-diagonal values are uniformly low (pale yellow). No strong sequence clusters — the 85 bars form a flat diversity landscape. Side color bars = structural class.
 
-### Fig 12 — Structural RMSD Heatmap
+### Fig 22 — Structural RMSD Heatmap
 
 ![Structural RMSD Heatmap](outputs/pairwise/fig2_struct_heatmap.png)
 
 Clustered 85×85 Cα RMSD matrix (Å). More texture than the sequence plot — the dendrogram resolves genuine structural subclusters even among bars with low sequence identity. `confident_protein_like` and `uncertain_protein_like` bars (orange/red) tend to cluster structurally.
 
-### Fig 13 — Sequence × Structural Novelty Scatter
+### Fig 23 — Sequence × Structural Novelty Scatter
 
 ![Novelty Scatter](outputs/pairwise/fig3_novelty_scatter.png)
 
@@ -574,7 +655,7 @@ Bio.PDB's standard PDB parser rejects Boltz-2 output files (2-char chain IDs lik
 
 **bar_17** (Love Me Enough) is the most structurally consistent despite being the 5th-ranked by pTM. **bar_53** (Want Some More) shows the most plasticity — the model's 5 samples span 13.4 Å, suggesting the sequence doesn't strongly constrain a single fold.
 
-### Fig 14 — Per-residue pLDDT Profiles
+### Fig 24 — Per-residue pLDDT Profiles
 
 ![Per-residue pLDDT Profiles](outputs/pairwise/fig4_plddt_profiles.png)
 
@@ -585,7 +666,7 @@ Observations:
 - **bar_17** (Love Me Enough) has a pronounced peak in the middle of the sequence (~residue 40–70) where all 5 models are consistently above 0.5 with a narrow SD.
 - **bar_49** (Fly) and **bar_53** (Want Some More) show wide SD ribbons throughout — the diffusion samples disagree at nearly every position.
 
-### Fig 15 — Within-bar Pairwise Model RMSD (5×5 heatmaps)
+### Fig 25 — Within-bar Pairwise Model RMSD (5×5 heatmaps)
 
 ![Within-bar Model RMSD](outputs/pairwise/fig5_intrabar_rmsd.png)
 
@@ -593,7 +674,7 @@ Observations:
 
 bar_17 is uniformly light (models converge). bar_53 has dark cells throughout (maximum spread). bar_27 shows a mix — some model pairs are tight (2.5 Å), others are wider (8.7 Å), suggesting one or two outlier conformations.
 
-### Fig 16 — UMAP of 30 Structures
+### Fig 26 — UMAP of 30 Structures
 
 ![UMAP 30 Structures](outputs/pairwise/fig6_umap_30structs.png)
 
@@ -605,7 +686,7 @@ Observations:
 - All 6 bars are well-separated in UMAP space, confirming inter-bar structural novelty consistent with the FoldSeek no-hit result.
 - bar_11 and bar_38 sit in the same region of UMAP space — the closest structural neighbors among the 6 FoldSeek bars.
 
-### Fig 17 — Backbone Traces (Cα, pLDDT coloring)
+### Fig 27 — Backbone Traces (Cα, pLDDT coloring)
 
 ![Backbone Traces](figures/fig7_backbone_traces.png)
 
@@ -663,7 +744,7 @@ rap-snacks-v1/
 │   └── prep_boltz_fasta_native_ala.py      <- BJOZUX→A FASTA → na0…na84.fasta
 ├── analysis/
 │   ├── plot_esm_pilot.py                   <- Figs 1–10 (ESMFold pilot, top-25 bars)
-│   ├── plot_esm_full.py                    <- Figs 1–10 extended (85 bars, pending)
+│   ├── plot_esm_full.py                    <- Figs 11–20 (ESMFold full run, 85 bars)
 │   ├── 06_pairwise_comparison.py           <- Figs 11–13: pairwise seq identity + RMSD
 │   ├── 07_boltz_ensemble_foldseek_bars.py  <- Figs 14–16: ensemble deep dive (6 bars)
 │   └── generate_structure_viewer.py        <- Fig 17 + interactive 3Dmol.js HTML viewer
