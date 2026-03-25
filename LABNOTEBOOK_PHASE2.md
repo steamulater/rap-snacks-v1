@@ -37,7 +37,7 @@ The core narrative: **the backbone encodes the bar. ProteinMPNN finds the most f
 
 ## Platform Comparison — Ginkgo Cloud Lab vs Adaptyv Bio
 
-Two full-service CFPS platforms are under consideration. Neither choice has been made — a quote from Ginkgo Cloud Lab is needed before deciding.
+Two full-service CFPS platforms are under consideration. Quotes obtained for 24 proteins (2026-03-25). Screenshots: `Screen_adaptyv.png`, `Sceen_ginkgo.png` (repo root).
 
 ### Ginkgo Cloud Lab — CFPS + HiBiT
 
@@ -47,9 +47,15 @@ Two full-service CFPS platforms are under consideration. Neither choice has been
 
 **What's included:** CFPS expression + quantitative HiBiT luminescence readout. Autonomous lab execution — no hands-on lab work required from submitter.
 
-**Pricing:** Not publicly listed. Quote-based via their EstiMate tool — requires account creation at cloud.ginkgo.bio. Ginkgo's autonomous lab infrastructure was used to run 36,000 CFPS conditions in their GPT-5 collaboration (Feb 2026), achieving $422/g for sfGFP after optimization. Per-protein pricing at small scale is unknown.
+**Pricing (actual quote, 24 proteins × 3 replicates = 72 samples):**
 
-**Scale:** Platform is optimised for high-throughput campaigns; may be overengineered for 8–12 proteins but designed to scale to 96-well and beyond.
+| Proteins | Replicates | Total Samples | Estimated Total | Per Protein |
+|---|---|---|---|---|
+| 24 | 3 | 72 | **$2,808** | ~$117 |
+
+Screenshot: `Sceen_ginkgo.png`
+
+**Scale:** 96-well plate scale. 3 replicates per protein included in the quoted price.
 
 **De novo protein track record:** Validated internally at scale, but public benchmarking on de novo designed proteins is limited in published literature.
 
@@ -63,13 +69,16 @@ Two full-service CFPS platforms are under consideration. Neither choice has been
 
 **What's included:** Gene synthesis + CFPS expression + readout. Submit AA sequence via UI or API; they handle DNA synthesis.
 
-**Pricing:**
+**Pricing (actual quote, 24 proteins, Standard Delivery):**
 
-| Service | Price | Turnaround | Includes |
-|---|---|---|---|
-| Expression | **$47/protein** | 2–3 weeks | Gene synthesis + expression + readout |
-| Thermostability | $86/protein | 2–3 weeks | Expression + Tm measurement |
-| Binding (BLI/SPR) | $79/protein | 3–4 weeks | Expression + binding characterization |
+| Proteins | Delivery | Per Protein | Total | Condition |
+|---|---|---|---|---|
+| 24 | Standard (2–3 weeks) | **$95** | **$2,285** | Open-source discount applied (20%) — requires releasing results on Proteinbase |
+| 24 | Economy (8+ weeks, ~15% off) | ~$81 | ~$1,940 | Economy tier + open-source discount |
+
+Screenshot: `Screen_adaptyv.png`
+
+> **Note:** Earlier estimate of $47/protein was incorrect — actual price is $95/protein with the open-source/Proteinbase discount applied. Without the discount the price is ~$119/protein. The open-source discount requires agreeing to publish results on [Proteinbase](https://proteinbase.io) — a condition that is compatible with this project's publication goals.
 
 **Readout:** Expressed / low / not detected + relative yield + QC flags (insolubility, tag issues).
 
@@ -77,21 +86,22 @@ Two full-service CFPS platforms are under consideration. Neither choice has been
 
 ---
 
-### Side-by-side
+### Side-by-side (24 proteins)
 
 | | **Ginkgo Cloud Lab (HiBiT)** | **Adaptyv Bio** |
 |---|---|---|
-| Pricing | Quote required — not public | $47/protein, transparent |
+| Per protein | ~$117 | ~$95 (with open-source discount) |
+| Total (24 proteins) | **$2,808** | **$2,285** |
+| Replicates included | 3 per protein | 1 (single expression run) |
 | Readout | Quantitative HiBiT luminescence | Expressed/low/not detected + yield |
-| Gene synthesis included | Unknown | Yes |
-| Submission | Protocol via EstiMate tool | Upload AA sequence via UI or API |
+| Gene synthesis included | Yes (DNA template upload) | Yes |
+| Submission | EstiMate tool → upload DNA | Upload AA sequence via UI or API |
 | Cell-free system | E. coli lysate + HiBiT tag | Reconstituted E. coli TX/TL |
 | De novo protein validation | Internal (large scale) | Public (10,000+ proteins, competitions) |
-| Turnaround | Unknown without quote | 2–3 weeks |
-| Scale fit for 8–12 proteins | Uncertain — get quote | Well-suited |
-| Scale fit for 100+ proteins | Likely competitive | Competitive |
+| Turnaround | Not specified | 2–3 weeks (standard) |
+| Open-source condition | None | Must publish on Proteinbase for discount |
 
-**To decide:** Get a Ginkgo Cloud Lab quote for 10 proteins at [cloud.ginkgo.bio](https://cloud.ginkgo.bio) using their EstiMate tool, then compare directly to Adaptyv's $470 total (10 × $47).
+**Summary:** Adaptyv is ~$500 cheaper for 24 proteins. Ginkgo includes 3 replicates, which provides technical reproducibility at the cost of price. Adaptyv's reconstituted TX/TL system has stronger published validation for de novo designs. **No platform decision made yet.**
 
 ---
 
@@ -237,22 +247,48 @@ notes        | BJOZXU positions redesigned; lyric positions fixed
 
 ---
 
+## Submission Scale
+
+**Target: 48-protein plate** (Adaptyv Bio, Standard Delivery)
+
+| Slot allocation | Count |
+|---|---|
+| 12 candidate bars × 4 sequences (concordance, native_ala, MPNN-1, MPNN-2) | 48 |
+| 1 positive control (sfGFP or known-expressing protein) | 1 |
+| Contingency / reserve | ~7 |
+| **Total** | **48** |
+
+**Cost: ~$4,560** (48 × $95, Adaptyv open-source discount — requires publishing results on Proteinbase)
+
+---
+
+## Controls
+
+### Positive control (wet lab)
+- 1 × known-expressing protein (sfGFP or equivalent) — confirms the platform ran correctly
+- Occupies 1 well; essential
+
+### Scrambled sequence (in silico only — no wet lab slot needed)
+- Same AA composition as the concordance sequence, randomly shuffled
+- ESMFold on scrambled sequences → pLDDT < 0.3, disordered blob every time — this is already demonstrable computationally
+- No wet-lab slot warranted: the "no structure" result is guaranteed and costs a $95 slot to confirm what we already know
+- **Script:** `analysis/11_scrambled_control.py` — generates 3 shuffled variants per candidate bar, folds with ESMFold, reports pLDDT vs original; produces a comparison figure
+- If reviewers push back ("how do you know expression isn't just AA composition?"), wet-lab scrambled can be added in a follow-up run
+
+### Native_ala (wet lab — already in main submission)
+- The native_ala sequence for each bar is already one of the 4 submission slots per bar — serves as the deterministic alanine-substitution baseline
+
+---
+
 ## Open Questions (Phase 2)
 
 1. **Which positions to fix in ProteinMPNN?** The mutation mask from Phase 1 tracks exactly which positions came from standard AA vs BJOZXU draws. This is the exact input needed for `--fixed_positions_jsonl`.
 
-2. **Which platform?** Get Ginkgo Cloud Lab quote via EstiMate before committing. Compare against Adaptyv's $47/protein. See Platform Comparison section above.
+2. **Which platform?** Adaptyv Bio favoured — $4,560 for 48 proteins vs Ginkgo $5,616. Ginkgo includes triplicates but that is more useful after you know something expresses. Decision pending native_ala fold results.
 
-3. **How many designs to submit?** Both platforms support 96-well plate scale. Budget for ~48–96 sequences (6–12 bars × 5–10 designs each, plus controls).
+3. **IP / disclosure** — Check biosecurity review requirements for novel sequences on whichever platform is chosen. Adaptyv's terms publicly documented (Proteinbase release required for discount); Ginkgo may involve a custom services agreement.
 
-4. **Controls to include:**
-   - Native protein with known expression (positive control)
-   - Scrambled sequence from same bar (negative control — same AA composition, random order)
-   - Alanine condition sequence for same bar (compare BJOZXU strategy)
-
-5. **IP / disclosure** — Check biosecurity review requirements for novel sequences on whichever platform is chosen. Adaptyv's terms are publicly documented; Ginkgo's may involve a custom services agreement.
-
-5. **What constitutes "success"?** A band on SDS-PAGE at the correct MW = expression. CD spectrum with secondary structure features matching Boltz predictions = folding. Either result is publishable — expression failure of a lyric-derived sequence is also a finding.
+4. **What constitutes "success"?** A band on SDS-PAGE at the correct MW = expression. CD spectrum with secondary structure features matching Boltz predictions = folding. Either result is publishable — expression failure of a lyric-derived sequence is also a finding.
 
 ---
 
@@ -262,12 +298,14 @@ notes        | BJOZXU positions redesigned; lyric positions fixed
 analysis/
 ├── 08_candidate_selection.py       <- filter 85 bars → shortlist
 ├── 09_proteinmpnn_design.py        <- run ProteinMPNN, self-consistency filter
-└── 10_codon_optimize.py            <- codon-optimize + build submission CSV
+├── 10_codon_optimize.py            <- codon-optimize + build submission CSV
+└── 11_scrambled_control.py         <- in silico scrambled control (ESMFold + pLDDT comparison)
 data/
 ├── phase2_candidates.csv           <- ranked shortlist (output of step 1)
 └── phase2_fixed_positions.jsonl    <- ProteinMPNN fixed positions per bar
 outputs/
 ├── proteinmpnn/                    <- designed sequences per bar
+├── scrambled/                      <- scrambled seqs + ESMFold results (in silico control)
 └── submission/                     <- codon-optimized DNA, submission-ready
 ```
 
