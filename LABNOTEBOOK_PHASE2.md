@@ -2,42 +2,96 @@
 
 **Repo:** `steamulater/rap-snacks-v1`
 **Started:** March 2026
-**Goal:** Select, design, and submit rap-lyric-derived proteins to Ginkgo Bioworks cell-free expression — closing the loop from lyric → fold → real protein.
+**Goal:** Select, design, and submit rap-lyric-derived proteins to a cell-free expression platform — closing the loop from lyric → fold → real protein.
 
 ---
 
 ## Concept
 
-Phase 1 established that concordance-mapped rap lyrics produce structurally novel proteins with no homologs in PDB, afdb-swissprot, or MGnify. Phase 2 takes the best candidates from that structural analysis, optimizes their sequences for wet-lab foldability using ProteinMPNN, and submits codon-optimized DNA to Ginkgo Bioworks' cell-free protein synthesis (CFPS) platform.
+Phase 1 established that concordance-mapped rap lyrics produce structurally novel proteins with no homologs in PDB, afdb-swissprot, or MGnify. Phase 2 takes the best candidates from that structural analysis, optimizes their sequences for wet-lab foldability using ProteinMPNN, and submits codon-optimized DNA to a cell-free protein synthesis (CFPS) platform.
 
 The core narrative: **the backbone encodes the bar. ProteinMPNN finds the most foldable sequence given that shape.** Every expressed protein traces directly back to a specific lyric.
 
 ---
 
-## Target Platform — Ginkgo Bioworks CFPS
-
-**System:** E. coli cell-free transcription/translation (T7 promoter)
-**Input:** Codon-optimized linear DNA template
-**Output:** Expressed protein from bacterial lysate, no cloning required
-**Readout:** SDS-PAGE (expressed/not), optionally circular dichroism for fold confirmation
+## Target Platform — Platform Comparison (TBD)
 
 ### Why CFPS over cell-based expression
 
 - No transformation, no cloning — linear DNA is sufficient
 - Fast turnaround, plate-scale throughput (automated)
-- **Solubility-Enhanced Reagent Mix** — Ginkgo's kit specifically targets difficult/de novo proteins
 - De novo designed proteins are notoriously hard to express in cells; CFPS tolerates them better
-- Ginkgo's autonomous lab (in collaboration with OpenAI GPT-5, Feb 2026) runs exactly this kind of iterative design–express–learn loop at scale
+- Both candidate platforms use E. coli cell-free TX/TL systems, suitable for our 80–155 AA range
 
-### Sequence constraints for CFPS submission
+### Sequence constraints (both platforms)
 
 | Parameter | Target |
 |---|---|
 | Length | 50–300 AA (our bars: 80–155 AA — ideal) |
-| DNA template | Linear, under T7 promoter |
-| Tag | N- or C-terminal His-tag for detection/purification |
+| DNA template | Linear or plasmid, under T7 promoter |
+| Tag | N- or C-terminal tag for detection (His6 or HiBiT depending on platform) |
 | Codon usage | Optimized for *E. coli* K12 |
 | Avoid | Long hydrophobic stretches (aggregation), >5 consecutive charged residues (insolubility), rare codons |
+
+---
+
+## Platform Comparison — Ginkgo Cloud Lab vs Adaptyv Bio
+
+Two full-service CFPS platforms are under consideration. Neither choice has been made — a quote from Ginkgo Cloud Lab is needed before deciding.
+
+### Ginkgo Cloud Lab — CFPS + HiBiT
+
+**URL:** [cloud.ginkgo.bio/protocols/cell-free-protein-expression-hibit](https://cloud.ginkgo.bio/protocols/cell-free-protein-expression-hibit)
+
+**System:** E. coli CFPS with HiBiT bioluminescent readout. HiBiT is an 11-AA tag (Promega NanoLuc) fused to the protein — luminescence signal is proportional to expression level, quantitative and highly sensitive. Fully automated on Ginkgo's robotic RAC platform.
+
+**What's included:** CFPS expression + quantitative HiBiT luminescence readout. Autonomous lab execution — no hands-on lab work required from submitter.
+
+**Pricing:** Not publicly listed. Quote-based via their EstiMate tool — requires account creation at cloud.ginkgo.bio. Ginkgo's autonomous lab infrastructure was used to run 36,000 CFPS conditions in their GPT-5 collaboration (Feb 2026), achieving $422/g for sfGFP after optimization. Per-protein pricing at small scale is unknown.
+
+**Scale:** Platform is optimised for high-throughput campaigns; may be overengineered for 8–12 proteins but designed to scale to 96-well and beyond.
+
+**De novo protein track record:** Validated internally at scale, but public benchmarking on de novo designed proteins is limited in published literature.
+
+---
+
+### Adaptyv Bio — Expression Service
+
+**URL:** [start.adaptyvbio.com](https://start.adaptyvbio.com)
+
+**System:** Fully reconstituted E. coli TX/TL cell-free system (individually purified components — lower background than lysate-based systems, better suited for sensitive/synthetic designs).
+
+**What's included:** Gene synthesis + CFPS expression + readout. Submit AA sequence via UI or API; they handle DNA synthesis.
+
+**Pricing:**
+
+| Service | Price | Turnaround | Includes |
+|---|---|---|---|
+| Expression | **$47/protein** | 2–3 weeks | Gene synthesis + expression + readout |
+| Thermostability | $86/protein | 2–3 weeks | Expression + Tm measurement |
+| Binding (BLI/SPR) | $79/protein | 3–4 weeks | Expression + binding characterization |
+
+**Readout:** Expressed / low / not detected + relative yield + QC flags (insolubility, tag issues).
+
+**De novo protein track record:** Extensive — 10,000+ designed proteins tested. Ran two public protein design competitions (EGFR binder challenge), validating 601 de novo designs including sub-100 nM binders. Over 30 companies and 10+ preprints using Adaptyv data in 2025.
+
+---
+
+### Side-by-side
+
+| | **Ginkgo Cloud Lab (HiBiT)** | **Adaptyv Bio** |
+|---|---|---|
+| Pricing | Quote required — not public | $47/protein, transparent |
+| Readout | Quantitative HiBiT luminescence | Expressed/low/not detected + yield |
+| Gene synthesis included | Unknown | Yes |
+| Submission | Protocol via EstiMate tool | Upload AA sequence via UI or API |
+| Cell-free system | E. coli lysate + HiBiT tag | Reconstituted E. coli TX/TL |
+| De novo protein validation | Internal (large scale) | Public (10,000+ proteins, competitions) |
+| Turnaround | Unknown without quote | 2–3 weeks |
+| Scale fit for 8–12 proteins | Uncertain — get quote | Well-suited |
+| Scale fit for 100+ proteins | Likely competitive | Competitive |
+
+**To decide:** Get a Ginkgo Cloud Lab quote for 10 proteins at [cloud.ginkgo.bio](https://cloud.ginkgo.bio) using their EstiMate tool, then compare directly to Adaptyv's $470 total (10 × $47).
 
 ---
 
@@ -157,18 +211,18 @@ Standard codon optimization:
 - Avoid hairpin structures in the first 30 nt of the ORF (affects ribosome binding)
 - Add: T7 promoter + RBS upstream, His6-tag (C-terminal preferred for de novo proteins), T7 terminator downstream
 
-### Submission format to Ginkgo CFPS
+### Submission format
 
-Each submission entry:
+Each submission entry (platform-agnostic):
 ```
 bar_id       | bar_27
 song         | Ganja Burn
 lyric        | "You gotta have real skill..."
 design_id    | bar_27_mpnn_003
 aa_sequence  | CPMND...  (ProteinMPNN output)
-dna_sequence | ATGCCGATG...  (codon-optimized)
+dna_sequence | ATGCCGATG...  (codon-optimized, only needed for Ginkgo)
 length_aa    | 86
-tag          | C-His6
+tag          | C-His6 (Adaptyv) or C-HiBiT (Ginkgo Cloud Lab)
 notes        | BJOZXU positions redesigned; lyric positions fixed
 ```
 
@@ -187,14 +241,16 @@ notes        | BJOZXU positions redesigned; lyric positions fixed
 
 1. **Which positions to fix in ProteinMPNN?** The mutation mask from Phase 1 tracks exactly which positions came from standard AA vs BJOZXU draws. This is the exact input needed for `--fixed_positions_jsonl`.
 
-2. **How many designs to submit?** Ginkgo CFPS is plate-based — 96-well is natural. Budget for ~48–96 sequences (6–12 bars × 5–10 designs each, plus controls).
+2. **Which platform?** Get Ginkgo Cloud Lab quote via EstiMate before committing. Compare against Adaptyv's $47/protein. See Platform Comparison section above.
 
-3. **Controls to include:**
+3. **How many designs to submit?** Both platforms support 96-well plate scale. Budget for ~48–96 sequences (6–12 bars × 5–10 designs each, plus controls).
+
+4. **Controls to include:**
    - Native protein with known expression (positive control)
    - Scrambled sequence from same bar (negative control — same AA composition, random order)
    - Alanine condition sequence for same bar (compare BJOZXU strategy)
 
-4. **IP / disclosure** — Ginkgo's research CFPS is a reagent kit (buyable). The actual submission pathway for a collaborative research project may involve their custom services team. Check biosecurity review requirements for novel sequences.
+5. **IP / disclosure** — Check biosecurity review requirements for novel sequences on whichever platform is chosen. Adaptyv's terms are publicly documented; Ginkgo's may involve a custom services agreement.
 
 5. **What constitutes "success"?** A band on SDS-PAGE at the correct MW = expression. CD spectrum with secondary structure features matching Boltz predictions = folding. Either result is publishable — expression failure of a lyric-derived sequence is also a finding.
 
@@ -220,10 +276,13 @@ outputs/
 ## References
 
 - Dauparas et al. (2022). Robust deep learning–based protein sequence design using ProteinMPNN. *Science*, 378, 49–56. [doi:10.1126/science.add2187](https://www.science.org/doi/10.1126/science.add2187)
-- Kipnis et al. (2023). Improving Protein Expression, Stability, and Function with ProteinMPNN. *JACS*, 145(29), 14audits–. [doi:10.1021/jacs.3c10941](https://pubs.acs.org/doi/10.1021/jacs.3c10941)
-- Ginkgo Bioworks CFPS Kit (E. coli). [reagents.ginkgo.bio](https://reagents.ginkgo.bio/products/cell-free-protein-expression-e-coli)
+- Kipnis et al. (2023). Improving Protein Expression, Stability, and Function with ProteinMPNN. *JACS*, 145(29). [doi:10.1021/jacs.3c10941](https://pubs.acs.org/doi/10.1021/jacs.3c10941)
+- Ginkgo Cloud Lab — CFPS + HiBiT protocol. [cloud.ginkgo.bio/protocols/cell-free-protein-expression-hibit](https://cloud.ginkgo.bio/protocols/cell-free-protein-expression-hibit)
 - Ginkgo Bioworks + OpenAI GPT-5 autonomous lab (Feb 2026) — 36,000 CFPS experiments, 40% cost reduction. [PR Newswire](https://www.prnewswire.com/news-releases/ginkgo-bioworks-autonomous-laboratory-driven-by-openais-gpt-5-achieves-40-improvement-over-state-of-the-art-scientific-benchmark-302680619.html)
-- Ginkgo Protein Engineering Services. [ginkgobioworks.com](https://www.ginkgobioworks.com/offerings/protein-services/)
+- Ginkgo HiBiT high-throughput screening application note. [ginkgo.bio](https://www.ginkgo.bio/resources/application-notes/high-throughput-screening-hibit-proteins)
+- Adaptyv Bio expression service. [start.adaptyvbio.com](https://start.adaptyvbio.com)
+- Adaptyv Bio cell-free expression technology. [docs.adaptyvbio.com](https://docs.adaptyvbio.com/wiki/technologies/cell-free-protein-expression)
+- Adaptyv EGFR design competition — crowdsourced de novo protein validation. [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.04.17.648362v2)
 
 ---
 
