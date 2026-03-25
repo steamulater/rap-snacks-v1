@@ -1,0 +1,212 @@
+bar_id,canonical_bar,song,attribution,iconicity,seq_len,n_models,best_model,plddt_mean,plddt_sd,plddt_best,ptm_mean,ptm_sd,ptm_best,confidence_mean,confidence_best,structural_class
+bar_0,"I told him it’s no friends in the game
+You ain’t learn that yet?
+All them bridges you came over
+Don’t burn that yet",Super Freaky Girl (Queen Mix),primary,0.9938,88,5,0,0.490404,0.032308,0.536030,0.360732,0.093740,0.478249,0.464469,0.521913,uncertain_protein_like
+bar_1,"No, you can't bone it, n*ga, ain't no Lisa here
+She gon' dread dissin' Nicki like Lisa hair
+I buy, lil n*ga, ain't no leaser here",Changed It,primary,0.9365,92,5,0,0.568436,0.018243,0.595647,0.308003,0.023080,0.346616,0.516349,0.545841,disordered
+bar_10,"It was back in '07, did a couple of tapes. Did a couple DVDs, made a couple mistakes. Didn't know what I was doing, but I put on a cape. Now it's, ""Which world tour should I go on today?",I’m The Best,primary,0.6889,133,5,0,0.380177,0.010098,0.392847,0.228325,0.015490,0.255464,0.349807,0.358991,disordered
+bar_11,"When they go against the kid it's gon cost for real
+Came straight from the hood with the cross appeal
+That's why these big names wanna toss the deal",Hell Yeah,primary,0.5856,118,5,0,0.436304,0.025083,0.484765,0.265648,0.039902,0.341932,0.402173,0.456199,disordered
+bar_12,"I left my shades in Atlanta so I told my pilot to stop the plane… He busts a U in the air… She say she doing it, WHERE?",Realize,featured,0.5855,88,5,0,0.491701,0.005426,0.500084,0.238723,0.005464,0.247675,0.441106,0.447172,disordered
+bar_13,I TRIED TO CHANNEL YOU IN HOPES THAT I MAY STEER YOU BACK BUT ITS LIKE EVERY INTERSECTION WE JUST MISS EACHOTHA,Dear Old Nicki,primary,0.5771,90,5,0,0.498747,0.007011,0.506815,0.480385,0.150010,0.696582,0.495074,0.533021,uncertain_protein_like
+bar_14,"I never thought you would end up as the enemy I always thought you'd be right here, still defending me I feel so bad for you, lost your identity Made your decision, there's a penalty",Just The Memories,primary,0.5683,143,5,0,0.457191,0.016360,0.470797,0.291601,0.014896,0.302416,0.424073,0.436855,disordered
+bar_15,"I can't fall for you, can't give my all to you Can't let you think that I'ma let the game stall for you Gotta protect me, you gotta sweat me You said you thought you was ready, and I said, Let's see",I Lied,primary,0.551,148,5,0,0.421734,0.007816,0.430040,0.267637,0.010447,0.276834,0.390915,0.397734,disordered
+bar_16,"hear them mumblin', I hear the cacklin'
+I got 'em scared, shook, panickin'
+Overseas, church, Vatican
+You at a stand still, mannequin",Roman’s Revenge (Remix),primary,0.5477,101,5,0,0.435878,0.008991,0.449980,0.263607,0.011566,0.277525,0.401424,0.415016,disordered
+bar_17,"First things first, all my girls, know your worth
+Self-love is the greatest love on Earth
+Cry your eyes out, get it out, it's the worst
+But love don't hurt, no",Love Me Enough,primary,0.4828,121,5,0,0.376757,0.006687,0.386274,0.213336,0.025126,0.245683,0.344073,0.355172,disordered
+bar_18,"Then you say I won't survive if I leave
+But I got a couple of tricks up my sleeve
+I no longer need your attention, at ease",Here I Am,primary,0.4448,94,5,0,0.451264,0.029224,0.494997,0.290130,0.049043,0.385547,0.419037,0.446448,disordered
+bar_19,"Put my blood, sweat, and tears in perfectin' my craft
+Still every team's number one pick in the draft
+You could bring anybody, weatherman, pick a day
+I'm Kobe, KD, Kyrie, PICK A K!",Ganja Burn,primary,0.4329,136,5,0,0.456177,0.003765,0.460496,0.284410,0.010832,0.301649,0.421824,0.428382,disordered
+bar_2,"me against enemies, me against friends somehow, they both seem to become one a sea full of sharks & they ALL smell blood",Fly,primary,0.9158,95,5,0,0.461155,0.019826,0.489702,0.245311,0.010261,0.263394,0.417986,0.439296,disordered
+bar_20,"Why is that you could only see the worst in me? / I swear sometimes I feel like it nurtures me / But to keep it all real, it's kinda hurting me / I could say I'm done with it, but it lurks in me",Here I Am,primary,0.4146,142,5,0,0.455342,0.010377,0.468720,0.241062,0.020427,0.276189,0.412486,0.428882,disordered
+bar_21,"now tell them btches anyway, cause we don't care what none of them gyal affi say, u CAN’T stop me, i'ma fulfill the prophecy",Wave Ya Hand,primary,0.4055,95,5,0,0.473667,0.014438,0.494108,0.342667,0.062439,0.465952,0.447467,0.458681,uncertain_protein_like
+bar_22,"Is this how people act when you not regular? They screaming from Africa to Australia. I told em that I've always been peculiar. Queening down to the letter, as in Julius",Regular Degular,primary,0.3992,134,5,0,0.448523,0.014622,0.472015,0.275637,0.011796,0.293256,0.413946,0.436263,disordered
+bar_23,"I don't never clique up, but they know who the clique is, Fast little bitches, but of course I'm the quickest, Mortal Kombat, ninja Nicki, who ya pick is ?",Miami,primary,0.3955,117,5,0,0.465421,0.020554,0.488906,0.386009,0.122821,0.630003,0.449539,0.488402,uncertain_protein_like
+bar_24,"The Maybach ain't poppin, if it ain't got no par-tah-tion… Oops, I mean partition, it's all a part of my vision… I sit and count this money while I watch you b*tches audition",Lay It Down,featured,0.3703,131,5,0,0.371109,0.011765,0.385533,0.223860,0.025322,0.255588,0.341659,0.357100,disordered
+bar_25,"Say the Queen name you can get some ill press… That went right over your head, you should feel blessed… Must’ve used a lot of starch cause they still pressed",No Flag,featured,0.3698,124,5,0,0.463765,0.005573,0.471822,0.386269,0.019623,0.423468,0.448266,0.462151,uncertain_protein_like
+bar_26,"These bitches still my sons, who could ever deny it?
+My packs hit different, who could ever supply it?",Seeing Green,primary,0.3582,80,5,0,0.400917,0.011870,0.415269,0.223486,0.008954,0.234401,0.365431,0.379095,disordered
+bar_27,"You gotta have real skill, gotta work for that. If it’s really your passion would you give the world for that?",Ganja Burn,primary,0.3307,86,5,0,0.461912,0.002707,0.464792,0.257767,0.012564,0.269541,0.421083,0.425540,disordered
+bar_28,"Who had Eminem on the First album?
+Who had Kanye saying she’s a problem?
+Who tf came in the Game made her own column?
+Who, made Lil Wayne give em 5 million?",Want Some More,primary,0.3251,118,5,0,0.478694,0.019142,0.497753,0.324550,0.016168,0.355368,0.447865,0.460593,disordered
+bar_29,"Now don't you feel real stupid? Yeah, that's egg on yo' face
+If you wasn't so ugly, I'd put my d*ck in yo' face! 
+D*ck in your face
+Put my d*ck in your face",Come on a Cone,primary,0.3104,109,5,0,0.420723,0.022821,0.436942,0.257960,0.010199,0.271661,0.388171,0.403886,disordered
+bar_3,"You just a heartbreaker, won’t let you break mine cus I’ll be smashin’ windows and cuttin them brake lines",I Lied,primary,0.8298,84,5,0,0.640933,0.016472,0.668604,0.442557,0.013333,0.465701,0.601257,0.628023,confident_protein_like
+bar_30,But it's kill season you apologized but it's still treason Got 'em steamin' like dry cleanin Move on my time and I ain't no demon,Barbie Dangerous,primary,0.2987,100,5,0,0.403859,0.018802,0.429569,0.231171,0.019379,0.263780,0.369321,0.390390,disordered
+bar_31,"You trippin', did you pack?
+Can't post on Nicki block unless you sellin' Nicki crack
+Here, take a Nicki pack
+Check out this Nicki act
+Nicki this, Nicki that
+All these bchs piggyback",Majesty,primary,0.2726,142,5,0,0.373428,0.008328,0.384246,0.220569,0.012916,0.241045,0.342856,0.353215,disordered
+bar_32,"Lookin like every designer fave muse 
+Front row next to the who's who's 
+Tryna build another Barbie doll screw's loose",Barbie Dangerous,primary,0.2685,94,5,0,0.676139,0.005349,0.685450,0.647124,0.038642,0.706626,0.670336,0.683320,confident_protein_like
+bar_33,"I know I can really say I'm truly proud of You
+And no matter what they say, I never doubted You
+I completely understand what You gotta do
+Do what You gotta do",Blessings,primary,0.2621,124,5,0,0.436930,0.012703,0.460011,0.228940,0.008494,0.243111,0.395332,0.413912,disordered
+bar_34,"I’m in the collard green 6, Cornbread in the guts Got the Halloween kicks trick or treatin’ the clutch Come on Nigga is you trickin’ or what? Flow, flow tighter than the dick in the butt",Roger That,primary,0.2615,144,5,0,0.453118,0.009257,0.465353,0.327167,0.043172,0.409578,0.427928,0.451382,uncertain_protein_like
+bar_35,"Benihana to Katana, bitch I been a Donna
+He screaming my government, O-Onika Tanya
+You look like Nicki now, still you tacky-ana
+To keep it 100, bitch you wacky-ana",Bust Down Barbiana,primary,0.2547,125,5,0,0.517255,0.016030,0.532726,0.467308,0.149451,0.758734,0.507266,0.577928,uncertain_protein_like
+bar_36,"I ain't never lose NUN, but DAMN, I dun HAD IT
+I ain't never STRIKE OUT
+They can't average what I batted, NOOO!
+If she hating, tell dat bitch to let it GOOOO",Runaway (Film),featured,0.2503,117,5,0,0.581555,0.018600,0.606102,0.422038,0.022459,0.450571,0.549651,0.567916,confident_protein_like
+bar_37,"This Young Money ENT, fuck that negative Nancy
+I'm still balling, I'm still balling, NBA on TNT
+Came through dripping, D&G, always ducking TMZ
+Flow still need that EMT, tell her get at me and see!",Arctic Tundra,primary,0.2469,151,5,0,0.352887,0.015631,0.362840,0.186687,0.004345,0.194076,0.319647,0.327979,disordered
+bar_38,"This one goes out to all of my critics
+Don't you feel stupid
+Look how I did it
+Look how it came to pass when I said it
+We can do debit I don't need no credit
+Yes I'm epic look how I rep it",Haterade,featured,0.2407,141,5,0,0.372057,0.012009,0.386044,0.287578,0.042214,0.349068,0.355161,0.372298,disordered
+bar_39,"I’m just abusive by nature, not cause I hate ya, not cause I wanna get someone to imitate ya, I know it’s hard, I know it intimidate ya",The Crying Game,primary,0.2307,102,5,0,0.538799,0.016821,0.563795,0.380561,0.023367,0.417779,0.507152,0.534592,uncertain_protein_like
+bar_4,"you gotta catch me while i care, i ain’t callin’ for u watchin’ my every move, thought i was fallin’ for YOU?",Fallin 4 U,primary,0.7564,81,5,0,0.482579,0.006997,0.492659,0.301079,0.012425,0.310250,0.446279,0.455986,disordered
+bar_40,"What you think all the goons is for
+Two by the door few more out in New York
+And I feed 'em curry chicken, I'm all about my green nah me?
+Got some fat btchs in the kitchen",Warning,primary,0.2273,130,5,0,0.516321,0.019451,0.540884,0.382412,0.027007,0.435754,0.489539,0.505922,uncertain_protein_like
+bar_41,"Is this the thanks that I get for puttin' you bitches on? Is it my fault that all of you bitches gone? Should've sent a thank-you note, you little ho Now I'ma wrap your coffin with a bow",Roman’s Revenge,primary,0.2262,142,5,0,0.464115,0.016292,0.494731,0.363804,0.083976,0.524928,0.444053,0.500770,uncertain_protein_like
+bar_42,"Ayo, even if my name was Natalie Nunn, you bitches still couldn't chin-check me
+That's word to Chanel, they ain't nothing to see bitches on TV channelin' me",Endless Fashion,featured,0.2259,121,5,0,0.506323,0.043639,0.540999,0.446169,0.025907,0.489573,0.494292,0.529002,uncertain_protein_like
+bar_43,"Yo, Patty, give me the gun back
+When he say cock it back, gun off safety
+Thinkin' 'bout you lately, JoJo and K-Ci
+I be on that calm flex, them gyal hasty
+Gyal, them want me face, but them",Fallin 4 U,primary,0.2216,139,5,0,0.453784,0.005982,0.458198,0.371615,0.014824,0.394640,0.437350,0.445487,disordered
+bar_44,"They know you pop up like jump rope
+So if the Queen Sleeze put a bag on it then it’s gun smoke
+So we ain’t playing on the innanet
+You got bigger fish to fry
+That’s why you got a bigger net",My Life,primary,0.2196,144,5,0,0.328836,0.005647,0.335886,0.129135,0.005266,0.135403,0.288896,0.294652,disordered
+bar_45,"This a celebration, this is levitation
+Look at how you winning now
+This took dedication
+This is meditation, higher education
+This the official, competitor elimination",Champion,primary,0.2193,139,5,0,0.465894,0.007866,0.479012,0.219407,0.006023,0.228230,0.416597,0.427739,disordered
+bar_46,"You know radio already tried to blackball a b*
+It's all good cause when you a LEGEND, When you legendary,
+You shine no matter what",Barbie Goin Bad,primary,0.2078,102,5,0,0.667920,0.037843,0.688414,0.409778,0.041588,0.433349,0.616291,0.637056,confident_protein_like
+bar_47,"Look at all the shit that y’all threw at me, and I never dipped. Greatest female rapper to ever live, and that’s on my kid.",Just The Memories,primary,0.2052,93,5,0,0.553066,0.015255,0.570895,0.429747,0.007437,0.440413,0.528402,0.543248,uncertain_protein_like
+bar_48,"I remember when I lost everything in a fire
+Now I got fire 23′s on my tire
+Shout outs to my brothers, Jelani and Macaiah
+Thanks to the Messiah, my money getting higher",Top Of The World,primary,0.2019,130,5,0,0.438325,0.002998,0.440958,0.315583,0.004330,0.322217,0.413776,0.416484,disordered
+bar_49,"A sea full of sharks and they all smell blood
+They start comin' and I start risin'
+Must be surprisin', I'm just surmisin'
+I win, thrive, soar, higher
+Higher, higher, more fire",Fly,primary,0.1953,133,5,0,0.404228,0.013558,0.420893,0.234047,0.009599,0.247391,0.370192,0.386192,disordered
+bar_5,everybody wanna try to box me in. suffocatin’ every time it locks me in. paintin' they own pictures then they crop me in.,Fly,primary,0.7451,94,5,0,0.421508,0.007924,0.430726,0.250503,0.017666,0.280568,0.387307,0.392590,disordered
+bar_50,"I take the L 'cause I don't want to see my brother lose, Been through it all but I could never fill my mother's shoes. And nah, I don't want no handout I just want my ad-libs to get panned out",Sweetest Girl,primary,0.1942,144,5,0,0.440159,0.011064,0.452470,0.230904,0.011163,0.251409,0.398308,0.412258,disordered
+bar_51,"They done went to witch doctors to bury the Barbie
+But I double back, kill bitches, bury the body
+And that go for anybody, you'll be thoroughly sorry
+I could wage war or I come in peace like Gandhi",Ganja Burn,primary,0.193,155,5,0,0.512825,0.024101,0.548330,0.457525,0.103881,0.664591,0.501765,0.536665,uncertain_protein_like
+bar_52,Now all the kids want a nicki Minaj book bag bitch I’ve been hot since my part had a zig zag low pink Volvos these bitches are bozo’s,New York Minute (Remix),featured,0.1845,104,5,0,0.525716,0.012271,0.545194,0.439066,0.046437,0.511213,0.508386,0.538398,uncertain_protein_like
+bar_53,"Why the fuck I gotta say it tho? You niggas don’t know it yet? Foot ball, touch down on a boeing jet. You my son but I’m just not showing yet, wrist icy BUT IT AINT SNOWING YET",Want Some More,primary,0.1836,132,5,0,0.523214,0.028678,0.544411,0.351929,0.017723,0.380383,0.488957,0.504924,disordered
+bar_54,"I live and I learn, but I wait my turn
+I'm always on the run, got weight to burn
+Ease off the gas, then I make a turn
+Three off the pass, they don't play like her",Encore ’07,primary,0.1797,120,5,0,0.383611,0.007068,0.390623,0.196993,0.003971,0.201913,0.346288,0.352182,disordered
+bar_55,"Tellin me to come with her,
+underneath my comforter,
+and she brought a gun with her,
+pills and some rum with her.
+Took me on the balcony
+tellin me to jump with her.",Girl on Fire (Inferno Version),featured,0.1782,127,5,0,0.374742,0.030258,0.427409,0.196220,0.022087,0.232142,0.339038,0.383502,disordered
+bar_56,"Body’s hey Wonderland, my face is top-tier. I swear, watch the ice glare. They be like I’m Gucci, but don’t shop there.",IDOL (Remix),featured,0.1735,88,5,0,0.443390,0.013235,0.460587,0.258433,0.025795,0.279550,0.406398,0.422031,disordered
+bar_57,"Tell 'em I'm the ninja, Weezy is my Sensei
+So I call him Splinter
+Faster than a sprinter
+Gimme my chopsticks, I'll have these rap bitches for dinner",Gotta Go Hard,primary,0.1713,116,5,0,0.453091,0.009472,0.466101,0.279944,0.019871,0.298829,0.418462,0.430576,disordered
+bar_58,"But hey, maybe ill never win, maybe im settlin’
+Cant let the devil in, im a comic book heroine
+But when the win blows, im so Marilyn",Can Anybody Hear Me?,primary,0.1682,101,5,0,0.550288,0.015833,0.567805,0.437505,0.068000,0.533797,0.527731,0.543998,uncertain_protein_like
+bar_59,"If I could turn back the time
+Dear God, somehow, could you press rewind?
+Won't come when I call, but He just in time
+So I come when He call like I'm next in line",Encore ’07,primary,0.1636,121,5,0,0.520369,0.012090,0.541437,0.312023,0.017282,0.341715,0.478700,0.501493,disordered
+bar_6,EVERYTHING I TRIED TO TEACH EM THEY GON SEE IT IN TIME TELL THEM BITCHES GET A STICK IM DONE LEADING THE BLIND,I’m The Best,primary,0.7394,88,5,0,0.631071,0.011965,0.644125,0.511871,0.022199,0.539468,0.607231,0.619889,confident_protein_like
+bar_60,"Cause m*therf*ckers know I put the hex on b!tches, I f*ck a b!tch over like I'm Sex!ng b!tches, Tic-tac-toe, then I put the X on b!tches, Point game, I score, who's next, you b!tches?",Mercy,featured,0.1622,129,5,0,0.343867,0.004890,0.348910,0.177506,0.012215,0.190022,0.310595,0.317133,disordered
+bar_61,"See, the difference is I run businesses
+If I ain't employ you, then what yo' business is? I'll have staff roll up like, What the business is?",Red Ruby Da Sleeze,primary,0.1621,107,5,0,0.430754,0.006815,0.439569,0.283400,0.013083,0.303044,0.401283,0.412264,disordered
+bar_62,"I catch rec of recreation, so I exceed all your expectations. Bitches ain’t got it in ‘em, I kill ‘em and then I skin ‘em. The contract was signed but I am the addendum",Blazin,primary,0.1565,127,5,0,0.460884,0.011116,0.476732,0.323368,0.010042,0.337881,0.433380,0.448962,disordered
+bar_63,"I dumb my raps down, so I don't lose these bitches
+Say some sex shit like, ""Wetter than jacuzzi bitches""",Baddest Bitch,primary,0.1527,80,5,0,0.533279,0.012560,0.544385,0.282780,0.022761,0.323169,0.483179,0.492789,disordered
+bar_64,"Had to come off IG so they can't stalk me
+All they do is copy looks, steal music, too
+Wanted to see what bitches do when they lose the blueprint",Barbie Tingz,primary,0.1526,112,5,0,0.412717,0.008751,0.424846,0.244970,0.015586,0.270817,0.379168,0.394040,disordered
+bar_65,"She saw somethin' in me that til this day I don't know if I could be that, But I'ma die trying and when I'm done crying Grab the iron, and black out like I'm retiring",Autobiography,primary,0.152,125,5,0,0.467846,0.014357,0.483531,0.325581,0.054069,0.428190,0.439393,0.472463,uncertain_protein_like
+bar_66,"That’s why I call you buzz light year, cause by the time you start buzzing, bitch you gonna have white hair, paparazzi was a fright scare, when I landed out in London, it was looking like Mike, dear",Roman In Moscow,primary,0.1514,154,5,0,0.492871,0.014297,0.520838,0.334901,0.020803,0.357417,0.461277,0.488154,disordered
+bar_67,"The one who came to take claim of this heart
+Cold-hearted, shame you'll remain just a frame in the dark",Grand Piano,primary,0.1502,81,5,0,0.568163,0.025115,0.593467,0.435162,0.007859,0.446046,0.541563,0.561808,uncertain_protein_like
+bar_68,"Wait, oh, let me see your phone cause all them bitches is Rachet. And don’t let me get in my truck cause all them bitches’ll catch it.",Right By My Side,primary,0.1462,102,5,0,0.566097,0.007185,0.577740,0.478382,0.014181,0.490562,0.548554,0.560304,uncertain_protein_like
+bar_69,"I’m Big Willie no Bike Gear
+I told you Btches last year I’m a rap Btch nightmare
+That’s why I call you buzz light year
+‘Cause by the time you start buzzin bitch you gon have white hair",Roman In Moscow,primary,0.1422,143,5,0,0.436643,0.006743,0.449062,0.296152,0.006948,0.302752,0.408545,0.419800,disordered
+bar_7,You see I live for the bill I die for the bill I still make sure I read the bi to the ble and every time I write I’m precise in my skill it’s more to life than just ice in your grill,Sweetest Girl,primary,0.7308,138,5,0,0.351158,0.015846,0.380423,0.224213,0.012512,0.246493,0.325769,0.347561,disordered
+bar_70,"When i fly, it’s one letter and one number, You wack hoes could get hot for one summer, After that the queen still reign here, I’m Santa Claus to these hoes without a reindeer.",I Am Your Leader,primary,0.1394,136,5,0,0.468406,0.009326,0.477547,0.265154,0.021352,0.296779,0.427756,0.440502,disordered
+bar_71,"I keep a bar like Esco. I want a ball, where the nets go??? I’m on stage you can stand where the guests go,,,, bitches is my son’s. They don’t wanna leave the nest though.",You Already Know,featured,0.1394,123,5,0,0.465319,0.014447,0.487123,0.386756,0.121063,0.625133,0.449607,0.487618,uncertain_protein_like
+bar_72,"To raise a child… it might take a village
+But I wouldn’t know cause these bitches my sons yea they was and they still is",Danny Glover (Second Remix),featured,0.1382,94,5,0,0.407820,0.003369,0.411763,0.220282,0.004282,0.225498,0.370312,0.373501,disordered
+bar_73,"Go against me, where your suicide letter? bitch wanna kill theyself then I let her! Soon as he say its go time, I get her, Told that bitch bow down when I met her",I Admit,featured,0.138,124,5,0,0.534090,0.003412,0.538731,0.394838,0.041959,0.473917,0.506239,0.523061,uncertain_protein_like
+bar_74,"I just figured if you saw me, if you looked in my eyes You'd remember our connection and be freed from the lies",Bed of Lies,primary,0.1375,87,5,0,0.503542,0.013688,0.517351,0.333340,0.029712,0.363404,0.469502,0.484158,disordered
+bar_75,"Don't fuck with people for being autistic
+Instead, prove your worth, Nicki, suck on this dick
+Sorry if my nut makes you choke
+But neurodivergence isn't a joke",FEFE,featured,0.1364,126,5,0,0.496496,0.001735,0.498533,0.362772,0.007723,0.375196,0.469751,0.472042,disordered
+bar_76,"let’s be real all you bitches wanna look like me, wanna be in demand get booked like me, wanna run up in the lab and cook like me",Barbie Tingz,primary,0.1188,99,5,0,0.532314,0.006028,0.541348,0.375975,0.039597,0.446983,0.501046,0.513202,uncertain_protein_like
+bar_77,"Man this shtt that we be fighting over
+So irrelevant
+Ion even remember tho
+I was prolly hella bent let’s go",Moment 4 Life,primary,0.1187,86,5,0,0.691217,0.002062,0.694916,0.487123,0.002243,0.489115,0.650398,0.653699,confident_protein_like
+bar_78,"I'm not from Trinidad, not from Detroit
+Shut the fuck up, if you want to exploit
+A person's mind state isn't your humor
+You've become a rap version of tumors",Shooters (Demo Remix),featured,0.1186,122,5,0,0.430548,0.014994,0.447861,0.232260,0.016419,0.251470,0.390890,0.405869,disordered
+bar_79,Man I’m birthin these artists and I’m starting to show I feel freeeee I feel freedom I feel freedommmm why they mad! You should see them. Burn a L cause it’s crazy in here!,Freedom,primary,0.1082,133,5,0,0.490686,0.013479,0.512000,0.329584,0.046534,0.412497,0.458466,0.492099,uncertain_protein_like
+bar_8,"I will retire with the ring
+And I will retire with the crown, yes
+No, I'm not lucky, I'm blessed, yes
+Clap for the heavyweight champ, me
+But I couldn't do it all alone, we",Moment 4 Life,primary,0.7108,128,5,0,0.578531,0.011370,0.589808,0.427859,0.011647,0.449461,0.548397,0.557465,uncertain_protein_like
+bar_80,"I drove for miles just to find you and find myself, all these screams, all these voices in my head, you gave me strength gave me hope for a lifetime, I never was satisfied.",Save Me,primary,0.1068,134,5,0,0.470468,0.016865,0.487526,0.356640,0.017209,0.375127,0.447703,0.462395,disordered
+bar_81,"Everyday a Queen you slept on,
+I’m not talking about your mattress,but um
+You the type of player I press eject on!",Nip Tuck,primary,0.1052,89,5,0,0.499671,0.012634,0.511288,0.262994,0.011156,0.282681,0.452335,0.465567,disordered
+bar_82,"A bitch been sittin' back, just lettin' you bitches lie
+Throwin' your likkle shots, I've been lettin' them slide 
+Me against you, you know who they gon' decide
+Tryin' to be down, application denied",Bahm Bahm,primary,0.105,152,5,0,0.403336,0.011045,0.423590,0.288259,0.028896,0.323693,0.380321,0.403610,disordered
+bar_83,"Out in Tokyo, they calling me Nicki-san
+Everywhere you go, they calling you Nicki's son
+Coupes and trucks
+Money bags Scrooge McDuck",Born Stunna (Remix),featured,0.1046,106,5,0,0.431020,0.018169,0.459457,0.297146,0.047334,0.377500,0.404245,0.431884,disordered
+bar_84,"While you was trying to pull me down I leveled up
+I leveled up twice, I leveled up three times
+He tapped 'em and told 'em, She's mine
+So even when I cried I knew I'd be fine",I’m Getting Ready,featured,0.1046,130,5,0,0.431531,0.007757,0.442238,0.216797,0.018157,0.238164,0.388585,0.401423,disordered
+bar_9,"And everything I peeped, can't just unsee… Sips tea, and it's unsweet… Respect bad gyal when mi done speak",the light is coming,featured,0.7073,82,5,0,0.450841,0.007763,0.461036,0.234129,0.018788,0.251815,0.407499,0.417797,disordered

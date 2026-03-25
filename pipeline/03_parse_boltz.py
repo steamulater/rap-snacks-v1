@@ -144,9 +144,10 @@ def main():
 
     bar_dirs = sorted(
         list(boltz_dir.glob("bar_*")) + list(boltz_dir.glob("b[0-9]*"))
+        + list(boltz_dir.glob("na[0-9]*"))
     )
     if not bar_dirs:
-        print(f"[ERROR] No bar_* directories found in {boltz_dir}")
+        print(f"[ERROR] No bar_*/b*/na* directories found in {boltz_dir}")
         sys.exit(1)
 
     print(f"[03_parse_boltz.py] Found {len(bar_dirs)} bar directories in {boltz_dir}")
