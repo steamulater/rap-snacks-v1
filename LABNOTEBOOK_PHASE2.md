@@ -324,4 +324,4 @@ outputs/
 
 ---
 
-*Living document. Phase 2 begins after Boltz-2 native_alanine folds return from Colab.*
+*Living document. Phase 2 active — Boltz-2 native_ala complete, candidates selected, ProteinMPNN design next.*

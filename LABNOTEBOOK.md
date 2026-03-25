@@ -2,7 +2,7 @@
 
 **Repo:** `steamulater/rap-snacks-v1`
 **Started:** March 2026
-**Status:** Boltz-2 complete · FoldSeek complete · Pairwise analysis complete · ESMFold full run in progress
+**Status:** Phase 1 complete · Boltz-2 native_ala complete · Phase 2 candidate selection complete
 
 ---
 
@@ -33,25 +33,33 @@ data/aggregated_lines_v2_frozen.csv    <- immutable input, SHA-256 guarded
                          bars_v2_{mode}.fasta × 5  |  mask_v2_{mode}.json × 5
          |
 prep_boltz_fasta.py      split concordance FASTA → b0.fasta … b84.fasta [DONE]
-prep_boltz_fasta_native_ala.py  BJOZUX→A FASTA → na0.fasta … na84.fasta [DONE, folding pending]
+prep_boltz_fasta_native_ala.py  BJOZUX→A FASTA → na0.fasta … na84.fasta [DONE]
          |
 [Boltz-2 on Colab]       concordance condition, --diffusion_samples 5  [DONE]
                          outputs/boltz_outputs/ (425 PDB files)
+[Boltz-2 on Colab]       native_ala condition, --no-kernels, A100       [DONE]
+                         boltz_results_boltz_inputs_native_ala/ (425 PDB files)
          |
 03_parse_boltz.py        extract pLDDT, pTM → boltz_summary.csv        [DONE]
+                         boltz_summary_native_ala.csv (native_ala)      [DONE]
          |
-02_esm_fold.py           ESMFold API ensemble, 5 conditions            [PILOT DONE, full run in progress]
-                         top-25 pilot complete; full 85-bar run ~56% done
+02_esm_fold.py           ESMFold API ensemble, 5 conditions            [DONE — 85 bars × 5 conditions]
+                         3498 successful folds, Figs 11–20
          |
 04_foldseek.py           FoldSeek REST API, pTM≥0.4 bars only          [DONE — 6 bars, 0 hits]
          |
 05_enrich_csv.py         join all metrics → aggregated_lines_v2_enriched.csv [DONE]
+                         +8 boltz_na_* columns merged (66 total)        [DONE]
          |
 06_pairwise_comparison.py  85×85 pairwise seq identity + structural RMSD [DONE]
          |
 07_boltz_ensemble_foldseek_bars.py  ensemble deep dive, 6 FoldSeek bars [DONE]
          |
 generate_structure_viewer.py  interactive 3Dmol.js HTML viewer          [DONE]
+         |
+08_candidate_selection.py   filter+rank → phase2_candidates.csv        [DONE — 37 candidates, Figs 28–30]
+         |
+11_scrambled_control.py     in silico scrambled control (ESMFold)       [DONE — 255/255 pLDDT≈0.003]
 ```
 
 **Orchestration:** `make audit` → `make convert` → [Colab] → `make parse-boltz` → `make esm-pilot` → `make foldseek` → `make enrich` → analysis scripts
@@ -704,27 +712,111 @@ Features: pLDDT/rainbow/surface/stick toggles, per-panel M0–M4 model selector,
 
 ---
 
+## Stage 8 — Boltz-2 Native_Ala (COMPLETE)
+
+**Script:** `pipeline/prep_boltz_fasta_native_ala.py` → Colab → `pipeline/03_parse_boltz.py`
+**Date:** 2026-03-25 · A100-SXM4-80GB · ~17 min · `--no-kernels` flag required (cuequivariance_ops_torch not installed by default in Colab)
+
+85 bars × 5 diffusion samples = 425 PDB files. 0 failures.
+Results in `boltz_results_boltz_inputs_native_ala/`. Parsed to `outputs/boltz/boltz_summary_native_ala.csv`.
+Native_ala columns merged into enriched CSV as `boltz_na_*` (8 new columns, 66 total).
+
+| Metric | Concordance | Native_ala |
+|---|---|---|
+| confident_protein_like | 1 | **6** |
+| uncertain_protein_like | 12 | **23** |
+| disordered | 72 | 56 |
+| mean pLDDT (mean model) | 0.316 | **0.472** |
+| mean pTM (mean model) | ~0.28 | **0.317** |
+
+**Key finding:** BJOZXU→A substitution (native_ala) produces significantly better folds than the softmax concordance draw. 6 bars reach `confident_protein_like` vs 1 in concordance. Native_ala beats concordance in 26/37 Phase 2 candidates.
+
+---
+
+## Stage 9 — Phase 2 Candidate Selection (COMPLETE)
+
+**Script:** `analysis/08_candidate_selection.py`
+**Output:** `data/phase2_candidates.csv` (37 candidates), Figs 28–30
+
+### Selection filters
+
+| Filter | Threshold | Pass rate |
+|---|---|---|
+| Boltz pTM ≥ 0.35 (best of conc/na) | 0.35 | 40/85 |
+| Boltz pLDDT ≥ 0.40 (best of conc/na) | 0.40 | 78/85 |
+| Sequence length 80–150 AA | — | 81/85 |
+| Max consecutive hydrophobic AA ≤ 6 | 6 | 82/85 |
+| **All filters** | — | **37/85** |
+
+### Top 12 candidates (Phase 2 submission shortlist)
+
+| Rank | bar_id | Song | best pTM | best pLDDT | best class | better cond. |
+|---|---|---|---|---|---|---|
+| 1 | bar_6 | I'm The Best | 0.512 | 0.631 | confident | native_ala |
+| 2 | bar_32 | Barbie Dangerous | 0.647 | 0.676 | confident | native_ala |
+| 3 | bar_3 | I Lied | 0.443 | 0.641 | confident | native_ala |
+| 4 | bar_8 | Moment 4 Life | 0.428 | 0.579 | uncertain | native_ala |
+| 5 | bar_0 | Super Freaky Girl (Queen Mix) | 0.361 | 0.490 | uncertain | native_ala |
+| 6 | bar_13 | Dear Old Nicki | 0.480 | 0.499 | uncertain | native_ala |
+| 7 | bar_11 | Hell Yeah | 0.481 | 0.467 | uncertain | concordance |
+| 8 | bar_77 | Moment 4 Life | 0.487 | 0.691 | confident | native_ala |
+| 9 | bar_27 | Ganja Burn | 0.442 | 0.624 | confident | concordance |
+| 10 | bar_9 | the light is coming | 0.351 | 0.483 | disordered | concordance |
+| 11 | bar_17 | Love Me Enough | 0.415 | 0.507 | uncertain | concordance |
+| 12 | bar_46 | Barbie Goin Bad | 0.410 | 0.668 | confident | native_ala |
+
+### Fig 28 — Concordance vs Native_Ala pLDDT per bar (lollipop)
+
+![Fig 28](outputs/figures/fig28_conc_vs_na_plddt.png)
+
+Per-bar pLDDT for both conditions connected by a line. Orange connectors = candidates passing all filters. Cyan dots = concordance; orange diamonds = native_ala. Red dashed line = 0.40 filter threshold.
+
+### Fig 29 — Concordance pTM vs Native_Ala pTM (2D scatter)
+
+![Fig 29](outputs/figures/fig29_conc_vs_na_ptm.png)
+
+Scatter of concordance pTM (x) vs native_ala pTM (y). Points above the diagonal fold better under native_ala. Diamond markers = candidates; coloured by best structural class.
+
+### Fig 30 — Candidate shortlist table
+
+![Fig 30](outputs/figures/fig30_candidate_table.png)
+
+Per-bar pLDDT and pTM for both conditions, ranked by composite score (pTM×0.5 + pLDDT×0.3 + iconicity×0.2). `better_condition` column highlights which sequence to prioritise for ProteinMPNN design.
+
+---
+
+## Stage 10 — In Silico Scrambled Control (COMPLETE)
+
+**Script:** `analysis/11_scrambled_control.py`
+**Output:** `outputs/scrambled/scrambled_results.csv`, `outputs/scrambled/fig_scrambled_plddt.png`
+
+3 shuffled variants per bar generated for both concordance and native_ala sequences (same AA composition, random order). Folded with ESMFold API.
+
+| Bucket | n | mean pLDDT | fraction < 0.3 |
+|---|---|---|---|
+| concordance (original) | 85 | 0.315 | 37/85 |
+| native_ala (original) | 25 | 0.353 | 4/25 |
+| scrambled concordance | 255 | **0.003** | **255/255** |
+| scrambled native_ala | 255 | **0.004** | **255/255** |
+
+**Finding:** 100% of shuffled sequences produce pLDDT ≈ 0.003 — complete disorder. Structure is sequence-order dependent, not amino acid composition. No wet-lab slot needed for a scrambled control; this result is confirmed computationally and can be cited directly.
+
+---
+
 ## TODO
 
-### In progress
-1. **ESMFold full run** — all 85 bars × 5 conditions (~5270 calls). Run `python pipeline/02_esm_fold.py --resume` after the background process completes (~56% done as of March 2026). Extends all pilot figures (Fig 1–10) to full 85-bar dataset.
-2. **Boltz-2 native_alanine condition** — FASTA inputs ready (`outputs/boltz_inputs_native_ala/`, 85 files). Upload to Colab and run:
-   ```bash
-   !boltz predict boltz_inputs_native_ala/ --use_msa_server --output_format pdb --diffusion_samples 5 --out_dir boltz_outputs_native_ala/
-   ```
-   Then: `python pipeline/03_parse_boltz.py --id-map data/boltz_id_map_native_ala.json` → `python pipeline/05_enrich_csv.py`
+### Phase 2 — next steps
+1. **ProteinMPNN soft design** — build `analysis/09_proteinmpnn_design.py`. For each of top-12 candidates: fix lyric-AA positions, design BJOZXU positions. 50 sequences per bar. Requires Boltz concordance PDB (best model) as backbone input.
+2. **Self-consistency filter** — ESMFold each MPNN design, keep TM-score ≥ 0.70 vs original Boltz backbone. ~5–10 passing designs per bar expected.
+3. **Codon optimisation** — build `analysis/10_codon_optimize.py`. Optimise for *E. coli* K12, add C-terminal His6 tag, T7 promoter/terminator flanks.
+4. **Platform decision** — Adaptyv Bio ($95/protein, ~$4,560 for 48) vs Ginkgo Cloud Lab ($117/protein, ~$5,616 for 48, includes triplicates). See `LABNOTEBOOK_PHASE2.md`.
+5. **Final 12-bar selection** — currently top-12 by rank score from `data/phase2_candidates.csv`. Review before committing to submission.
 
-### Next steps (unblocked)
-3. **Concordance vs native_alanine structural comparison** — once native_ala Boltz folds return, do pairwise Cα RMSD between concordance and native_ala predictions for each bar. Quantifies how much BJOZUX→A changes the fold vs the softmax draw.
-4. **bar_27 secondary structure annotation** — only `confident_protein_like` bar (pLDDT=0.665, pTM=0.487, *Ganja Burn*). Run DSSP or extract secondary structure from PDB; annotate helix/sheet/coil regions over per-residue pLDDT profile.
-5. **FoldSeek on remaining `uncertain_protein_like` bars** — 12 bars have pTM ≥ 0.4 but were already searched. Consider lowering threshold to pTM ≥ 0.3 once ESMFold full run is available to cross-validate.
-6. **Update structure viewer with native_ala comparison mode** — add M0–M4 toggle for native_alanine condition once those PDB files exist; show concordance vs native_ala side-by-side.
-7. **Enable Chrome WebGL** — Chrome hardware acceleration disabled on this machine. Fix: Chrome Settings → System → "Use hardware acceleration when available" → Relaunch. Required for 3Dmol viewer in Chrome.
-
-### Analysis backlog
-8. **Full 85-bar cross-condition analysis** — extend Figs 1–10 to all 85 bars once ESMFold full run completes. Key question: does the condition ranking hold at full scale?
-9. **Iconicity–structure orthogonality at full scale** — recompute r(iconicity, Boltz pLDDT) over all 85 bars with Boltz results (pilot r ≈ 0.051, Boltz full-run expected to confirm).
-10. **BOJUXZ position analysis** — for high-SD bars (structurally sensitive to BOJUXZ draws), identify which specific positions drive variance. Cross-reference mutation mask with per-residue pLDDT.
+### Backlog
+6. **Chrome WebGL** — Chrome hardware acceleration disabled. Fix: Settings → System → "Use hardware acceleration when available" → Relaunch.
+7. **Structure viewer native_ala mode** — add concordance vs native_ala side-by-side toggle to `outputs/structure_viewer/viewer_foldseek_bars.html`.
+8. **bar_27 DSSP annotation** — secondary structure annotation over per-residue pLDDT profile.
+9. **BJOZXU position analysis** — cross-reference mutation mask with per-residue pLDDT for high-SD bars.
 
 ---
 
@@ -745,33 +837,40 @@ rap-snacks-v1/
 ├── analysis/
 │   ├── plot_esm_pilot.py                   <- Figs 1–10 (ESMFold pilot, top-25 bars)
 │   ├── plot_esm_full.py                    <- Figs 11–20 (ESMFold full run, 85 bars)
-│   ├── 06_pairwise_comparison.py           <- Figs 11–13: pairwise seq identity + RMSD
-│   ├── 07_boltz_ensemble_foldseek_bars.py  <- Figs 14–16: ensemble deep dive (6 bars)
-│   └── generate_structure_viewer.py        <- Fig 17 + interactive 3Dmol.js HTML viewer
+│   ├── 06_pairwise_comparison.py           <- Figs 21–23: pairwise seq identity + RMSD
+│   ├── 07_boltz_ensemble_foldseek_bars.py  <- Figs 24–27: ensemble deep dive (6 bars)
+│   ├── generate_structure_viewer.py        <- interactive 3Dmol.js HTML viewer
+│   ├── 08_candidate_selection.py           <- Figs 28–30: Phase 2 candidate selection
+│   └── 11_scrambled_control.py             <- in silico scrambled control (ESMFold)
 ├── data/
 │   ├── aggregated_lines_v2_frozen.csv      <- immutable input
-│   ├── aggregated_lines_v2_enriched.csv    <- working master CSV (58 columns)
+│   ├── aggregated_lines_v2_enriched.csv    <- working master CSV (66 columns)
 │   ├── bar_index_snapshot.json             <- authoritative bar_N → lyric mapping
 │   ├── boltz_id_map.json                   <- b0…b84 → bar_0…bar_84 (concordance)
 │   ├── boltz_id_map_native_ala.json        <- na0…na84 → bar_0…bar_84 (native_ala)
+│   ├── phase2_candidates.csv               <- 37 Phase 2 candidates ranked by score
 │   └── frozen_csv.sha256                   <- hash guard
 ├── outputs/
 │   ├── fastas/                             <- bars_v2_{mode}.fasta × 5
 │   ├── masks/                              <- mask_v2_{mode}.json × 5
 │   ├── boltz/                              <- boltz_summary.csv, boltz_models.csv
-│   ├── boltz_inputs/                       <- b0.fasta … b84.fasta (concordance, uploaded to Colab)
-│   ├── boltz_inputs_native_ala/            <- na0.fasta … na84.fasta (native_ala, pending Colab)
-│   ├── boltz_outputs/                      <- 425 PDB files from Colab (concordance)
+│   │                                          boltz_summary_native_ala.csv, boltz_models_native_ala.csv
+│   ├── boltz_inputs/                       <- b0.fasta … b84.fasta (concordance)
+│   ├── boltz_inputs_native_ala/            <- na0.fasta … na84.fasta (native_ala)
+│   ├── boltz_outputs/                      <- 425 PDB files (concordance, from Colab)
 │   ├── esm/                                <- ESMFold PDB files + plddt_scores.csv
 │   ├── foldseek/                           <- foldseek_hits.csv + raw JSON cache
-│   ├── pairwise/                           <- seq_identity.csv, struct_rmsd.csv, Figs 11–16
+│   ├── pairwise/                           <- seq_identity.csv, struct_rmsd.csv, Figs 21–26
+│   ├── scrambled/                          <- scrambled_results.csv + fig_scrambled_plddt.png
 │   └── structure_viewer/                   <- viewer_foldseek_bars.html (30 structures)
+├── boltz_results_boltz_inputs_native_ala/  <- 425 PDB files (native_ala, from Colab)
 ├── figures/
-│   └── fig7_backbone_traces.png            <- Fig 17: Cα backbone traces, 6 FoldSeek bars
+│   └── fig7_backbone_traces.png            <- Fig 27: Cα backbone traces, 6 FoldSeek bars
 ├── Makefile
 ├── requirements.txt
 ├── README.md
-└── LABNOTEBOOK.md                          <- this file
+├── LABNOTEBOOK.md                          <- Phase 1 notebook (this file)
+└── LABNOTEBOOK_PHASE2.md                   <- Phase 2 notebook (wet lab submission plan)
 ```
 
 ---
