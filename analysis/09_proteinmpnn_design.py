@@ -188,21 +188,38 @@ def main(top_n: int, n_seqs: int, temp: float, esm_plddt_min: float) -> None:
             "seq_len":  seq_len,
         })
 
-    # Write fixed_positions.jsonl
+    # Write fixed_positions.jsonl — ProteinMPNN iterates lines and reassigns dict,
+    # so ALL bars must be in a single JSON object on one line (not true JSONL).
+    combined = {rec["bar_id"]: {"A": rec["fixed"]} for rec in fixed_pos_records}
     with open(FIXED_POS_JSONL, "w") as f:
-        for rec in fixed_pos_records:
-            entry = {rec["bar_id"]: {"A": rec["fixed"]}}
-            f.write(json.dumps(entry) + "\n")
+        f.write(json.dumps(combined) + "\n")
 
     print(f"Prepared {len(fixed_pos_records)} PDBs + fixed positions JSONL\n")
 
     # ------------------------------------------------------------------ #
     # Step 2 — run ProteinMPNN per bar                                    #
     # ------------------------------------------------------------------ #
-    all_rows = []
+
+    # Load any existing results so we can skip bars already fully scored
+    existing = pd.read_csv(FILTERED_CSV) if FILTERED_CSV.exists() else pd.DataFrame()
+    scored_bars = set()
+    if not existing.empty:
+        # A bar is "done" if it has results and none are nan pLDDT (i.e., no 403 failures)
+        for bar_id, grp in existing.groupby("bar_id"):
+            if grp["esm_plddt"].notna().all():
+                scored_bars.add(bar_id)
+        if scored_bars:
+            print(f"Resuming — skipping {len(scored_bars)} already-scored bars: {sorted(scored_bars)}\n")
+
+    all_rows = list(existing[existing["bar_id"].isin(scored_bars)].to_dict("records")) if not existing.empty else []
 
     for rec in fixed_pos_records:
         bar_id  = rec["bar_id"]
+
+        if bar_id in scored_bars:
+            print(f"  [SKIP] {bar_id} — already scored")
+            continue
+
         pdb_in  = PDB_OUT / f"{bar_id}.pdb"
         out_dir = DESIGNED_DIR / bar_id
         out_dir.mkdir(parents=True, exist_ok=True)

@@ -209,6 +209,46 @@ Fixed positions JSONL maps each bar's lyric-AA positions (non-BJOZXU) to be held
 
 ---
 
+### ProteinMPNN Results — Temperature 0.1 (2026-04-01)
+
+**Run:** top-12 candidates × 50 sequences × temperature 0.1 · ESMFold self-consistency filter pLDDT ≥ 0.35
+**Output:** `outputs/proteinmpnn/filtered_results.csv` (612 rows), `outputs/proteinmpnn/filtered_seqs.fasta` (393 sequences)
+
+| Bar | Pass / Total | Mean pLDDT | Status |
+|-----|-------------|------------|--------|
+| bar_9  | 51 / 51 | 0.478 | ✅ top |
+| bar_13 | 51 / 51 | 0.454 | ✅ top |
+| bar_17 | 51 / 51 | 0.443 | ✅ top |
+| bar_6  | 51 / 51 | 0.390 | ✅ solid |
+| bar_32 | 32 / 51 | 0.390 | ✅ solid |
+| bar_3  | 46 / 51 | 0.376 | ✅ solid |
+| bar_77 | 51 / 51 | 0.374 | ✅ solid |
+| bar_11 | 29 / 51 | 0.358 | ⚠️ marginal |
+| bar_27 | 31 / 51 | 0.346 | ⚠️ marginal |
+| bar_0  |  0 / 51 | 0.332 | ❌ dropout |
+| bar_8  |  0 / 51 | 0.290 | ❌ dropout |
+| bar_46 |  0 / 51 | 0.294 | ❌ dropout |
+
+**Total passing:** 393 / 612 (64%)
+
+---
+
+### What "Dropout" Means
+
+A bar **drops out** when 0 of 50 ProteinMPNN designs pass the self-consistency pLDDT threshold (≥ 0.35). There are two possible causes:
+
+**Cause 1 — The backbone is disordered and unfixable.**
+If the underlying Boltz prediction for a bar has low confidence (low pTM, no compact core), then *no* sequence can fold to that backbone geometry, because the backbone itself doesn't encode a stable fold. MPNN will generate plausible-looking sequences, but ESMFold folding them independently always returns disordered (pLDDT < 0.3). This is the bar failing on structural grounds — a valid scientific result meaning this lyric doesn't encode a foldable shape.
+
+**Cause 2 — The backbone is foldable but temperature is too low.**
+ProteinMPNN's sampling temperature controls sequence diversity. At `temp=0.1` (near-greedy), MPNN converges very tightly on the single most probable sequence — 50 designs are barely distinguishable from each other. If the optimal sequence is in a region of parameter space MPNN doesn't explore at low temperature, you miss it entirely. Raising to 0.2–0.3 explores a broader neighbourhood and can rescue bars that appear to drop out at 0.1.
+
+**How to distinguish them:** Rerun the dropout bars at temperatures 0.2 and 0.3. If they recover (some designs pass), temperature was the issue. If all three temps give 0/50, the backbone is the problem and the bar is dropped from the submission.
+
+**Planned follow-up:** Rerun all 12 bars at temperatures 0.2 and 0.3 via `notebooks/colabfold_validation.ipynb` (ColabFold self-consistency — faster, no rate limits). Results will determine whether bar_0, bar_8, bar_46 are salvageable.
+
+---
+
 ## Step 3 — Codon Optimization and Submission
 
 **Script (to build):** `analysis/10_codon_optimize.py`
