@@ -188,21 +188,24 @@ After ProteinMPNN generates 50 sequences per bar:
 
 ### Running ProteinMPNN
 
-ProteinMPNN runs locally or on Colab:
-```bash
-# Install
-pip install protein-mpnn
+ProteinMPNN runs locally from the cloned repo at `/Users/tamukamartin/Desktop/adaptyv_competiton/ProteinMPNN/`.
+Script `analysis/09_proteinmpnn_design.py` handles the full pipeline end-to-end:
 
-# Design with fixed positions
-python protein_mpnn_run.py \
-    --pdb_path outputs/boltz_outputs/.../bar_27_model_0_fixed.pdb \
-    --out_folder outputs/proteinmpnn/bar_27/ \
-    --num_seq_per_target 50 \
-    --sampling_temp 0.1 \
-    --fixed_positions_jsonl data/phase2_fixed_positions.jsonl
+```bash
+# Full pipeline: MPNN design + ESMFold self-consistency filter
+python analysis/09_proteinmpnn_design.py --top-n 12 --n-seqs 50 --temp 0.1 --esm-plddt-min 0.35
 ```
 
-Fixed positions JSON maps each bar's lyric-AA positions (non-BJOZXU) to be held constant.
+The script:
+1. Fixes Boltz 3-char chain IDs in PDBs before passing to MPNN
+2. Builds `data/phase2_fixed_positions.jsonl` (lyric AA positions fixed per bar)
+3. Runs `protein_mpnn_run.py` via subprocess for each bar
+4. Folds each design with ESMFold API (pLDDT returned in 0–1 scale directly)
+5. Keeps designs with ESMFold pLDDT ≥ 0.35 → `outputs/proteinmpnn/filtered_seqs.fasta`
+
+> **ESMFold pLDDT note:** The ESMFold API returns pLDDT in 0–1 scale in the B-factor column (not 0–100). Do not divide by 100.
+
+Fixed positions JSONL maps each bar's lyric-AA positions (non-BJOZXU) to be held constant.
 
 ---
 

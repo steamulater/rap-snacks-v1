@@ -86,8 +86,7 @@ def fold_with_esm(seq: str) -> float | None:
                     pass
         if not b_factors:
             return None
-        # ESMFold reports pLDDT as 0–100 in B-factor column
-        return np.mean(b_factors) / 100.0
+        return np.mean(b_factors)  # ESMFold API returns pLDDT in 0-1 directly
     except Exception as e:
         print(f"    ESMFold error: {e}")
         return None

@@ -59,7 +59,10 @@ generate_structure_viewer.py  interactive 3Dmol.js HTML viewer          [DONE]
          |
 08_candidate_selection.py   filter+rank → phase2_candidates.csv        [DONE — 37 candidates, Figs 28–30]
          |
-11_scrambled_control.py     in silico scrambled control (ESMFold)       [DONE — 255/255 pLDDT≈0.003]
+11_scrambled_control.py     in silico scrambled control (ESMFold)       [RERUN NEEDED — see bug note]
+         |
+09_proteinmpnn_design.py    ProteinMPNN design + ESMFold self-consistency [IN PROGRESS]
+                             50 seqs × 12 bars → ESMFold filter (pLDDT ≥ 0.35)
 ```
 
 **Orchestration:** `make audit` → `make convert` → [Colab] → `make parse-boltz` → `make esm-pilot` → `make foldseek` → `make enrich` → analysis scripts
@@ -799,22 +802,59 @@ Per-bar pLDDT and pTM for both conditions, ranked by composite score (pTM×0.5 +
 | scrambled concordance | 255 | **0.003** | **255/255** |
 | scrambled native_ala | 255 | **0.004** | **255/255** |
 
-**Finding:** 100% of shuffled sequences produce pLDDT ≈ 0.003 — complete disorder. Structure is sequence-order dependent, not amino acid composition. No wet-lab slot needed for a scrambled control; this result is confirmed computationally and can be cited directly.
+**Finding (pending correction):** Initial results showed pLDDT ≈ 0.003 for all shuffled sequences — but this was due to a parsing bug (see below). Rerun in progress after bug fix.
+
+> **ESMFold pLDDT parsing bug:** The ESMFold API returns pLDDT directly in 0–1 scale in the B-factor column. `11_scrambled_control.py` and `09_proteinmpnn_design.py` both incorrectly divided by 100, giving values ~100× too small (e.g. 0.003 instead of 0.30). Fixed 2026-04-01 by removing the `/100` division. `pipeline/02_esm_fold.py` was correct and unaffected (plddt_scores.csv values are valid). The scrambled control will be rerun after the ProteinMPNN job completes to get accurate pLDDT comparisons.
+
+---
+
+## Stage 11 — ProteinMPNN Soft Design (IN PROGRESS)
+
+**Script:** `analysis/09_proteinmpnn_design.py`
+**ProteinMPNN:** `/Users/tamukamartin/Desktop/adaptyv_competiton/ProteinMPNN/` (local install)
+**Date:** 2026-04-01 · Running locally on MacBook Air M3
+
+For each of the top-12 candidate bars:
+- Best Boltz concordance PDB (best model) used as backbone
+- Boltz 3-char chain ID bug fixed before passing to MPNN
+- **Fixed positions:** all lyric-AA positions (canonical residues — the bar is preserved)
+- **Designable positions:** only BJOZXU-derived positions (6–18% of sequence per bar)
+- 50 sequences per bar · temperature 0.1 · model v_48_020
+- Self-consistency filter: ESMFold pLDDT ≥ 0.35 on each design
+
+| bar_id | len | fixed | designable (%) |
+|---|---|---|---|
+| bar_6  | 88  | 83 | 5 (6%)   |
+| bar_32 | 94  | 77 | 17 (18%) |
+| bar_3  | 84  | 70 | 14 (17%) |
+| bar_8  | 128 | 116| 12 (9%)  |
+| bar_0  | 88  | 77 | 11 (12%) |
+| bar_13 | 90  | 77 | 13 (14%) |
+| bar_11 | 118 | 108| 10 (8%)  |
+| bar_77 | 86  | 77 | 9 (10%)  |
+| bar_27 | 86  | 71 | 15 (17%) |
+| bar_9  | 82  | 76 | 6 (7%)   |
+| bar_17 | 121 | 101| 20 (17%) |
+| bar_46 | 102 | 84 | 18 (18%) |
+
+**Outputs (pending):** `outputs/proteinmpnn/filtered_results.csv`, `outputs/proteinmpnn/filtered_seqs.fasta`
 
 ---
 
 ## TODO
 
-### Phase 2 — next steps
-1. **ProteinMPNN soft design** — build `analysis/09_proteinmpnn_design.py`. For each of top-12 candidates: fix lyric-AA positions, design BJOZXU positions. 50 sequences per bar. Requires Boltz concordance PDB (best model) as backbone input.
-2. **Self-consistency filter** — ESMFold each MPNN design, keep TM-score ≥ 0.70 vs original Boltz backbone. ~5–10 passing designs per bar expected.
+### In progress
+1. **ProteinMPNN + ESMFold self-consistency** — `python analysis/09_proteinmpnn_design.py --top-n 12 --n-seqs 50` running in background. ~15–20 min.
+2. **Scrambled control rerun** — `python analysis/11_scrambled_control.py --all-bars` to be run after MPNN finishes (ESMFold API rate limit — don't run concurrently). Bug fixed: no longer divides B-factors by 100.
+
+### Phase 2 — next steps (unblocked after MPNN)
 3. **Codon optimisation** — build `analysis/10_codon_optimize.py`. Optimise for *E. coli* K12, add C-terminal His6 tag, T7 promoter/terminator flanks.
 4. **Platform decision** — Adaptyv Bio ($95/protein, ~$4,560 for 48) vs Ginkgo Cloud Lab ($117/protein, ~$5,616 for 48, includes triplicates). See `LABNOTEBOOK_PHASE2.md`.
-5. **Final 12-bar selection** — currently top-12 by rank score from `data/phase2_candidates.csv`. Review before committing to submission.
+5. **Final 12-bar selection** — currently top-12 by rank score from `data/phase2_candidates.csv`. Review MPNN results before committing.
 
 ### Backlog
 6. **Chrome WebGL** — Chrome hardware acceleration disabled. Fix: Settings → System → "Use hardware acceleration when available" → Relaunch.
-7. **Structure viewer native_ala mode** — add concordance vs native_ala side-by-side toggle to `outputs/structure_viewer/viewer_foldseek_bars.html`.
+7. **Structure viewer native_ala mode** — add concordance vs native_ala side-by-side toggle.
 8. **bar_27 DSSP annotation** — secondary structure annotation over per-residue pLDDT profile.
 9. **BJOZXU position analysis** — cross-reference mutation mask with per-residue pLDDT for high-SD bars.
 
@@ -841,7 +881,8 @@ rap-snacks-v1/
 │   ├── 07_boltz_ensemble_foldseek_bars.py  <- Figs 24–27: ensemble deep dive (6 bars)
 │   ├── generate_structure_viewer.py        <- interactive 3Dmol.js HTML viewer
 │   ├── 08_candidate_selection.py           <- Figs 28–30: Phase 2 candidate selection
-│   └── 11_scrambled_control.py             <- in silico scrambled control (ESMFold)
+│   ├── 09_proteinmpnn_design.py            <- ProteinMPNN design + ESMFold self-consistency
+│   └── 11_scrambled_control.py             <- in silico scrambled control (ESMFold) [rerun pending]
 ├── data/
 │   ├── aggregated_lines_v2_frozen.csv      <- immutable input
 │   ├── aggregated_lines_v2_enriched.csv    <- working master CSV (66 columns)
@@ -861,7 +902,8 @@ rap-snacks-v1/
 │   ├── esm/                                <- ESMFold PDB files + plddt_scores.csv
 │   ├── foldseek/                           <- foldseek_hits.csv + raw JSON cache
 │   ├── pairwise/                           <- seq_identity.csv, struct_rmsd.csv, Figs 21–26
-│   ├── scrambled/                          <- scrambled_results.csv + fig_scrambled_plddt.png
+│   ├── proteinmpnn/                        <- pdbs/, designed/, filtered_results.csv, filtered_seqs.fasta
+│   ├── scrambled/                          <- scrambled_results.csv + fig_scrambled_plddt.png [rerun pending]
 │   └── structure_viewer/                   <- viewer_foldseek_bars.html (30 structures)
 ├── boltz_results_boltz_inputs_native_ala/  <- 425 PDB files (native_ala, from Colab)
 ├── figures/
