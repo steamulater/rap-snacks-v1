@@ -1,0 +1,43 @@
+
+# ============================================================
+# ProteinMPNN — Colab commands
+# Run after uploading outputs/proteinmpnn/pdbs/ and
+# data/phase2_fixed_positions.jsonl to Google Drive
+# ============================================================
+
+# 1. Install
+!pip install protein-mpnn -q
+
+# 2. Upload PDB folder and fixed positions to Drive, then mount
+from google.colab import drive
+drive.mount('/content/drive')
+
+# 3. Run ProteinMPNN
+import os
+PDB_DIR       = "/content/drive/MyDrive/proteinmpnn_pdbs"
+FIXED_POS     = "/content/drive/MyDrive/phase2_fixed_positions.jsonl"
+OUT_DIR       = "/content/drive/MyDrive/proteinmpnn_designed"
+
+os.makedirs(OUT_DIR, exist_ok=True)
+
+!python /usr/local/lib/python3.*/dist-packages/protein_mpnn/protein_mpnn_run.py \
+    --pdb_path {PDB_DIR} \
+    --out_folder {OUT_DIR} \
+    --num_seq_per_target 50 \
+    --sampling_temp "0.1" \
+    --fixed_positions_jsonl {FIXED_POS} \
+    --batch_size 1
+
+# 4. Zip and download results
+import shutil
+shutil.make_archive("/content/proteinmpnn_designed", "zip", OUT_DIR)
+from google.colab import files
+files.download("/content/proteinmpnn_designed.zip")
+
+# ============================================================
+# Bars submitted: bar_6, bar_32, bar_3, bar_8, bar_0, bar_13, bar_11, bar_77, bar_27, bar_9, bar_17, bar_46
+# Sequences per bar: 50
+# Sampling temperature: 0.1
+# Fixed positions: lyric AA positions (non-BJOZXU)
+# Designable: BJOZXU-derived positions only
+# ============================================================
