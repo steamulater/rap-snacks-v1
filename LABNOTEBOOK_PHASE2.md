@@ -312,11 +312,25 @@ notes        | BJOZXU positions redesigned; lyric positions fixed
 - Occupies 1 well; essential
 
 ### Scrambled sequence (in silico only — no wet lab slot needed)
-- Same AA composition as the concordance sequence, randomly shuffled
-- ESMFold on scrambled sequences → pLDDT < 0.3, disordered blob every time — this is already demonstrable computationally
-- No wet-lab slot warranted: the "no structure" result is guaranteed and costs a $95 slot to confirm what we already know
-- **Script:** `analysis/11_scrambled_control.py` — generates 3 shuffled variants per candidate bar, folds with ESMFold, reports pLDDT vs original; produces a comparison figure
-- If reviewers push back ("how do you know expression isn't just AA composition?"), wet-lab scrambled can be added in a follow-up run
+
+**Script:** `analysis/11_scrambled_control.py` — generates 3 shuffled variants of both concordance and native_ala sequences per bar, folds all with ESMFold API.
+
+**Results (2026-04-01, full 12-bar candidate set, no 403 dropouts):**
+
+| Bucket | n | mean pLDDT | sd | <0.3 |
+|--------|---|------------|-----|------|
+| concordance (original) | 37 | 0.324 | 0.041 | 12/37 |
+| native_ala (original) | 9 | 0.370 | 0.060 | 2/9 |
+| scrambled_concordance | 110 | 0.333 | 0.059 | 32/110 |
+| scrambled_native_ala | 111 | 0.397 | 0.099 | 10/111 |
+
+**Finding:** ESMFold does *not* discriminate between originals and scrambled sequences at this length. Scrambled concordance (0.333) ≈ concordance (0.324); scrambled native_ala (0.397) actually *exceeds* native_ala (0.370). This is consistent with known ESMFold limitations — it relies on PLM embeddings from ESM-2, which are partially order-insensitive for short sequences without strong long-range contacts.
+
+**Implication:** The scrambled control does not work as an in silico negative control under ESMFold. The structural novelty argument rests on Boltz-2 + FoldSeek (zero homologs across PDB/afdb/MGnify) — these are the authoritative results for structural claims.
+
+**Plan:** Re-run scrambled control through ColabFold (AlphaFold2 + MSA) using `notebooks/colabfold_validation.ipynb` Section B. AF2 is order-sensitive and MSA-aware — more likely to show a signal. If ColabFold shows scrambled < original, that strengthens the structural case. Either result is informative.
+
+- If reviewers push back, wet-lab scrambled can be added in a follow-up run ($95/slot at Adaptyv).
 
 ### Native_ala (wet lab — already in main submission)
 - The native_ala sequence for each bar is already one of the 4 submission slots per bar — serves as the deterministic alanine-substitution baseline
