@@ -209,10 +209,25 @@ Fixed positions JSONL maps each bar's lyric-AA positions (non-BJOZXU) to be held
 
 ---
 
-### ProteinMPNN Results — Temperature 0.1 (2026-04-01)
+### ProteinMPNN Run 1 — masked_BJOZXU, Temperature 0.1 (2026-04-01)
 
+**Design strategy:** BJOZXU positions free · all lyric-AA positions fixed
 **Run:** top-12 candidates × 50 sequences × temperature 0.1 · ESMFold self-consistency filter pLDDT ≥ 0.35
 **Output:** `outputs/proteinmpnn/filtered_results.csv` (612 rows), `outputs/proteinmpnn/filtered_seqs.fasta` (393 sequences)
+**Label:** `masked_BJOZXU` — lyric amino acids are locked; only the non-amino-acid lyric characters (B, J, O, Z, X, U) are redesigned
+
+**Masking rationale:** BJOZXU characters have no valid amino acid translation. These positions are the natural design space — fixing lyric AAs preserves the semantic content of the bar while letting MPNN choose the most foldable residue at each non-AA position. This is the most conservative design strategy.
+
+**Constraint analysis:**
+
+| Bar | Seq len | BJOZXU (designable) | Lyric AA (fixed) | Unique designs |
+|-----|---------|---------------------|------------------|----------------|
+| bar_6  | 88 | 5  | 83 | 5/51  |
+| bar_9  | 82 | 8  | 74 | 20/51 |
+| bar_32 | 94 | 17 | 77 | 42/51 |
+| bar_17 | 121| 18 | 103| 49/51 |
+
+At temp=0.1 with few designable positions, MPNN converges to near-identical sequences (bar_6: only 5 unique out of 51). Mutation rate from concordance: 5–16% depending on BJOZXU density.
 
 | Bar | Pass / Total | Mean pLDDT | Status |
 |-----|-------------|------------|--------|
@@ -245,7 +260,28 @@ ProteinMPNN's sampling temperature controls sequence diversity. At `temp=0.1` (n
 
 **How to distinguish them:** Rerun the dropout bars at temperatures 0.2 and 0.3. If they recover (some designs pass), temperature was the issue. If all three temps give 0/50, the backbone is the problem and the bar is dropped from the submission.
 
-**Planned follow-up:** Rerun all 12 bars at temperatures 0.2 and 0.3 via `notebooks/colabfold_validation.ipynb` (ColabFold self-consistency — faster, no rate limits). Results will determine whether bar_0, bar_8, bar_46 are salvageable.
+---
+
+### ProteinMPNN Run 2 — free_design (planned)
+
+**Design strategy:** No fixed positions — MPNN optimizes the full sequence for the Boltz backbone
+**Script:** `analysis/09_proteinmpnn_free_design.py`
+**Output:** `outputs/proteinmpnn_free/`
+**Label:** `free_design`
+
+**Rationale:** The masked_BJOZXU run preserves lyric identity but is heavily constrained — bars with few BJOZXU positions have almost no design freedom (bar_6: only 5 designable positions). The free design run asks: *what is the most foldable sequence for this backbone, with no constraints?* This serves two purposes:
+
+1. **Upper bound on foldability** — if free_design also scores low pLDDT, the backbone itself is the problem (not the masking constraint). Confirms backbone-level dropout for bar_0, bar_8, bar_46.
+2. **Wet-lab comparison** — submitting both masked_BJOZXU and free_design for the same bar directly tests whether preserving the lyric AAs costs foldability. If free_design expresses and masked_BJOZXU doesn't, the lyric is the bottleneck.
+
+**Run parameters:**
+```bash
+python analysis/09_proteinmpnn_free_design.py --top-n 12 --n-seqs 50 --temp 0.1
+```
+
+No `--fixed_positions_jsonl` — all positions designable.
+
+**Expected output per bar:** 50 sequences with much higher sequence diversity than masked_BJOZXU (full 88–128 AA design space vs 5–18 positions). Mutation rate from concordance expected: 30–60%.
 
 ---
 
