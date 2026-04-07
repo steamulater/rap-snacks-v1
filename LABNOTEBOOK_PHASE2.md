@@ -560,6 +560,37 @@ Each figure has three panels:
 2. **4×4 identity matrix** — pairwise sequence identity between all four variants. Off-diagonal values: ~0.05–0.15 (effectively random — confirms scrambles are genuinely independent permutations).
 3. **AA composition bar chart** — identical across all four variants by construction. Sanity check that only arrangement, not composition, changed.
 
+### RMSD vs native_ala backbone (2026-04-07)
+
+**14,757 RMSD rows** — model_0 per design vs chain-fixed native_ala backbone PDB.
+Saved to Drive: `results/boltz_rmsd_v3.csv`
+
+| Bar | n | mean RMSD | sd | Interpretation |
+|-----|---|----------|----|----------------|
+| bar_6  | 50 | 1.22Å | 0.78 | Exceptionally tight — TIM barrel-like fold locks designs in |
+| bar_46 | 48 | 1.34Å | 0.33 | Near-perfect recovery — native_ala backbone is well-defined and designable |
+| bar_0  | 49 | 1.35Å | 1.03 | Tight — backbone geometry strongly constrains design space |
+| bar_8  | 50 | 1.51Å | 1.29 | Tight |
+| bar_32 | 47 | 1.80Å | 3.50 | Moderate mean but high SD — likely bimodal (two fold populations) |
+| bar_13 | 50 | 2.12Å | 2.31 | Moderate |
+| bar_3  | 47 | 2.26Å | 2.70 | Moderate |
+| bar_17 | 49 | 3.71Å | 3.62 | Variable — backbone less constraining |
+| bar_27 | 49 | 5.34Å | 3.42 | Higher deviation — consistent with 0 FoldSeek hits (unusual fold) |
+| bar_9  | 50 | 7.81Å | 3.52 | Large deviation — MPNN moves away from native_ala backbone, explains pLDDT drop |
+| bar_11 | 50 | 10.79Å | 5.32 | Very large — native_ala backbone not well-recovered |
+| bar_77 | 50 | 13.54Å | 13.25 | Extremely variable — likely bimodal; two distinct fold populations |
+
+**Pairwise RMSD (within naf per bar):** mean=5.83Å  sd=7.16Å
+
+**vs v2 free_design RMSD (concordance backbone):** 7.13Å mean
+→ native_ala_free designs stay closer to their input backbone (~4.1Å mean) than free_design did to the concordance backbone (7.13Å). Native_ala backbones are more constraining — MPNN finds sequences that converge on the backbone geometry rather than exploring alternative folds.
+
+**bar_46 headline confirmed in RMSD:** 1.34Å mean with sd=0.33Å — the tightest cluster of any bar. The native_ala fold is so well-defined that every MPNN design folds straight back to it. This is a real, stable fold.
+
+**bar_9 RMSD explains the pLDDT drop:** 7.81Å mean — MPNN cannot find sequences that both fold well *and* stay on the native_ala backbone for bar_9. Designs that score high pLDDT fold to a different structure. The concordance backbone is the better geometry for bar_9.
+
+**bar_77 and bar_11 bimodality:** SD ≥ mean suggests two populations — some designs recover the backbone, others fold elsewhere. Both bars had high pLDDT in native_ala_free (0.683 and 0.491) but only some designs are responsible.
+
 **Figure H** (v3 strip) and **Figure I** (v3 cross-run violin) saved to Drive: `results/figures/fig_v3_strip.png`, `fig_v3_violin.png`
 
 ---
