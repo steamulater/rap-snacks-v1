@@ -640,17 +640,37 @@ Saved to Drive: `results/boltz_rmsd_v3.csv`
 
 ### Foldability decomposition
 
-Placing scrambled_na into the bucket ordering gives a clean decomposition of what drives Boltz pLDDT:
+All Boltz-2 pLDDT values across all buckets (v2–v4):
 
-| Effect | Gap | Interpretation |
-|--------|-----|----------------|
-| Concordance → scrambled_na | +0.041 | Encoding strategy difference: freq-rank probabilistic (concordance) vs literal pass-through + Ala (native_ala composition) |
-| scrambled_na → native_ala | **+0.061** | Lyric sequence order — positional encoding adds structural information above composition alone |
-| native_ala → native_ala_free | +0.263 | MPNN sequence design on native_ala backbone |
+| Bucket | n | mean pLDDT | Composition | Order |
+|--------|---|-----------|-------------|-------|
+| scrambled (free_design comp) | 36 | 0.426 | free_design | random |
+| concordance | 12 | 0.441 | freq-rank + softmax BJOZXU | lyric |
+| scrambled_na | 111 | 0.482 | native_ala (literal) | random |
+| native_ala | 12 | 0.543 | native_ala (literal) | lyric |
+| scrambled_naf | 36 | 0.561 | native_ala_free (MPNN) | random |
+| free_design | 612 | 0.643 | MPNN on concordance backbone | designed |
+| native_ala_free | 589 | 0.806 | MPNN on native_ala backbone | designed |
 
-**Encoding reminder:** native_ala is the *more raw* encoding — lyric characters read literally as amino acids, BJOZXU → Ala. Concordance uses a frequency-rank remapping of all standard letters AND a softmax-peaked probabilistic draw for BJOZXU. The scrambled_na sequences are scrambles of native_ala (not concordance), so the concordance → scrambled_na gap reflects two different encoding strategies, not simply Ala substitution.
+**Encoding reminder:** native_ala is the *more raw* encoding — lyric characters read literally as amino acids, BJOZXU → Ala. Concordance uses a frequency-rank remapping of all standard letters AND a softmax-peaked probabilistic draw for BJOZXU. native_ala (0.543) > concordance (0.441) — the freq-rank remapping hurts foldability relative to the literal read.
 
-**Key finding: native_ala (0.543) > scrambled_na (0.482).** The specific positional order of amino acids derived from the literal lyric read is non-random with respect to foldability. The rap lyric, read as a protein sequence, contains ordering information that Boltz-2 recognises as structurally meaningful above composition alone. MPNN does the heavy lifting (+0.263) but the lyric encoding itself contributes at every step.
+#### Pairwise comparisons
+
+| Comparison | A | B | Δ | What changes | Clean? |
+|---|---|---|---|---|---|
+| conc vs native_ala | 0.441 | 0.543 | **+0.102** | encoding strategy: freq-rank+softmax vs literal pass-through | ✓ same lyric order |
+| conc vs conc scrambles | — | — | — | not done | — |
+| scrambled_na vs native_ala | 0.482 | 0.543 | **+0.061** | order only (native_ala composition) | ✓ pure lyric order effect |
+| scrambled (fd) vs free_design | 0.426 | 0.643 | **+0.217** | MPNN sequence order (free_design composition) | ✓ pure order effect |
+| scrambled_naf vs native_ala_free | 0.561 | 0.806 | **+0.245** | MPNN sequence order (native_ala_free composition) | ✓ pure order effect |
+| scrambled_naf vs free_design | 0.561 | 0.643 | **+0.082** | designed order on concordance backbone vs naf composition randomly ordered | ✗ confounded |
+| free_design vs native_ala_free | 0.643 | 0.806 | **+0.163** | backbone used for MPNN (concordance vs native_ala) | ✓ |
+
+Key reads:
+- **Concordance encoding costs −0.102** vs literal pass-through (native_ala) for the same lyric — freq-rank remapping hurts foldability
+- **Lyric order effect** at every level: +0.061 (native_ala), +0.217 (free_design), +0.245 (native_ala_free) — MPNN finds far better order than lyrics, but the ordering signal is real at every stage
+- **Backbone quality** for MPNN: native_ala backbone gives +0.163 over concordance backbone
+- **Concordance scrambles not done** — would cleanly isolate concordance composition from concordance order; pending
 
 ### Per-bar scrambled_na Boltz pLDDT
 
