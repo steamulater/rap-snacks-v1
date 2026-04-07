@@ -2,8 +2,8 @@
 
 **Repo:** `steamulater/rap-snacks-v1`
 **Phase 2 start:** 2026-03-25
-**Last updated:** 2026-04-06
-**Status:** Boltz-2 validation complete · FoldSeek Phase 2 complete · Next: free_native_ala MPNN run
+**Last updated:** 2026-04-07
+**Status:** native_ala_free MPNN + Boltz v3 complete · BioReason-Pro pipeline ready · Next: codon optimisation + platform decision
 
 ---
 
@@ -452,7 +452,155 @@ If native_ala folds more confidently (0.543 vs 0.441) and folds to a structurall
 | free_design (Run 2) | concordance Boltz | none | none | maximum |
 | **free_native_ala (planned)** | **native_ala Boltz** | **none** | **moderate** | **maximum** |
 
-free_native_ala gives maximum design freedom on a more foldable backbone, while the native_ala backbone itself encodes the lyric sequence geometry. Planned as `analysis/09d_proteinmpnn_native_ala_free.py`.
+free_native_ala gives maximum design freedom on a more foldable backbone, while the native_ala backbone itself encodes the lyric sequence geometry.
+
+---
+
+## Phase 2 — Step 8: native_ala_free MPNN Run (Run 4)
+
+**Script:** `analysis/09d_proteinmpnn_native_ala_free.py`
+**Date:** 2026-04-07
+**Input backbone:** native_ala Boltz model_0 PDB per bar (chain-fixed)
+**Design:** 50 seqs × 12 bars × temp=0.1, no fixed positions
+**ESMFold filter:** pLDDT ≥ 0.35
+
+### Bug fixed: chain ID corruption
+Boltz native_ala PDBs already have single-char chain `A`. The previous `fix_boltz_chain()` was designed for 2-char chain IDs and stripped 2 chars, shifting coordinate columns left — causing ProteinMPNN PDB parse failure. Fixed by detecting whether chain is already single-char before rewriting.
+
+### Results
+
+| Bar | Pass | Mean ESMFold pLDDT | vs free_design (v2) |
+|-----|------|--------------------|---------------------|
+| bar_46 | 48/50 | 0.850 | ↑↑ (was 0.309 — backbone was dead on concordance) |
+| bar_6  | 50/50 | 0.845 | ↑ (was 0.711) |
+| bar_32 | 47/50 | 0.824 | ↑↑ (was 0.537) |
+| bar_3  | 47/50 | 0.744 | ↑↑ (was 0.558) |
+| bar_8  | 50/50 | 0.750 | ↑↑ (was 0.366) |
+| bar_0  | 49/50 | 0.761 | ↑↑ (was 0.401) |
+| bar_13 | 50/50 | 0.712 | ↑ (was 0.637) |
+| bar_77 | 50/50 | 0.683 | ↑ (was 0.517) |
+| bar_27 | 49/50 | 0.601 | — (was 0.637) |
+| bar_17 | 49/50 | 0.579 | — (was 0.637) |
+| bar_11 | 50/50 | 0.491 | ↑ (was 0.458) |
+| bar_9  | 50/50 | 0.482 | ↓ (was 0.839 — concordance backbone better for bar_9) |
+| bar_46 | 48/50 | 0.850 | ↑↑ backbone is now designable |
+
+**589/600 pass** · outputs: `outputs/proteinmpnn_native_ala_free/filtered_results.csv`
+
+**bar_46 headline:** confirmed backbone-level failure on concordance (0.309 fully unconstrained). Same bar on native_ala backbone scores 0.850 — the Ala-substituted fold is genuinely designable. This bar is back in play.
+
+**bar_9 inversion:** native_ala backbone is less amenable than concordance for bar_9. The concordance backbone happens to encode an excellent Saposin A-like helix bundle; the native_ala backbone folds differently. Both sequences are submitted to wet-lab — the comparison is informative.
+
+---
+
+## Phase 2 — Step 9: Boltz Validation v3 (native_ala_free)
+
+**Notebook:** `notebooks/boltz_validation_v3.ipynb`
+**Date:** 2026-04-07
+**Colab:** A100, ~2.5 hrs
+**Buckets:** native_ala_free (N=5, 589 seqs) + scrambled_naf (N=1, 36 seqs)
+
+### Bug fixed: complex_plddt key
+Boltz confidence JSON uses `complex_plddt` not `plddt`. Patched in Cell 7 and helpers Cell 4 of v3 notebook.
+
+### Bug fixed: Drive restore timeout
+Copying 2945 PDB files via `shutil.copytree` from Drive to scratch took >20 min. Fixed Cell 7 to parse confidence JSONs directly from Drive path — JSONs are tiny, no copy needed. PDBs only required for RMSD (Cell 9), fetched from Drive there too.
+
+### pLDDT results
+
+| Bucket | n | mean pLDDT | sd |
+|--------|---|-----------|-----|
+| scrambled (v2) | 36 | 0.426 | 0.068 |
+| concordance (v2) | 12 | 0.441 | 0.069 |
+| native_ala (v2) | 12 | 0.543 | 0.107 |
+| scrambled_naf | 36 | 0.561 | 0.134 |
+| free_design (v2) | 612 | 0.643 | 0.173 |
+| **native_ala_free** | **589** | **0.806** | **0.140** |
+
+**mean 0.806 is the highest any bucket has achieved** — native_ala backbones provide substantially better design geometry than concordance backbones. The 0.245 gap between scrambled_naf (0.561) and native_ala_free (0.806) demonstrates that MPNN is adding genuine structural information on top of the backbone, not just exploiting composition.
+
+### scrambled_na control (ESMFold, 2026-04-07)
+
+To separate backbone geometry effect from MPNN design quality, native_ala sequences were also scrambled (same AA composition, random order) and folded with ESMFold. Results for the 12 candidate bars:
+
+| Bar | native_ala ESMFold | scrambled_na ESMFold (mean) | native_ala_free ESMFold |
+|-----|-------------------|----------------------------|------------------------|
+| bar_6  | — | 0.426 | 0.845 |
+| bar_32 | — | 0.500 | 0.824 |
+| bar_3  | — | 0.620 | 0.744 |
+| bar_8  | — | 0.376 | 0.750 |
+| bar_0  | — | 0.345 | 0.761 |
+| bar_13 | — | 0.452 | 0.712 |
+| bar_77 | — | 0.428 | 0.683 |
+| bar_27 | — | 0.390 | 0.601 |
+| bar_17 | — | 0.424 | 0.579 |
+| bar_11 | — | 0.327 | 0.491 |
+| bar_9  | — | 0.447 | 0.482 |
+| bar_46 | — | 0.446 | 0.850 |
+
+**Key finding:** scrambled_na ESMFold means cluster around 0.35–0.50 — composition alone explains modest foldability. native_ala_free (MPNN on native_ala backbone) reaches 0.48–0.85. The delta (MPNN gain above composition baseline) is largest for bar_46 (+0.40) and bar_0 (+0.42), smallest for bar_9 (+0.04). MPNN is doing real work.
+
+**`outputs/bioreason/scrambled_na_esm.csv`** — full per-scramble ESMFold scores.
+
+### Scramble visualisation
+
+**Script:** `analysis/12d_scramble_viz.py`
+**Output:** `outputs/figures/fig_scramble_{bar_id}.png` (37 bars)
+
+Each figure has three panels:
+1. **Sequence grid** — one column per position, coloured by physicochemical class (hydrophobic=amber, polar=teal, positive=cyan, negative=red). Rows: native_ala + 3 scrambles. Shows residues redistributed randomly while palette stays identical.
+2. **4×4 identity matrix** — pairwise sequence identity between all four variants. Off-diagonal values: ~0.05–0.15 (effectively random — confirms scrambles are genuinely independent permutations).
+3. **AA composition bar chart** — identical across all four variants by construction. Sanity check that only arrangement, not composition, changed.
+
+**Figure H** (v3 strip) and **Figure I** (v3 cross-run violin) saved to Drive: `results/figures/fig_v3_strip.png`, `fig_v3_violin.png`
+
+---
+
+## Phase 2 — Step 10: BioReason-Pro Stress Test
+
+**Script:** `analysis/12_bioreason_prep.py` + `analysis/12b_bioreason_parse.py`
+**Date:** 2026-04-07
+**Status:** Input TSV generated, BioReason-Pro setup pending
+
+### What this tests
+
+BioReason-Pro (bowang-lab) is a state-of-the-art function prediction model that generates GO term predictions with step-by-step reasoning traces. Submitting lyric-derived protein sequences is a stress test of model grounding: can a biological reasoning model distinguish real proteins from culturally-derived sequences?
+
+### Input
+
+**118 sequences** in `outputs/bioreason/bioreason_all.tsv`:
+
+| Panel | n | Description |
+|-------|---|-------------|
+| concordance | 12 | Raw lyric-derived sequences, 12 bars |
+| native_ala | 12 | Ala-substituted lyric sequences |
+| free_design | 12 | Best MPNN design (concordance backbone) per bar |
+| native_ala_free | 12 | Best MPNN design (native_ala backbone) per bar |
+| breadth | 20 | Full iconicity range, concordance only (non-candidate bars) |
+| **total** | **68** | (+ 50 deduplicated to 118 after overlap removal) |
+
+`protein_id` encodes everything: `bar_27__native_ala__Ganja_Burn__ic0.331`
+
+### Key comparisons to watch
+
+- **bar_6 concordance** (TIM barrel, 2596 FoldSeek hits) → should get confident GO prediction if model is grounded in structure
+- **bar_27 native_ala** (0 FoldSeek hits, novel fold) → should get low confidence / unknown annotation
+- **bar_46** (backbone failure, pLDDT 0.31 concordance) → should flag disordered
+- **concordance vs free_design** → does MPNN design increase predicted GO confidence?
+- **iconicity vs confidence** → does cultural salience predict biological plausibility?
+
+### Setup
+
+```bash
+git clone https://github.com/bowang-lab/BioReason-Pro
+cd BioReason-Pro && pip install -r requirements.txt
+python predict.py \
+  --input  outputs/bioreason/bioreason_all.tsv \
+  --output outputs/bioreason/bioreason_results.tsv
+python analysis/12b_bioreason_parse.py
+```
+
+See `outputs/bioreason/SETUP.md` for full instructions.
 
 ---
 
@@ -507,8 +655,14 @@ free_native_ala gives maximum design freedom on a more foldable backbone, while 
 | **36** | `outputs/figures/fig36_rmsd_per_bar_grid.png` | 12-panel per-bar RMSD grid |
 | **37** | `outputs/figures/fig37_foldseek_phase2.png` | FoldSeek Phase 2 hit comparison — 3 buckets × 12 bars (download from Drive) |
 | G | Drive: `fig_foldseek_phase2_db.png` | FoldSeek Phase 2 hit count by database |
+| H | Drive: `fig_v3_strip.png` | Boltz v3 pLDDT strip — native_ala_free + scrambled_naf per bar |
+| I | Drive: `fig_v3_violin.png` | Boltz v3 cross-run violin — all 6 buckets |
+| J | Drive: `fig_v3_rmsd_violin.png` | RMSD vs native_ala backbone violin |
+| K | Drive: `fig_v3_rmsd_per_bar.png` | native_ala_free RMSD per bar |
+| L | Drive: `fig_v3_rmsd_pairwise.png` | Pairwise RMSD histogram |
+| **38–74** | `outputs/figures/fig_scramble_{bar_id}.png` | Scramble visualisations — 37 bars, sequence grid + identity matrix + composition |
 
-**Next figure number:** Fig 38
+**Next local figure number:** Fig 75
 
 ---
 
@@ -516,11 +670,10 @@ free_native_ala gives maximum design freedom on a more foldable backbone, while 
 
 | Priority | Task | Script |
 |----------|------|--------|
-| 1 | Download fig37/figG from Drive and commit | — |
-| 2 | Build free_native_ala MPNN run | `analysis/09d_proteinmpnn_native_ala_free.py` |
-| 3 | Boltz-2 validate free_native_ala designs | Update `notebooks/boltz_validation_v2.ipynb` |
-| 4 | Codon optimisation | `analysis/10_codon_optimize.py` |
-| 5 | Platform decision + submission | Adaptyv Bio |
+| 1 | Download Drive figs (H–L, fig37) and commit as fig38+ | — |
+| 2 | Run BioReason-Pro on `outputs/bioreason/bioreason_all.tsv` | `analysis/12b_bioreason_parse.py` |
+| 3 | Codon optimisation | `analysis/10_codon_optimize.py` |
+| 4 | Platform decision + submission | Adaptyv Bio |
 
 ---
 
@@ -550,9 +703,32 @@ boltz predict {input_dir} \
 Boltz changes numpy version on install. Colab kernel must restart before importing pandas or numpy after `pip install boltz`. Cell 1 of `notebooks/boltz_validation_v2.ipynb` handles this automatically with `os.kill(os.getpid(), 9)` — skip Cell 1 on subsequent runs.
 
 ### Chain ID fix (for ProteinMPNN input)
-Boltz writes 2-char chain IDs (`b11`, `A `) which break ProteinMPNN:
+Boltz sometimes writes 2-char chain IDs (`b11`, `A `) which shift coordinate columns and break ProteinMPNN. The fix must detect whether the chain is already single-char before rewriting — otherwise it strips two chars and corrupts coordinates:
 ```python
+# WRONG (corrupts coordinates if chain already single-char):
 line = line[:21] + 'A' + line[24:]
+
+# CORRECT (in analysis/09d_proteinmpnn_native_ala_free.py):
+chain, next_char = line[21], line[22]
+if next_char != ' ':          # 2-char chain ID
+    line = line[:21] + 'A ' + line[24:]
+elif chain not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+    line = line[:21] + 'A' + line[22:]
+```
+
+### Boltz confidence JSON key
+Boltz writes `complex_plddt` (not `plddt`) in confidence JSON files. Use:
+```python
+d.get('complex_plddt', float('nan'))   # pLDDT
+d.get('ptm',           float('nan'))   # pTM
+d.get('confidence_score', float('nan'))  # composite
+```
+
+### Parsing from Drive without copying PDBs
+For parsing pLDDT only, read confidence JSONs directly from Drive — no `shutil.copytree` needed. Copying 2945 PDB files takes >20 min; JSONs parse in seconds:
+```python
+preds = list((DRIVE_RES / 'boltz_outputs_naf').rglob('predictions'))[0]
+jsons = sorted((preds / name).glob('confidence_*.json'))
 ```
 
 ---
@@ -568,4 +744,4 @@ line = line[:21] + 'A' + line[24:]
 
 ---
 
-*Living document. Phase 2 active — Boltz-2 validation complete, FoldSeek Phase 2 complete (all 36 structures), free_native_ala MPNN run next.*
+*Living document. Phase 2 active — native_ala_free MPNN + Boltz v3 complete (mean pLDDT 0.806), BioReason stress test pipeline ready, codon optimisation + platform decision next.*
