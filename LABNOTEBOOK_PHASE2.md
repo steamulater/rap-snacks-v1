@@ -790,6 +790,16 @@ Four sequences tested manually before committing to a full batch run:
 
 Raw chat exports: `outputs/bioreason/bioreason-chat-2026-04-07-*.md`
 
+**bar_46 concordance — hallucinated epithelial differentiation (pLDDT 0.309, backbone failure):**
+
+![bar_46 BioReason](outputs/bioreason/bar_46_screenshot_bioreason.png)
+
+**1REG T4 phage RegA — correct grounded prediction (positive control):**
+
+![1REG BioReason p1](outputs/bioreason/pdb_1REG_screenshot_1.png)
+
+![1REG BioReason p2](outputs/bioreason/pdb_1REG_screenshot_2.png)
+
 ### Finding: BioReason confidence is binary, not graded
 
 All three lyric-derived sequences — including bar_46 (confirmed backbone failure, pLDDT 0.309) and bar_11 (0 FoldSeek hits, worst structural confidence) — received equally confident, detailed, mechanistically plausible GO predictions. The anchor in every case was a single generic `GO:0005515` (protein binding) InterPro hit, from which BioReason confabulated an elaborate story (transcriptional repressor scaffold, epithelial differentiation organiser, ER-to-exosome adaptor).
@@ -878,9 +888,15 @@ BioReason's behaviour is itself a finding: **any short sequence with standard am
 | **81** | `outputs/figures/fig81_v4_sc_na_per_bar.png` | scrambled_na per bar — Boltz vs ESMFold |
 | **82** | `outputs/figures/fig82_v4_esm_vs_boltz_sc_na.png` | ESMFold vs Boltz scatter — scrambled_na |
 
-| **83** | `outputs/figures/fig83_umap_esm2.png` | ESM-2 UMAP — 4 buckets, hull per bar, panel A bucket colour / panel B pLDDT |
+| **83** | `outputs/figures/fig83_umap_all_buckets.png` | ESM-2 UMAP — all 4 buckets, colour by bucket, hull per bar |
+| **84** | `outputs/figures/fig84_umap_native_ala.png` | ESM-2 UMAP — native_ala + native_ala_free only |
+| **85** | `outputs/figures/fig85_umap_concordance.png` | ESM-2 UMAP — concordance + free_design only |
+| **86** | `outputs/figures/fig86_umap_barbie_dangerous.png` | ESM-2 UMAP — bar_32 Barbie Dangerous, all 4 buckets |
+| S1 | `outputs/bioreason/bar_46_screenshot_bioreason.png` | BioReason screenshot — bar_46 concordance (backbone failure) |
+| S2 | `outputs/bioreason/pdb_1REG_screenshot_1.png` | BioReason screenshot — 1REG T4 phage RegA (positive control, p1) |
+| S3 | `outputs/bioreason/pdb_1REG_screenshot_2.png` | BioReason screenshot — 1REG T4 phage RegA (positive control, p2) |
 
-**Next local figure number:** Fig 84
+**Next local figure number:** Fig 87
 
 ---
 
@@ -888,7 +904,7 @@ BioReason's behaviour is itself a finding: **any short sequence with standard am
 
 **Script:** `analysis/13_umap_esm2.py`
 **Date:** 2026-04-07
-**Status:** Script written, run pending
+**Status:** Complete — fig83–86 generated (2026-04-07)
 
 ### Rationale
 
@@ -924,11 +940,29 @@ t-SNE optimises for local neighbourhood only — clusters are meaningful, inter-
 
 `outputs/embeddings/esm2_embeddings.csv` — computed once, reused on re-run. 480-dim per sequence (ESM-2 8M layer 6 mean pool).
 
-### Figure 83
+### Figure 83 — All 4 Buckets
 
-![Figure 83](outputs/figures/fig83_umap_esm2.png)
+![Figure 83](outputs/figures/fig83_umap_all_buckets.png)
 
-*(Run `python analysis/13_umap_esm2.py` to generate)*
+**Figure 83 | ESM-2 UMAP — all 4 buckets (1286 sequences).** Concordance (blue) and native_ala (orange) lyric seeds shown large; MPNN designs (purple = free_design, green = native_ala_free) shown small. Convex hulls per bar. Labels: bar_id + song title.
+
+### Figure 84 — native_ala + native_ala_free
+
+![Figure 84](outputs/figures/fig84_umap_native_ala.png)
+
+**Figure 84 | ESM-2 UMAP — native_ala seeds (orange, large) and native_ala_free MPNN designs (green, small).** Subset UMAP re-run on 637 sequences. Shows how MPNN expands each bar's lyric seed into a cloud of designed sequences.
+
+### Figure 85 — concordance + free_design
+
+![Figure 85](outputs/figures/fig85_umap_concordance.png)
+
+**Figure 85 | ESM-2 UMAP — concordance seeds (blue, large) and free_design MPNN designs (purple, small).** Subset UMAP re-run on 649 sequences. Concordance encoding produces a different seed position in sequence space than native_ala for the same bar.
+
+### Figure 86 — bar_32 Barbie Dangerous (single bar)
+
+![Figure 86](outputs/figures/fig86_umap_barbie_dangerous.png)
+
+**Figure 86 | ESM-2 UMAP — bar_32 (Barbie Dangerous) only, all 4 buckets (103 sequences).** Single-bar UMAP (n_neighbors=8). Concordance and native_ala seeds labelled individually. free_design (51 seqs) and native_ala_free (50 seqs) clouds shown separately. Reveals whether the two MPNN strategies explore different or overlapping sequence regions for this bar.
 
 ---
 
