@@ -434,9 +434,13 @@ All 36 structures submitted and parsed across pdb100, afdb-swissprot, and mgnify
 | bar_17 | free_design | — | *56 hits, low prob* | ~0.2 |
 | bar_46 | free_design | — | *no hits* | — |
 
-**Figure F** — `fig_foldseek_phase2.png` — FoldSeek hit comparison per bar per bucket (saved to Drive: `results/figures/fig_foldseek_phase2.png`; download and commit as fig37)
+### Figure 37 — FoldSeek Phase 2 hit comparison
 
-**Figure G** — `fig_foldseek_phase2_db.png` — Hit count breakdown by database (saved to Drive)
+![Figure 37](outputs/figures/fig37_foldseek_phase2.png)
+
+**Figure 37 | FoldSeek Phase 2 structural search — hit count per bar per bucket (concordance, native_ala, free_design).** Each group of bars shows the number of structural homologs found across PDB, afdb-swissprot, and MGnify for one Phase 2 candidate bar under three sequence conditions. bar_6 concordance leads with 2596 hits; bar_46 free_design and bar_27 native_ala return 0 hits — structurally novel across all databases.
+
+**Figure G** — `fig_foldseek_phase2_db.png` — Hit count breakdown by database (not yet committed)
 
 ---
 
@@ -616,7 +620,35 @@ Saved to Drive: `results/boltz_rmsd_v3.csv`
 
 **bar_77 and bar_11 bimodality:** SD ≥ mean suggests two populations — some designs recover the backbone, others fold elsewhere. Both bars had high pLDDT in native_ala_free (0.683 and 0.491) but only some designs are responsible.
 
-**Figure H** (v3 strip) and **Figure I** (v3 cross-run violin) saved to Drive: `results/figures/fig_v3_strip.png`, `fig_v3_violin.png`
+### Figure 75 — Boltz v3 pLDDT Strip (native_ala_free + scrambled_naf)
+
+![Figure 75](outputs/figures/fig75_v3_strip.png)
+
+**Figure 75 | Boltz-2 pLDDT strip — native_ala_free designs and scrambled_naf controls per bar.** Each column is one bar; dots are individual diffusion samples. native_ala_free (green) consistently outperforms scrambled_naf (grey), confirming MPNN sequence order adds structural information beyond composition alone (+0.245 pLDDT).
+
+### Figure 76 — Boltz v3 Cross-Run Violin
+
+![Figure 76](outputs/figures/fig76_v3_violin.png)
+
+**Figure 76 | Boltz-2 pLDDT violin across all six buckets (v2 + v3).** Full bucket ladder from concordance (0.441) to native_ala_free (0.806). Mean values annotated. native_ala_free is the highest-confidence bucket achieved in the project.
+
+### Figure 77 — RMSD vs native_ala Backbone (Violin)
+
+![Figure 77](outputs/figures/fig77_v3_rmsd_violin.png)
+
+**Figure 77 | RMSD of native_ala_free designs vs their input native_ala backbone, by bar (violin).** Low RMSD = MPNN recovers the backbone geometry; high RMSD = designs fold to a different structure. bar_46 (1.34Å) is the tightest; bar_77 (13.54Å) shows extreme bimodality.
+
+### Figure 78 — native_ala_free RMSD Per Bar
+
+![Figure 78](outputs/figures/fig78_v3_rmsd_per_bar.png)
+
+**Figure 78 | RMSD vs native_ala backbone per bar — native_ala_free designs.** bar_6 and bar_46 cluster tightly around the input backbone; bar_9 and bar_77 show large deviations indicating MPNN found alternative folds.
+
+### Figure 79 — Pairwise RMSD Histogram (native_ala_free)
+
+![Figure 79](outputs/figures/fig79_v3_rmsd_pairwise.png)
+
+**Figure 79 | Pairwise RMSD histogram within native_ala_free ensemble.** Mean pairwise RMSD 5.83Å — designs within a bar are structurally diverse despite sharing the same backbone input.
 
 ---
 
@@ -719,7 +751,23 @@ Key reads:
 
 **bar_46 scrambled_na = 0.511** — notably higher than its concordance pLDDT (0.309). Scrambling the Ala-substituted sequence still folds better than the original concordance. The concordance backbone failure is a sequence-order effect, not a composition problem.
 
-**Figures M/N/O** saved to Drive: `results/figures/fig_v4_violin_all_buckets.png`, `fig_v4_sc_na_per_bar.png`, `fig_v4_esm_vs_boltz_sc_na.png`
+### Figure 80 — Cross-Bucket Violin (All 7 Buckets)
+
+![Figure 80](outputs/figures/fig80_v4_violin_all_buckets.png)
+
+**Figure 80 | Boltz-2 pLDDT violin across all seven buckets including scrambled_na (v4).** scrambled_na (0.482) slots between concordance (0.441) and native_ala (0.543), revealing the lyric order effect (+0.061) above composition alone. Full decomposition visible in a single figure.
+
+### Figure 81 — scrambled_na Per Bar (Boltz vs ESMFold)
+
+![Figure 81](outputs/figures/fig81_v4_sc_na_per_bar.png)
+
+**Figure 81 | scrambled_na Boltz-2 pLDDT (grey) and ESMFold pLDDT (red diamond) per bar.** 3 scrambles per bar shown individually; white dash = bar mean. Both predictors broadly agree on which bars have foldable composition; bar_3 and bar_32 highest, bar_38 and bar_11 lowest.
+
+### Figure 82 — ESMFold vs Boltz-2 Scatter (scrambled_na)
+
+![Figure 82](outputs/figures/fig82_v4_esm_vs_boltz_sc_na.png)
+
+**Figure 82 | ESMFold pLDDT vs Boltz-2 pLDDT for all 111 scrambled_na sequences.** Correlation coefficient annotated. Moderate positive correlation confirms both predictors agree on composition-driven foldability, with Boltz systematically higher than ESMFold for this sequence class.
 
 ---
 
@@ -820,16 +868,19 @@ See `outputs/bioreason/SETUP.md` for full instructions.
 | **34** | `outputs/figures/fig34_rmsd_per_bar.png` | free_design RMSD per bar |
 | **35** | `outputs/figures/fig35_rmsd_pairwise.png` | Pairwise RMSD histogram |
 | **36** | `outputs/figures/fig36_rmsd_per_bar_grid.png` | 12-panel per-bar RMSD grid |
-| **37** | `outputs/figures/fig37_foldseek_phase2.png` | FoldSeek Phase 2 hit comparison — 3 buckets × 12 bars (download from Drive) |
-| G | Drive: `fig_foldseek_phase2_db.png` | FoldSeek Phase 2 hit count by database |
-| H | Drive: `fig_v3_strip.png` | Boltz v3 pLDDT strip — native_ala_free + scrambled_naf per bar |
-| I | Drive: `fig_v3_violin.png` | Boltz v3 cross-run violin — all 6 buckets |
-| J | Drive: `fig_v3_rmsd_violin.png` | RMSD vs native_ala backbone violin |
-| K | Drive: `fig_v3_rmsd_per_bar.png` | native_ala_free RMSD per bar |
-| L | Drive: `fig_v3_rmsd_pairwise.png` | Pairwise RMSD histogram |
+| **37** | `outputs/figures/fig37_foldseek_phase2.png` | FoldSeek Phase 2 hit comparison — 3 buckets × 12 bars |
+| G | not committed | FoldSeek Phase 2 hit count by database |
 | **38–74** | `outputs/figures/fig_scramble_{bar_id}.png` | Scramble visualisations — 37 bars, sequence grid + identity matrix + composition |
+| **75** | `outputs/figures/fig75_v3_strip.png` | Boltz v3 pLDDT strip — native_ala_free + scrambled_naf per bar |
+| **76** | `outputs/figures/fig76_v3_violin.png` | Boltz v3 cross-run violin — all 7 buckets |
+| **77** | `outputs/figures/fig77_v3_rmsd_violin.png` | RMSD vs native_ala backbone violin |
+| **78** | `outputs/figures/fig78_v3_rmsd_per_bar.png` | native_ala_free RMSD per bar |
+| **79** | `outputs/figures/fig79_v3_rmsd_pairwise.png` | Pairwise RMSD histogram (native_ala_free) |
+| **80** | `outputs/figures/fig80_v4_violin_all_buckets.png` | Cross-bucket violin — all 7 buckets including scrambled_na |
+| **81** | `outputs/figures/fig81_v4_sc_na_per_bar.png` | scrambled_na per bar — Boltz vs ESMFold |
+| **82** | `outputs/figures/fig82_v4_esm_vs_boltz_sc_na.png` | ESMFold vs Boltz scatter — scrambled_na |
 
-**Next local figure number:** Fig 75
+**Next local figure number:** Fig 83
 
 ---
 
@@ -837,8 +888,8 @@ See `outputs/bioreason/SETUP.md` for full instructions.
 
 | Priority | Task | Script |
 |----------|------|--------|
-| 1 | Download Drive figs (H–L, fig37) and commit as fig38+ | — |
-| 2 | Run BioReason-Pro on `outputs/bioreason/bioreason_all.tsv` | `analysis/12b_bioreason_parse.py` |
+| 1 | Run BioReason-Pro on `outputs/bioreason/bioreason_all.tsv` | `analysis/12b_bioreason_parse.py` |
+| 2 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
 | 3 | Codon optimisation | `analysis/10_codon_optimize.py` |
 | 4 | Platform decision + submission | Adaptyv Bio |
 
