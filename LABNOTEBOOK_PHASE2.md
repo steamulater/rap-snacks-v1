@@ -1155,6 +1155,75 @@ Unoptimised, direct lyric-to-protein encodings. Both encoding strategies (concor
 
 ---
 
+## Stage 15 — Sequence Composition Analysis: 24 Selected Proteins
+
+**Script:** `analysis/15_seq_composition.py` | **Outputs:** fig92, fig93
+
+Seven composition metrics assessed per sequence: longest homopolymer run, low-complexity window fraction, cysteine count, net charge magnitude, Ala %, Lys %, Glu %. Flags: **OK** (no issues), **WARN** (moderate bias), **CRITICAL** (likely experimental risk).
+
+### Summary
+
+| Status | Count | Sequences |
+|--------|-------|-----------|
+| OK | 5 | bar_0_naf_023, bar_9_naf_011, 6E5C_positive_control, bar_11_free_025, bar_32_native_ala |
+| WARN | 6 | bar_8, bar_13, bar_6_naf, bar_9_free, bar_8_free (minor charge/Lys/Glu bias) |
+| CRITICAL | 13 | Multiple issues (see below) |
+
+### Critical flags by issue type
+
+**Cysteines (≥2 C residues — disulfide / misfolding risk in *E. coli*):**
+- `bar_3_naf_022`: 2C | `bar_11_naf_033`: 2C | `bar_17_naf_018`: 3C | `bar_27_naf_004`: 4C
+- `bar_3_free_047`: **7C** (extreme — likely to form non-native disulfides)
+- `bar_3_concordance`: 4C | `bar_6_native_ala`: 3C | `bar_3_native_ala`: 2C | `bar_27_concordance`: 4C
+
+> Cysteines in Group D seeds are expected — they come directly from lyric-encoding, not design. Free cysteine is manageable in reducing conditions (DTT/BME), but 7C in bar_3_free_047 is genuinely risky.
+
+**Long homopolymer runs (≥4 identical consecutive residues):**
+- `bar_3_naf_022`: A×7 (AAAAAAA) — Ala runs are notoriously disordered
+- `bar_32_naf_031`: A×6, A×4, A×4 — 55% Ala, extremely biased
+- `bar_17_free_010`: A×5, A×4
+- `bar_6_free_027`: L×4 — hydrophobic run, aggregation risk
+- `bar_3_native_ala`: A×4
+
+**Extreme amino acid bias:**
+- `bar_32_naf_031`: **55% Ala** — essentially a poly-Ala coil; unlikely to fold to a specific tertiary structure despite high Boltz pLDDT
+- `bar_46_naf_027`: Lys 36%, Glu 33% — high but possibly coiled-coil design intent (EK repeat motifs)
+- `bar_32_naf_034`: Lys 23%, Glu 26% — same coiled-coil pattern, Group A's top pick
+
+**High net charge:**
+- `bar_6_native_ala`: net charge −17 (Group D seed, known bad)
+- `bar_6_free_027`: net charge −12
+
+### Interpretation and recommendations
+
+| Rank | Sequence | Issue | Action |
+|------|----------|-------|--------|
+| Keep | bar_0_naf_023 | Clean | Top priority for order |
+| Keep | bar_9_naf_011 | Clean | — |
+| Keep | 6E5C_positive_control | Clean | Known expresser |
+| Keep | bar_11_free_025 | Clean | — |
+| Keep | bar_32_native_ala | Clean | — |
+| Watch | bar_32_naf_034 (#1) | 27% E, 23% K, low-complexity | Coiled-coil intent — probably fine; include DTT in buffer |
+| Watch | bar_46_naf_027 | 36% K, 33% E, 2C | Same — likely EK-repeat coiled-coil; include DTT |
+| Watch | bar_27_naf_004 | 4C | Include reducing agent; reorder if budget allows |
+| Caution | bar_3_free_047 | **7C** | Highest expression risk; may form scrambled disulfides in *E. coli*. Consider replacing or including in reduced buffer specifically. |
+| Caution | bar_32_naf_031 | **55% Ala, 3 runs** | Poly-Ala coil; Boltz pLDDT high but structure unlikely to be unique fold. Keep as coil control but temper expectations. |
+| Group D | All concordance/na seeds | Multiple C, charge | Expected — lyric-encoded. Keep as experimental controls; results informative even if they don't fold. |
+
+### Figures
+
+![Figure 92 — Composition flags](outputs/figures/fig92_seq_composition.png)
+
+**Figure 92 | Per-sequence composition flags (7 metrics, 24 proteins).** Green = OK, orange = warning, red = critical. Orange/red dashed vertical lines mark warn/critical thresholds per metric. Sequence names coloured by group (blue=A, green=B, pink=C, brown=D). Most MPNN-designed sequences (Groups A/B) are clean or have minor charge bias. Critical issues concentrate in: (i) raw lyric seeds (Group D — expected), (ii) bar_32_naf_031 (extreme poly-Ala), (iii) bar_3_free_047 (7 cysteines from concordance backbone template).
+
+---
+
+![Figure 93 — AA composition heatmap](outputs/figures/fig93_aa_heatmap.png)
+
+**Figure 93 | Amino acid composition heatmap (20 standard AAs, 24 proteins, % residue).** Cells with ≥15% composition are annotated. Yellow→red = increasing prevalence. The EK-repeat signature of bar_32_naf_034 and bar_46_naf_027 is visible as twin hot columns (E and K). Group D (bottom 5 rows) shows broader AA diversity — these are lyric-character encodings, not designed sequences. The Group B free_design sequences show more even composition than their naf counterparts.
+
+---
+
 ## Pending Work
 
 | Priority | Task | Script |
