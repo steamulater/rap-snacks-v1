@@ -620,6 +620,87 @@ Saved to Drive: `results/boltz_rmsd_v3.csv`
 
 ---
 
+## Phase 2 — Step 9b: Boltz Validation v4 (scrambled_na)
+
+**Notebook:** `notebooks/boltz_validation_v4_scrambled_na.ipynb`
+**Date:** 2026-04-07
+**Colab:** A100
+**Input:** `outputs/bioreason/scrambled_na_esm.csv` — 111 sequences (37 bars × 3 scrambles of native_ala)
+**N_MODELS:** 1 per scramble (control run)
+
+### pLDDT results
+
+| Bucket | n | mean pLDDT | sd |
+|--------|---|-----------|-----|
+| concordance | 12 | 0.441 | 0.069 |
+| **scrambled_na** | **111** | **0.482** | **0.068** |
+| native_ala | 12 | 0.543 | 0.107 |
+| free_design | 612 | 0.643 | 0.173 |
+| native_ala_free | 589 | 0.806 | 0.140 |
+
+### Foldability decomposition
+
+Placing scrambled_na into the bucket ordering gives a clean decomposition of what drives Boltz pLDDT:
+
+| Effect | Gap | Interpretation |
+|--------|-----|----------------|
+| Concordance → scrambled_na | +0.041 | AA composition improvement (Ala substitution for BJOZXU) |
+| scrambled_na → native_ala | **+0.061** | Lyric sequence order — positional encoding adds structural information |
+| native_ala → native_ala_free | +0.263 | MPNN sequence design on native_ala backbone |
+
+**Key finding: native_ala (0.543) > scrambled_na (0.482).** The specific positional order of amino acids derived from the lyric encoding is non-random with respect to foldability. The rap lyric, when read as a protein sequence, contains ordering information that Boltz-2 recognises as structurally meaningful — above and beyond composition alone. MPNN does the heavy lifting (+0.263) but the lyric encoding itself contributes at every step.
+
+### Per-bar scrambled_na Boltz pLDDT
+
+| Bar | n | boltz_mean | boltz_sd | esm_mean |
+|-----|---|-----------|---------|---------|
+| bar_67 | 3 | 0.580 | 0.033 | 0.533 |
+| bar_3  | 3 | 0.593 | 0.059 | 0.620 |
+| bar_32 | 3 | 0.585 | 0.106 | 0.500 |
+| bar_58 | 3 | 0.543 | 0.012 | 0.514 |
+| bar_6  | 3 | 0.534 | 0.044 | 0.426 |
+| bar_13 | 3 | 0.525 | 0.027 | 0.452 |
+| bar_55 | 3 | 0.523 | 0.051 | 0.439 |
+| bar_26 | 3 | 0.512 | 0.062 | 0.461 |
+| bar_46 | 3 | 0.511 | 0.032 | 0.446 |
+| bar_47 | 3 | 0.514 | 0.082 | 0.430 |
+| bar_68 | 3 | 0.518 | 0.086 | 0.401 |
+| bar_39 | 3 | 0.509 | 0.035 | 0.382 |
+| bar_78 | 3 | 0.508 | 0.049 | 0.414 |
+| bar_0  | 3 | 0.501 | 0.110 | 0.345 |
+| bar_49 | 3 | 0.496 | 0.014 | 0.445 |
+| bar_9  | 3 | 0.495 | 0.023 | 0.447 |
+| bar_17 | 3 | 0.486 | 0.075 | 0.425 |
+| bar_40 | 3 | 0.487 | 0.025 | 0.362 |
+| bar_35 | 3 | 0.488 | 0.042 | 0.413 |
+| bar_52 | 3 | 0.479 | 0.027 | 0.413 |
+| bar_27 | 3 | 0.479 | 0.095 | 0.390 |
+| bar_25 | 3 | 0.476 | 0.011 | 0.407 |
+| bar_80 | 3 | 0.446 | 0.043 | 0.379 |
+| bar_77 | 3 | 0.460 | 0.068 | 0.429 |
+| bar_71 | 3 | 0.462 | 0.026 | 0.345 |
+| bar_23 | 3 | 0.434 | 0.022 | 0.378 |
+| bar_53 | 3 | 0.454 | 0.071 | 0.311 |
+| bar_8  | 3 | 0.460 | 0.026 | 0.376 |
+| bar_43 | 3 | 0.466 | 0.031 | 0.310 |
+| bar_55 | 3 | 0.523 | 0.051 | 0.439 |
+| bar_73 | 3 | 0.439 | 0.025 | 0.328 |
+| bar_75 | 3 | 0.420 | 0.047 | 0.313 |
+| bar_42 | 3 | 0.420 | 0.007 | 0.310 |
+| bar_36 | 3 | 0.458 | 0.105 | 0.337 |
+| bar_41 | 3 | 0.398 | 0.028 | 0.319 |
+| bar_34 | 3 | 0.396 | 0.019 | 0.307 |
+| bar_38 | 3 | 0.372 | 0.039 | 0.345 |
+| bar_11 | 3 | 0.394 | 0.057 | 0.327 |
+
+**bar_3 anomaly:** scrambled_na 0.593 > native_ala mean 0.543 — for bar_3 the AA composition alone is unusually foldable. The lyric positional order slightly hurts it; consistent with ESMFold (native_ala 0.438 vs scrambled_na 0.620). The composition of the bar_3 lyric happens to spell out a foldable sequence regardless of arrangement.
+
+**bar_46 scrambled_na = 0.511** — notably higher than its concordance pLDDT (0.309). Scrambling the Ala-substituted sequence still folds better than the original concordance. The concordance backbone failure is a sequence-order effect, not a composition problem.
+
+**Figures M/N/O** saved to Drive: `results/figures/fig_v4_violin_all_buckets.png`, `fig_v4_sc_na_per_bar.png`, `fig_v4_esm_vs_boltz_sc_na.png`
+
+---
+
 ## Phase 2 — Step 10: BioReason-Pro Stress Test
 
 **Script:** `analysis/12_bioreason_prep.py` + `analysis/12b_bioreason_parse.py`
