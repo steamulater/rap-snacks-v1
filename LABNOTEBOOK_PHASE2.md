@@ -895,13 +895,13 @@ BioReason's behaviour is itself a finding: **any short sequence with standard am
 | **87** | `outputs/figures/fig87_umap_lyric_seeds.png` | ESM-2 UMAP — lyric seeds only (concordance + native_ala, no MPNN) |
 | **88** | `outputs/figures/fig88_umap_plddt.png` | ESM-2 UMAP — all 1286 seqs coloured by Boltz pLDDT (RdYlGn) |
 | **89a–l** | `outputs/figures/fig89_umap_bar_XX.png` × 12 | Per-bar UMAP — all 4 buckets, bars with ≥4 sequences (12/37 bars) |
-| **90** | `outputs/figures/fig90_rmsd_comparison.png` | Backbone RMSD: all 4 buckets — native_ala (ref) vs concordance vs free_design vs native_ala_free MPNN — per-bar + violin |
+| **90** | `outputs/figures/fig90_rmsd_pairs.png` | Pairwise Boltz Cα RMSD — 4 pairs × 12 bars (2×2 subplots) |
+| **91** | `outputs/figures/fig91_rmsd_combined.png` | Pairwise Boltz Cα RMSD — all 4 pairs combined in one panel |
 | S1 | `outputs/bioreason/bar_46_screenshot_bioreason.png` | BioReason screenshot — bar_46 concordance (backbone failure) |
 | S2 | `outputs/bioreason/pdb_1REG_screenshot_1.png` | BioReason screenshot — 1REG T4 phage RegA (positive control, p1) |
 | S3 | `outputs/bioreason/pdb_1REG_screenshot_2.png` | BioReason screenshot — 1REG T4 phage RegA (positive control, p2) |
 
-**Next local figure number:** Fig 91
-
+**Next local figure number:** Fig 92
 
 
 ---
@@ -1005,41 +1005,46 @@ Per-bar UMAPs generated for all 12 bars that had MPNN designs (≥4 sequences to
 
 ---
 
-## Phase 2 — Step 12: Backbone RMSD Comparison (All 4 Buckets)
+## Phase 2 — Step 12: Pairwise Boltz Structure RMSD
 
 **Script:** `analysis/14_rmsd_comparison.py`
 **Date:** 2026-04-07
-**Status:** Complete — fig90 generated
+**Status:** Complete — fig90 (4 pairs) + fig91 (combined) generated
 
 ### Rationale
 
-The UMAP plots show where sequences sit in embedding space. This figure asks a complementary question: **when each sequence is actually folded by Boltz-2, how close does its predicted structure come to the ESMFold reference backbone for that bar?** Low RMSD = the Boltz structure lands near the reference; high RMSD = the structure is globally different (likely disordered or a different fold).
+Rather than comparing each structure to an external ESMFold reference, this analysis asks: **how structurally different are the Boltz-2 predicted structures between buckets?** Each pair directly compares two Boltz structures via Cα RMSD (Kabsch alignment, model_0). This gives a bucket-vs-bucket structural divergence measure entirely within Boltz predictions.
 
-### Data
+### Pairs
 
-| Bucket | Source | Bars |
+| Pair | Comparison | What it tells us |
 |---|---|---|
-| native_ala (lyric seed, reference) | `boltz_rmsd.csv` (v2) | 12 |
-| concordance (lyric seed, alt encoding) | `boltz_rmsd.csv` (v2) | 12 |
-| free_design (MPNN, concordance backbone) | `boltz_rmsd.csv` (v2) | 12 × 51 designs |
-| native_ala_free (MPNN, native_ala backbone) | `boltz_rmsd_v3.csv` (from v3 zip) | 12 × ~49 designs |
-
-All RMSD values computed vs ESMFold-predicted backbone for each bar.
+| 1 | native_ala ↔ concordance | How different are the two lyric-seed structures for the same bar — encoding strategy divergence |
+| 2 | native_ala ↔ native_ala_free MPNN | How much MPNN redesigns from the native_ala seed |
+| 3 | concordance ↔ free_design MPNN | How much MPNN redesigns from the concordance seed |
+| 4 | free_design ↔ native_ala_free MPNN | How structurally different are the two MPNN strategy outputs |
 
 ### Key findings
 
 | Observation | Detail |
 |---|---|
-| concordance always < native_ala | Concordance lyric seed folds closer to ESMFold reference in all 12 bars (Δ = 2–18 Å). Freq-rank encoding produces more structurally coherent seeds. |
-| MPNN designs dramatically lower RMSD | native_ala_free median = 1.0–8.9 Å; far below the native_ala seed (12–33 Å). MPNN reliably rescues foldability from a disordered lyric-seed backbone. |
-| free_design more variable | free_design median ranges 0.8–15.3 Å. Some bars (bar_0, bar_8, bar_46) show high free_design RMSD despite low native_ala_free RMSD — backbone template matters. |
-| bar_77 is an outlier | native_ala RMSD = 33.4 Å — the most structurally divergent lyric seed. Even concordance (15.2 Å) and MPNN designs are elevated for this bar. |
+| Lyric seeds are structurally very different from each other (Pair 1) | RMSD = 11–44 Å across bars. bar_46 is the most divergent (44 Å). Same lyric, different encoding → completely different fold for some bars. |
+| MPNN redesigns heavily from native_ala (Pair 2) | Median 1–45 Å. Most bars show RMSD 3–14 Å, confirming MPNN explores a wide neighbourhood around the seed. |
+| concordance → free_design more constrained (Pair 3) | Median 4–15 Å, generally lower than Pair 2, suggesting concordance seeds lead to more focused MPNN designs. |
+| Two MPNN strategies produce very different structures (Pair 4) | Median 12–30 Å for most bars — fd and naf MPNN outputs are as different from each other as the two lyric seeds. Backbone template is the dominant determinant of MPNN design space. |
+| bar_46 outlier | All pairs show high RMSD for bar_46, suggesting both lyric-seed structures are globally disordered with random coil, so structural diversity is artificially inflated. |
 
-### Figure 90 — Backbone RMSD: 4 Buckets
+### Figure 90 — Pairwise RMSD: 4 Pairs (2×2 grid)
 
-![Figure 90](outputs/figures/fig90_rmsd_comparison.png)
+![Figure 90](outputs/figures/fig90_rmsd_pairs.png)
 
-**Figure 90 | Backbone RMSD comparison — all 4 buckets, 12 bars (sorted by native_ala RMSD).** Panel A (left): per-bar paired dotplot. native_ala = orange square (reference); concordance = blue diamond; Δ annotation shows native_ala − concordance gap. free_design MPNN = purple IQR band (upper); native_ala_free MPNN = green IQR band (lower). Bands show IQR, vertical tick = median, whisker = min–max. Panel B (right): overall violin per bucket with individual lyric seed dots overlaid. Medians: native_ala = 14.6 Å · concordance = 9.6 Å · free_design = 5.0 Å · native_ala_free = 1.2 Å.
+**Figure 90 | Pairwise Boltz Cα RMSD — 4 pairs × 12 bars (2×2 subplots).** Each subplot shows one structural comparison. Pair 1 (top-left): single RMSD value per bar between the two lyric seeds. Pairs 2–3 (top-right, bottom-left): distribution of RMSD values between the lyric seed and each MPNN design (median + IQR band). Pair 4 (bottom-right): cross-strategy MPNN distribution. Bars sorted by Pair 1 RMSD.
+
+### Figure 91 — All 4 Pairs Combined
+
+![Figure 91](outputs/figures/fig91_rmsd_combined.png)
+
+**Figure 91 | All 4 pairwise Boltz Cα RMSD comparisons overlaid per bar.** Circle = Pair 1 (na ↔ conc); Diamond = Pair 2 (na ↔ naf MPNN); Square = Pair 3 (conc ↔ fd MPNN); Triangle = Pair 4 (fd ↔ naf MPNN). IQR band shown for distribution pairs. The consistent pattern: Pair 4 (MPNN vs MPNN) tracks closely with Pair 1 (seed vs seed), confirming that backbone template choice is the primary driver of MPNN design space — not the MPNN optimisation itself.
 
 ---
 
