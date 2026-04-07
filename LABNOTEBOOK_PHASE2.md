@@ -895,11 +895,14 @@ BioReason's behaviour is itself a finding: **any short sequence with standard am
 | **87** | `outputs/figures/fig87_umap_lyric_seeds.png` | ESM-2 UMAP — lyric seeds only (concordance + native_ala, no MPNN) |
 | **88** | `outputs/figures/fig88_umap_plddt.png` | ESM-2 UMAP — all 1286 seqs coloured by Boltz pLDDT (RdYlGn) |
 | **89a–l** | `outputs/figures/fig89_umap_bar_XX.png` × 12 | Per-bar UMAP — all 4 buckets, bars with ≥4 sequences (12/37 bars) |
+| **90** | `outputs/figures/fig90_rmsd_comparison.png` | Backbone RMSD: all 4 buckets — native_ala (ref) vs concordance vs free_design vs native_ala_free MPNN — per-bar + violin |
 | S1 | `outputs/bioreason/bar_46_screenshot_bioreason.png` | BioReason screenshot — bar_46 concordance (backbone failure) |
 | S2 | `outputs/bioreason/pdb_1REG_screenshot_1.png` | BioReason screenshot — 1REG T4 phage RegA (positive control, p1) |
 | S3 | `outputs/bioreason/pdb_1REG_screenshot_2.png` | BioReason screenshot — 1REG T4 phage RegA (positive control, p2) |
 
-**Next local figure number:** Fig 90
+**Next local figure number:** Fig 91
+
+
 
 ---
 
@@ -999,6 +1002,44 @@ Per-bar UMAPs generated for all 12 bars that had MPNN designs (≥4 sequences to
 ![Figure 89l — bar_46](outputs/figures/fig89_umap_bar_46.png)
 
 **Figure 89a–l | Per-bar ESM-2 UMAPs.** Each panel shows one bar's full sequence space (n_neighbors=8). Lyric seeds anchor the embedding; MPNN design clouds expand around them. Tight MPNN clusters suggest convergence on a shared fold family from that bar's backbone. Spread suggests more diverse exploration. Overlap between free_design (purple) and native_ala_free (green) clouds indicates the two design strategies produce similar sequence distributions for that bar, while separation indicates the backbone templates (concordance vs native_ala) drive MPNN into distinct regions of sequence space.
+
+---
+
+## Phase 2 — Step 12: Backbone RMSD Comparison (All 4 Buckets)
+
+**Script:** `analysis/14_rmsd_comparison.py`
+**Date:** 2026-04-07
+**Status:** Complete — fig90 generated
+
+### Rationale
+
+The UMAP plots show where sequences sit in embedding space. This figure asks a complementary question: **when each sequence is actually folded by Boltz-2, how close does its predicted structure come to the ESMFold reference backbone for that bar?** Low RMSD = the Boltz structure lands near the reference; high RMSD = the structure is globally different (likely disordered or a different fold).
+
+### Data
+
+| Bucket | Source | Bars |
+|---|---|---|
+| native_ala (lyric seed, reference) | `boltz_rmsd.csv` (v2) | 12 |
+| concordance (lyric seed, alt encoding) | `boltz_rmsd.csv` (v2) | 12 |
+| free_design (MPNN, concordance backbone) | `boltz_rmsd.csv` (v2) | 12 × 51 designs |
+| native_ala_free (MPNN, native_ala backbone) | `boltz_rmsd_v3.csv` (from v3 zip) | 12 × ~49 designs |
+
+All RMSD values computed vs ESMFold-predicted backbone for each bar.
+
+### Key findings
+
+| Observation | Detail |
+|---|---|
+| concordance always < native_ala | Concordance lyric seed folds closer to ESMFold reference in all 12 bars (Δ = 2–18 Å). Freq-rank encoding produces more structurally coherent seeds. |
+| MPNN designs dramatically lower RMSD | native_ala_free median = 1.0–8.9 Å; far below the native_ala seed (12–33 Å). MPNN reliably rescues foldability from a disordered lyric-seed backbone. |
+| free_design more variable | free_design median ranges 0.8–15.3 Å. Some bars (bar_0, bar_8, bar_46) show high free_design RMSD despite low native_ala_free RMSD — backbone template matters. |
+| bar_77 is an outlier | native_ala RMSD = 33.4 Å — the most structurally divergent lyric seed. Even concordance (15.2 Å) and MPNN designs are elevated for this bar. |
+
+### Figure 90 — Backbone RMSD: 4 Buckets
+
+![Figure 90](outputs/figures/fig90_rmsd_comparison.png)
+
+**Figure 90 | Backbone RMSD comparison — all 4 buckets, 12 bars (sorted by native_ala RMSD).** Panel A (left): per-bar paired dotplot. native_ala = orange square (reference); concordance = blue diamond; Δ annotation shows native_ala − concordance gap. free_design MPNN = purple IQR band (upper); native_ala_free MPNN = green IQR band (lower). Bands show IQR, vertical tick = median, whisker = min–max. Panel B (right): overall violin per bucket with individual lyric seed dots overlaid. Medians: native_ala = 14.6 Å · concordance = 9.6 Å · free_design = 5.0 Å · native_ala_free = 1.2 Å.
 
 ---
 
