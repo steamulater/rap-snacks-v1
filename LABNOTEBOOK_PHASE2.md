@@ -775,47 +775,45 @@ Key reads:
 
 **Script:** `analysis/12_bioreason_prep.py` + `analysis/12b_bioreason_parse.py`
 **Date:** 2026-04-07
-**Status:** Input TSV generated, BioReason-Pro setup pending
+**Status:** ⛔ PAUSED — model cannot discriminate lyric sequences from real proteins (see results below)
 
-### What this tests
+### Manual validation (bioreason.net, 2026-04-07)
 
-BioReason-Pro (bowang-lab) is a state-of-the-art function prediction model that generates GO term predictions with step-by-step reasoning traces. Submitting lyric-derived protein sequences is a stress test of model grounding: can a biological reasoning model distinguish real proteins from culturally-derived sequences?
+Four sequences tested manually before committing to a full batch run:
 
-### Input
+| Sequence | Bar | Condition | pLDDT | FoldSeek | BioReason GO (biological process) | Grounded? |
+|---|---|---|---|---|---|---|
+| `ANDEVERYTHING...SPEAK` | bar_9 | native_ala | 0.543 | — | negative regulation of transcription by RNA Pol II (`GO:0000122`) | ✗ hallucinated |
+| `CKPYERHIG...HTGA` | bar_46 | concordance | 0.309 | — | epithelial cell differentiation (`GO:0030855`) | ✗ hallucinated |
+| `HTLEATLC...KLGP` | bar_11 | concordance | 0.344 | 0 hits | signal transduction + exosome (`GO:0007165`) | ✗ hallucinated |
+| `MIEITLKK...IGN` | 1REG | T4 phage RegA (real protein) | — | — | viral host gene suppression (`GO:0039657`) + dsDNA binding | ✓ correct |
 
-**118 sequences** in `outputs/bioreason/bioreason_all.tsv`:
+Raw chat exports: `outputs/bioreason/bioreason-chat-2026-04-07-*.md`
 
-| Panel | n | Description |
-|-------|---|-------------|
-| concordance | 12 | Raw lyric-derived sequences, 12 bars |
-| native_ala | 12 | Ala-substituted lyric sequences |
-| free_design | 12 | Best MPNN design (concordance backbone) per bar |
-| native_ala_free | 12 | Best MPNN design (native_ala backbone) per bar |
-| breadth | 20 | Full iconicity range, concordance only (non-candidate bars) |
-| **total** | **68** | (+ 50 deduplicated to 118 after overlap removal) |
+### Finding: BioReason confidence is binary, not graded
 
-`protein_id` encodes everything: `bar_27__native_ala__Ganja_Burn__ic0.331`
+All three lyric-derived sequences — including bar_46 (confirmed backbone failure, pLDDT 0.309) and bar_11 (0 FoldSeek hits, worst structural confidence) — received equally confident, detailed, mechanistically plausible GO predictions. The anchor in every case was a single generic `GO:0005515` (protein binding) InterPro hit, from which BioReason confabulated an elaborate story (transcriptional repressor scaffold, epithelial differentiation organiser, ER-to-exosome adaptor).
 
-### Key comparisons to watch
+The real protein (1REG, T4 phage RegA) received an accurate prediction grounded in real InterPro domain hits (`IPR002702` Translation repressor RegA family).
 
-- **bar_6 concordance** (TIM barrel, 2596 FoldSeek hits) → should get confident GO prediction if model is grounded in structure
-- **bar_27 native_ala** (0 FoldSeek hits, novel fold) → should get low confidence / unknown annotation
-- **bar_46** (backbone failure, pLDDT 0.31 concordance) → should flag disordered
-- **concordance vs free_design** → does MPNN design increase predicted GO confidence?
-- **iconicity vs confidence** → does cultural salience predict biological plausibility?
+**The model has two modes:**
+1. **InterPro domain hit → grounded, accurate, specific prediction**
+2. **No domain hit → `GO:0005515` + confident hallucination**
 
-### Setup
+There is no intermediate "low confidence" or "disordered" output. BioReason cannot flag a sequence as structurally implausible. The stress test would produce 118 confident hallucinations for lyric sequences and a handful of real predictions for any MPNN designs that happen to match a known domain — which defeats the purpose of the experiment.
 
-```bash
-git clone https://github.com/bowang-lab/BioReason-Pro
-cd BioReason-Pro && pip install -r requirements.txt
-python predict.py \
-  --input  outputs/bioreason/bioreason_all.tsv \
-  --output outputs/bioreason/bioreason_results.tsv
-python analysis/12b_bioreason_parse.py
-```
+### Decision: function prediction phase on pause
 
-See `outputs/bioreason/SETUP.md` for full instructions.
+Running the full 118-sequence batch would generate uninterpretable results — the confidence scores would not discriminate anything scientifically meaningful about the lyric-derived sequences. This phase is paused until a function predictor is available that:
+- Reports calibrated confidence (not binary grounded/hallucinated)
+- Can flag sequences as disordered or outside training distribution
+- Is tested on known-disordered sequences before being applied to lyric sequences
+
+Candidates to revisit: ESMFold function head, ProteinBERT, or structure-conditioned function prediction once wet-lab PDBs are available.
+
+### What this tells us
+
+BioReason's behaviour is itself a finding: **any short sequence with standard amino acids is assigned a confident human protein function.** This is consistent with the Phase 1 ESMFold result (ESMFold cannot discriminate structured from scrambled sequences at short lengths). The lyric-derived sequences are indistinguishable from real sequences to both structure predictors (at the uncertainty level) and function predictors (at the annotation level). The biology and the culture are genuinely orthogonal — the sequences look real enough to fool state-of-the-art models.
 
 ---
 
@@ -938,11 +936,10 @@ t-SNE optimises for local neighbourhood only — clusters are meaningful, inter-
 
 | Priority | Task | Script |
 |----------|------|--------|
-| 1 | Run ESM-2 UMAP | `analysis/13_umap_esm2.py` |
-| 2 | Run BioReason-Pro on `outputs/bioreason/bioreason_all.tsv` | `analysis/12b_bioreason_parse.py` |
-| 3 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
-| 4 | Codon optimisation | `analysis/10_codon_optimize.py` |
-| 5 | Platform decision + submission | Adaptyv Bio |
+| 1 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
+| 2 | Codon optimisation | `analysis/10_codon_optimize.py` |
+| 3 | Platform decision + submission | Adaptyv Bio |
+| — | ~~BioReason-Pro batch run~~ | ⛔ paused — model hallucinates for all non-domain sequences |
 
 ---
 
