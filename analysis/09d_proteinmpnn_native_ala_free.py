@@ -89,11 +89,23 @@ def find_native_ala_pdb(bar_id: str, preds_dir: Path) -> Path | None:
 
 
 def fix_boltz_chain(pdb_text: str) -> str:
-    """Boltz writes 2-char chain IDs; fix to single-char 'A' for ProteinMPNN."""
+    """Normalise chain ID to single-char 'A' for ProteinMPNN.
+
+    Boltz sometimes writes 2-char chain IDs (e.g. 'b1'); sometimes the PDB
+    already has a valid single-char chain. Detect the case and rewrite only
+    when needed so coordinate columns are not shifted.
+    """
     out = []
     for line in pdb_text.splitlines(keepends=True):
-        if (line.startswith("ATOM") or line.startswith("HETATM")) and len(line) >= 32:
-            line = line[:21] + "A" + line[24:]
+        if (line.startswith("ATOM") or line.startswith("HETATM")) and len(line) >= 54:
+            chain = line[21]            # column 22 (0-indexed 21) = chain ID
+            next_char = line[22]        # column 23: should be space if chain is 1-char
+            if next_char != ' ':
+                # 2-char chain ID — strip the extra character (columns 22-23 → "A ")
+                line = line[:21] + "A " + line[24:]
+            elif chain not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+                # Non-standard single char — replace just that char
+                line = line[:21] + "A" + line[22:]
         out.append(line)
     return "".join(out)
 
@@ -233,6 +245,10 @@ def main(n_seqs: int, temp: float, esm_plddt_min: float) -> None:
     results = pd.DataFrame(all_rows)
     results.to_csv(FILTERED_CSV, index=False)
     print(f"\nSaved {len(results)} designs → {FILTERED_CSV}")
+
+    if results.empty or "passes" not in results.columns:
+        print("No designs produced — check MPNN errors above.")
+        return
 
     passing = results[results["passes"] == True]
     print(f"Passing (pLDDT ≥ {esm_plddt_min}): {len(passing)} / {len(results)}")
