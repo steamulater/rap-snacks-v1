@@ -123,23 +123,20 @@ for bar_id in bar_ids:
 # free_design — all passing designs
 if FREE_CSV.exists():
     fd = pd.read_csv(FREE_CSV)
-    for _, row in fd.iterrows():
+    for i, row in fd.iterrows():
         if row.get("bar_id") not in bar_ids:
             continue
-        plddt = boltz_plddt.get((row["name"], "free_design")) if "name" in row else None
-        add(row["bar_id"], "free_design", row["sequence"],
-            name=row.get("name", f"{row['bar_id']}__free_design"),
-            plddt=plddt)
+        name = f"{row['bar_id']}__free_design_{int(row.get('design_idx', i)):03d}"
+        add(row["bar_id"], "free_design", row["sequence"], name=name)
 
 # native_ala_free — all passing designs
 if NAF_CSV.exists():
     naf = pd.read_csv(NAF_CSV)
-    for _, row in naf.iterrows():
+    for i, row in naf.iterrows():
         if row.get("bar_id") not in bar_ids:
             continue
-        add(row["bar_id"], "native_ala_free", row["sequence"],
-            name=row.get("name", f"{row['bar_id']}__native_ala_free"),
-            plddt=None)
+        name = f"{row['bar_id']}__native_ala_free_{int(row.get('design_idx', i)):03d}"
+        add(row["bar_id"], "native_ala_free", row["sequence"], name=name)
 
 df = pd.DataFrame(rows).drop_duplicates("name").reset_index(drop=True)
 print(f"Total sequences: {len(df)}")
