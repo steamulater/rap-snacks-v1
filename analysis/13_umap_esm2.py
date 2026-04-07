@@ -1,21 +1,15 @@
 """
 13_umap_esm2.py
 ---------------
-ESM-2 embeddings → UMAP for the 4 core buckets:
-  concordance, native_ala, free_design, native_ala_free
+ESM-2 embeddings → UMAP variants (white background).
 
-One dot per sequence. Layout:
-  - Colour   : bucket
-  - Hull     : bar_id (convex hull around each bar's designs)
-  - Dot size : FoldSeek hit count (concordance/native_ala only; designs = 40)
-  - Labels   : bar_id + song title on hull centroid
+Outputs:
+  fig83_umap_all_buckets.png     — all 4 buckets, colour by bucket
+  fig84_umap_native_ala.png      — native_ala + native_ala_free only
+  fig85_umap_concordance.png     — concordance + free_design only
+  fig86_umap_barbie_dangerous.png — bar_32 only, all 4 buckets
 
-Panel A : coloured by bucket
-Panel B : same layout, coloured by Boltz pLDDT
-
-Output:
-  outputs/figures/fig83_umap_esm2.png
-  outputs/embeddings/esm2_embeddings.csv   (cached — skip recompute on re-run)
+  outputs/embeddings/esm2_embeddings.csv  (cached)
 """
 
 import warnings
@@ -27,9 +21,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from matplotlib.patches import FancyArrowPatch
 from scipy.spatial import ConvexHull
 from pathlib import Path
+import umap as umap_lib
 
 ROOT    = Path(__file__).parent.parent
 DATA    = ROOT / "data"
@@ -43,18 +37,16 @@ CANDIDATES = DATA / "phase2_candidates.csv"
 FREE_CSV   = ROOT / "outputs/proteinmpnn_free/filtered_results.csv"
 NAF_CSV    = ROOT / "outputs/proteinmpnn_native_ala_free/filtered_results.csv"
 V2_CSV     = ROOT / "outputs/boltz_validation/boltz_validation_results.csv"
-FOLDSEEK   = ROOT / "outputs/foldseek/foldseek_hits.csv"
 FS2_CSV    = ROOT / "outputs/foldseek_phase2/foldseek_phase2_summary.csv"
 EMB_CACHE  = OUT_EMB / "esm2_embeddings.csv"
 
 VALID_AA = set("ACDEFGHIKLMNPQRSTVWY")
 
-DARK_BG = "#0e0e0e"
-COLORS  = {
-    "concordance":     "#00d4ff",
-    "native_ala":      "#ff9500",
-    "free_design":     "#a855f7",
-    "native_ala_free": "#39d353",
+COLORS = {
+    "concordance":     "#0ea5e9",   # sky blue
+    "native_ala":      "#f97316",   # orange
+    "free_design":     "#a855f7",   # purple
+    "native_ala_free": "#22c55e",   # green
 }
 BUCKET_ORDER = ["concordance", "native_ala", "free_design", "native_ala_free"]
 
@@ -69,74 +61,57 @@ meta = (enriched[enriched["bar_id"].isin(bar_ids)]
         .drop_duplicates("bar_id")
         .set_index("bar_id"))
 
-# FoldSeek hit counts (phase 2 summary if available, else phase 1)
 fs_hits = {}
 if FS2_CSV.exists():
     fs2 = pd.read_csv(FS2_CSV)
     for _, row in fs2.iterrows():
         fs_hits[(row["bar_id"], row["bucket"])] = int(row["n_hits"])
-elif FOLDSEEK.exists():
-    fs1 = pd.read_csv(FOLDSEEK)
-    for bar_id, g in fs1.groupby("bar_id"):
-        n = len(g[g["foldseek_result"] != "no_hits_novel"])
-        fs_hits[(bar_id, "concordance")] = n
 
-# Boltz pLDDT lookup
 boltz_plddt = {}
 if V2_CSV.exists():
     v2 = pd.read_csv(V2_CSV)
     for _, row in v2.iterrows():
-        boltz_plddt[(row["name"], row["bucket"])] = row["boltz_plddt"]
+        boltz_plddt[(row["bar_id"], row["bucket"])] = row["boltz_plddt"]
 
 # ── Collect sequences ──────────────────────────────────────────────────────
 
 rows = []
 
-def add(bar_id, bucket, seq, name=None, plddt=None):
+def add(bar_id, bucket, seq, name):
     seq = str(seq).upper().strip()
     if not seq or not set(seq) <= VALID_AA:
         return
-    song  = meta.loc[bar_id, "genius_song_title"] if bar_id in meta.index else ""
+    song  = meta.loc[bar_id, "genius_song_title"] if bar_id in meta.index else bar_id
     icon  = meta.loc[bar_id, "aggregate_iconicity"] if bar_id in meta.index else float("nan")
-    n_hits = fs_hits.get((bar_id, bucket), 0)
     rows.append({
-        "name":     name or f"{bar_id}__{bucket}",
-        "bar_id":   bar_id,
-        "bucket":   bucket,
-        "song":     song,
+        "name":      name,
+        "bar_id":    bar_id,
+        "bucket":    bucket,
+        "song":      song,
         "iconicity": icon,
-        "sequence": seq,
-        "n_hits":   n_hits,
-        "boltz_plddt": plddt,
+        "sequence":  seq,
+        "n_hits":    fs_hits.get((bar_id, bucket), 0),
+        "boltz_plddt": boltz_plddt.get((bar_id, bucket), float("nan")),
     })
 
-# concordance + native_ala (one per bar from enriched)
 for bar_id in bar_ids:
     r = enriched[enriched["bar_id"] == bar_id].iloc[0]
-    add(bar_id, "concordance", r.get("fasta_seq_concordance"),
-        name=f"{bar_id}__concordance",
-        plddt=boltz_plddt.get((f"{bar_id}__concordance", "concordance")))
-    add(bar_id, "native_ala", r.get("fasta_seq_native_alanine"),
-        name=f"{bar_id}__native_ala",
-        plddt=boltz_plddt.get((f"{bar_id}__native_ala", "native_ala")))
+    add(bar_id, "concordance", r.get("fasta_seq_concordance"),    f"{bar_id}__concordance")
+    add(bar_id, "native_ala",  r.get("fasta_seq_native_alanine"), f"{bar_id}__native_ala")
 
-# free_design — all passing designs
 if FREE_CSV.exists():
     fd = pd.read_csv(FREE_CSV)
     for i, row in fd.iterrows():
-        if row.get("bar_id") not in bar_ids:
-            continue
-        name = f"{row['bar_id']}__free_design_{int(row.get('design_idx', i)):03d}"
-        add(row["bar_id"], "free_design", row["sequence"], name=name)
+        if row.get("bar_id") not in bar_ids: continue
+        add(row["bar_id"], "free_design", row["sequence"],
+            f"{row['bar_id']}__fd_{int(row.get('design_idx', i)):03d}")
 
-# native_ala_free — all passing designs
 if NAF_CSV.exists():
     naf = pd.read_csv(NAF_CSV)
     for i, row in naf.iterrows():
-        if row.get("bar_id") not in bar_ids:
-            continue
-        name = f"{row['bar_id']}__native_ala_free_{int(row.get('design_idx', i)):03d}"
-        add(row["bar_id"], "native_ala_free", row["sequence"], name=name)
+        if row.get("bar_id") not in bar_ids: continue
+        add(row["bar_id"], "native_ala_free", row["sequence"],
+            f"{row['bar_id']}__naf_{int(row.get('design_idx', i)):03d}")
 
 df = pd.DataFrame(rows).drop_duplicates("name").reset_index(drop=True)
 print(f"Total sequences: {len(df)}")
@@ -146,66 +121,52 @@ for bucket, g in df.groupby("bucket"):
 # ── ESM-2 embeddings ────────────────────────────────────────────────────────
 
 if EMB_CACHE.exists():
-    print(f"\nLoading cached embeddings from {EMB_CACHE.name}")
-    emb_df = pd.read_csv(EMB_CACHE, index_col=0)
-    # align to df order
+    print(f"\nLoading cached embeddings...")
+    emb_df  = pd.read_csv(EMB_CACHE, index_col=0)
     missing = set(df["name"]) - set(emb_df.index)
     if missing:
-        print(f"  {len(missing)} new sequences not in cache — recomputing all")
+        print(f"  {len(missing)} sequences missing from cache — recomputing all")
         EMB_CACHE.unlink()
-    else:
-        emb_matrix = emb_df.loc[df["name"]].values
-        print(f"  {emb_matrix.shape[1]}-dim embeddings loaded")
 
 if not EMB_CACHE.exists():
     print("\nComputing ESM-2 embeddings (esm2_t6_8M_UR50D)...")
-    import esm as esmlib
+    import esm as esmlib, torch
     model, alphabet = esmlib.pretrained.esm2_t6_8M_UR50D()
     model.eval()
     batch_converter = alphabet.get_batch_converter()
-
-    import torch
     BATCH = 32
-    all_embs = []
+    all_embs, names = [], list(df["name"])
     seqs = list(df["sequence"])
-    names = list(df["name"])
-
     for i in range(0, len(seqs), BATCH):
-        batch_seqs = seqs[i:i+BATCH]
-        batch_names = names[i:i+BATCH]
-        # truncate to 1022 (ESM-2 limit)
-        data = [(n, s[:1022]) for n, s in zip(batch_names, batch_seqs)]
+        data = [(n, s[:1022]) for n, s in zip(names[i:i+BATCH], seqs[i:i+BATCH])]
         _, _, tokens = batch_converter(data)
         with torch.no_grad():
-            results = model(tokens, repr_layers=[6], return_contacts=False)
-        reps = results["representations"][6]  # (B, L+2, D)
-        for j, (n, s) in enumerate(zip(batch_names, batch_seqs)):
+            reps = model(tokens, repr_layers=[6])["representations"][6]
+        for j, s in enumerate(seqs[i:i+BATCH]):
             L = min(len(s), 1022)
-            emb = reps[j, 1:L+1].mean(0).cpu().numpy()  # mean pool over residues
-            all_embs.append(emb)
+            all_embs.append(reps[j, 1:L+1].mean(0).cpu().numpy())
         if (i // BATCH) % 5 == 0:
-            print(f"  {i+len(batch_seqs)}/{len(seqs)} done")
-
+            print(f"  {min(i+BATCH, len(seqs))}/{len(seqs)}")
     emb_matrix = np.stack(all_embs)
     emb_df = pd.DataFrame(emb_matrix, index=names)
     emb_df.to_csv(EMB_CACHE)
-    print(f"Embeddings saved → {EMB_CACHE.name}  shape={emb_matrix.shape}")
+    print(f"Saved {EMB_CACHE.name}  shape={emb_matrix.shape}")
 
-# ── UMAP ────────────────────────────────────────────────────────────────────
+emb_matrix = emb_df.loc[df["name"]].values
 
-print("\nRunning UMAP...")
-import umap as umap_lib
+# ── UMAP (full) ─────────────────────────────────────────────────────────────
+
+print("\nRunning UMAP (full, 1286 seqs)...")
 reducer = umap_lib.UMAP(n_neighbors=15, min_dist=0.1, metric="cosine",
                         random_state=42, verbose=False)
 coords = reducer.fit_transform(emb_matrix)
 df["umap_x"] = coords[:, 0]
 df["umap_y"] = coords[:, 1]
-print("UMAP done.")
+print("Done.")
 
-# ── Plot ─────────────────────────────────────────────────────────────────────
+# ── Helpers ──────────────────────────────────────────────────────────────────
 
-def draw_hull(ax, pts, color, alpha=0.08):
-    """Draw convex hull polygon around a set of 2D points."""
+def draw_hull(ax, pts, color, alpha=0.06, lw=0.8):
     if len(pts) < 3:
         return
     try:
@@ -213,96 +174,198 @@ def draw_hull(ax, pts, color, alpha=0.08):
         verts = pts[hull.vertices]
         verts = np.vstack([verts, verts[0]])
         ax.fill(verts[:, 0], verts[:, 1], color=color, alpha=alpha, zorder=1)
-        ax.plot(verts[:, 0], verts[:, 1], color=color, alpha=0.3, lw=0.8, zorder=2)
+        ax.plot(verts[:, 0], verts[:, 1], color=color, alpha=0.4, lw=lw, zorder=2)
     except Exception:
         pass
 
-fig, axes = plt.subplots(1, 2, figsize=(20, 9), facecolor=DARK_BG)
-fig.suptitle("ESM-2 → UMAP: Rap Snacks sequence space\n"
-             "concordance · native_ala · free_design · native_ala_free",
-             color="white", fontsize=13, y=1.01)
+def label_bars(ax, sub_df, bar_ids_to_label, fontsize=6.5, color="black"):
+    for bar_id in bar_ids_to_label:
+        g = sub_df[sub_df["bar_id"] == bar_id]
+        if g.empty: continue
+        cx, cy = g["umap_x"].mean(), g["umap_y"].mean()
+        song = meta.loc[bar_id, "genius_song_title"] if bar_id in meta.index else bar_id
+        short = song[:20] + "…" if len(song) > 20 else song
+        ax.text(cx, cy, f"{bar_id}\n{short}", ha="center", va="center",
+                fontsize=fontsize, color=color, alpha=0.9,
+                bbox=dict(boxstyle="round,pad=0.2", facecolor="white",
+                          edgecolor="#cccccc", alpha=0.85))
 
-for ax_i, ax in enumerate(axes):
-    ax.set_facecolor(DARK_BG)
+def style_ax(ax, title):
+    ax.set_facecolor("white")
+    ax.set_title(title, fontsize=11, color="black", pad=8)
+    ax.set_xlabel("UMAP 1", fontsize=9, color="#555")
+    ax.set_ylabel("UMAP 2", fontsize=9, color="#555")
+    ax.tick_params(colors="#999", labelsize=7)
     for s in ax.spines.values():
-        s.set_visible(False)
-    ax.tick_params(colors="#555")
-    ax.set_xlabel("UMAP 1", color="#666", fontsize=9)
-    ax.set_ylabel("UMAP 2", color="#666", fontsize=9)
+        s.set_edgecolor("#dddddd")
 
-# ── Panel A: colour by bucket ─────────────────────────────────────────────
-ax = axes[0]
-ax.set_title("Coloured by bucket", color="white", fontsize=11)
+def legend(ax, buckets):
+    handles = [mpatches.Patch(color=COLORS[b], label=b.replace("_", " ")) for b in buckets]
+    ax.legend(handles=handles, fontsize=8, framealpha=0.9,
+              edgecolor="#cccccc", facecolor="white", labelcolor="black")
 
-# Draw hulls per bar (using all 4 buckets combined)
+# ══════════════════════════════════════════════════════════════════════════════
+# Fig 83 — All 4 buckets
+# ══════════════════════════════════════════════════════════════════════════════
+
+fig, ax = plt.subplots(figsize=(14, 10), facecolor="white")
+style_ax(ax, "ESM-2 UMAP — all 4 buckets  (concordance · native_ala · free_design · native_ala_free)")
+
 for bar_id in bar_ids:
     g = df[df["bar_id"] == bar_id]
     pts = g[["umap_x", "umap_y"]].values
-    # hull colour = average of bucket colours (just use white/dim)
-    draw_hull(ax, pts, color="#ffffff", alpha=0.04)
+    draw_hull(ax, pts, color="#aaaaaa", alpha=0.05)
 
-# Plot points
 for bucket in BUCKET_ORDER:
     g = df[df["bucket"] == bucket]
     is_lyric = bucket in ("concordance", "native_ala")
-    sizes = np.clip(g["n_hits"].fillna(0).values * 0.15 + 20, 20, 120) if is_lyric else np.full(len(g), 12)
     ax.scatter(g["umap_x"], g["umap_y"],
-               c=COLORS[bucket], s=sizes, alpha=0.75 if is_lyric else 0.35,
-               zorder=3 if is_lyric else 2, label=bucket, linewidths=0)
+               c=COLORS[bucket],
+               s=55 if is_lyric else 10,
+               alpha=0.9 if is_lyric else 0.35,
+               zorder=4 if is_lyric else 2,
+               linewidths=0.4 if is_lyric else 0,
+               edgecolors="white" if is_lyric else "none",
+               label=bucket)
 
-# Label bar centroids
-for bar_id in bar_ids:
-    g = df[df["bar_id"] == bar_id]
-    cx, cy = g["umap_x"].mean(), g["umap_y"].mean()
-    song = meta.loc[bar_id, "genius_song_title"] if bar_id in meta.index else bar_id
-    short = song[:18] + "…" if len(song) > 18 else song
-    ax.text(cx, cy, f"{bar_id}\n{short}", ha="center", va="center",
-            fontsize=5.5, color="white", alpha=0.85,
-            bbox=dict(boxstyle="round,pad=0.2", facecolor="#111", edgecolor="none", alpha=0.6))
-
-legend_handles = [mpatches.Patch(color=COLORS[b], label=b) for b in BUCKET_ORDER]
-ax.legend(handles=legend_handles, facecolor="#1a1a1a", labelcolor="white",
-          fontsize=8, loc="upper left", framealpha=0.8)
-
-# ── Panel B: colour by Boltz pLDDT ───────────────────────────────────────
-ax = axes[1]
-ax.set_title("Coloured by Boltz pLDDT (concordance/native_ala/free_design only)",
-             color="white", fontsize=10)
-
-# Draw hulls per bar
-for bar_id in bar_ids:
-    g = df[df["bar_id"] == bar_id]
-    pts = g[["umap_x", "umap_y"]].values
-    draw_hull(ax, pts, color="#ffffff", alpha=0.04)
-
-# Plot MPNN designs (no pLDDT) as dim grey background
-mpnn = df[df["bucket"].isin(["free_design", "native_ala_free"])]
-ax.scatter(mpnn["umap_x"], mpnn["umap_y"], c="#333333", s=8, alpha=0.3, zorder=1, linewidths=0)
-
-# Plot lyric sequences coloured by pLDDT
-lyric = df[df["bucket"].isin(["concordance", "native_ala"])].dropna(subset=["boltz_plddt"])
-sc = ax.scatter(lyric["umap_x"], lyric["umap_y"],
-                c=lyric["boltz_plddt"], cmap="plasma",
-                vmin=0.3, vmax=0.9, s=80, alpha=0.9, zorder=4,
-                marker="o", linewidths=0.5, edgecolors="white")
-plt.colorbar(sc, ax=ax, label="Boltz pLDDT", fraction=0.03, pad=0.02)
-
-# Label bar centroids
-for bar_id in bar_ids:
-    g = df[df["bar_id"] == bar_id]
-    cx, cy = g["umap_x"].mean(), g["umap_y"].mean()
-    song = meta.loc[bar_id, "genius_song_title"] if bar_id in meta.index else bar_id
-    short = song[:18] + "…" if len(song) > 18 else song
-    ax.text(cx, cy, f"{bar_id}\n{short}", ha="center", va="center",
-            fontsize=5.5, color="white", alpha=0.85,
-            bbox=dict(boxstyle="round,pad=0.2", facecolor="#111", edgecolor="none", alpha=0.6))
-
-for s in ax.spines.values():
-    s.set_visible(False)
-
+label_bars(ax, df, bar_ids)
+legend(ax, BUCKET_ORDER)
 plt.tight_layout()
-out_path = OUT_FIG / "fig83_umap_esm2.png"
-plt.savefig(out_path, dpi=160, facecolor=DARK_BG, bbox_inches="tight")
+plt.savefig(OUT_FIG / "fig83_umap_all_buckets.png", dpi=160, facecolor="white", bbox_inches="tight")
 plt.close()
-print(f"\nSaved → {out_path}")
-print(f"Embeddings cached → {EMB_CACHE}")
+print("Saved fig83_umap_all_buckets.png")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Fig 84 — native_ala + native_ala_free only
+# ══════════════════════════════════════════════════════════════════════════════
+
+sub = df[df["bucket"].isin(["native_ala", "native_ala_free"])].copy()
+
+# Re-run UMAP on subset for cleaner layout
+print("Running UMAP (native_ala subset)...")
+emb_sub = emb_df.loc[sub["name"]].values
+coords_sub = umap_lib.UMAP(n_neighbors=12, min_dist=0.08, metric="cosine",
+                           random_state=42, verbose=False).fit_transform(emb_sub)
+sub["umap_x"] = coords_sub[:, 0]
+sub["umap_y"] = coords_sub[:, 1]
+
+fig, ax = plt.subplots(figsize=(14, 10), facecolor="white")
+style_ax(ax, "native_ala sequences + native_ala_free MPNN designs — ESM-2 UMAP")
+
+for bar_id in bar_ids:
+    g = sub[sub["bar_id"] == bar_id]
+    pts = g[["umap_x", "umap_y"]].values
+    draw_hull(ax, pts, color=COLORS["native_ala"], alpha=0.07)
+
+ax.scatter(sub[sub["bucket"] == "native_ala_free"]["umap_x"],
+           sub[sub["bucket"] == "native_ala_free"]["umap_y"],
+           c=COLORS["native_ala_free"], s=12, alpha=0.4, zorder=2,
+           linewidths=0, label="native_ala_free (MPNN)")
+
+na = sub[sub["bucket"] == "native_ala"]
+ax.scatter(na["umap_x"], na["umap_y"],
+           c=COLORS["native_ala"], s=90, alpha=0.95, zorder=5,
+           linewidths=0.6, edgecolors="white", label="native_ala (lyric seed)")
+
+label_bars(ax, sub, bar_ids)
+legend(ax, ["native_ala", "native_ala_free"])
+plt.tight_layout()
+plt.savefig(OUT_FIG / "fig84_umap_native_ala.png", dpi=160, facecolor="white", bbox_inches="tight")
+plt.close()
+print("Saved fig84_umap_native_ala.png")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Fig 85 — concordance + free_design only
+# ══════════════════════════════════════════════════════════════════════════════
+
+sub = df[df["bucket"].isin(["concordance", "free_design"])].copy()
+
+print("Running UMAP (concordance subset)...")
+emb_sub = emb_df.loc[sub["name"]].values
+coords_sub = umap_lib.UMAP(n_neighbors=12, min_dist=0.08, metric="cosine",
+                           random_state=42, verbose=False).fit_transform(emb_sub)
+sub["umap_x"] = coords_sub[:, 0]
+sub["umap_y"] = coords_sub[:, 1]
+
+fig, ax = plt.subplots(figsize=(14, 10), facecolor="white")
+style_ax(ax, "concordance sequences + free_design MPNN designs — ESM-2 UMAP")
+
+for bar_id in bar_ids:
+    g = sub[sub["bar_id"] == bar_id]
+    pts = g[["umap_x", "umap_y"]].values
+    draw_hull(ax, pts, color=COLORS["concordance"], alpha=0.07)
+
+ax.scatter(sub[sub["bucket"] == "free_design"]["umap_x"],
+           sub[sub["bucket"] == "free_design"]["umap_y"],
+           c=COLORS["free_design"], s=12, alpha=0.4, zorder=2,
+           linewidths=0, label="free_design (MPNN)")
+
+conc = sub[sub["bucket"] == "concordance"]
+ax.scatter(conc["umap_x"], conc["umap_y"],
+           c=COLORS["concordance"], s=90, alpha=0.95, zorder=5,
+           linewidths=0.6, edgecolors="white", label="concordance (lyric seed)")
+
+label_bars(ax, sub, bar_ids)
+legend(ax, ["concordance", "free_design"])
+plt.tight_layout()
+plt.savefig(OUT_FIG / "fig85_umap_concordance.png", dpi=160, facecolor="white", bbox_inches="tight")
+plt.close()
+print("Saved fig85_umap_concordance.png")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Fig 86 — bar_32 (Barbie Dangerous) only
+# ══════════════════════════════════════════════════════════════════════════════
+
+sub = df[df["bar_id"] == "bar_32"].copy()
+print(f"\nbar_32 sequences: {len(sub)} ({sub['bucket'].value_counts().to_dict()})")
+
+print("Running UMAP (bar_32 only)...")
+emb_sub = emb_df.loc[sub["name"]].values
+# fewer neighbors for small set
+coords_sub = umap_lib.UMAP(n_neighbors=8, min_dist=0.05, metric="cosine",
+                           random_state=42, verbose=False).fit_transform(emb_sub)
+sub["umap_x"] = coords_sub[:, 0]
+sub["umap_y"] = coords_sub[:, 1]
+
+fig, ax = plt.subplots(figsize=(12, 9), facecolor="white")
+style_ax(ax, "bar_32 — Barbie Dangerous — all 4 buckets  (ESM-2 UMAP)")
+
+for bucket in BUCKET_ORDER:
+    g = sub[sub["bucket"] == bucket]
+    if g.empty: continue
+    is_lyric = bucket in ("concordance", "native_ala")
+    ax.scatter(g["umap_x"], g["umap_y"],
+               c=COLORS[bucket],
+               s=120 if is_lyric else 25,
+               alpha=0.95 if is_lyric else 0.55,
+               zorder=5 if is_lyric else 3,
+               linewidths=0.8 if is_lyric else 0,
+               edgecolors="white" if is_lyric else "none",
+               label=bucket.replace("_", " "))
+    # label the single lyric sequences
+    if is_lyric:
+        for _, row in g.iterrows():
+            ax.annotate(bucket.replace("_", " "),
+                        (row["umap_x"], row["umap_y"]),
+                        xytext=(8, 6), textcoords="offset points",
+                        fontsize=8, color=COLORS[bucket],
+                        fontweight="bold",
+                        arrowprops=dict(arrowstyle="-", color=COLORS[bucket],
+                                        lw=0.8, alpha=0.6))
+
+song = meta.loc["bar_32", "genius_song_title"] if "bar_32" in meta.index else "Barbie Dangerous"
+ax.set_title(f"bar_32 — {song} — all 4 buckets  (ESM-2 UMAP)\n"
+             f"concordance (1) · native_ala (1) · free_design ({len(sub[sub['bucket']=='free_design'])}) "
+             f"· native_ala_free ({len(sub[sub['bucket']=='native_ala_free'])})",
+             fontsize=10, color="black", pad=8)
+legend(ax, [b for b in BUCKET_ORDER if b in sub["bucket"].values])
+plt.tight_layout()
+plt.savefig(OUT_FIG / "fig86_umap_barbie_dangerous.png", dpi=160, facecolor="white", bbox_inches="tight")
+plt.close()
+print("Saved fig86_umap_barbie_dangerous.png")
+
+print("\nAll done.")
+print("  fig83_umap_all_buckets.png")
+print("  fig84_umap_native_ala.png")
+print("  fig85_umap_concordance.png")
+print("  fig86_umap_barbie_dangerous.png")
