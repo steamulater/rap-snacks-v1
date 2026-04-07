@@ -880,7 +880,57 @@ See `outputs/bioreason/SETUP.md` for full instructions.
 | **81** | `outputs/figures/fig81_v4_sc_na_per_bar.png` | scrambled_na per bar — Boltz vs ESMFold |
 | **82** | `outputs/figures/fig82_v4_esm_vs_boltz_sc_na.png` | ESMFold vs Boltz scatter — scrambled_na |
 
-**Next local figure number:** Fig 83
+| **83** | `outputs/figures/fig83_umap_esm2.png` | ESM-2 UMAP — 4 buckets, hull per bar, panel A bucket colour / panel B pLDDT |
+
+**Next local figure number:** Fig 84
+
+---
+
+## Phase 2 — Step 11: ESM-2 UMAP (Sequence Space Visualisation)
+
+**Script:** `analysis/13_umap_esm2.py`
+**Date:** 2026-04-07
+**Status:** Script written, run pending
+
+### Rationale
+
+After completing the foldability decomposition across 7 buckets, the next question is: **where do these sequences sit in protein sequence space?** The UMAP plots the full sequence landscape using ESM-2 protein language model embeddings — capturing evolutionary signal, biophysical plausibility, and structural propensity simultaneously.
+
+### Design decisions
+
+| Decision | Choice | Rationale |
+|---|---|---|
+| Embedding model | ESM-2 8M (esm2_t6_8M_UR50D, layer 6) | Fast on CPU; sufficient for sequence-space topology |
+| Pooling | Mean over residue positions | Standard for sequence-level tasks |
+| Dimensionality reduction | UMAP (cosine metric, n_neighbors=15, min_dist=0.1) | Preserves local + global structure; more stable than t-SNE |
+| Buckets included | concordance, native_ala, free_design, native_ala_free | Core 4 buckets only — no scrambles |
+| Hull | Convex hull per bar (all 4 buckets combined) | Shows how MPNN designs expand around the lyric seed sequences |
+| Label | bar_id + song title on hull centroid | Directly readable in the figure |
+| Dot size (lyric seqs) | Proportional to FoldSeek hit count | Visually encodes structural novelty |
+| Panel A | Colour by bucket | Shows design strategy separation in sequence space |
+| Panel B | Colour by Boltz pLDDT (lyric seqs); MPNN dims to grey | Shows foldability landscape |
+
+### t-SNE vs UMAP — design note
+
+t-SNE optimises for local neighbourhood only — clusters are meaningful, inter-cluster distances are not. UMAP preserves both local and global structure, runs faster, and is more stable across seeds. For this dataset (~1200 sequences, 4 related buckets) UMAP is preferred: we want to see both whether bars form clusters AND where they sit relative to each other globally.
+
+### Key questions the plot answers
+
+1. Do MPNN designs from the same bar cluster tightly (shared backbone → similar sequence space)?
+2. Do concordance/native_ala sequences sit at the edge of or outside their bar's MPNN cluster (lyric sequence ≠ designed sequence)?
+3. Do bars with known structure (bar_6, TIM barrel) sit in a distinct region vs novel bars (bar_27, 0 FoldSeek hits)?
+4. Does the native_ala_free cluster separate from free_design (different backbone → different sequence space)?
+5. Is Boltz pLDDT smoothly distributed across the UMAP (continuous landscape) or clustered (discrete foldability zones)?
+
+### Embeddings cache
+
+`outputs/embeddings/esm2_embeddings.csv` — computed once, reused on re-run. 480-dim per sequence (ESM-2 8M layer 6 mean pool).
+
+### Figure 83
+
+![Figure 83](outputs/figures/fig83_umap_esm2.png)
+
+*(Run `python analysis/13_umap_esm2.py` to generate)*
 
 ---
 
@@ -888,10 +938,11 @@ See `outputs/bioreason/SETUP.md` for full instructions.
 
 | Priority | Task | Script |
 |----------|------|--------|
-| 1 | Run BioReason-Pro on `outputs/bioreason/bioreason_all.tsv` | `analysis/12b_bioreason_parse.py` |
-| 2 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
-| 3 | Codon optimisation | `analysis/10_codon_optimize.py` |
-| 4 | Platform decision + submission | Adaptyv Bio |
+| 1 | Run ESM-2 UMAP | `analysis/13_umap_esm2.py` |
+| 2 | Run BioReason-Pro on `outputs/bioreason/bioreason_all.tsv` | `analysis/12b_bioreason_parse.py` |
+| 3 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
+| 4 | Codon optimisation | `analysis/10_codon_optimize.py` |
+| 5 | Platform decision + submission | Adaptyv Bio |
 
 ---
 
