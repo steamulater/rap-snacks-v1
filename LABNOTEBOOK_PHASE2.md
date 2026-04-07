@@ -521,22 +521,30 @@ Copying 2945 PDB files via `shutil.copytree` from Drive to scratch took >20 min.
 
 ### scrambled_na control (ESMFold, 2026-04-07)
 
-To separate backbone geometry effect from MPNN design quality, native_ala sequences were also scrambled (same AA composition, random order) and folded with ESMFold. Results for the 12 candidate bars:
+To separate backbone geometry effect from MPNN design quality, native_ala sequences were also scrambled (same AA composition, random order) and folded with ESMFold. native_ala ESMFold scores from Phase 1 (8 bars) + spot-folded (4 missing bars: bar_27/32/46/77).
 
-| Bar | native_ala ESMFold | scrambled_na ESMFold (mean) | native_ala_free ESMFold |
-|-----|-------------------|----------------------------|------------------------|
-| bar_6  | — | 0.426 | 0.845 |
-| bar_32 | — | 0.500 | 0.824 |
-| bar_3  | — | 0.620 | 0.744 |
-| bar_8  | — | 0.376 | 0.750 |
-| bar_0  | — | 0.345 | 0.761 |
-| bar_13 | — | 0.452 | 0.712 |
-| bar_77 | — | 0.428 | 0.683 |
-| bar_27 | — | 0.390 | 0.601 |
-| bar_17 | — | 0.424 | 0.579 |
-| bar_11 | — | 0.327 | 0.491 |
-| bar_9  | — | 0.447 | 0.482 |
-| bar_46 | — | 0.446 | 0.850 |
+| Bar | native_ala ESMFold | scrambled_na ESMFold (mean 3×) | native_ala_free ESMFold | MPNN gain |
+|-----|-------------------|-------------------------------|------------------------|-----------|
+| bar_6  | 0.350 | 0.426 | 0.845 | +0.419 |
+| bar_32 | 0.720 | 0.500 | 0.824 | +0.324 |
+| bar_3  | 0.438 | 0.620 | 0.744 | +0.124 |
+| bar_8  | 0.358 | 0.376 | 0.750 | +0.374 |
+| bar_0  | 0.384 | 0.345 | 0.761 | +0.416 |
+| bar_13 | 0.450 | 0.452 | 0.712 | +0.260 |
+| bar_77 | 0.464 | 0.428 | 0.683 | +0.255 |
+| bar_27 | 0.365 | 0.390 | 0.601 | +0.211 |
+| bar_17 | 0.297 | 0.424 | 0.579 | +0.155 |
+| bar_11 | 0.284 | 0.327 | 0.491 | +0.164 |
+| bar_9  | 0.427 | 0.447 | 0.482 | +0.035 |
+| bar_46 | 0.387 | 0.446 | 0.850 | +0.404 |
+| **mean** | **0.411** | **0.432** | **0.694** | **+0.262** |
+
+**MPNN gain** = native_ala_free ESMFold − scrambled_na ESMFold (composition baseline).
+
+Key observations:
+- native_ala and scrambled_na score nearly identically (~0.41 vs 0.43) — AA composition alone, regardless of arrangement, gives modest foldability. The native_ala sequence arrangement offers no advantage over a random shuffle.
+- MPNN consistently adds +0.12 to +0.42 above composition. bar_9 is the outlier (+0.035) — concordance backbone is the better geometry for that bar.
+- bar_32 native_ala (0.720) is anomalously high — the lyric amino acid sequence itself happens to be unusually foldable. Worth noting in the write-up.
 
 **Key finding:** scrambled_na ESMFold means cluster around 0.35–0.50 — composition alone explains modest foldability. native_ala_free (MPNN on native_ala backbone) reaches 0.48–0.85. The delta (MPNN gain above composition baseline) is largest for bar_46 (+0.40) and bar_0 (+0.42), smallest for bar_9 (+0.04). MPNN is doing real work.
 
