@@ -1048,13 +1048,111 @@ Rather than comparing each structure to an external ESMFold reference, this anal
 
 ---
 
+## Phase 2 — Step 13: Experimental Submission Selection (24 sequences)
+
+**Date:** 2026-04-07
+**Status:** Complete — final list determined
+
+### Rationale
+
+Adaptyv Bio platform accepts 48 slots total; 24 reserved for protein designs, 1 for sfGFP positive control, ~7 reserve. Selection criteria ranked:
+
+1. **Foldability** — Boltz-2 composite score (pLDDT × pTM) as primary filter; pLDDT alone is insufficient because high pLDDT + low pTM = extended coil (IDR), not a stable fold
+2. **Structural novelty** — FoldSeek hit count (0 = no known homolog; prefer novel but accept known folds for validation)
+3. **Iconicity** — cultural weight of the source lyric
+4. **Experimental design** — paired comparisons (fd vs naf per bar) and lyric seeds for narrative
+5. **Bar diversity** — all 12 Boltz-validated bars represented at least once
+
+All designs drawn from the 12 bars with full Boltz-2 validation data (concordance + native_ala + free_design + native_ala_free).
+
+---
+
+### Group A — Best MPNN per bar (12 slots, native_ala_free)
+
+Best native_ala_free design per bar by composite score. All have **0 FoldSeek hits** = structurally novel, no known homolog.
+
+| # | Sequence | Song | pLDDT | pTM | Score | Iconicity |
+|---|---|---|---|---|---|---|
+| 1 | bar_32_naf_034 | Barbie Dangerous | 0.963 | 0.932 | **0.898** | 0.269 |
+| 2 | bar_8_naf_035 | Moment 4 Life | 0.940 | 0.926 | 0.871 | 0.711 |
+| 3 | bar_13_naf_040 | Dear Old Nicki | 0.945 | 0.917 | 0.867 | 0.577 |
+| 4 | bar_0_naf_023 | Super Freaky Girl | 0.930 | 0.915 | 0.851 | **0.994** |
+| 5 | bar_6_naf_021 | I'm The Best | 0.951 | 0.894 | 0.850 | 0.739 |
+| 6 | bar_46_naf_027 | Barbie Goin Bad | 0.964 | 0.877 | 0.845 | 0.208 |
+| 7 | bar_17_naf_018 | Love Me Enough | 0.912 | 0.925 | 0.844 | 0.483 |
+| 8 | bar_3_naf_022 | I Lied | 0.953 | 0.862 | 0.821 | **0.830** |
+| 9 | bar_9_naf_011 | the light is coming | 0.860 | 0.805 | 0.692 | 0.707 |
+| 10 | bar_27_naf_004 | Ganja Burn | 0.833 | 0.801 | 0.667 | 0.331 |
+| 11 | bar_11_naf_033 | Hell Yeah | 0.847 | 0.739 | 0.626 | 0.586 |
+| 12 | bar_77_naf_033 | Moment 4 Life *(wild card)* | 0.942 | 0.612 | 0.577 | 0.119 |
+
+> **bar_77 note:** high pLDDT but low pTM = extended coil architecture. Included because the corresponding native_ala raw seed has only 1 FoldSeek hit — potentially the most novel structural topology in the set.
+
+---
+
+### Group B — Free design comparison (5 slots, concordance-seeded MPNN)
+
+Best free_design per bar for 5 bars. Paired with Group A to answer: *does the backbone template (concordance vs native_ala) change the fold family?*
+
+| # | Sequence | Song | pLDDT | pTM | Score | FoldSeek hits |
+|---|---|---|---|---|---|---|
+| 13 | bar_9_free_033 | the light is coming | 0.957 | 0.923 | **0.884** | 287 |
+| 14 | bar_17_free_010 | Love Me Enough | 0.914 | 0.902 | 0.825 | 56 |
+| 15 | bar_6_free_027 | I'm The Best | 0.911 | 0.885 | 0.807 | 1922 |
+| 16 | bar_11_free_025 | Hell Yeah | 0.882 | 0.869 | 0.767 | 1330 |
+| 17 | bar_3_free_047 | I Lied | 0.866 | 0.847 | 0.733 | 23 |
+
+> **bar_6 contrast:** bar_6_free_027 (1922 FoldSeek hits, known fold family) vs bar_6_naf_021 (0 hits, novel) from the same bar. If both fold experimentally, this directly shows that backbone template determines which fold family MPNN converges on.
+
+---
+
+### Group C — Second naf for highest-confidence bars (4 slots)
+
+Biological replication for the 4 bars with highest composite scores — increases odds of at least one detectable hit per bar, and allows cross-design comparison within a bar.
+
+| # | Sequence | Song | pLDDT | pTM | Score |
+|---|---|---|---|---|---|
+| 18 | bar_32_naf_031 | Barbie Dangerous | 0.953 | 0.918 | 0.875 |
+| 19 | bar_13_naf_029 | Dear Old Nicki | 0.936 | 0.900 | 0.842 |
+| 20 | bar_0_naf_015 | Super Freaky Girl | 0.920 | 0.919 | 0.846 |
+| 21 | bar_6_naf_034 | I'm The Best | 0.935 | 0.901 | 0.842 |
+
+---
+
+### Group D — Raw lyric seeds (3 slots)
+
+Unoptimised, direct lyric-to-protein encodings. Lower foldability confidence but essential to the project narrative: *this is what the rap encodes*.
+
+| # | Sequence | Song | pLDDT | pTM | Score | FoldSeek hits | Why |
+|---|---|---|---|---|---|---|---|
+| 22 | bar_77_native_ala | Moment 4 Life | 0.689 | 0.487 | 0.336 | **1** | Most novel raw lyric protein in the set |
+| 23 | bar_3_native_ala | I Lied | 0.629 | 0.433 | 0.272 | **3** | Highest iconicity (0.83), structurally novel |
+| 24 | bar_32_native_ala | Barbie Dangerous | 0.659 | 0.594 | 0.391 | 1441 | Best composite lyric seed; direct comparison with #1 and #18 |
+
+---
+
+### Selection logic summary
+
+**Group A** covers every validated bar once with its strongest design — if anything folds on the Adaptyv platform, it will come from here. **Group B** creates direct paired comparisons between concordance-seeded and native_ala-seeded MPNN designs for 5 bars, testing whether backbone template determines fold family. **Group C** replicates the 4 most confident bars to control for individual design variability. **Group D** preserves the artistic/scientific narrative by including 3 raw lyric encodings — two of which (bar_77, bar_3) have ≤3 FoldSeek hits and represent structurally novel sequences directly transcribed from Nicki Minaj lyrics.
+
+### Coverage
+
+- All 12 Boltz-validated bars represented ✓
+- native_ala_free bucket: 16 sequences (Groups A + C)
+- free_design bucket: 5 sequences (Group B)
+- native_ala lyric seeds: 3 sequences (Group D)
+- Score range: 0.272 – 0.898 (composite pLDDT×pTM)
+- FoldSeek novel (0 hits): 17/24 sequences
+
+---
+
 ## Pending Work
 
 | Priority | Task | Script |
 |----------|------|--------|
-| 1 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
-| 2 | Codon optimisation | `analysis/10_codon_optimize.py` |
-| 3 | Platform decision + submission | Adaptyv Bio |
+| 1 | Codon optimisation of 24 selected sequences | `analysis/10_codon_optimize.py` |
+| 2 | Platform submission | Adaptyv Bio |
+| 3 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
 | — | ~~BioReason-Pro batch run~~ | ⛔ paused — model hallucinates for all non-domain sequences |
 
 ---
