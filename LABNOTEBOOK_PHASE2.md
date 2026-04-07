@@ -1106,46 +1106,52 @@ Best free_design per bar for 5 bars. Paired with Group A to answer: *does the ba
 
 ---
 
-### Group C — Second naf for highest-confidence bars (4 slots)
+### Group C — Second naf for highest-confidence bars (2 slots, reduced from 4)
 
-Biological replication for the 4 bars with highest composite scores — increases odds of at least one detectable hit per bar, and allows cross-design comparison within a bar.
+Reduced from 4 to 2 to free slots for lyric seeds (Group D). Kept bar_32 and bar_0 — the top-composite and highest-iconicity bars respectively.
 
 | # | Sequence | Song | pLDDT | pTM | Score |
 |---|---|---|---|---|---|
 | 18 | bar_32_naf_031 | Barbie Dangerous | 0.953 | 0.918 | 0.875 |
-| 19 | bar_13_naf_029 | Dear Old Nicki | 0.936 | 0.900 | 0.842 |
-| 20 | bar_0_naf_015 | Super Freaky Girl | 0.920 | 0.919 | 0.846 |
-| 21 | bar_6_naf_034 | I'm The Best | 0.935 | 0.901 | 0.842 |
+| 19 | bar_0_naf_015 | Super Freaky Girl | 0.920 | 0.919 | 0.846 |
 
 ---
 
-### Group D — Raw lyric seeds (3 slots)
+### Group D — Raw lyric seeds (5 slots)
 
-Unoptimised, direct lyric-to-protein encodings. Lower foldability confidence but essential to the project narrative: *this is what the rap encodes*. Includes one sequence per encoding strategy (concordance + native_ala) to enable direct experimental comparison of the two encoding approaches.
+Unoptimised, direct lyric-to-protein encodings. Both encoding strategies (concordance + native_ala) represented. **bar_3** is the only bar with all 4 buckets covered, making it the full-pipeline showcase bar.
 
 | # | Sequence | Encoding | Song | pLDDT | pTM | Score | FoldSeek hits | Why |
 |---|---|---|---|---|---|---|---|---|
-| 22 | bar_27_concordance | concordance | Ganja Burn | 0.590 | 0.447 | 0.263 | 1344 | **Only concordance seed** — pairs with bar_27_naf_004 (#10) for direct encoding comparison |
-| 23 | bar_3_native_ala | native_ala | I Lied | 0.629 | 0.433 | 0.272 | **3** | Highest iconicity (0.83), structurally novel |
-| 24 | bar_32_native_ala | native_ala | Barbie Dangerous | 0.659 | 0.594 | 0.391 | 1441 | Best composite lyric seed; direct comparison with #1 and #18 |
+| 20 | bar_3_concordance | concordance | I Lied | 0.470 | 0.269 | 0.127 | 68 | Completes bar_3 all-4-bucket showcase |
+| 21 | bar_6_native_ala | native_ala | I'm The Best | 0.607 | 0.497 | 0.302 | 36 | Completes bar_6 3-bucket coverage (fd + na + naf) |
+| 22 | bar_3_native_ala | native_ala | I Lied | 0.629 | 0.433 | 0.272 | **3** | Highest iconicity (0.83), structurally novel |
+| 23 | bar_32_native_ala | native_ala | Barbie Dangerous | 0.659 | 0.594 | 0.391 | 1441 | Best composite lyric seed; comparison with #1 and #18 |
+| 24 | bar_27_concordance | concordance | Ganja Burn | 0.590 | 0.447 | 0.263 | 1344 | Concordance seed; pairs with bar_27_naf_004 (#10) |
 
-> `bar_77_native_ala` (1 FoldSeek hit — the most novel raw encoding) was removed to make room for a concordance seed. bar_77 remains represented in Group A via `bar_77_naf_033`.
+**bar_3 all-4-bucket coverage** (only bar in the set):
+- `bar_3_concordance` (#20) — concordance lyric seed
+- `bar_3_native_ala` (#22) — native_ala lyric seed
+- `bar_3_free_047` (#17) — concordance-seeded MPNN design
+- `bar_3_naf_022` (#8) — native_ala-seeded MPNN design
 
 ---
 
 ### Selection logic summary
 
-**Group A** covers every validated bar once with its strongest design — if anything folds on the Adaptyv platform, it will come from here. **Group B** creates direct paired comparisons between concordance-seeded and native_ala-seeded MPNN designs for 5 bars, testing whether backbone template determines fold family. **Group C** replicates the 4 most confident bars to control for individual design variability. **Group D** preserves the artistic/scientific narrative by including 3 raw lyric encodings — two of which (bar_77, bar_3) have ≤3 FoldSeek hits and represent structurally novel sequences directly transcribed from Nicki Minaj lyrics.
+**Group A** covers every validated bar once with its strongest design — if anything folds experimentally, it comes from here. **Group B** creates paired comparisons (concordance-seeded vs native_ala-seeded MPNN, same bar) to test whether backbone template determines fold family. **Group C** replicates bar_32 and bar_0 — top composite and top iconicity respectively. **Group D** grounds the project in the raw lyric encoding with both concordance and native_ala seeds, and creates a single showcase bar (bar_3, "I Lied") with complete 4-bucket coverage: raw concordance → raw native_ala → MPNN from concordance → MPNN from native_ala.
 
 ### Coverage
 
 - All 12 Boltz-validated bars represented ✓
-- native_ala_free bucket: 16 sequences (Groups A + C)
+- native_ala_free bucket: 14 sequences (Groups A + C)
 - free_design bucket: 5 sequences (Group B)
-- native_ala lyric seeds: 2 sequences (Group D)
-- concordance lyric seed: 1 sequence (Group D) — one per encoding strategy for direct comparison
-- Score range: 0.263 – 0.898 (composite pLDDT×pTM)
+- native_ala lyric seeds: 3 sequences (Group D)
+- concordance lyric seeds: 2 sequences (Group D)
+- bar_3 ("I Lied") has all 4 buckets — the only full-pipeline bar ✓
+- Score range: 0.127 – 0.898 (composite pLDDT×pTM)
 - FoldSeek novel (0 hits): 17/24 sequences
+- **Full selection table:** `outputs/selected_proteins.csv`
 
 ---
 
