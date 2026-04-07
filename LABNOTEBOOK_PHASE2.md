@@ -519,6 +519,31 @@ Copying 2945 PDB files via `shutil.copytree` from Drive to scratch took >20 min.
 
 **mean 0.806 is the highest any bucket has achieved** — native_ala backbones provide substantially better design geometry than concordance backbones. The 0.245 gap between scrambled_naf (0.561) and native_ala_free (0.806) demonstrates that MPNN is adding genuine structural information on top of the backbone, not just exploiting composition.
 
+### Per-bar Boltz pLDDT — native_ala_free
+
+| Bar | n | mean pLDDT | max | vs free_design (v2) | Δ |
+|-----|---|-----------|-----|---------------------|---|
+| bar_46 | 48 | **0.937** | 0.968 | 0.387 | +0.551 ↑↑ |
+| bar_6  | 50 | **0.924** | 0.951 | 0.809 | +0.115 ↑ |
+| bar_32 | 47 | **0.899** | 0.963 | 0.619 | +0.281 ↑ |
+| bar_8  | 50 | **0.885** | 0.940 | 0.447 | +0.438 ↑↑ |
+| bar_0  | 49 | **0.876** | 0.930 | 0.460 | +0.416 ↑↑ |
+| bar_3  | 47 | **0.857** | 0.953 | 0.688 | +0.169 ↑ |
+| bar_77 | 50 | **0.838** | 0.978 | 0.608 | +0.230 ↑ |
+| bar_13 | 50 | 0.790 | 0.945 | 0.723 | +0.068 ↑ |
+| bar_17 | 49 | 0.747 | 0.912 | 0.743 | +0.004 |
+| bar_27 | 49 | 0.700 | 0.850 | 0.723 | -0.023 ↓ |
+| bar_11 | 50 | 0.621 | 0.847 | 0.590 | +0.031 ↑ |
+| bar_9  | 50 | 0.609 | 0.860 | 0.918 | -0.308 ↓ |
+
+**bar_46 headline of the project:** concordance backbone pLDDT 0.309 (backbone failure) → native_ala backbone pLDDT 0.937 mean, 0.968 max (+0.551). The Barbie Goin Bad lyric encodes a completely different, highly foldable protein depending on which substitution rule is applied.
+
+**bar_9 inversion confirmed:** native_ala backbone is measurably worse (0.609 vs 0.918). The concordance backbone for Super Bass encodes a near-ideal Saposin A-like helix bundle; native_ala substitution disrupts that geometry. Both sequences go to wet-lab.
+
+**bar_27 essentially unchanged** (-0.023): Ganja Burn folds equally well on both backbone geometries. Still 0 FoldSeek hits on native_ala — foldable and structurally novel regardless of design approach.
+
+10 of 12 bars improve on native_ala backbone. Mean improvement across all 12: **+0.164 Boltz pLDDT**.
+
 ### scrambled_na control (ESMFold, 2026-04-07)
 
 To separate backbone geometry effect from MPNN design quality, native_ala sequences were also scrambled (same AA composition, random order) and folded with ESMFold. native_ala ESMFold scores from Phase 1 (8 bars) + spot-folded (4 missing bars: bar_27/32/46/77).
