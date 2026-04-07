@@ -3,7 +3,7 @@
 **Repo:** `steamulater/rap-snacks-v1`
 **Phase 2 start:** 2026-03-25
 **Last updated:** 2026-04-06
-**Status:** Boltz-2 validation complete · FoldSeek Phase 2 running · Next: free_native_ala MPNN run
+**Status:** Boltz-2 validation complete · FoldSeek Phase 2 complete · Next: free_native_ala MPNN run
 
 ---
 
@@ -388,23 +388,55 @@ Does each structure resemble anything biology has already made? And critically �
 
 Phase 1 only searched concordance structures. Phase 2 adds native_ala and free_design to the same search, enabling a three-way structural comparison per bar. The cross-bucket pattern is where the scientific story lives.
 
-### Early results (partial, 2026-04-06)
+### Complete results (2026-04-06)
 
-| Bar | concordance hits | native_ala hits | free_design hits | Pattern |
-|-----|-----------------|-----------------|------------------|---------|
-| bar_0  | 22   | 273   | 1170  | MPNN pulls into fold space |
-| bar_11 | 1649 | 1039  | 1330  | all three known |
-| bar_13 | 861  | 1144  | 1304  | all three known |
-| bar_17 | 201  | 1337  | 56    | MPNN moves away from known folds |
-| bar_27 | 1344 | 0     | 1440  | native_ala novel; concordance and free known |
+All 36 structures submitted and parsed across pdb100, afdb-swissprot, and mgnify_esm30.
 
-**Notable findings so far:**
+| Bar | Song | conc hits | native_ala hits | free_design hits | Top hit (conc) | Pattern |
+|-----|------|-----------|-----------------|------------------|----------------|---------|
+| bar_0  | — | 22 | 273 | 1170 | — | MPNN pulls into fold space |
+| bar_3  | — | 1071 | 6 | 1164 | — | native_ala novel; conc and free known |
+| bar_6  | I'm The Best | 2596 | 1565 | 1922 | TIM barrel / ferredoxin (prob=0.997) | all three known; TIM barrel dominant |
+| bar_8  | — | 1237 | 3 | 826 | — | native_ala novel; conc and free known |
+| bar_9  | Super Bass | 536 | 3 | 287 | — | native_ala novel; free_design → Saposin A (prob=0.537) |
+| bar_11 | — | 1649 | 1039 | 1330 | — | all three known |
+| bar_13 | Anaconda | 861 | 1144 | 1304 | — | all three known |
+| bar_17 | Monster | 201 | 1337 | 56 | — | MPNN moves *away* from known folds |
+| bar_27 | Ganja Burn | 1344 | 0 | 1440 | — | native_ala uniquely novel |
+| bar_32 | Barbie Dangerous | 1199 | 773 | 1252 | — | all three known |
+| bar_46 | — | 636 | 418 | 0 | — | free_design novel — backbone dead, MPNN cannot fold |
+| bar_77 | Moment 4 Life | 1016 | 1199 | 1210 | — | all three known |
 
-- **bar_27 native_ala → 0 hits** — structurally novel even after alanine substitution. Remarkable given bar_27 was the only `confident_protein_like` bar in Phase 1. The lyric amino acids themselves encode a novel fold.
-- **bar_17: native_ala 1337 hits vs free_design 56 hits** — MPNN actually moved bar_17 *away* from known fold space while improving its pLDDT (0.637). A foldable but novel sequence — the best possible outcome for this project.
-- **bar_0: concordance 22 hits vs free_design 1170 hits** — MPNN pulled bar_0 firmly into known structural territory. The concordance backbone is unusual; the designed sequence converges to a common fold class.
+### Scientific interpretation
 
-**Figure F** — `fig_foldseek_phase2.png` — FoldSeek hit comparison per bar per bucket (pending, on Drive when complete)
+**Four structural archetypes emerged from the cross-bucket comparison:**
+
+**Type 1 — All three known (bar_6, bar_11, bar_13, bar_32, bar_77):** The concordance backbone already encodes a real fold class; native_ala and free_design both land in the same structural neighbourhood. bar_6 is the extreme case — 2596 concordance hits with top probability 0.997, identifying a TIM barrel / ferredoxin-like fold. The lyric backbone here happened to encode one of evolution's favourite structures.
+
+**Type 2 — native_ala novel; concordance and free_design known (bar_3, bar_8, bar_9):** Substituting Ala at ambiguous positions creates a structurally novel sequence, while the original concordance and the MPNN-designed sequence both hit known families. bar_9 free_design returns 287 hits with the top match being Human Saposin A (prob=0.537) — a lipid-binding protein. The Saposin fold is a small helix bundle, consistent with the bar_9 Boltz backbone geometry.
+
+**Type 3 — native_ala uniquely novel (bar_17, bar_27):** These are the headline results.
+- **bar_27 native_ala → 0 hits** across all databases. Remarkable: bar_27 was the only `confident_protein_like` bar in Phase 1, yet the literal lyric amino acids (Ganja Burn, BJOZXU→A) encode a fold with no structural precedent in PDB, SwissProt, or metagenomics. The lyric itself is the novel fold.
+- **bar_17 native_ala 1337 hits vs free_design 56 hits** — MPNN improved pLDDT from 0.441 to 0.637 while simultaneously moving the structure *away* from known fold space. A foldable but structurally novel MPNN sequence. This is the single best outcome possible: higher confidence, lower homology.
+
+**Type 4 — free_design novel / backbone failure (bar_46):** free_design returns 0 hits because the backbone is too disordered for MPNN to generate a coherent fold. Not novelty — failure. Confirmed dropout.
+
+**bar_0 transition (concordance 22 hits → free_design 1170 hits):** The concordance backbone is unusual; MPNN converges to a common fold class when given full freedom. The lyric-constrained structure is structurally unusual; the optimised structure is not.
+
+### Top PDB hits (selected)
+
+| Bar | Bucket | Top accession | Description | prob |
+|-----|--------|--------------|-------------|------|
+| bar_6 | concordance | — | TIM barrel / ferredoxin-like | 0.997 |
+| bar_6 | free_design | — | PII signalling protein | 1.000 |
+| bar_9 | free_design | — | Human Saposin A | 0.537 |
+| bar_27 | native_ala | — | *no hits* | — |
+| bar_17 | free_design | — | *56 hits, low prob* | ~0.2 |
+| bar_46 | free_design | — | *no hits* | — |
+
+**Figure F** — `fig_foldseek_phase2.png` — FoldSeek hit comparison per bar per bucket (saved to Drive: `results/figures/fig_foldseek_phase2.png`; download and commit as fig37)
+
+**Figure G** — `fig_foldseek_phase2_db.png` — Hit count breakdown by database (saved to Drive)
 
 ---
 
@@ -473,9 +505,10 @@ free_native_ala gives maximum design freedom on a more foldable backbone, while 
 | **34** | `outputs/figures/fig34_rmsd_per_bar.png` | free_design RMSD per bar |
 | **35** | `outputs/figures/fig35_rmsd_pairwise.png` | Pairwise RMSD histogram |
 | **36** | `outputs/figures/fig36_rmsd_per_bar_grid.png` | 12-panel per-bar RMSD grid |
-| F | Drive: `fig_foldseek_phase2.png` | FoldSeek Phase 2 hits (pending) |
+| **37** | `outputs/figures/fig37_foldseek_phase2.png` | FoldSeek Phase 2 hit comparison — 3 buckets × 12 bars (download from Drive) |
+| G | Drive: `fig_foldseek_phase2_db.png` | FoldSeek Phase 2 hit count by database |
 
-**Next figure number:** Fig 37
+**Next figure number:** Fig 38
 
 ---
 
@@ -483,7 +516,7 @@ free_native_ala gives maximum design freedom on a more foldable backbone, while 
 
 | Priority | Task | Script |
 |----------|------|--------|
-| 1 | Parse FoldSeek Phase 2 results | `analysis/10_foldseek_phase2.py` |
+| 1 | Download fig37/figG from Drive and commit | — |
 | 2 | Build free_native_ala MPNN run | `analysis/09d_proteinmpnn_native_ala_free.py` |
 | 3 | Boltz-2 validate free_native_ala designs | Update `notebooks/boltz_validation_v2.ipynb` |
 | 4 | Codon optimisation | `analysis/10_codon_optimize.py` |
@@ -535,4 +568,4 @@ line = line[:21] + 'A' + line[24:]
 
 ---
 
-*Living document. Phase 2 active — Boltz-2 validation complete, FoldSeek Phase 2 running, free_native_ala MPNN run next.*
+*Living document. Phase 2 active — Boltz-2 validation complete, FoldSeek Phase 2 complete (all 36 structures), free_native_ala MPNN run next.*
