@@ -1121,13 +1121,15 @@ Biological replication for the 4 bars with highest composite scores — increase
 
 ### Group D — Raw lyric seeds (3 slots)
 
-Unoptimised, direct lyric-to-protein encodings. Lower foldability confidence but essential to the project narrative: *this is what the rap encodes*.
+Unoptimised, direct lyric-to-protein encodings. Lower foldability confidence but essential to the project narrative: *this is what the rap encodes*. Includes one sequence per encoding strategy (concordance + native_ala) to enable direct experimental comparison of the two encoding approaches.
 
-| # | Sequence | Song | pLDDT | pTM | Score | FoldSeek hits | Why |
-|---|---|---|---|---|---|---|---|
-| 22 | bar_77_native_ala | Moment 4 Life | 0.689 | 0.487 | 0.336 | **1** | Most novel raw lyric protein in the set |
-| 23 | bar_3_native_ala | I Lied | 0.629 | 0.433 | 0.272 | **3** | Highest iconicity (0.83), structurally novel |
-| 24 | bar_32_native_ala | Barbie Dangerous | 0.659 | 0.594 | 0.391 | 1441 | Best composite lyric seed; direct comparison with #1 and #18 |
+| # | Sequence | Encoding | Song | pLDDT | pTM | Score | FoldSeek hits | Why |
+|---|---|---|---|---|---|---|---|---|
+| 22 | bar_27_concordance | concordance | Ganja Burn | 0.590 | 0.447 | 0.263 | 1344 | **Only concordance seed** — pairs with bar_27_naf_004 (#10) for direct encoding comparison |
+| 23 | bar_3_native_ala | native_ala | I Lied | 0.629 | 0.433 | 0.272 | **3** | Highest iconicity (0.83), structurally novel |
+| 24 | bar_32_native_ala | native_ala | Barbie Dangerous | 0.659 | 0.594 | 0.391 | 1441 | Best composite lyric seed; direct comparison with #1 and #18 |
+
+> `bar_77_native_ala` (1 FoldSeek hit — the most novel raw encoding) was removed to make room for a concordance seed. bar_77 remains represented in Group A via `bar_77_naf_033`.
 
 ---
 
@@ -1140,8 +1142,9 @@ Unoptimised, direct lyric-to-protein encodings. Lower foldability confidence but
 - All 12 Boltz-validated bars represented ✓
 - native_ala_free bucket: 16 sequences (Groups A + C)
 - free_design bucket: 5 sequences (Group B)
-- native_ala lyric seeds: 3 sequences (Group D)
-- Score range: 0.272 – 0.898 (composite pLDDT×pTM)
+- native_ala lyric seeds: 2 sequences (Group D)
+- concordance lyric seed: 1 sequence (Group D) — one per encoding strategy for direct comparison
+- Score range: 0.263 – 0.898 (composite pLDDT×pTM)
 - FoldSeek novel (0 hits): 17/24 sequences
 
 ---
