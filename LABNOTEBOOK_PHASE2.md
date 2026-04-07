@@ -358,20 +358,53 @@ Pairwise RMSD between free_design structures: mean 7.57 Å, range 0.35–18.35 �
 
 ---
 
-## Phase 2 — Step 7: FoldSeek Phase 2 (in progress)
+## Phase 2 — Step 7: FoldSeek Phase 2
 
 **Script:** `analysis/10_foldseek_phase2.py`
 **Date:** 2026-04-06
-**Status:** Running (36 structures × 3 databases)
+**Output:** `outputs/foldseek_phase2/foldseek_phase2_hits.csv`, `foldseek_phase2_summary.csv`
 
-For each of the 12 bars, submitting the best PDB from each of 3 buckets (concordance, native_ala, free_design) to FoldSeek (pdb100, afdb-swissprot, mgnify_esm30). Results cached to Drive.
+### What FoldSeek is doing
 
-**Questions being answered:**
-1. Do concordance, native_ala, and free_design structures hit the same protein families or different ones?
-2. Does free_design find better-quality PDB hits (higher probability) than concordance?
-3. Which bars remain structurally novel (zero hits) across all three buckets?
+FoldSeek is a structural search tool — you give it a PDB file and it searches protein structure databases to find proteins with similar 3D shapes, regardless of sequence similarity. For each of the 12 bars we submit 3 structures (concordance, native_ala, best free_design) and search against three databases:
 
-**Figure F** — `fig_foldseek_phase2.png` — FoldSeek hit comparison (pending, on Drive when complete)
+- **pdb100** — the entire Protein Data Bank (experimentally solved structures)
+- **afdb-swissprot** — AlphaFold predictions for all SwissProt proteins (well-characterised proteins)
+- **mgnify_esm30** — metagenomic proteins (environmental sequences, no annotation)
+
+### The question we are asking
+
+Does each structure resemble anything biology has already made? And critically — do the three versions of the same bar hit the same protein families, or does each version occupy a different structural neighbourhood?
+
+### Why each bucket matters
+
+**concordance** — if it hits known proteins, the lyric backbone accidentally encodes a real fold. If 0 hits, it is genuinely structurally novel. Phase 1 found 13 bars with 0 hits across all databases — this is the headline novelty claim of the project.
+
+**native_ala** — the lyric text treated as protein. Does substituting Ala at BJOZXU positions push the structure into or out of known fold space? A bar with 0 concordance hits that also returns 0 native_ala hits confirms that the structural novelty is not an artefact of the non-standard BJOZXU characters — the lyric amino acids themselves encode a novel fold.
+
+**free_design** — MPNN optimised for foldability, no constraints. If free_design hits known protein families, it tells us *what structural class* MPNN converged to for that backbone — coiled-coil, TIM barrel, helix bundle, etc. Comparing hit counts across buckets answers a key question: does optimising for foldability (free_design) pull the structure toward known folds, or can MPNN find foldable sequences that remain structurally novel?
+
+### This is new relative to Phase 1
+
+Phase 1 only searched concordance structures. Phase 2 adds native_ala and free_design to the same search, enabling a three-way structural comparison per bar. The cross-bucket pattern is where the scientific story lives.
+
+### Early results (partial, 2026-04-06)
+
+| Bar | concordance hits | native_ala hits | free_design hits | Pattern |
+|-----|-----------------|-----------------|------------------|---------|
+| bar_0  | 22   | 273   | 1170  | MPNN pulls into fold space |
+| bar_11 | 1649 | 1039  | 1330  | all three known |
+| bar_13 | 861  | 1144  | 1304  | all three known |
+| bar_17 | 201  | 1337  | 56    | MPNN moves away from known folds |
+| bar_27 | 1344 | 0     | 1440  | native_ala novel; concordance and free known |
+
+**Notable findings so far:**
+
+- **bar_27 native_ala → 0 hits** — structurally novel even after alanine substitution. Remarkable given bar_27 was the only `confident_protein_like` bar in Phase 1. The lyric amino acids themselves encode a novel fold.
+- **bar_17: native_ala 1337 hits vs free_design 56 hits** — MPNN actually moved bar_17 *away* from known fold space while improving its pLDDT (0.637). A foldable but novel sequence — the best possible outcome for this project.
+- **bar_0: concordance 22 hits vs free_design 1170 hits** — MPNN pulled bar_0 firmly into known structural territory. The concordance backbone is unusual; the designed sequence converges to a common fold class.
+
+**Figure F** — `fig_foldseek_phase2.png` — FoldSeek hit comparison per bar per bucket (pending, on Drive when complete)
 
 ---
 
