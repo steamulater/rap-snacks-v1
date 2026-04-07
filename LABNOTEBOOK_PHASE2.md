@@ -70,7 +70,7 @@ Phase 1 established that concordance-mapped rap lyrics produce structurally nove
 
 ![Figure 28](outputs/figures/fig28_conc_vs_na_plddt.png)
 
-**Figure 28 | Boltz-2 pLDDT comparison between concordance and native-alanine conditions across Phase 2 candidate bars.** Each bar represents one of the 12 candidate sequences scored under two encoding conditions: *concordance* (full lyric-to-amino-acid mapping including BJOZXU non-standard characters) and *native_ala* (BJOZXU positions substituted with alanine, all other lyric-derived amino acids preserved). Bars are sorted by the concordance pLDDT score. Native-alanine outperforms concordance in the majority of cases, with a mean improvement of +0.10 pLDDT units. This suggests that the non-standard BJOZXU characters in the concordance sequence act as structural liabilities — their substitution with alanine, a structurally neutral and helix-favouring residue, consistently improves Boltz-2 confidence. The concordance condition is nonetheless retained in the submission panel as it is the purest expression of the lyric-to-protein mapping.
+**Figure 28 | Boltz-2 pLDDT comparison between concordance and native-alanine conditions across Phase 2 candidate bars.** Each bar represents one of the 12 candidate sequences scored under two encoding conditions: *concordance* (frequency-rank remapping of standard letters + softmax-peaked probabilistic draw for BJOZXU characters) and *native_ala* (lyric characters passed through literally as amino acids, BJOZXU → Ala — the more raw encoding). Bars are sorted by the concordance pLDDT score. Native-alanine outperforms concordance in the majority of cases, with a mean improvement of +0.10 pLDDT units. The concordance condition is nonetheless retained in the submission panel as it represents the canonical probabilistic mapping.
 
 ---
 
@@ -644,11 +644,13 @@ Placing scrambled_na into the bucket ordering gives a clean decomposition of wha
 
 | Effect | Gap | Interpretation |
 |--------|-----|----------------|
-| Concordance → scrambled_na | +0.041 | AA composition improvement (Ala substitution for BJOZXU) |
-| scrambled_na → native_ala | **+0.061** | Lyric sequence order — positional encoding adds structural information |
+| Concordance → scrambled_na | +0.041 | Encoding strategy difference: freq-rank probabilistic (concordance) vs literal pass-through + Ala (native_ala composition) |
+| scrambled_na → native_ala | **+0.061** | Lyric sequence order — positional encoding adds structural information above composition alone |
 | native_ala → native_ala_free | +0.263 | MPNN sequence design on native_ala backbone |
 
-**Key finding: native_ala (0.543) > scrambled_na (0.482).** The specific positional order of amino acids derived from the lyric encoding is non-random with respect to foldability. The rap lyric, when read as a protein sequence, contains ordering information that Boltz-2 recognises as structurally meaningful — above and beyond composition alone. MPNN does the heavy lifting (+0.263) but the lyric encoding itself contributes at every step.
+**Encoding reminder:** native_ala is the *more raw* encoding — lyric characters read literally as amino acids, BJOZXU → Ala. Concordance uses a frequency-rank remapping of all standard letters AND a softmax-peaked probabilistic draw for BJOZXU. The scrambled_na sequences are scrambles of native_ala (not concordance), so the concordance → scrambled_na gap reflects two different encoding strategies, not simply Ala substitution.
+
+**Key finding: native_ala (0.543) > scrambled_na (0.482).** The specific positional order of amino acids derived from the literal lyric read is non-random with respect to foldability. The rap lyric, read as a protein sequence, contains ordering information that Boltz-2 recognises as structurally meaningful above composition alone. MPNN does the heavy lifting (+0.263) but the lyric encoding itself contributes at every step.
 
 ### Per-bar scrambled_na Boltz pLDDT
 
