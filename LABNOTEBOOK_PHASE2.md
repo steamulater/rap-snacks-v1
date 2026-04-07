@@ -1084,9 +1084,9 @@ Best native_ala_free design per bar by composite score. All have **0 FoldSeek hi
 | 9 | bar_9_naf_011 | the light is coming | 0.860 | 0.805 | 0.692 | 0.707 |
 | 10 | bar_27_naf_004 | Ganja Burn | 0.833 | 0.801 | 0.667 | 0.331 |
 | 11 | bar_11_naf_033 | Hell Yeah | 0.847 | 0.739 | 0.626 | 0.586 |
-| 12 | bar_77_naf_033 | Moment 4 Life *(wild card)* | 0.942 | 0.612 | 0.577 | 0.119 |
+| 12 | **6E5C_positive_control** | *De novo dsβH (Baker lab 2018)* | NMR-verified | NMR-verified | — | — |
 
-> **bar_77 note:** high pLDDT but low pTM = extended coil architecture. Included because the corresponding native_ala raw seed has only 1 FoldSeek hit — potentially the most novel structural topology in the set.
+> **Slot 12 — known positive control (PDB 6E5C):** Replaces bar_77_naf_033 (high pLDDT but pTM=0.612, extended coil, unreliable fold). 6E5C is a de novo designed double-stranded beta-helix from the Baker lab (*Nat. Struct. Mol. Biol.* 2018, Marcos et al.), solved by solution NMR, expressed in *E. coli*. Sequence: `TRETKVTVNPGEEYEVKVNPGTRVEIQAKGPAEFEGGGTRTRLNPGESYKFENLTSQPLRIRLRNLSDTPIEFRIREE` (78 aa). This is the researcher's thesis molecule — a personally meaningful, experimentally verified anchor for the panel alongside the platform's sfGFP control.
 
 ---
 
