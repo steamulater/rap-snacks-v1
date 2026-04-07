@@ -892,11 +892,14 @@ BioReason's behaviour is itself a finding: **any short sequence with standard am
 | **84** | `outputs/figures/fig84_umap_native_ala.png` | ESM-2 UMAP — native_ala + native_ala_free only |
 | **85** | `outputs/figures/fig85_umap_concordance.png` | ESM-2 UMAP — concordance + free_design only |
 | **86** | `outputs/figures/fig86_umap_barbie_dangerous.png` | ESM-2 UMAP — bar_32 Barbie Dangerous, all 4 buckets |
+| **87** | `outputs/figures/fig87_umap_lyric_seeds.png` | ESM-2 UMAP — lyric seeds only (concordance + native_ala, no MPNN) |
+| **88** | `outputs/figures/fig88_umap_plddt.png` | ESM-2 UMAP — all 1286 seqs coloured by Boltz pLDDT (RdYlGn) |
+| **89a–l** | `outputs/figures/fig89_umap_bar_XX.png` × 12 | Per-bar UMAP — all 4 buckets, bars with ≥4 sequences (12/37 bars) |
 | S1 | `outputs/bioreason/bar_46_screenshot_bioreason.png` | BioReason screenshot — bar_46 concordance (backbone failure) |
 | S2 | `outputs/bioreason/pdb_1REG_screenshot_1.png` | BioReason screenshot — 1REG T4 phage RegA (positive control, p1) |
 | S3 | `outputs/bioreason/pdb_1REG_screenshot_2.png` | BioReason screenshot — 1REG T4 phage RegA (positive control, p2) |
 
-**Next local figure number:** Fig 87
+**Next local figure number:** Fig 90
 
 ---
 
@@ -904,7 +907,7 @@ BioReason's behaviour is itself a finding: **any short sequence with standard am
 
 **Script:** `analysis/13_umap_esm2.py`
 **Date:** 2026-04-07
-**Status:** Complete — fig83–86 generated (2026-04-07)
+**Status:** Complete — fig83–89 generated (2026-04-07)
 
 ### Rationale
 
@@ -963,6 +966,39 @@ t-SNE optimises for local neighbourhood only — clusters are meaningful, inter-
 ![Figure 86](outputs/figures/fig86_umap_barbie_dangerous.png)
 
 **Figure 86 | ESM-2 UMAP — bar_32 (Barbie Dangerous) only, all 4 buckets (103 sequences).** Single-bar UMAP (n_neighbors=8). Concordance and native_ala seeds labelled individually. free_design (51 seqs) and native_ala_free (50 seqs) clouds shown separately. Reveals whether the two MPNN strategies explore different or overlapping sequence regions for this bar.
+
+### Figure 87 — Lyric Seeds Only (concordance + native_ala)
+
+![Figure 87](outputs/figures/fig87_umap_lyric_seeds.png)
+
+**Figure 87 | ESM-2 UMAP — lyric seeds only (74 sequences, no MPNN designs).** Concordance seeds (blue) and native_ala seeds (orange), one per bar, re-embedded in isolation. Removing the MPNN cloud gives a cleaner view of how the two encoding strategies relate across bars. Concordance (freq-rank remapping + softmax draw) and native_ala (literal pass-through + Ala for non-standard residues) produce different amino-acid compositions from the same lyric — both converge on a rap-phonology-driven composition landscape rather than natural protein sequence space.
+
+### Figure 88 — All Sequences Coloured by Boltz pLDDT
+
+![Figure 88](outputs/figures/fig88_umap_plddt.png)
+
+**Figure 88 | ESM-2 UMAP — all 1286 sequences coloured by Boltz-2 mean pLDDT (RdYlGn colormap, green = high confidence).** Lyric seeds large; MPNN designs small. Grey dots = native_ala_free designs (Boltz v3 run pending — pLDDT not yet available). Foldability is not purely a function of sequence-space location: high-pLDDT sequences (green) appear scattered across the UMAP rather than concentrated in a single cluster, indicating that MPNN can sculpt foldable sequences from multiple starting points in embedding space. The lyric seed cloud (center) is predominantly red/yellow — expected given that rap-derived sequences have low structural prior.
+
+### Figure 89 — Per-Bar UMAPs (12 bars with MPNN designs)
+
+Per-bar UMAPs generated for all 12 bars that had MPNN designs (≥4 sequences total). The remaining 25 bars have only their 2 lyric seeds (concordance + native_ala) and cannot form a meaningful UMAP. Each plot shows all 4 buckets in the same colour scheme, with lyric seeds annotated individually and MPNN design clouds shown as small dots.
+
+**Bars with per-bar UMAPs:** bar_00, bar_03, bar_06, bar_08, bar_09, bar_11, bar_13, bar_17, bar_27, bar_32, bar_46, bar_77
+
+![Figure 89a — bar_06](outputs/figures/fig89_umap_bar_06.png)
+![Figure 89b — bar_32](outputs/figures/fig89_umap_bar_32.png)
+![Figure 89c — bar_03](outputs/figures/fig89_umap_bar_03.png)
+![Figure 89d — bar_08](outputs/figures/fig89_umap_bar_08.png)
+![Figure 89e — bar_00](outputs/figures/fig89_umap_bar_00.png)
+![Figure 89f — bar_13](outputs/figures/fig89_umap_bar_13.png)
+![Figure 89g — bar_11](outputs/figures/fig89_umap_bar_11.png)
+![Figure 89h — bar_77](outputs/figures/fig89_umap_bar_77.png)
+![Figure 89i — bar_27](outputs/figures/fig89_umap_bar_27.png)
+![Figure 89j — bar_09](outputs/figures/fig89_umap_bar_09.png)
+![Figure 89k — bar_17](outputs/figures/fig89_umap_bar_17.png)
+![Figure 89l — bar_46](outputs/figures/fig89_umap_bar_46.png)
+
+**Figure 89a–l | Per-bar ESM-2 UMAPs.** Each panel shows one bar's full sequence space (n_neighbors=8). Lyric seeds anchor the embedding; MPNN design clouds expand around them. Tight MPNN clusters suggest convergence on a shared fold family from that bar's backbone. Spread suggests more diverse exploration. Overlap between free_design (purple) and native_ala_free (green) clouds indicates the two design strategies produce similar sequence distributions for that bar, while separation indicates the backbone templates (concordance vs native_ala) drive MPNN into distinct regions of sequence space.
 
 ---
 

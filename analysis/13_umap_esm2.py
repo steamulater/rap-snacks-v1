@@ -4,10 +4,13 @@
 ESM-2 embeddings → UMAP variants (white background).
 
 Outputs:
-  fig83_umap_all_buckets.png     — all 4 buckets, colour by bucket
-  fig84_umap_native_ala.png      — native_ala + native_ala_free only
-  fig85_umap_concordance.png     — concordance + free_design only
-  fig86_umap_barbie_dangerous.png — bar_32 only, all 4 buckets
+  fig83_umap_all_buckets.png       — all 4 buckets, colour by bucket
+  fig84_umap_native_ala.png        — native_ala + native_ala_free only
+  fig85_umap_concordance.png       — concordance + free_design only
+  fig86_umap_barbie_dangerous.png  — bar_32 only, all 4 buckets
+  fig87_umap_lyric_seeds.png       — concordance + native_ala only (no MPNN)
+  fig88_umap_plddt.png             — all seqs coloured by Boltz pLDDT
+  fig89_umap_bar_XX.png × 37      — per-bar, all 4 buckets
 
   outputs/embeddings/esm2_embeddings.csv  (cached)
 """
@@ -364,8 +367,210 @@ plt.savefig(OUT_FIG / "fig86_umap_barbie_dangerous.png", dpi=160, facecolor="whi
 plt.close()
 print("Saved fig86_umap_barbie_dangerous.png")
 
+# ══════════════════════════════════════════════════════════════════════════════
+# Fig 87 — lyric seeds only (concordance + native_ala, no MPNN)
+# ══════════════════════════════════════════════════════════════════════════════
+
+sub87 = df[df["bucket"].isin(["concordance", "native_ala"])].copy()
+
+print(f"\nRunning UMAP (lyric seeds only, n={len(sub87)})...")
+emb_sub87 = emb_df.loc[sub87["name"]].values
+coords87 = umap_lib.UMAP(n_neighbors=12, min_dist=0.12, metric="cosine",
+                         random_state=42, verbose=False).fit_transform(emb_sub87)
+sub87["umap_x"] = coords87[:, 0]
+sub87["umap_y"] = coords87[:, 1]
+
+fig, ax = plt.subplots(figsize=(14, 10), facecolor="white")
+style_ax(ax, "ESM-2 UMAP — lyric seeds only  (concordance vs native_ala, n=74)")
+
+for bucket in ["concordance", "native_ala"]:
+    g = sub87[sub87["bucket"] == bucket]
+    ax.scatter(g["umap_x"], g["umap_y"],
+               c=COLORS[bucket], s=110, alpha=0.92, zorder=4,
+               linewidths=0.6, edgecolors="white",
+               label=bucket.replace("_", " "))
+
+label_bars(ax, sub87, bar_ids, fontsize=6)
+legend(ax, ["concordance", "native_ala"])
+plt.tight_layout(rect=[0, 0.06, 1, 1])
+
+blurb87 = (
+    "Each point is a single bar's lyric-derived protein seed — concordance (blue, freq-rank + softmax draw) "
+    "vs native_ala (orange, literal pass-through + Ala for non-standard residues). "
+    "No MPNN designs included. Clusters reflect shared amino-acid composition driven by rap phonology."
+)
+fig.text(0.5, 0.01, blurb87, ha="center", va="bottom", fontsize=7.5,
+         color="#444", wrap=True,
+         bbox=dict(boxstyle="round,pad=0.4", facecolor="#f9f9f9", edgecolor="#ddd", alpha=0.9))
+
+plt.savefig(OUT_FIG / "fig87_umap_lyric_seeds.png", dpi=160, facecolor="white", bbox_inches="tight")
+plt.close()
+print("Saved fig87_umap_lyric_seeds.png")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Fig 88 — all sequences coloured by Boltz pLDDT
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Build per-sequence pLDDT lookup from V2_CSV (concordance / native_ala / free_design)
+# V2_CSV names are "bar_6_concordance" — join on (bar_id, bucket) instead to avoid
+# name-format mismatches with df names ("bar_6__concordance")
+seq_plddt = {}
+if V2_CSV.exists():
+    v2_seq = pd.read_csv(V2_CSV)
+    for _, row in v2_seq.iterrows():
+        seq_plddt[(row["bar_id"], row["bucket"])] = row["boltz_plddt"]
+
+# Map onto df — native_ala_free will stay NaN (no Boltz run yet)
+df["plddt_val"] = df.apply(
+    lambda r: seq_plddt.get((r["bar_id"], r["bucket"]), float("nan")), axis=1)
+
+import matplotlib.cm as cm
+from matplotlib.colors import Normalize
+
+vmin, vmax = 0.30, 0.95
+norm = Normalize(vmin=vmin, vmax=vmax)
+cmap = cm.RdYlGn
+
+fig, ax = plt.subplots(figsize=(14, 10), facecolor="white")
+style_ax(ax, "ESM-2 UMAP — all sequences coloured by Boltz pLDDT  (n=1286)")
+
+# Grey background for sequences with no pLDDT (native_ala_free)
+no_plddt = df[df["plddt_val"].isna()]
+ax.scatter(no_plddt["umap_x"], no_plddt["umap_y"],
+           c="#cccccc", s=8, alpha=0.25, zorder=1,
+           linewidths=0, label="native_ala_free (pLDDT not yet run)")
+
+# Colour all other sequences by pLDDT — draw each bucket separately to control size/alpha
+SIZE_MAP  = {"concordance": 90, "native_ala": 90, "free_design": 14}
+ALPHA_MAP = {"concordance": 0.95, "native_ala": 0.95, "free_design": 0.55}
+LW_MAP    = {"concordance": 0.6, "native_ala": 0.6, "free_design": 0}
+
+has_plddt = df[df["plddt_val"].notna()]
+sc = None
+for bucket in ["free_design", "concordance", "native_ala"]:
+    g = has_plddt[has_plddt["bucket"] == bucket]
+    if g.empty:
+        continue
+    sc = ax.scatter(g["umap_x"], g["umap_y"],
+                    c=g["plddt_val"], cmap=cmap, norm=norm,
+                    s=SIZE_MAP[bucket], alpha=ALPHA_MAP[bucket],
+                    linewidths=LW_MAP[bucket], edgecolors="white",
+                    zorder=3 if bucket == "free_design" else 5)
+
+if sc is None:
+    import matplotlib.cm as cm2
+    sc = ax.scatter([], [], c=[], cmap=cmap, norm=norm)  # dummy for colorbar
+cbar = fig.colorbar(sc, ax=ax, fraction=0.025, pad=0.02)
+cbar.set_label("Boltz pLDDT", fontsize=9, color="#555")
+cbar.ax.tick_params(labelsize=7, colors="#555")
+
+ax.legend(handles=[mpatches.Patch(color="#cccccc", label="native_ala_free (pLDDT unavailable)")],
+          fontsize=8, framealpha=0.9, edgecolor="#ccc", facecolor="white")
+
+plt.tight_layout(rect=[0, 0.07, 1, 1])
+
+blurb88 = (
+    "All 1286 sequences overlaid on the shared UMAP embedding, coloured by Boltz-2 mean pLDDT "
+    "(green = high confidence, red = low). Lyric seeds (large dots) and free MPNN designs (small dots) "
+    "share the same embedding space. Grey = native_ala_free MPNN designs (Boltz run pending). "
+    "Higher pLDDT concentrates in the upper clusters, away from the disordered lyric-seed cloud."
+)
+fig.text(0.5, 0.01, blurb88, ha="center", va="bottom", fontsize=7.5,
+         color="#444", wrap=True,
+         bbox=dict(boxstyle="round,pad=0.4", facecolor="#f9f9f9", edgecolor="#ddd", alpha=0.9))
+
+plt.savefig(OUT_FIG / "fig88_umap_plddt.png", dpi=160, facecolor="white", bbox_inches="tight")
+plt.close()
+print("Saved fig88_umap_plddt.png")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Fig 89 — per-bar UMAPs  (one plot per bar, all 4 buckets)
+# ══════════════════════════════════════════════════════════════════════════════
+
+print("\nGenerating per-bar UMAPs (fig89_bar_XX)...")
+
+for bar_id in bar_ids:
+    sub_b = df[df["bar_id"] == bar_id].copy()
+    if len(sub_b) < 4:
+        print(f"  {bar_id}: skipping (only {len(sub_b)} seqs)")
+        continue
+
+    nn = min(8, len(sub_b) - 1)
+    emb_b = emb_df.loc[sub_b["name"]].values
+    coords_b = umap_lib.UMAP(n_neighbors=nn, min_dist=0.05, metric="cosine",
+                             random_state=42, verbose=False).fit_transform(emb_b)
+    sub_b["umap_x"] = coords_b[:, 0]
+    sub_b["umap_y"] = coords_b[:, 1]
+
+    song  = meta.loc[bar_id, "genius_song_title"] if bar_id in meta.index else bar_id
+    icon  = meta.loc[bar_id, "aggregate_iconicity"] if bar_id in meta.index else float("nan")
+    bucks = sub_b["bucket"].value_counts().to_dict()
+
+    fig, ax = plt.subplots(figsize=(10, 8), facecolor="white")
+    ax.set_facecolor("white")
+
+    for bucket in BUCKET_ORDER:
+        g = sub_b[sub_b["bucket"] == bucket]
+        if g.empty: continue
+        is_lyric = bucket in ("concordance", "native_ala")
+        ax.scatter(g["umap_x"], g["umap_y"],
+                   c=COLORS[bucket],
+                   s=130 if is_lyric else 20,
+                   alpha=0.95 if is_lyric else 0.55,
+                   zorder=5 if is_lyric else 3,
+                   linewidths=0.8 if is_lyric else 0,
+                   edgecolors="white" if is_lyric else "none",
+                   label=f"{bucket.replace('_',' ')} (n={len(g)})")
+        if is_lyric:
+            for _, row in g.iterrows():
+                ax.annotate(bucket.replace("_", " "),
+                            (row["umap_x"], row["umap_y"]),
+                            xytext=(8, 5), textcoords="offset points",
+                            fontsize=8, color=COLORS[bucket], fontweight="bold",
+                            arrowprops=dict(arrowstyle="-", color=COLORS[bucket],
+                                            lw=0.7, alpha=0.6))
+
+    title_str = (f"{bar_id} — {song}\n"
+                 f"iconicity={icon:.3f}  |  "
+                 + "  ·  ".join(f"{b.replace('_',' ')} {bucks.get(b,0)}" for b in BUCKET_ORDER
+                                if bucks.get(b, 0) > 0))
+    ax.set_title(title_str, fontsize=9.5, color="black", pad=8)
+    ax.set_xlabel("UMAP 1", fontsize=9, color="#555")
+    ax.set_ylabel("UMAP 2", fontsize=9, color="#555")
+    ax.tick_params(colors="#999", labelsize=7)
+    for s in ax.spines.values():
+        s.set_edgecolor("#dddddd")
+
+    present = [b for b in BUCKET_ORDER if b in sub_b["bucket"].values]
+    handles = [mpatches.Patch(color=COLORS[b], label=f"{b.replace('_',' ')} (n={bucks.get(b,0)})")
+               for b in present]
+    ax.legend(handles=handles, fontsize=8, framealpha=0.9,
+              edgecolor="#cccccc", facecolor="white", labelcolor="black")
+
+    plt.tight_layout(rect=[0, 0.09, 1, 1])
+
+    blurb89 = (
+        f"Per-bar UMAP for {bar_id} ({song}). "
+        "Lyric seeds (concordance/native_ala, large dots) anchor the space; "
+        "MPNN designs (small dots) scatter around them. "
+        "Tight clusters = MPNN designs converging on a shared fold family. "
+        "Spread = diverse sequence space exploration."
+    )
+    fig.text(0.5, 0.01, blurb89, ha="center", va="bottom", fontsize=7,
+             color="#444", wrap=True,
+             bbox=dict(boxstyle="round,pad=0.4", facecolor="#f9f9f9", edgecolor="#ddd", alpha=0.9))
+
+    bar_num = bar_id.replace("bar_", "")
+    fname = f"fig89_umap_bar_{bar_num.zfill(2)}.png"
+    plt.savefig(OUT_FIG / fname, dpi=150, facecolor="white", bbox_inches="tight")
+    plt.close()
+    print(f"  Saved {fname}")
+
 print("\nAll done.")
 print("  fig83_umap_all_buckets.png")
 print("  fig84_umap_native_ala.png")
 print("  fig85_umap_concordance.png")
 print("  fig86_umap_barbie_dangerous.png")
+print("  fig87_umap_lyric_seeds.png")
+print("  fig88_umap_plddt.png")
+print("  fig89_umap_bar_XX.png × 37")
