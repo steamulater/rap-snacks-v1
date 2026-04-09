@@ -2,7 +2,7 @@
 
 **Repo:** `steamulater/rap-snacks-v1`
 **Phase 2 start:** 2026-03-25
-**Last updated:** 2026-04-07
+**Last updated:** 2026-04-09
 **Status:** native_ala_free MPNN + Boltz v3 complete · BioReason-Pro pipeline ready · Next: codon optimisation + platform decision
 
 ---
@@ -1221,6 +1221,45 @@ Seven composition metrics assessed per sequence: longest homopolymer run, low-co
 ![Figure 93 — AA composition heatmap](outputs/figures/fig93_aa_heatmap.png)
 
 **Figure 93 | Amino acid composition heatmap (20 standard AAs, 24 proteins, % residue).** Cells with ≥15% composition are annotated. Yellow→red = increasing prevalence. The EK-repeat signature of bar_32_naf_034 and bar_46_naf_027 is visible as twin hot columns (E and K). Group D (bottom 5 rows) shows broader AA diversity — these are lyric-character encodings, not designed sequences. The Group B free_design sequences show more even composition than their naf counterparts.
+
+---
+
+## Design Swap — 2026-04-09
+
+### Rationale
+
+Two entries were removed from the 24-protein selected set and replaced with bar_6_concordance (Group D) and bar_6_scrambled_02 (Group E).
+
+**Removed: bar_46_naf_027 (Group A, rank 6)**
+bar_46 had a confirmed concordance backbone failure. Although the native_ala_free MPNN redesign scored well (pLDDT 0.964, pTM 0.877), the source backbone is structurally compromised and the sequence is a pure EK-repeat coiled-coil with no FoldSeek homologs — not a strong representative of the lyric→structure encoding.
+
+**Removed: bar_3_free_047 (Group B, rank 17)**
+Free MPNN design placed 7 cysteines in the 84-residue sequence (8.3% C). This creates a severe expression liability — likely to form scrambled disulfides or aggregate in *E. coli*. Removing it avoids a synthesis failure confounding the fd vs naf comparison in Group B.
+
+### PyMOL investigation that prompted the swap
+
+While diagnosing a PyMOL display issue with bar_3_native_ala (no HELIX/SHEET records in Boltz PDB output — fix: run `dss` in PyMOL), the bar_3 concordance sequence was found to contain 4 cysteines at positions 1, 28, 46, 66. All three bar_3 scrambles inherit these cysteines (scramble preserves amino acid composition). bar_3 was therefore dropped as the scramble candidate — any bar_3 scramble risks adventitious disulfide stabilisation that would compromise it as a negative control.
+
+bar_6 concordance has only 2 cysteines (positions 5 and 29, well-separated), making it a cleaner basis for both a concordance seed and a scramble control.
+
+**bar_3_native_ala structural observation:** two long alpha helices. Expected — native_ala sequences are alanine-heavy (BOJUXZ positions → A, plus natural A's in the lyric), and alanine has the highest helix propensity of any amino acid. pLDDT 0.63, pTM 0.43 — confident locally, weak global fold. Structure visible in `outputs/pymol/bar_3/native_ala_model_0.pdb`.
+
+### bar_6 structural comparison (PyMOL overlay)
+
+![bar_6 three-structure overlay](outputs/pymol/bar_6/Screenshot 2026-04-09 at 12.05.35 AM.png)
+
+**bar_6 overlay — concordance (orange), native_ala (magenta), free_design (cyan).** The three encodings of "EVERYTHING I TRIED TO TEACH EM THEY GON SEE IT IN TIME TELL THEM BITCHES GET A STICK IM DONE LEADING THE BLIND" produce radically different topologies. Concordance (orange) folds into a long helix bundle — the lyric character frequencies favour helix-forming residues. native_ala (magenta) is a mixed alpha/beta fold. free_design (cyan) packs into a compact globular structure with beta sheet content. This overlay motivates including bar_6_concordance in Group D: it directly visualises the encoding strategy difference that the entire pipeline is built on.
+
+### New entries
+
+| name | group | bucket | pLDDT | pTM | C count | note |
+|------|-------|--------|-------|-----|---------|------|
+| bar_6_concordance | D | concordance | 0.444 | 0.312 | 2 (pos 5, 29) | Raw lyric seed — completes bar_6 all-4-bucket showcase |
+| bar_6_scrambled_02 | E | scrambled | 0.465 | 0.358 | 2 (pos 15, 86) | Negative control — composition-matched scramble, cysteines well-separated |
+
+bar_6_scrambled_02 chosen over _00 and _01 because its two cysteines are maximally separated (positions 15 and 86, 71 residues apart) — least likely to form an intramolecular disulfide even under oxidising conditions. _01 was rejected outright: adjacent cysteines at positions 45–46 would form a disulfide unconditionally.
+
+PDB files added to `outputs/pymol/bar_6/`: `concordance_model_0.pdb`, `scrambled_model_0.pdb`.
 
 ---
 
