@@ -3,7 +3,7 @@
 **Repo:** `steamulater/rap-snacks-v1`
 **Phase 2 start:** 2026-03-25
 **Last updated:** 2026-04-09
-**Status:** native_ala_free MPNN + Boltz v3 complete · BioReason-Pro pipeline ready · Next: codon optimisation + platform decision
+**Status:** native_ala_free MPNN + Boltz v3 complete · platform selected (Ginkgo CFPS HiBiT, $936) · Next: submit sequences
 
 ---
 
@@ -1435,13 +1435,68 @@ All 24 selected proteins visualised in PyMOL (cartoon + surface hydrophobicity, 
 
 ---
 
+## Platform Decision — 2026-04-09
+
+### Adaptyv Bio vs Ginkgo Cloud Lab
+
+Both platforms were evaluated for wet-lab expression of the 24 selected proteins.
+
+#### Adaptyv Bio (foundry.adaptyvbio.com)
+
+- **Price:** $4,296 total / $179 per protein (24 proteins loaded into Foundry UI)
+- **Tag:** Twin-Strep-Tag, C-terminal by default (GS linker included). His-tag or Fc available on request via Foundry portal
+- **Detection:** BLI/SPR yield quantification + purified protein output
+- **Workflow:** Submit AA sequence only (no tag in sequence). Tag appended in-house during DNA construct design (Days 1–7). Codon optimisation handled internally
+- **Sequence length range:** ~50–700 AA
+- **Replicates:** not included at base price
+- **Key note:** Tag is C-terminal by default — Adaptyv documentation states: *"We use C-terminal tags for 90% of proteins because the tag only gets expressed if the entire protein gets expressed. This prevents purification of truncated proteins."*
+
+#### Ginkgo Cloud Lab (cloud.ginkgo.bio) — **SELECTED**
+
+- **Price:** $936 total / $39 per protein (24 proteins, 1 replicate)
+- **Protocol:** Cell-Free Protein Synthesis (CFPS) + HiBiT luminescence detection
+- **Protocol URL:** `cloud.ginkgo.bio/protocols/cell-free-protein-expression-hibit`
+- **Tag:** HiBiT (`VSGWRLFKKIS`, 11 AA) — specified in submission template. C-terminal recommended (full-length selection). Strep-II (`WSHPQFEK`) available as alternative for purification
+- **Linker:** `GGGS` between protein and tag
+- **Detection:** Luminescence readout per protein via Tecan Spark — HiBiT-specific signal means only full-length tagged protein is detected. Not a generic titer
+- **Replicates:** 1 (sufficient for go/no-go screen)
+- **Submission format:** Google Sheets template with columns: Protein Name | Target Protein AA Sequence | Linker AA Sequence | Tag AA Sequence | Tag Position | Final DNA Sequence | Notes
+- **Sequence submission:** Do not include tag or signal peptides in `Target Protein AA Sequence` field
+
+#### Ginkgo codon optimisation process (from Ginkgo agent, 2026-04-09)
+
+Ginkgo performs codon optimisation in-house as part of digital-to-physical onboarding. Their process:
+
+1. **Host-specific adaptation** — maps AA sequence to optimal codon usage bias for target organism (E. coli BL21 derivatives for this run)
+2. **Complexity screening** — proprietary software automatically removes sequences that hinder synthesis or expression:
+   - Extreme GC content (very high or very low)
+   - Long homopolymer runs (e.g., AAAAAA)
+   - Hairpin structures or strong mRNA secondary structures near the RBS
+   - Internal restriction sites that could interfere with assembly
+3. **Expression tuning** — RBS strength or N-terminal tag variants adjusted depending on service tier
+
+#### Ginkgo service tiers
+
+| Tier | Price | What's included |
+|------|-------|-----------------|
+| Validation | $39/protein | Standard high-efficiency E. coli codon set + backbone, HiBiT luminescence readout, basic titer |
+| Optimization | $199/protein | Multiple DNA template conditions, lysate supplementation variants, LC-MS confirmation, high-res analysis |
+
+**Decision rationale:** Validation tier at $936 total is correct for this pilot. Primary question is go/no-go expression for 24 designs. HiBiT luminescence is protein-specific (full-length only), sensitive, and directly comparable across all 24 in one plate. Top expressors can be escalated to Ginkgo Optimization tier or Adaptyv purification in a follow-up run.
+
+**Replicates:** 1 replicate chosen. Signal/noise for HiBiT is sufficient to distinguish expressors from non-expressors in a single well at this scale. Replicate budget (~$936 extra) reserved for a second run on top hits.
+
+**Follow-up note:** Confirm with Ginkgo that the $936 quote is specifically the HiBiT luminescence protocol (not a generic absorbance titer). The protocol URL confirms HiBiT but the agent used generic "yield quantification (Titer)" language — worth clarifying before submission.
+
+---
+
 ## Pending Work
 
 | Priority | Task | Script |
 |----------|------|--------|
-| 1 | Codon optimisation of 24 selected sequences | `analysis/10_codon_optimize.py` |
-| 2 | Platform submission | Adaptyv Bio |
-| 3 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
+| 1 | Submit 24 sequences to Ginkgo Cloud Lab | `cloud.ginkgo.bio` |
+| 2 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
+| — | ~~Codon optimisation script~~ | ⛔ handled by Ginkgo in-house |
 | — | ~~BioReason-Pro batch run~~ | ⛔ paused — model hallucinates for all non-domain sequences |
 
 ---
