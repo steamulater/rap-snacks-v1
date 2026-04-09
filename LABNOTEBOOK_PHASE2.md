@@ -1263,6 +1263,178 @@ PDB files added to `outputs/pymol/bar_6/`: `concordance_model_0.pdb`, `scrambled
 
 ---
 
+## PyMOL Structure Gallery — 2026-04-09
+
+All 24 selected proteins visualised in PyMOL (cartoon + surface hydrophobicity, black spheres = hydrophobic residues). Structures rendered from Boltz-2 model_0 PDB files. `dss` run to assign secondary structure before cartoon rendering.
+
+---
+
+### Group A — Best MPNN per bar (native_ala_free)
+
+![bar_32_naf_034](outputs/pymol/screenshots/bar_32_naf_034.png)
+
+**bar_32_naf_034 | rank 1 | "Lookin like every designer fave muse..."** Golden helical bundle — multiple EK-repeat helices packed into a compact globular fold. 94 residues. pLDDT 0.963, pTM 0.932. The top performer in the set; the EK-repeat patterning from the lyric (E+K-rich character encoding) directly produced the regular charge stripe that stabilises this helix bundle.
+
+---
+
+![bar_8_naf_035](outputs/pymol/screenshots/bar_8_naf_035.png)
+
+**bar_8_naf_035 | rank 2 | "I will retire with the ring..."** Large teal helical bundle, 128 residues — the longest sequence in Group A. Multiple helices packing into a well-defined globular core with extensive hydrophobic burial (many black spheres). pLDDT 0.941, pTM 0.926. The length of the bar translates directly into structural complexity here.
+
+---
+
+![bar_13_naf_040](outputs/pymol/screenshots/bar_13_naf_040.png)
+
+**bar_13_naf_040 | rank 3 | "I TRIED TO CHANNEL YOU IN HOPES THAT I MAY STEER YOU BACK..."** Green helical bundle, 90 residues. Regular helix-helix packing with well-buried hydrophobic core. pLDDT 0.945, pTM 0.917. One of the cleanest designs in the set — the lyric's all-caps urgency encodes into a tight, ordered structure.
+
+---
+
+![bar_0_naf_023](outputs/pymol/screenshots/bar_0_naf_023.png)
+
+**bar_0_naf_023 | rank 4 | "I told him it's no friends in the game..."** Blue globular helical bundle, 88 residues. Multiple helices with a buried hydrophobic core. pLDDT 0.930, pTM 0.915. High-iconicity bar (0.994) — the most culturally resonant lyric in the set folds into one of the most ordered structures.
+
+---
+
+![bar_6_naf_021](outputs/pymol/screenshots/bar_6_naf_021.png)
+
+**bar_6_naf_021 | rank 5 | "EVERYTHING I TRIED TO TEACH EM THEY GON SEE IT IN TIME..."** Cyan, single elongated dominant helix with a short flanking helix. 88 residues. The EK-repeat character of this lyric (E and K are high-frequency letters) is visible in the extended helix — MPNN reinforced the helical propensity rather than disrupting it. pLDDT 0.951, pTM 0.895.
+
+---
+
+![bar_17_naf_018](outputs/pymol/screenshots/bar_17_naf_018.png)
+
+**bar_17_naf_018 | rank 6 | "First things first, all my girls, know your worth..."** Yellow-green, mixed alpha/beta topology, 121 residues. More structural variety than the pure-helix designs — the lyric includes several beta-favouring residues (V, I, T in "it's the worst"). pLDDT 0.912, pTM 0.925.
+
+---
+
+![bar_3_naf_022](outputs/pymol/screenshots/bar_3_naf_022.png)
+
+**bar_3_naf_022 | rank 7 | "You just a heartbreaker, won't let you break mine..."** Blue, two long antiparallel helices in a helix-turn-helix arrangement. 84 residues. Simple but confident topology — this was the structure initially appearing as "squiggly lines" in PyMOL before `dss` was applied. pLDDT 0.953, pTM 0.862. The two-helix fold is consistent with the alanine-rich native_ala backbone.
+
+---
+
+![bar_9_naf_011](outputs/pymol/screenshots/bar_9_naf_011.png)
+
+**bar_9_naf_011 | rank 8 | "And everything I peeped, can't just unsee..."** Green, compact mixed helical fold, 82 residues. Multiple short helices packing around a hydrophobic core. pLDDT 0.860, pTM 0.805. One of the shorter designs; the compact packing is consistent with the brevity of the lyric.
+
+---
+
+![bar_27_naf_004](outputs/pymol/screenshots/bar_27_naf_004.png)
+
+**bar_27_naf_004 | rank 9 | "You gotta have real skill, gotta work for that..."** Grey/silver, helical with partial disorder at the termini. 86 residues. Lower pLDDT (0.833) is visible as looser packing at the chain ends. 4 cysteines in this design — DTT recommended in expression buffer.
+
+---
+
+![bar_11_naf_033](outputs/pymol/screenshots/bar_11_naf_033.png)
+
+**bar_11_naf_033 | rank 10 | "When they go against the kid it's gon cost for real..."** Green, mixed alpha-helical with turn regions, 118 residues. Moderate complexity; the longer chain length produces a less tight global fold (pTM 0.739) despite good local confidence (pLDDT 0.847).
+
+---
+
+![6E5C_positive_control](outputs/pymol/screenshots/6E5C_positive_control.png)
+
+**6E5C_positive_control | rank 11 | Baker lab de novo dsβH** Orange, beta-helix topology — a double-stranded beta-helix with a characteristic triangular prism architecture. 78 residues. NMR-verified, expressed in *E. coli*. Structurally unlike every other protein in this set, which are predominantly alpha-helical. Serves as the positive control: if expression and detection work, 6E5C should give signal.
+
+---
+
+### Group B — Free design vs native_ala_free pairs
+
+![bar_9_free_033](outputs/pymol/screenshots/bar_9_free_033.png)
+
+**bar_9_free_033 | rank 12 | "And everything I peeped, can't just unsee..." (free design)** Green, compact helical bundle with well-buried hydrophobic core. pLDDT 0.957, pTM 0.924 — notably higher than its native_ala_free counterpart (bar_9_naf_011, pTM 0.805). Free MPNN found a different, tighter packing. 287 FoldSeek hits — the most structurally characterised sequence in the set.
+
+---
+
+![bar_17_free_010](outputs/pymol/screenshots/bar_17_free_010.png)
+
+**bar_17_free_010 | rank 13 | "First things first, all my girls, know your worth..." (free design)** Yellow-green, large complex mixed fold, 121 residues. More compact than its naf counterpart (bar_17_naf_018) despite identical length — free MPNN chose a different solution to the backbone shape. pLDDT 0.914, pTM 0.902.
+
+---
+
+![bar_6_free_027](outputs/pymol/screenshots/bar_6_free_027.png)
+
+**bar_6_free_027 | rank 14 | "EVERYTHING I TRIED TO TEACH EM THEY GON SEE IT IN TIME..." (free design)** Cyan, mixed alpha/beta with a large buried hydrophobic core (many black spheres). 88 residues. Strikingly different topology from bar_6_naf_021 (the naf version is a single extended helix; the free design packs into a compact globular fold). pLDDT 0.911, pTM 0.885. 1922 FoldSeek hits — known fold family.
+
+---
+
+![bar_11_free_025](outputs/pymol/screenshots/bar_11_free_025.png)
+
+**bar_11_free_025 | rank 15 | "When they go against the kid it's gon cost for real..." (free design)** Bright green, striking beta-sheet dominant topology — the only predominantly beta protein in Group B. Jellyroll-like arrangement of strands. 118 residues, pLDDT 0.882, pTM 0.870. Free MPNN departed entirely from the helical fold preferred by the native_ala backbone and found a sheet architecture instead. 1330 FoldSeek hits.
+
+---
+
+### Group C — Replicates
+
+![bar_32_naf_031](outputs/pymol/screenshots/bar_32_naf_031.png)
+
+**bar_32_naf_031 | rank 16 | "Lookin like every designer fave muse..." (replicate)** Pink/rose, two long parallel helices — a coiled-coil-like arrangement. 94 residues. This replicate of bar_32 (vs bar_32_naf_034 at rank 1) has 55% alanine content and is flagged as poly-Ala coil. The long helix topology is visible and consistent with that flag. pLDDT 0.953, pTM 0.918 — high confidence but the fold is likely a simple coil rather than a unique protein architecture.
+
+---
+
+![bar_0_naf_015](outputs/pymol/screenshots/bar_0_naf_015.png)
+
+**bar_0_naf_015 | rank 17 | "I told him it's no friends in the game..." (replicate)** Blue helical bundle. A second MPNN design for bar_0, showing similar helical topology to bar_0_naf_023 (rank 4) but with different side-chain packing. Confirms the bar_0 backbone reliably encodes a helical bundle topology regardless of specific MPNN seed. pLDDT 0.920, pTM 0.919.
+
+---
+
+### Group D — Raw lyric seeds
+
+![bar_3_concordance](outputs/pymol/screenshots/bar_3_concordance.png)
+
+**bar_3_concordance | rank 18 | "You just a heartbreaker..." (concordance encoding)** Blue, mixed alpha/beta with visible yellow sticks (the 4 cysteines at positions 1, 28, 46, 66). Less compact than the MPNN redesigns — this is the raw concordance-encoded sequence before any design. pLDDT 0.470, pTM 0.269. The cysteines were the reason bar_3 was dropped as the scramble candidate.
+
+---
+
+![bar_6_native_ala](outputs/pymol/screenshots/bar_6_native_ala.png)
+
+**bar_6_native_ala | rank 19 | "EVERYTHING I TRIED TO TEACH EM..." (native_ala encoding)** Red, helical. The native_ala encoding passes the lyric characters through directly with BOJUXZ positions → A. The all-caps lyric ("EVERYTHING", "TEACH", "SEE") encodes mostly as standard residues with alanine substitutions at B, O, J, U, X, Z positions. pLDDT 0.607, pTM 0.497 — better than concordance (0.444), but far below the MPNN redesigns.
+
+---
+
+![bar_3_native_ala](outputs/pymol/screenshots/bar_3_native_ala.png)
+
+**bar_3_native_ala | rank 20 | "You just a heartbreaker..." (native_ala encoding)** Red, two long helices. The "squiggly lines" structure from the PyMOL display issue (missing HELIX/SHEET records — fixed with `dss`). The alanine-heavy sequence folds into a helix-turn-helix — textbook poly-Ala behaviour. pLDDT 0.630, pTM 0.433. Sequence is partially human-readable: YAAAASTAHEARTAREAKERWANTLETYAAAREAKMINE...
+
+---
+
+![bar_32_native_ala](outputs/pymol/screenshots/bar_32_native_ala.png)
+
+**bar_32_native_ala | rank 21 | "Lookin like every designer fave muse..." (native_ala encoding)** Red, large parallel helix array — the lyric reads "LAAKINLIKEEVERYDESIGNERFAVEMASEFRANTRAW..." with many A substitutions producing runs of helix-favouring residues. 94 residues. pLDDT 0.659, pTM 0.594. Best of the native_ala seeds; 1441 FoldSeek hits suggests this fold is common in the structural database.
+
+---
+
+![bar_27_concordance](outputs/pymol/screenshots/bar_27_concordance.png)
+
+**bar_27_concordance | rank 22 | "You gotta have real skill, gotta work for that..." (concordance encoding)** Olive/yellow, predominantly beta sheet — unusual for concordance encodings which tend towards mixed or helical folds. The lyric character frequencies for this bar happen to encode beta-favouring residues (V, I in "skill", "will"). pLDDT 0.590, pTM 0.447. 1344 FoldSeek hits.
+
+---
+
+![bar_6_concordance](outputs/pymol/screenshots/bar_6_concordance.png)
+
+**bar_6_concordance | rank 23 | "EVERYTHING I TRIED TO TEACH EM..." (concordance encoding)** Orange, mixed alpha/beta with a large buried hydrophobic core. The concordance encoding produces a more complex topology than the native_ala version of the same bar — the frequency remapping introduces more structural variety. pLDDT 0.444, pTM 0.312. Added in the 2026-04-09 design swap to complete the bar_6 all-4-bucket showcase alongside native_ala (rank 19), free_design (rank 14), and naf (rank 5).
+
+---
+
+### Group E — Negative control
+
+*(bar_6_scrambled_02 — no PyMOL screenshot taken; structure expected to be disordered)*
+
+---
+
+### Removed designs (photographed for reference)
+
+![bar_46_naf_027_removed](outputs/pymol/screenshots/bar_46_naf_027_removed.png)
+
+**bar_46_naf_027 | REMOVED | "You know radio already tried to blackball a b*..." (native_ala_free)** Orange, two perfectly parallel long helices — a pure EK-repeat coiled-coil. The most extreme helical structure in the dataset; the regular E/K alternation (36% K, 33% E) directly enforces coiled-coil geometry. Despite excellent Boltz metrics (pLDDT 0.964, pTM 0.877), removed because: (1) the concordance backbone for bar_46 was a confirmed structural failure; (2) 0 FoldSeek hits — not a known fold; (3) the coiled-coil is a consequence of sequence composition, not lyric→structure encoding.
+
+---
+
+![bar_3_free_047_removed](outputs/pymol/screenshots/bar_3_free_047_removed.png)
+
+**bar_3_free_047 | REMOVED | "You just a heartbreaker..." (free design)** Blue, compact mixed helical fold with extensive hydrophobic burial. Boltz metrics were solid (pLDDT 0.866, pTM 0.847) but the sequence contains 7 cysteines (8.3% C) — free MPNN placed cysteines freely across the 84-residue chain. High risk of scrambled disulfide formation in *E. coli* expression. Removed and replaced with bar_6_concordance + bar_6_scrambled_02.
+
+---
+
 ## Pending Work
 
 | Priority | Task | Script |
