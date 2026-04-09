@@ -1,135 +1,164 @@
-# Rap Snacks v1
+# Rap Snacks — Protein Bars
 
-Convert culturally iconic rap lyrics into protein sequences, fold them, and find their structural homologs in nature.
+Convert culturally iconic rap lyrics into real proteins. Fold them. Design them. Express them in a cell-free system. Find out if Nicki Minaj's words exist in nature.
 
 **Upstream input:** Iconicity score from organic social signal (#NeurodivergentRapLines, X/Twitter)
-**Downstream output:** Folded protein structures with lyric-origin mutation masks
+**Downstream output:** Wet lab–confirmed expressed proteins, each traceable to a specific lyric
 
 ---
 
-## Quick Start
+## Status
 
-```bash
-# 1. Audit the data — review 20 random rows before proceeding
-make audit
+| Phase | Status |
+|-------|--------|
+| Phase 1 — Data collection + concordance folding | ✅ Complete |
+| Phase 2 — ProteinMPNN design + Boltz validation + selection | ✅ Complete |
+| Phase 2 — Wet lab expression (Ginkgo Cloud Lab) | ⏳ In progress — results ~2026-04-23 |
+| Phase 3 — Pipeline automation + Steamulater Games Season 5 | 🔜 Planning |
 
-# 2. Convert (all 5 modes, 80-300 AA filter)
-make convert
+**24 proteins submitted to Ginkgo Cloud Lab** (Confirmation #DVZL22LN5, 2026-04-09)
+Cell-free protein synthesis + HiBiT luminescence detection, $936 total.
 
-# 3. Fold on Colab (see Makefile for Boltz-2 instructions)
+---
 
-# 4. ESMFold pilot — top 25 bars
-make esm-pilot
+## What This Project Does
 
-# 5. Parse Boltz outputs (after downloading from Colab)
-make parse-boltz
-
-# 6. FoldSeek structural search
-make foldseek
-
-# 7. Enrich master CSV with all metrics
-make enrich
+```
+Rap lyric
+    ↓  concordance encoding — letter frequency → amino acid mapping
+Protein sequence
+    ↓  Boltz-2 — structure prediction (5 diffusion samples, A100)
+3D structure
+    ↓  ProteinMPNN — redesign on native_ala backbone (native_ala_free)
+Optimised sequence
+    ↓  Boltz-2 validation — confirm redesigned sequence folds
+Validated design
+    ↓  FoldSeek — structural homolog search (pdb100, afdb-swissprot, mgnify)
+Biological context
+    ↓  Ginkgo Cloud Lab — CFPS + HiBiT expression screen
+Real protein
 ```
 
 ---
 
-## Pipeline
+## Key Findings (Phase 1 + 2)
 
-```
-data/aggregated_lines_v2_frozen.csv    <- immutable input, never modified
-         |
-00_audit.py        validate + 20 random row spot-check
-         |
-01_convert.py      lyric -> FASTA (5 modes) + bar_index_snapshot.json
-         |                   + enriched CSV with all sequences
-     /fastas/
-bars_v2_{mode}.fasta × 5 modes
-         |
-[Boltz-2 on Colab]  concordance condition, PDB output
-         |
-03_parse_boltz.py  extract pLDDT, pTM, confidence -> boltz_confidence_scores.csv
-         |
-02_esm_fold.py     ESMFold API, all 5 conditions, top 25 pilot
-         |
-04_foldseek.py     structural homolog search, pTM>=0.4 bars
-         |
-05_enrich_csv.py   join all metrics -> aggregated_lines_v2_enriched.csv
-```
+- **r(iconicity, structural confidence) = 0.051** — cultural resonance and protein foldability are orthogonal. A bar going viral tells you nothing about whether it folds
+- **13 bars** have zero structural homologs in PDB, AlphaFold DB, and MGnify — structurally novel proteins that may not exist in nature
+- **native_ala_free MPNN redesign** outperforms concordance encoding: mean Boltz pLDDT 0.806 vs 0.441
+- **free_design RMSD vs concordance backbone = 7.13Å < concordance noise floor 9.58Å** — MPNN encodes backbone geometry better than re-folding the original sequence
+- Notable hit: bar_96 "Big Foot but you still a small fry" → sulfur carrier protein from *Thermotoga maritima* (prob=0.956, extremophile living at 80°C hydrothermal vents)
 
 ---
 
-## V2 Improvements (vs v1 pilot)
+## Selected Proteins (24 designs submitted for wet lab)
 
-| Issue | V1 | V2 fix |
-|---|---|---|
-| Lyric attribution drift | CSV re-sorted after conversion, bar_N mapping broke | `bar_index_snapshot.json` written at conversion time — never depends on CSV ordering |
-| FASTA/CSV agreement | No check | `len(lyric_cleaned) == len(fasta_seq)` asserted for all bars, all modes |
-| Frozen CSV modified | No guard | SHA-256 hash written on first run; subsequent runs refuse if hash changed |
-| Length confound | 10-225 AA (uncontrolled) | 80-300 AA filter — tight cohort, minimal length variance |
-| Metrics scattered | Separate output CSVs | All structural metrics joined back to one master enriched CSV |
-| CIF output | Needed conversion for downstream tools | `--output_format pdb` flag in Boltz predict |
-| Sequences not tracked | Only FASTA files | Per-condition sequence columns in master CSV |
+| Group | n | Description |
+|-------|---|-------------|
+| A | 11 | Best ProteinMPNN design per bar (native_ala_free) |
+| B | 4 | Free design vs native_ala_free comparison pairs |
+| C | 2 | Replicates — top performers with second MPNN seed |
+| D | 5 | Raw lyric seeds — concordance + native_ala encodings |
+| E | 1 | Negative control — bar_6_scrambled_02 (composition-matched) |
+| + | 1 | Positive control — 6E5C (Baker lab de novo dsβH, NMR-verified) |
+
+Full selection with sequences, metrics, and PyMOL renders: `outputs/selected_proteins.csv` and `LABNOTEBOOK_PHASE2.md`.
+
+---
+
+## Encoding: Five Modes
+
+2×2 factorial design across standard letter mapping × BOJUXZ substitution:
+
+| Mode | Standard 20 AA | BOJUXZ positions | Isolates |
+|------|---------------|-----------------|---------|
+| `concordance` | Freq-rank concordance | Softmax peaked draw | Canonical encoding |
+| `alanine` | Freq-rank concordance | → A | Effect of BOJUXZ softmax |
+| `random` | Freq-rank concordance | Uniform random | Is concordance better than chance? |
+| `native` | AA letter pass-through | Softmax peaked draw | Effect of freq remapping |
+| `native_alanine` | AA letter pass-through | → A | BOJUXZ strategy without remapping |
+
+BOJUXZ = B, O, J, U, X, Z — letters with no standard single-letter amino acid code. Substituted probabilistically (softmax, λ=2.0, seed=42).
+
+---
+
+## Pipeline Scripts
+
+```
+pipeline/
+├── collect.py              Stage 1 — tweet collection (#NeurodivergentRapLines)
+├── process.py              Stage 2 — bar extraction + iconicity scoring
+├── remerge.py              Stage 3 — fuzzy deduplication
+├── verify.py               Stage 4 — Genius API attribution
+├── convert.py              Stage 5 — lyric → FASTA (5 modes) + bar_index_snapshot.json
+└── foldseek_lookup.py      FoldSeek REST API — structural homolog search
+
+analysis/
+├── 09d_proteinmpnn_native_ala_free.py   ProteinMPNN redesign on native_ala backbones
+└── 10_foldseek_phase2.py                FoldSeek Phase 2 — 36 structures × 3 databases
+
+notebooks/
+├── boltz_validation_v4_scrambled_na.ipynb   Boltz-2 validation (Colab A100)
+└── boltz_validation_v2.ipynb                Phase 1 Boltz run
+
+outputs/
+├── selected_proteins.csv       24 selected designs with sequences + metrics
+├── pymol/                      PDB files + PyMOL session files per bar
+│   └── screenshots/            25 PyMOL renders + Ginkgo order confirmation
+├── boltz_validation/           Boltz-2 confidence scores + RMSD
+└── figures/                    95+ analysis figures
+```
 
 ---
 
 ## Data
 
 | File | Description |
-|---|---|
+|------|-------------|
 | `data/aggregated_lines_v2_frozen.csv` | Canonical input — 539 bars, 474 verified. **Immutable.** |
-| `data/aggregated_lines_v2_enriched.csv` | Master working CSV — all columns including sequences + structural metrics |
-| `data/bar_index_snapshot.json` | `bar_N -> lyric + all 5 sequences`. Authoritative attribution record. |
-| `data/frozen_csv.sha256` | Hash guard for frozen CSV |
+| `data/aggregated_lines_v2_enriched.csv` | Master CSV — all columns including sequences + structural metrics |
+| `data/bar_index_snapshot.json` | `bar_N → lyric + all 5 sequences`. Authoritative attribution record |
+| `data/phase2_candidates.csv` | 12 bars selected for Phase 2 MPNN design |
+| `outputs/selected_proteins.csv` | 24 final designs submitted for wet lab |
+| `Selected_Ginkgo_Cloud_Lab_Input_Template_CFPS (2).xlsx` | Exact file submitted to Ginkgo 2026-04-09 |
 
 ---
 
-## Conversion: Five Modes
+## Wet Lab Pipeline (Ginkgo Cloud Lab)
 
-2×2 factorial design across standard letter mapping × BOJUXZ substitution:
+**Screen (submitted):** Cell-Free Protein Synthesis + HiBiT luminescence, $39/protein
+**Scale-up (planned, for hit expressors):** E. coli BL21, His-tag purification, $85–160/protein
+**Characterisation (planned):** DSF thermostability + intact mass spec + SEC-LC-MS, ~$92/sample
+**Structural (if warranted):** CD, SAXS, NMR, X-ray, cryo-EM at university core facility
 
-| Mode | Standard 20 | BOJUXZ | Isolates |
-|---|---|---|---|
-| `concordance` | Freq-rank concordance | Softmax peaked draw | Canonical run |
-| `alanine` | Freq-rank concordance | → A | Effect of softmax BOJUXZ |
-| `random` | Freq-rank concordance | Uniform random | Is concordance better than chance? |
-| `native` | AA pass-through | Softmax peaked draw | Effect of freq remapping |
-| `native_alanine` | AA pass-through | → A | BOJUXZ strategy without remapping |
-
-All runs: seed=42, λ=2.0, 80-300 AA filter.
+Full decision rationale and pricing in `LABNOTEBOOK_PHASE2.md`.
 
 ---
 
-## Length Filter Rationale
+## Phase 3 — Steamulater Games: Season 5
 
-V1 pilot (225 bars, 28–136 AA) showed:
-- `r(length, pLDDT) = −0.746` — length is the dominant structural predictor
-- pTM > 0.4 (protein-like) peaks in the 40–90 AA range
-- 80–300 AA chosen for v1: tight cohort eliminates residual length confound entirely
+The next phase automates this pipeline into a public platform where anyone can submit a lyric and receive their own protein. Participants compete on whose lyric produces the most structurally interesting, novel, or foldable design. Winner's protein gets expressed in a real cell-free system.
+
+See `LABNOTEBOOK_PHASE3.md` for full vision, technical roadmap, and competition format.
 
 ---
 
-## Boltz-2 (Colab)
+## Lab Notebooks
 
-After `make convert`, upload `outputs/fastas/bars_v2_concordance.fasta` to Colab:
-
-```python
-!pip install boltz cuequivariance-torch
-!boltz predict bars_v2_concordance.fasta \
-    --use_msa_server \
-    --output_format pdb \
-    --diffusion_samples 1 \
-    --out_dir boltz_outputs/
-```
-
-Download `boltz_outputs/` to `outputs/boltz/`, then `make parse-boltz`.
+| File | Contents |
+|------|----------|
+| `LABNOTEBOOK.md` | Phase 1 — data collection, encoding, Boltz pilot, FoldSeek, integrity audit |
+| `LABNOTEBOOK_PHASE2.md` | Phase 2 — ProteinMPNN, Boltz validation, design selection, PyMOL gallery, wet lab |
+| `LABNOTEBOOK_PHASE3.md` | Phase 3 — pipeline automation, Steamulater Games Season 5 |
 
 ---
 
 ## Environment
 
-- Local: Python 3.x, no GPU required for pipeline stages 0–2, 4–5
-- Cloud: Google Colab Pro+ (A100-SXM4-80GB) for Boltz-2
-- ESMFold: free API at `api.esmatlas.com` — no auth, no local install
+- **Local:** MacBook Air M3, Python 3.x, no GPU required for pipeline stages
+- **Cloud:** Google Colab Pro+ (A100-SXM4-80GB) for Boltz-2 folding
+- **APIs:** X API v2 (tweet collection), Genius API (attribution), FoldSeek REST, ESMFold API
+- **Wet lab:** Ginkgo Cloud Lab (CFPS + HiBiT), Adaptyv Bio (purification, if needed)
 
 ```bash
 pip install -r requirements.txt
