@@ -1608,7 +1608,11 @@ Note: CD, SAXS, NMR, X-ray, and cryo-EM require non-plate-format instruments not
 
 vs Adaptyv screen-only: $4,296.
 
-**Submission status:** Ginkgo submission template completed and submitted 2026-04-09. Input file: `Selected_Ginkgo_Cloud_Lab_Input_Template_CFPS (2).xlsx` (committed to repo root).
+**Submission status:** Ginkgo order confirmed 2026-04-09, 2:48 AM.
+
+![Ginkgo order confirmation](outputs/pymol/screenshots/ginkgo_order_confirmation.png)
+
+**Confirmation #DVZL22LN5** — 24 × Cell Free Protein Expression with HiBiT Quantification, $936.00 USD. Contact: muk@steamulater.com. Confirmation email sent. Input file: `Selected_Ginkgo_Cloud_Lab_Input_Template_CFPS (2).xlsx` (committed to repo root).
 
 ---
 
