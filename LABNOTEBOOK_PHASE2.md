@@ -1488,6 +1488,32 @@ Ginkgo performs codon optimisation in-house as part of digital-to-physical onboa
 
 **Follow-up note:** Confirm with Ginkgo that the $936 quote is specifically the HiBiT luminescence protocol (not a generic absorbance titer). The protocol URL confirms HiBiT but the agent used generic "yield quantification (Titer)" language — worth clarifying before submission.
 
+#### Ginkgo scale-up pathway (from Ginkgo agent, 2026-04-09)
+
+Ginkgo can bridge CFPS screening directly into purification for hit variants without re-uploading sequences. Two pathways:
+
+**Physical handoff (if Clonal Plasmid Synthesis was included in initial request):**
+If the initial CFPS request included plasmid synthesis (not just linear DNA), Ginkgo retains the sequence-verified plasmid on-site. Scale-up = new service request referencing the existing project/plasmid ID. No re-upload or re-shipping required.
+
+**Microbial scale-up for hit variants:**
+Winning sequences move from CFPS into live E. coli BL21 in automated 24-well or 96-well format.
+- Purification: Tecan Magniflex (magnetic bead) or Agilent Bravo — His-tag based
+- Scale: parallelised small-volume cultures (5–50 mL deep-well plates or flasks), not bioreactors
+- Bioreactor (Ambr 250 multi-liter fermentation): not available in standard cloud lab workflows — future add-on, separate pricing
+
+**Estimated per-sample add-on costs for scale-up (8–24 hit variants):**
+
+| Step | Instrument | Est. per sample |
+|------|-----------|-----------------|
+| Microbial expression | Cytomat / Bioshake | $25–$50 |
+| Purification (His-tag) | Agilent Bravo / Magniflex | $45–$80 |
+| Analytics (CE/HPLC) | Fragment Analyzer / Spark | $15–$30 |
+| **Total per hit** | | **$85–$160** |
+
+**Implication for this project:** If 6 proteins express (conservative estimate), scale-up for all 6 = ~$510–$960. Total end-to-end budget (screen + scale-up for hits) = ~$1,450–$1,900 — well under Adaptyv's $4,296 screen-only price. The Ginkgo pathway is the right call.
+
+**Tag note for scale-up:** Ginkgo's microbial purification uses His-tag (Agilent Bravo / Magniflex), not Strep. This means the scale-up construct would need a His-tag rather than HiBiT. Ginkgo handles this transition internally — the sequence stays the same, tag is swapped in their DNA design step.
+
 ---
 
 ## Pending Work
