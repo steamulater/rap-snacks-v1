@@ -1514,6 +1514,46 @@ Winning sequences move from CFPS into live E. coli BL21 in automated 24-well or 
 
 **Tag note for scale-up:** Ginkgo's microbial purification uses His-tag (Agilent Bravo / Magniflex), not Strep. This means the scale-up construct would need a His-tag rather than HiBiT. Ginkgo handles this transition internally — the sequence stays the same, tag is swapped in their DNA design step.
 
+#### Ginkgo post-purification characterisation (from Ginkgo agent, 2026-04-09)
+
+Full analytical suite available for hit variants after purification. All instruments integrated into Reconfigurable Automation Carts (RACs).
+
+**Instrument mapping:**
+
+| Requirement | Instrument | Method |
+|-------------|-----------|--------|
+| Yield / concentration | Unchained Labs Lunatic | High-throughput UV/Vis A280 |
+| Purity / MW | AATI Fragment Analyzer | Capillary electrophoresis CE-SDS |
+| High-res mass spec | Thermo Q Exactive Plus / Plus Nano | Intact mass or peptide mapping |
+| Rapid mass spec | SCIEX Echo MS | Ultra-fast acoustic-loading screening |
+| Thermostability | Thermo Automated Thermal Cycler + Tecan Spark | DSF / Thermofluor (Proteostat or SYPRO Orange) |
+
+**Per-sample cost estimate for 8–10 hit variants (post-purification, 96-well, 8 samples/run):**
+
+| Line item | Total run cost | Per sample |
+|-----------|---------------|------------|
+| Yield (Lunatic UV/Vis) | $24.96 (3 hrs) | $3.12 |
+| Mass spec (QE Plus Nano) | $388.32 (16 hrs) | $48.54 |
+| Thermostability DSF | $124.93 (14 hrs) | $15.62 |
+| Consumables (plates/tips) | $200.00 | $25.00 |
+| **Total** | **$738.21** | **$92.28/sample** |
+
+**Technical notes:**
+- **DSF:** CFX Opus or Tecan Spark + automated thermal cycler → melting temperature (Tm). Directly measures whether the designed fold is thermostable
+- **Mass spec:** Q Exactive Plus recommended for de novo designs — intact mass validation confirms produced sequence matches the bar design exactly. Critical QC step given the lyric→protein encoding
+- **Lunatic note:** $3.12/sample is flagged as low — budget for additional automation handling or specialised plates in final quote
+
+**Full end-to-end budget projection (updated):**
+
+| Stage | Scope | Est. cost |
+|-------|-------|-----------|
+| CFPS screen | 24 proteins, 1 replicate | $936 |
+| Scale-up expression + purification | 6 hits | ~$510–960 |
+| Characterisation (yield + MS + DSF) | 6 hits | ~$554 |
+| **Total** | | **~$2,000–$2,500** |
+
+vs Adaptyv screen-only: $4,296. Ginkgo end-to-end including characterisation still cheaper.
+
 ---
 
 ## Pending Work
