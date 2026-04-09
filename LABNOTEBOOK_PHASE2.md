@@ -1554,14 +1554,73 @@ Full analytical suite available for hit variants after purification. All instrum
 
 vs Adaptyv screen-only: $4,296. Ginkgo end-to-end including characterisation still cheaper.
 
+#### Ginkgo biophysical characterisation — success criteria for de novo proteins (from Ginkgo agent, 2026-04-09)
+
+Without a known natural function, success is defined by biophysical "well-behavedness." Ginkgo recommends a **Biophysical Fingerprint** approach:
+
+**Definition of a successful de novo design (Ginkgo criteria):**
+1. **Correct mass** — intact mass via Q Exactive Plus Nano confirms expressed sequence matches design exactly
+2. **High stability** — Tm > 65°C via DSF
+3. **Solubility & monodispersity** — single clean monomeric peak via SEC-LC-MS (no aggregates)
+4. **Folded core** — backbone protection from solvent exchange via HDX-MS
+
+**Available assays on Cloud Lab RACs:**
+
+| Assay | Instrument | What it tells you |
+|-------|-----------|------------------|
+| Monodispersity (SEC-HPLC) | Thermo Vanquish / Ultimate 3000 | Single monomeric peak vs. aggregates |
+| Binding selectivity (SPR) | Nicoya Alto | Kd measurement — even without known target, can screen against panel |
+| Conformational mapping (HDX-MS) | Q Exactive Plus | Which backbone regions are solvent-exposed vs. protected in folded core |
+| Thermostability (DSF) | CFX Opus + Tecan Spark | Melting temperature Tm |
+| Yield (UV/Vis) | Unchained Labs Lunatic | A280 concentration |
+| Purity / MW (CE-SDS) | AATI Fragment Analyzer | Purity and apparent MW |
+
+**Structural characterisation methods — status on Cloud Lab:**
+
+| Technique | Available | Cloud Lab alternative |
+|-----------|-----------|----------------------|
+| CD (Circular Dichroism) | ❌ Not on RAC | DSF via CFX Opus — infers secondary structure stability |
+| SAXS | ❌ Not on RAC | Native/intact MS — confirms oligomeric state and compactness |
+| NMR | ❌ Not on RAC | Synchrotron / university core facility required |
+| X-ray crystallography | ❌ Not on RAC | Synchrotron / university core facility required |
+| Cryo-EM | ❌ Not on RAC | Specialized core facility required |
+
+Note: CD, SAXS, NMR, X-ray, and cryo-EM require non-plate-format instruments not compatible with RAC automation. For any bar proteins that pass the biophysical fingerprint screen, these methods should be pursued at a university structural biology core.
+
+**Biophysical Fingerprint pricing (batch of 24, SEC-LC-MS + DSF):**
+
+| Line item | Total | Per sample |
+|-----------|-------|-----------|
+| SEC-LC-MS (QE Plus) | $1,200 | $50.00 |
+| DSF stability (CFX Opus) | $300 | $12.50 |
+| Consumables / plates | $400 | $16.67 |
+| **Total** | **$1,900** | **$79.17** |
+
+**Updated full end-to-end budget (all stages):**
+
+| Stage | Scope | Est. cost |
+|-------|-------|-----------|
+| CFPS expression screen | 24 proteins, HiBiT | $936 |
+| Scale-up expression + His-purification | ~6 hits | ~$735 |
+| Characterisation (MS + DSF + SEC) | ~6 hits | ~$554 |
+| Biophysical fingerprint (if escalated) | ~6 hits | ~$475 |
+| **Total** | | **~$2,700** |
+
+vs Adaptyv screen-only: $4,296.
+
+**Submission status:** Ginkgo submission template completed and submitted 2026-04-09. Input file: `Selected_Ginkgo_Cloud_Lab_Input_Template_CFPS (2).xlsx` (committed to repo root).
+
 ---
 
 ## Pending Work
 
 | Priority | Task | Script |
 |----------|------|--------|
-| 1 | Submit 24 sequences to Ginkgo Cloud Lab | `cloud.ginkgo.bio` |
-| 2 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
+| 1 | Await Ginkgo CFPS results | submitted 2026-04-09 |
+| 2 | Identify hit expressors (HiBiT signal > background) | — |
+| 3 | Submit hits for scale-up + biophysical fingerprint | `cloud.ginkgo.bio` |
+| 4 | Concordance scrambles Boltz run (fills last gap in decomposition table) | new notebook |
+| — | ~~Submit 24 sequences to Ginkgo Cloud Lab~~ | ✅ done 2026-04-09 |
 | — | ~~Codon optimisation script~~ | ⛔ handled by Ginkgo in-house |
 | — | ~~BioReason-Pro batch run~~ | ⛔ paused — model hallucinates for all non-domain sequences |
 
